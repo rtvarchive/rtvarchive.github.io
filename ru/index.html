@@ -1,231 +1,474 @@
 <!doctype html>
 <html lang="ru">
-
 <head>
-
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RADIUS ARCHIVE | Архив утраченных эфиров, записей и музыки · RADIUS ARCHIVE</title>
+  <meta name="description" content="RADIUS ARCHIVE | Архив утраченных трансляций, магнитных записей и музыкальных архивов." />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <title>RADIUS ARCHIVE · Русская версия</title>
-
-  <meta
-    name="description"
-    content="RADIUS ARCHIVE · Архив потерянных трансляций, записей и музыкальных документов."
-  />
-
-  <link
-    rel="icon"
-    type="image/png"
-    href="../assets/img/favicon.png"
-  />
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  />
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-    crossorigin
-  />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <link
-    rel="stylesheet"
-    href="../assets/css/styles.css"
-  />
-
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
-
 
 <body>
 
-
-  <!-- =======================================================
-       SIDE RAIL
-  ======================================================== -->
-
-  <aside
-    class="side-rail"
-    aria-label="RADIUS ARCHIVE"
-  >
-
-    <div class="side-rail__mark">
-      RADIUS · ARCHIVE
-    </div>
-
-    <span
-      class="side-rail__pulse"
-      aria-hidden="true"
-    ></span>
-
-    <div class="side-rail__year">
-      EST. 1976 · RADINSK
-    </div>
-
+  <aside class="side-rail" aria-label="RADIUS ARCHIVE">
+    <div class="side-rail__mark">RADIUS · ARCHIVE</div>
+    <span class="side-rail__pulse" aria-hidden="true"></span>
+    <div class="side-rail__year">ОСН. 1976 · РАДИНСК</div>
   </aside>
-
-
-
-  <!-- =======================================================
-       TOP NAVIGATION
-  ======================================================== -->
 
   <header class="topbar">
 
     <div class="topbar__signal">
-
-      <span
-        class="dot"
-        aria-hidden="true"
-      ></span>
-
-      <span>
-        RADIUS ARCHIVE
-      </span>
-
+      <span class="dot" aria-hidden="true"></span>
+      <span>RADIUS ARCHIVE</span>
     </div>
 
-
     <nav aria-label="Основная навигация">
-
-      <ul
-        class="nav__list"
-        data-nav-list
-      >
-
-        <li>
-          <a
-            class="nav__link is-active"
-            href="index.html"
-          >
-            Главная
-          </a>
-        </li>
-
-        <li>
-          <a
-            class="nav__link"
-            href="../projects.html"
-          >
-            Проекты
-          </a>
-        </li>
-
-        <li>
-          <a
-            class="nav__link"
-            href="../about.html"
-          >
-            Об архиве
-          </a>
-        </li>
-
-      </ul>
-
+      <ul class="nav__list" data-nav-list>
+        <li><a class="nav__link is-active" href="index.html">Главная</a></li>
+        <li><a class="nav__link" href="projects.html">Проекты</a></li>
+        <li><a class="nav__link" href="about.html">Об архиве</a></li>
     </nav>
 
-
-    <!-- LANGUAGE SWITCHER -->
+    <!-- LANGUAGE SWITCHER
+         Placeholder links for future EN/RU versions -->
 
     <div class="topbar__languages">
 
       <a
         href="../index.html"
         class="language-link"
-        lang="en"
-      >
+        lang="en">
         EN
       </a>
 
-      <span aria-hidden="true">
-        |
-      </span>
+      <span aria-hidden="true"> | </span>
 
       <a
-        href="index.html"
+        href="ru/index.html"
         class="language-link is-active"
-        lang="ru"
-      >
+        lang="ru">
         RU
       </a>
 
     </div>
 
-
-    <button
-      class="menu-toggle"
-      data-menu-toggle
-      aria-expanded="false"
-    >
+    <button class="menu-toggle" data-menu-toggle aria-expanded="false">
       Меню
     </button>
+
 
   </header>
 
 
-
-  <!-- =======================================================
-       MAIN
-  ======================================================== -->
+  <!-- =========================================================
+       MAIN CONTENT
+  ========================================================== -->
 
   <main class="page">
 
 
-    <section class="page-head">
+    <!-- =======================================================
+     HERO BANNER
+======================================================== -->
+
+<div class="hero-banner">
+
+  <img
+    src="../assets/img/radius-archive-banner.png"
+    alt="RADIUS ARCHIVE"
+    class="hero-banner__image">
 
 
-      <p class="page-head__crumb">
+      <!-- ARCHIVE STATUS TICKER -->
 
-        <a href="index.html">
+      <div class="hero__ticker">
+
+        <span>
+          <strong>● АКТИВЕН</strong>
           RADIUS ARCHIVE
-        </a>
-
-        <span aria-hidden="true">
-          /
         </span>
 
-        Реконструкция
+        <span class="stat">
+          Проектов
+          <b>08</b>
+        </span>
 
-      </p>
+        <span class="stat">
+          Архивных фондов
+          <b>Несколько</b>
+        </span>
+
+        <span class="stat">
+          Носители
+          <b>Аудио / Видео / Магнитные ленты</b>
+        </span>
+
+        <span class="stat">
+          Статус
+          <b>Архив пополняется</b>
+        </span>
+
+      </div>
+
+    <!-- =======================================================
+         PROJECTS
+    ======================================================== -->
+
+    <section
+      class="section"
+      aria-labelledby="projects-heading">
 
 
-      <h1 class="page-head__title">
+      <div class="section__head">
 
-        АРХИВ
-        <em>НА РЕКОНСТРУКЦИИ</em>
+        <span class="section__num">
+          Раздел 02 · Проекты
+        </span>
 
-      </h1>
+        <h2
+          class="section__title"
+          id="projects-heading">
+
+          
+          <em>Проекты</em>
+
+        </h2>
+
+        <a
+          class="section__more"
+          href="projects.html">
+
+          Все проекты →
+
+        </a>
+
+      </div>
 
 
-      <p class="page-head__sub">
+      <div class="roster">
 
-        Русская версия архива находится на реконструкции.
 
-      </p>
+        <!-- 605 -->
 
+        <a
+          class="roster__row"
+          href="605.html"
+          data-reveal>
+
+          <span class="roster__num">
+            01
+          </span>
+
+          <h3 class="roster__name">
+            605 Микрорайон
+          </h3>
+
+          <p class="roster__bio">
+            Утерянные записи пост-панка и холодной волны из забытого городского архива. Шум кассетной плёнки, подвальные репетиции, пустые дворы и воспоминания о городе, которого, возможно, больше не существует.
+          </p>
+
+          <div class="roster__tags">
+
+            <span class="roster__tag">
+              постпанк
+            </span>
+
+            <span class="roster__tag">
+              альтернативный рок
+            </span>
+
+          </div>
+
+          <span class="roster__arrow">
+            →
+          </span>
+
+        </a>
+
+
+
+        <!-- PHASE ZERO -->
+
+        <a
+          class="roster__row"
+          href="phasezero.html"
+          data-reveal>
+
+          <span class="roster__num">
+            02
+          </span>
+
+          <h3 class="roster__name">
+            ФАЗА / НОЛЬ
+          </h3>
+
+          <p class="roster__bio">
+            Восстановленные аудиозаписи, приписываемые вымышленному Институту Тишины. Советвейв, холодная волна, синтезаторная музыка, следы деградации магнитной ленты и лабораторные сигналы неизвестного происхождения.
+          </p>
+
+          <div class="roster__tags">
+
+            <span class="roster__tag">
+              синти-поп
+            </span>
+
+            <span class="roster__tag">
+              Колдвейв
+            </span>
+
+          </div>
+
+          <span class="roster__arrow">
+            →
+          </span>
+
+        </a>
+
+<!-- RITUAL 84 -->
+
+        <a
+          class="roster__row"
+          href="ritual84.html"
+          data-reveal>
+
+          <span class="roster__num">
+            03
+          </span>
+
+          <h3 class="roster__name">
+            РИТУАЛ-84
+          </h3>
+
+          <p class="roster__bio">
+            Восстановленные полевые записи несуществующих экспедиций. Северные ландшафты, забытые ритуальные фрагменты, ранняя электроника и повреждённые магнитные ленты, сохранившие отголоски неизвестных наблюдений.
+          </p>
+
+          <div class="roster__tags">
+
+            <span class="roster__tag">
+              эмбиент
+            </span>
+
+            <span class="roster__tag">
+              этно-электроника
+            </span>
+
+          </div>
+
+          <span class="roster__arrow">
+            →
+          </span>
+
+        </a>
+
+        <!-- RADIUS 78 -->
+
+        <a
+          class="roster__row"
+          href="radius78.html"
+          data-reveal>
+
+          <span class="roster__num">
+            04
+          </span>
+
+          <h3 class="roster__name">
+            РАДИУС-78
+          </h3>
+
+          <p class="roster__bio">
+            Вымышленный архив передач Телецентра «РАДИУС». Тестовые сигналы, голоса дикторов, забытые программы и фрагменты альтернативной истории телевидения.
+          </p>
+
+          <div class="roster__tags">
+
+            <span class="roster__tag">
+              вещание
+            </span>
+
+            <span class="roster__tag">
+              утраченные материалы
+            </span>
+
+          </div>
+
+          <span class="roster__arrow">
+            →
+          </span>
+
+        </a>
+
+      </div>
 
     </section>
 
 
-  <!-- =======================================================
+
+    <!-- =======================================================
+         LISTEN / PLATFORMS
+    ======================================================== -->
+
+    <section
+      class="section"
+      aria-labelledby="streams-heading">
+
+
+      <div class="section__head">
+
+        <span class="section__num">
+          Раздел 03 · Каналы
+        </span>
+
+        <h2
+          class="section__title"
+          id="streams-heading">
+
+          ЭФИР / 
+          <em>АУДИО</em>
+
+        </h2>
+
+        <a
+          class="section__more"
+          href="about.html">
+
+          Об архиве →
+
+        </a>
+
+      </div>
+
+
+      <div class="streams">
+
+        <a
+		 class="stream-pill"
+		 href="https://www.youtube.com/@rtv.archive"
+		 target="_blank"
+		 rel="noopener noreferrer">
+
+		  <span class="glyph"></span> YouTube
+		</a>
+
+
+        <a
+          class="stream-pill"
+          href="https://audius.co/rtv.archive"
+		  target="_blank"
+		  rel="noopener noreferrer">
+
+          <span class="glyph"></span>
+
+          AUDIUS
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         ARCHIVE STATEMENT
+    ======================================================== -->
+
+    <section
+      class="section"
+      aria-labelledby="press-heading">
+
+
+      <div class="section__head">
+
+        <span class="section__num">
+          Раздел 04 · Концепция архива
+        </span>
+
+        <h2
+          class="section__title"
+          id="press-heading">
+
+          Концепция
+          <em>архива</em>
+
+        </h2>
+
+      </div>
+
+
+      <div class="press">
+
+
+        <blockquote
+          class="press__quote"
+          data-reveal>
+
+          <p class="press__text">
+            Некоторые записи были найдены. Некоторые — восстановлены. Некоторые никогда не должны были существовать.
+          </p>
+
+          <p class="press__src">
+            RADIUS ARCHIVE
+            <small>ОСН. 1976</small>
+          </p>
+
+        </blockquote>
+
+
+        <blockquote
+          class="press__quote"
+          data-reveal>
+
+          <p class="press__text">
+            Музыка, эфиры и документы, извлечённые из глубин памяти.
+          </p>
+
+          <p class="press__src">
+            Архивная заметка
+            <small>РТВ</small>
+          </p>
+
+        </blockquote>
+
+
+        <blockquote
+          class="press__quote"
+          data-reveal>
+
+          <p class="press__text">
+            Вымышленные архивы.
+			Звуки прошлого.
+			Утраченные истории.
+          </p>
+
+          <p class="press__src">
+            RADIUS ARCHIVE
+            <small>Архив пополняется</small>
+          </p>
+
+        </blockquote>
+
+
+      </div>
+
+    </section>
+
+
+  <!-- =========================================================
        FOOTER
-  ======================================================== -->
+  ========================================================== -->
 
   <footer class="foot">
 
-
     <div class="foot__grid">
-
 
       <!-- BRAND -->
 
@@ -236,24 +479,18 @@
         </p>
 
         <p class="foot__about">
-
-          Независимый вымышленный архив
-          потерянных трансляций, андеграундных записей,
-          магнитных лент и реконструированных
+          Независимый художественный архив утраченных телепередач,
+          подпольных записей, магнитных лент и реконструированных
           музыкальных документов.
-
         </p>
 
       </div>
-
 
       <!-- EXPLORE -->
 
       <div class="foot__col">
 
-        <h4>
-          Навигация
-        </h4>
+        <h4>Разделы</h4>
 
         <ul>
 
@@ -264,14 +501,14 @@
           </li>
 
           <li>
-            <a href="../projects.html">
+            <a href="projects.html">
               Проекты
             </a>
           </li>
 
           <li>
-            <a href="../about.html">
-              Об архиве
+            <a href="about.html">
+              О проекте
             </a>
           </li>
 
@@ -279,39 +516,33 @@
 
       </div>
 
-
       <!-- FOLLOW -->
 
       <div class="foot__col">
 
-        <h4>
-          Архив
-        </h4>
+        <h4>Архив в сети</h4>
 
         <ul>
 
           <li>
-            <a href="../index.html">
+            <a href="../index.html"
+               rel="noopener noreferrer">
               English Version
             </a>
           </li>
 
           <li>
-            <a
-              href="https://www.youtube.com/@rtv.archive"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.youtube.com/@rtv.archive"
+               target="_blank"
+               rel="noopener noreferrer">
               YouTube
             </a>
           </li>
 
           <li>
-            <a
-              href="https://audius.co/rtv.archive"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://audius.co/rtv.archive"
+               target="_blank"
+               rel="noopener noreferrer">
               Audius
             </a>
           </li>
@@ -320,53 +551,32 @@
 
       </div>
 
-
     </div>
-
-
 
     <!-- FOOTER BOTTOM -->
 
     <div class="foot__btm">
 
       <span>
-
         ©
-        <span data-year>
-          2026
-        </span>
-
-        RADIUS ARCHIVE · RADINSK
-
+        <span data-year>2026</span>
+        RADIUS ARCHIVE · РАДИНСК
       </span>
 
-
       <span>
-
-        <strong>
-          ● АРХИВ АКТИВЕН
-        </strong>
-
-        · EST. 1976
-
+        <strong>● АРХИВ АКТИВЕН</strong>
+        · ОСН. 1976
       </span>
 
-
       <span>
-
-        LOST · FOUND · RECONSTRUCTED
-
+        УТРАЧЕНО · НАЙДЕНО · ВОССТАНОВЛЕНО
       </span>
 
     </div>
 
-
   </footer>
-
-
 
   <script src="../assets/js/main.js"></script>
 
 </body>
-
 </html>
