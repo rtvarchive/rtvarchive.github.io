@@ -6,8 +6,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>О проекте · RADIUS ARCHIVE</title>
-  <meta name="description" content="RADIUS ARCHIVE | Архив утраченных трансляций, магнитных записей и музыкальных архивов." />
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <meta name="description" content="О проекте RADIUS ARCHIVE — авторский проект архивной реконструкции, основанный на вымышленной истории Телевизионного центра «РАДИУС»." />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,16 +31,15 @@
       <span>RADIUS ARCHIVE</span>
     </div>
 
-    <nav aria-label="Основная навигация">
+    <nav id="primary-nav" aria-label="Основная навигация">
       <ul class="nav__list" data-nav-list>
         <li><a class="nav__link" href="index.html">Главная</a></li>
         <li><a class="nav__link" href="projects.html">Проекты</a></li>
-        <li><a class="nav__link is-active" href="about.html">Об архиве</a></li>
+        <li><a class="nav__link is-active" href="about.html" aria-current="page">Об архиве</a></li>
       </ul>
     </nav>
 
-    <!-- LANGUAGE SWITCHER
-         Placeholder links for future EN/RU versions -->
+    <!-- LANGUAGE SWITCHER -->
 
     <div class="topbar__languages">
 
@@ -62,8 +61,11 @@
 
     </div>
 
-
-    <button class="menu-toggle" data-menu-toggle aria-expanded="false">
+    <button
+      class="menu-toggle"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="primary-nav">
       Меню
     </button>
 
@@ -169,7 +171,7 @@
 
         <p>
           Если у вас сохранились запись, фотография, документ или история, которые могли бы пополнить архив, мы будем рады ознакомиться с ними.
-			Нас интересуют забытые телевизионные передачи, неопознанные магнитные записи и любые материалы, связанные с Телевизионным центром «РАДИУС».
+          Нас интересуют забытые телевизионные передачи, неопознанные магнитные записи и любые материалы, связанные с Телевизионным центром «РАДИУС».
         </p>
 
         <p>
@@ -209,121 +211,123 @@
 
     </div>
 
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="foot">
+
+      <div class="foot__grid">
+
+        <!-- BRAND -->
+
+        <div class="foot__col">
+
+          <p class="foot__brand">
+            RADIUS<b>ARCHIVE</b>
+          </p>
+
+          <p class="foot__about">
+            Независимый художественный архив утраченных телепередач,
+            подпольных записей, магнитных лент и реконструированных
+            музыкальных документов.
+          </p>
+
+        </div>
+
+        <!-- EXPLORE -->
+
+        <div class="foot__col">
+
+          <h4>Разделы</h4>
+
+          <ul>
+
+            <li>
+              <a href="index.html">
+                Главная
+              </a>
+            </li>
+
+            <li>
+              <a href="projects.html">
+                Проекты
+              </a>
+            </li>
+
+            <li>
+              <a href="about.html">
+                О проекте
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <!-- FOLLOW -->
+
+        <div class="foot__col">
+
+          <h4>Архив в сети</h4>
+
+          <ul>
+
+            <li>
+              <a href="../index.html">
+                English Version
+              </a>
+            </li>
+
+            <li>
+              <a href="https://www.youtube.com/@rtv.archive"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                YouTube
+              </a>
+            </li>
+
+            <li>
+              <a href="https://audius.co/rtv.archive"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Audius
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <!-- FOOTER BOTTOM -->
+
+      <div class="foot__btm">
+
+        <span>
+          ©
+          <span data-year>2026</span>
+          RADIUS ARCHIVE · РАДИНСК
+        </span>
+
+        <span>
+          <strong>● АРХИВ АКТИВЕН</strong>
+          · ОСН. 1976
+        </span>
+
+        <span>
+          УТРАЧЕНО · НАЙДЕНО · ВОССТАНОВЛЕНО
+        </span>
+
+      </div>
+
+    </footer>
+
   </main>
 
-  <!-- =========================================================
-       FOOTER
-  ========================================================== -->
-
-  <footer class="foot">
-
-    <div class="foot__grid">
-
-      <!-- BRAND -->
-
-      <div class="foot__col">
-
-        <p class="foot__brand">
-          RADIUS<b>ARCHIVE</b>
-        </p>
-
-        <p class="foot__about">
-          Независимый художественный архив утраченных телепередач,
-          подпольных записей, магнитных лент и реконструированных
-          музыкальных документов.
-        </p>
-
-      </div>
-
-      <!-- EXPLORE -->
-
-      <div class="foot__col">
-
-        <h4>Разделы</h4>
-
-        <ul>
-
-          <li>
-            <a href="index.html">
-              Главная
-            </a>
-          </li>
-
-          <li>
-            <a href="projects.html">
-              Проекты
-            </a>
-          </li>
-
-          <li>
-            <a href="about.html">
-              О проекте
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-      <!-- FOLLOW -->
-
-      <div class="foot__col">
-
-        <h4>Архив в сети</h4>
-
-        <ul>
-
-          <li>
-            <a href="../index.html"
-               rel="noopener noreferrer">
-              English Version
-            </a>
-          </li>
-
-          <li>
-            <a href="https://www.youtube.com/@rtv.archive"
-               target="_blank"
-               rel="noopener noreferrer">
-              YouTube
-            </a>
-          </li>
-
-          <li>
-            <a href="https://audius.co/rtv.archive"
-               target="_blank"
-               rel="noopener noreferrer">
-              Audius
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-    <!-- FOOTER BOTTOM -->
-
-    <div class="foot__btm">
-
-      <span>
-        ©
-        <span data-year>2026</span>
-        RADIUS ARCHIVE · РАДИНСК
-      </span>
-
-      <span>
-        <strong>● АРХИВ АКТИВЕН</strong>
-        · ОСН. 1976
-      </span>
-
-      <span>
-        УТРАЧЕНО · НАЙДЕНО · ВОССТАНОВЛЕНО
-      </span>
-
-    </div>
-
-  </footer>
 
   <script src="../assets/js/main.js"></script>
 
