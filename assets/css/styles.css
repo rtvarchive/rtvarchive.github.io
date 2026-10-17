@@ -2431,10 +2431,11 @@ body::after {
 
 .project-detail-card > .artist-card__foot {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
-
-
 /* =========================================================
    TABLET
    Tracklist moves below only under 1000px
@@ -2492,4 +2493,135 @@ body::after {
     border-top: 1px solid currentColor;
   }
 
+}
+
+/* =============================================================
+   ARTIST CARD — STRETCHED LINK (whole card clickable)
+============================================================= */
+
+.artist-card {
+  cursor: pointer;
+}
+
+.artist-card__link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s var(--ease-out);
+}
+
+/* Растягиваем ссылку на всю карточку */
+.artist-card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* Hover на любую точку карточки — подсветка заголовка */
+.artist-card:hover .artist-card__link {
+  color: var(--neon-cyan);
+}
+
+/* Фокус с клавиатуры — рамка на всю карточку.
+   box-shadow inset, т.к. у .artist-card overflow: hidden,
+   и обычный outline обрезался бы. */
+.artist-card:has(.artist-card__link:focus-visible) {
+  box-shadow: inset 0 0 0 2px var(--neon-magenta);
+}
+
+/* У самой ссылки рамку убираем — она уже на карточке */
+.artist-card__link:focus-visible {
+  outline: none;
+}
+
+/* Обложка и номер — под растянутой ссылкой по z-index */
+.artist-card__portrait {
+  position: relative;
+  z-index: 0;
+}
+
+.artist-card__num {
+  z-index: 2;
+}
+
+/* Foot-ссылка — кликабельна мышью, но не в Tab-потоке
+   (tabindex="-1" в HTML) */
+.artist-card__foot a {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =============================================================
+   FILTERS — "+ MORE" TOGGLE
+============================================================= */
+
+.filters__more {
+  display: contents;
+}
+
+.filters__more[hidden] {
+  display: none;
+}
+
+.chip--more {
+  border-style: dashed;
+  color: var(--txt-dim);
+}
+
+.chip--more:hover,
+.chip--more[aria-expanded="true"] {
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+
+/* =============================================================
+   PROJECT DETAIL PAGE — NOT CLICKABLE CARD
+============================================================= */
+
+.artist-card.project-detail-card {
+  cursor: default;
+}
+
+.artist-card.project-detail-card:hover {
+  transform: none;
+  border-color: var(--line-soft);
+}
+
+.artist-card.project-detail-card:hover::before {
+  transform: scaleX(0);
+}
+
+
+/* =============================================================
+   STREAM PILL — DISABLED STATE (SOON)
+============================================================= */
+
+.stream-pill.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-style: dashed;
+}
+
+.stream-pill.is-disabled:hover {
+  border-color: var(--line-mid);
+  color: var(--txt-soft);
+  background: rgba(28, 30, 43, 0.5);
+}
+
+/* =============================================================
+   TRACK NOTE — "not on streaming" marker
+============================================================= */
+
+.track-note {
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--txt-faint);
+  margin-left: 0.5rem;
+  white-space: nowrap;
+  opacity: 0.75;
 }
