@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects · RADIUS ARCHIVE</title>
-  <meta name="description" content="RADIUS ARCHIVE — twelve fictional music projects, reconstructed from lost broadcasts, underground recordings and magnetic tape archives." />
+  <meta name="description" content="RADIUS ARCHIVE — a fictional archive of music projects reconstructed from lost broadcasts, underground recordings and magnetic tape archives." />
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,42 +34,20 @@
       </ul>
     </nav>
 
-    <!-- LANGUAGE SWITCHER -->
-
     <div class="topbar__languages">
-
-      <a
-        href="index.html"
-        class="language-link is-active"
-        lang="en">
-        EN
-      </a>
-
+      <a href="index.html" class="language-link is-active" lang="en">EN</a>
       <span aria-hidden="true"> | </span>
-
-      <a
-        href="ru/index.html"
-        class="language-link"
-        lang="ru">
-        RU
-      </a>
-
+      <a href="ru/index.html" class="language-link" lang="ru">RU</a>
     </div>
 
-    <button
-      class="menu-toggle"
-      data-menu-toggle
-      aria-expanded="false"
-      aria-controls="primary-nav">
-      Menu
-    </button>
+    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-nav">Menu</button>
   </header>
 
   <main class="page">
 
     <section class="page-head">
       <p class="page-head__crumb"><a href="index.html">RADIUS ARCHIVE</a> / Projects</p>
-      <h1 class="page-head__title">Twelve Projects. <em>One Archive.</em></h1>
+      <h1 class="page-head__title">Fifteen Projects. <em>One Archive.</em></h1>
       <p class="page-head__sub">
         RADIUS ARCHIVE is a fictional archive of lost broadcasts, underground recordings, and reconstructed musical documents. Each project is a fragment of a larger story — a forgotten tape, a missing transmission, or a record from a world that might have existed somewhere between history, memory, and an alternative reality.
       </p>
@@ -80,14 +58,18 @@
       <button class="chip" data-filter="Post-punk">Post-punk</button>
       <button class="chip" data-filter="Synthpop">Synthpop</button>
       <button class="chip" data-filter="Ambient">Ambient</button>
-      <button class="chip" data-filter="Broadcast">Broadcast</button>
-      <button class="chip" data-filter="Classical">Classical</button>
-      <button class="chip" data-filter="Soft Rock">Soft Rock</button>
       <button class="chip" data-filter="Rock">Rock</button>
       <button class="chip" data-filter="Pop">Pop</button>
       <button class="chip" data-filter="Folk">Folk</button>
-      <button class="chip" data-filter="Soundtrack">Soundtrack</button>
-      <button class="chip" data-filter="Baroque Pop">Baroque Pop</button>
+      <button class="chip chip--more" data-filter-more
+              data-label-more="+ More" data-label-less="− Less"
+              aria-expanded="false" aria-controls="filters-more">+ More</button>
+      <div class="filters__more" id="filters-more" hidden>
+        <button class="chip" data-filter="Hip-Hop">Hip-Hop</button>
+        <button class="chip" data-filter="Reggae">Reggae</button>
+        <button class="chip" data-filter="Broadcast">Broadcast</button>
+        <button class="chip" data-filter="Classical">Classical</button>
+      </div>
     </div>
 
     <div class="artist-grid" id="artist-list">
@@ -95,14 +77,16 @@
       <article class="artist-card" id="605-mikrorayon" data-tag="Post-punk" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 01</span>
-          <img src="assets/img/01-605-album.png" alt="605 Mikrorayon — Archival Recordings, 1986–1993" />
+          <img src="assets/img/01-605-album.jpg" alt="605 Mikrorayon — Archival Recordings, 1986–1993" />
         </div>
-        <h3 class="artist-card__name">605 Микрорайон</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="605.html">605 Микрорайон</a>
+        </h3>
         <p class="artist-card__genre">Post-punk · Alternative Rock</p>
         <p class="artist-card__status">AVAILABLE / LISTEN</p>
         <p class="artist-card__bio">605 Mikrorayon — lost post-punk and coldwave recordings from a forgotten urban archive. Cassette hiss, rehearsal rooms, empty courtyards and fragments of everyday life preserve the memory of a city that may no longer exist.</p>
         <div class="artist-card__foot">
-          <a href="605.html">13 singles →</a>
+          <a href="605.html" tabindex="-1" aria-hidden="true">13 singles →</a>
           <span>Archival Recordings · 1986–1993</span>
         </div>
       </article>
@@ -110,14 +94,16 @@
       <article class="artist-card" id="phase-zero" data-tag="Synthpop" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 02</span>
-          <img src="assets/img/02-phase-zero-album.png" alt="ФАЗА/НОЛЬ — Institute of Silence archive" />
+          <img src="assets/img/02-phase-zero-album.jpg" alt="ФАЗА/НОЛЬ — Institute of Silence archive" />
         </div>
-        <h3 class="artist-card__name">ФАЗА/НОЛЬ</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="phasezero.html">ФАЗА/НОЛЬ</a>
+        </h3>
         <p class="artist-card__genre">Synthpop · Coldwave</p>
         <p class="artist-card__status">AVAILABLE / LISTEN</p>
         <p class="artist-card__bio">PHASE/ZERO — recovered recordings attributed to the fictional Institute of Silence. Synthpop, coldwave and Sovietwave textures emerge through magnetic tape degradation, laboratory signals and fragments of a research archive that was never meant to be found.</p>
         <div class="artist-card__foot">
-          <a href="phasezero.html">11 singles →</a>
+          <a href="phasezero.html" tabindex="-1" aria-hidden="true">11 singles →</a>
           <span>Archival Recordings · 1989–1999</span>
         </div>
       </article>
@@ -125,14 +111,16 @@
       <article class="artist-card" id="ritual-84" data-tag="Ambient" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 03</span>
-          <img src="assets/img/03-ritual-84.png" alt="Ритуал-84 — ethnographic field recordings" />
+          <img src="assets/img/03-ritual-84.jpg" alt="Ритуал-84 — ethnographic field recordings" />
         </div>
-        <h3 class="artist-card__name">Ритуал-84</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="ritual84.html">Ритуал-84</a>
+        </h3>
         <p class="artist-card__genre">Ambient · Ethnic electronica</p>
         <p class="artist-card__status">AVAILABLE / LISTEN</p>
         <p class="artist-card__bio">Ritual-84 — reconstructed field recordings from expeditions that never officially took place. Northern landscapes, ritual fragments, early electronics and damaged magnetic tape preserve traces of journeys that exist somewhere between folklore, memory and archival fiction.</p>
         <div class="artist-card__foot">
-          <a href="ritual84.html">3 albums →</a>
+          <a href="ritual84.html" tabindex="-1" aria-hidden="true">3 albums →</a>
           <span>Archival Field Recordings</span>
         </div>
       </article>
@@ -140,14 +128,16 @@
       <article class="artist-card" id="radius-78" data-tag="Broadcast" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 04</span>
-          <img src="assets/img/04-radius-78.png" alt="Радиус-78 — RADIUS Television Center broadcast archive" />
+          <img src="assets/img/04-radius-78.jpg" alt="Радиус-78 — RADIUS Television Center broadcast archive" />
         </div>
-        <h3 class="artist-card__name">Радиус-78</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="radius78.html">Радиус-78</a>
+        </h3>
         <p class="artist-card__genre">Broadcast · Lost Media</p>
         <p class="artist-card__status">YouTube + Audius</p>
         <p class="artist-card__bio">RADIUS-78 — a fictional collection of broadcasts from the RADIUS Television Center, spanning the late 1970s through the final years of the archive. Test signals, announcer recordings, music programs and lost transmissions reconstruct fragments of an alternative broadcast history.</p>
         <div class="artist-card__foot">
-          <a href="radius78.html">5 singles →</a>
+          <a href="radius78.html" tabindex="-1" aria-hidden="true">5 singles →</a>
           <span>Broadcast Files · 1978–1998</span>
         </div>
       </article>
@@ -155,29 +145,33 @@
       <article class="artist-card" id="crystal-orchestra" data-tag="Classical" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 05</span>
-          <img src="assets/img/05-crystal-orchestra.png" alt="Оркестр Кристалл — staff orchestra of a television music studio" />
+          <img src="assets/img/05-crystal-orchestra.jpg" alt="Оркестр Кристалл — staff orchestra of a television music studio" />
         </div>
-        <h3 class="artist-card__name">Оркестр Кристалл</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="crystal.html">Оркестр Кристалл</a>
+        </h3>
         <p class="artist-card__genre">Classical · Orchestral</p>
         <p class="artist-card__status">YouTube + Audius</p>
         <p class="artist-card__bio">Crystal Orchestra — the reconstructed recordings of a fictional television studio orchestra active during the late 1970s. Orchestral themes, concert arrangements and background music preserve the sound of a vanished production studio and the broadcasts it helped bring to life.</p>
         <div class="artist-card__foot">
-          <a href="crystal.html">5 singles →</a>
+          <a href="crystal.html" tabindex="-1" aria-hidden="true">5 singles →</a>
           <span>Selected Recordings</span>
         </div>
       </article>
 
-      <article class="artist-card" id="sanatorium-of-dreams" data-tag="Soft Rock" data-reveal>
+      <article class="artist-card" id="sanatorium-of-dreams" data-tag="Rock Pop" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 06</span>
-          <img src="assets/img/06-sanatorium-of-dreams.png" alt="Санаторий Снов — City of Lost Time" />
+          <img src="assets/img/06-sanatorium-of-dreams.jpg" alt="Санаторий Снов — City of Lost Time" />
         </div>
-        <h3 class="artist-card__name">Санаторий Снов</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="sanatoriumofdreams.html">Санаторий Снов</a>
+        </h3>
         <p class="artist-card__genre">Dream Pop · Soft Rock</p>
         <p class="artist-card__status">AVAILABLE / LISTEN</p>
         <p class="artist-card__bio">Sanatorium of Dreams — a small collection of urban stories unfolding somewhere between memory and reality. Forgotten streets, familiar faces and empty courtyards drift through a world where ordinary life slowly becomes strange, and memories may not always belong to those who remember them.</p>
         <div class="artist-card__foot">
-          <a href="sanatoriumofdreams.html">5 singles →</a>
+          <a href="sanatoriumofdreams.html" tabindex="-1" aria-hidden="true">5 singles →</a>
           <span>Recovered Dreams · Magic Realism</span>
         </div>
       </article>
@@ -185,44 +179,50 @@
       <article class="artist-card" id="wild-honey" data-tag="Folk" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 07</span>
-          <img src="assets/img/07-wild-honey.png" alt="Дикий Мёд — rural legends and oral memory" />
+          <img src="assets/img/07-wild-honey.jpg" alt="Дикий Мёд — rural legends and oral memory" />
         </div>
-        <h3 class="artist-card__name">Дикий Мёд</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="wildhoney.html">Дикий Мёд</a>
+        </h3>
         <p class="artist-card__genre">Folk Noir · Gothic Folk</p>
         <p class="artist-card__status">YouTube + Audius</p>
         <p class="artist-card__bio">Wild Honey — a cycle of rural legends collected as fragments of oral memory. Folk-noir songs, whispered stories and distant voices preserve tales that lived between people, changing shape each time they were remembered and retold.</p>
         <div class="artist-card__foot">
-          <a href="wildhoney.html">3 singles →</a>
+          <a href="wildhoney.html" tabindex="-1" aria-hidden="true">3 singles →</a>
           <span>Folk Noir · Rural Archive</span>
         </div>
       </article>
 
-      <article class="artist-card" id="heather-wanderers" data-tag="Soundtrack" data-reveal>
+      <article class="artist-card" id="heather-wanderers" data-tag="Folk" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 08</span>
-          <img src="assets/img/08-heather-wanderers-song-of-neris.png" alt="Скитальцы Вереска — The Song of Neris" />
+          <img src="assets/img/08-heather-wanderers-song-of-neris.jpg" alt="Скитальцы Вереска — The Song of Neris" />
         </div>
-        <h3 class="artist-card__name">Скитальцы Вереска</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="heatherwanderers.html">Скитальцы Вереска</a>
+        </h3>
         <p class="artist-card__genre">Soundtrack · Television Theatre</p>
         <p class="artist-card__status">YouTube + Audius</p>
         <p class="artist-card__bio">Heather Wanderers — the surviving audio archive of a fictional television play, presented as a reconstructed broadcast recording from 1983. The original production, filmed performance and visual materials have been lost, leaving only the soundtrack and fragments of a story preserved through song.</p>
         <div class="artist-card__foot">
-          <a href="heatherwanderers.html">1 album →</a>
+          <a href="heatherwanderers.html" tabindex="-1" aria-hidden="true">1 album →</a>
           <span>Soundtrack · Television Theatre</span>
         </div>
       </article>
 
-      <article class="artist-card" id="vanity-fair" data-tag="Baroque Pop" data-reveal>
+      <article class="artist-card" id="vanity-fair" data-tag="Pop" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 09</span>
-          <img src="assets/img/09-vanity-fair.png" alt="ВИА Ярмарка Тщеславия — Vanity Fair" />
+          <img src="assets/img/09-vanity-fair.jpg" alt="ВИА Ярмарка Тщеславия — Vanity Fair" />
         </div>
-        <h3 class="artist-card__name">ВИА Ярмарка Тщеславия</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="vanityfair.html">ВИА Ярмарка Тщеславия</a>
+        </h3>
         <p class="artist-card__genre">VIA · Baroque Pop</p>
         <p class="artist-card__status">YouTube + Audius</p>
         <p class="artist-card__bio">VIA "Vanity Fair" is an artistic reconstruction of a fictional ensemble from 1976–1979, blending chamber orchestra, acoustic rock, and elements of baroque pop. The surviving songs tell small stories about people, love, memory, and vanity.</p>
         <div class="artist-card__foot">
-          <a href="vanityfair.html">3 singles →</a>
+          <a href="vanityfair.html" tabindex="-1" aria-hidden="true">3 singles →</a>
           <span>VIA · Baroque Pop</span>
         </div>
       </article>
@@ -230,29 +230,33 @@
       <article class="artist-card" id="ensemble-kolosvit" data-tag="Folk" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 10</span>
-          <img src="assets/img/10-kolosvit-album.png" alt="Ансамбль Колосвіт — Ukrainian folk ensemble" />
+          <img src="assets/img/10-kolosvit-album.jpg" alt="Ансамбль Колосвіт — Ukrainian folk ensemble" />
         </div>
-        <h3 class="artist-card__name">Ансамбль Колосвіт</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="kolosvit.html">Ансамбль Колосвіт</a>
+        </h3>
         <p class="artist-card__genre">Folk · Psychedelic Folk-Rock</p>
         <p class="artist-card__status">AVAILABLE / LISTEN</p>
         <p class="artist-card__bio">A Ukrainian folk ensemble active between 1970 and 1974. Early recordings draw from traditional songs and folk melodies, gradually evolving into a psychedelic folk-rock sound with echoes of village memory, nature and old songs.</p>
         <div class="artist-card__foot">
-          <a href="kolosvit.html">1 album →</a>
+          <a href="kolosvit.html" tabindex="-1" aria-hidden="true">1 album →</a>
           <span>Ukrainian Folk · Psychedelic Rock</span>
         </div>
       </article>
 
-      <article class="artist-card" id="oriental-bazaar" data-tag="Folk" data-reveal>
+      <article class="artist-card" id="oriental-bazaar" data-tag="Rock Folk" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 11</span>
-          <img src="assets/img/11-oriental-bazaar.png" alt="ВИА Восточный Базар — Star Road" />
+          <img src="assets/img/11-oriental-bazaar.jpg" alt="ВИА Восточный Базар — Star Road" />
         </div>
-        <h3 class="artist-card__name">ВИА Восточный Базар</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="orientalbazaar.html">ВИА Восточный Базар</a>
+        </h3>
         <p class="artist-card__genre">Psychedelic Rock · Space-Disco</p>
         <p class="artist-card__status">AVAILABLE / LISTEN</p>
         <p class="artist-card__bio">The vocal-instrumental ensemble (VIA) "Oriental Bazaar" was a Soviet band that performed as a concert group in the first half of the 1980s. In 1984, the group put together a program called "Star Road," which combined pop songs with Eastern and folk motifs.</p>
         <div class="artist-card__foot">
-          <a href="orientalbazaar.html">1 album →</a>
+          <a href="orientalbazaar.html" tabindex="-1" aria-hidden="true">1 album →</a>
           <span>Psychedelic Rock · Space-Disco</span>
         </div>
       </article>
@@ -260,131 +264,105 @@
       <article class="artist-card" id="dima-milan" data-tag="Pop" data-reveal>
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 12</span>
-          <img src="assets/img/12-dima-milan.png" alt="Дима Милан — Russian pop singer of the late 1990s" />
+          <img src="assets/img/12-dima-milan.jpg" alt="Дима Милан — Russian pop singer of the late 1990s" />
         </div>
-        <h3 class="artist-card__name">Дима Милан</h3>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="dimamilan.html">Дима Милан</a>
+        </h3>
         <p class="artist-card__genre">Pop · Nu-Disco</p>
         <p class="artist-card__status">SOON</p>
         <p class="artist-card__bio">Dima Milan was a Russian singer of the late 1990s. In 1998–1999, he recorded several original songs for a small regional record label. The songs were simple romantic numbers about love, separation, waiting, loneliness, and chance encounters, and were intended for radio, cassette compilations, and promo CDs.</p>
         <div class="artist-card__foot">
-          <a href="dimamilan.html">6 singles →</a>
+          <a href="dimamilan.html" tabindex="-1" aria-hidden="true">6 singles →</a>
           <span>Pop · Nu-Disco</span>
+        </div>
+      </article>
+
+      <article class="artist-card" id="storm-front" data-tag="Rock" data-reveal>
+        <div class="artist-card__portrait">
+          <span class="artist-card__num">P · 13</span>
+          <img src="assets/img/13-storm-front.jpg" alt="Штормовой Фронт — Storm Front" />
+        </div>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="stormfront.html">Штормовой Фронт</a>
+        </h3>
+        <p class="artist-card__genre">Hard Rock · Power Ballad</p>
+        <p class="artist-card__status">SOON</p>
+        <p class="artist-card__bio">Storm Front — a rock band of the early 1990s, built at the intersection of melodic hard rock and the power ballad. Expressive male vocals, electric guitars, live drums and emotional solos carry songs about love, memory, faith and the need to keep moving forward when simple answers are no longer enough.</p>
+        <div class="artist-card__foot">
+          <a href="stormfront.html" tabindex="-1" aria-hidden="true">4 singles →</a>
+          <span>Melodic Hard Rock · 1993–1994</span>
+        </div>
+      </article>
+
+      <article class="artist-card" id="gurt-groove" data-tag="Hip-Hop" data-reveal>
+        <div class="artist-card__portrait">
+          <span class="artist-card__num">P · 14</span>
+          <img src="assets/img/14-gurt-groove.jpg" alt="ГУРТ ГРУВ — Gurt Groove, Rytm Mista" />
+        </div>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="gurtgroove.html">ГУРТ ГРУВ</a>
+        </h3>
+        <p class="artist-card__genre">Funk · Breakbeat · Instrumental Hip-Hop</p>
+        <p class="artist-card__status">SOON</p>
+        <p class="artist-card__bio">Gurt Groove — a Ukrainian group formed in 1998, built around funk, breakbeat, funky breaks and alternative instrumental hip-hop. Live instruments, samples, bass and rhythm form the core of a sound that moves at the intersection of club culture, hip-hop and late-1990s electronic music.</p>
+        <div class="artist-card__foot">
+          <a href="gurtgroove.html" tabindex="-1" aria-hidden="true">1 album →</a>
+          <span>Funk · Breakbeat · 1998–2001</span>
+        </div>
+      </article>
+
+      <article class="artist-card" id="final-psalm" data-tag="Reggae" data-reveal>
+        <div class="artist-card__portrait">
+          <span class="artist-card__num">P · 15</span>
+          <img src="assets/img/15-final-psalm.jpg" alt="Останній Псалом — Final Psalm, While the Fire Still Burns" />
+        </div>
+        <h3 class="artist-card__name">
+          <a class="artist-card__link" href="finalpsalm.html">Останній Псалом</a>
+        </h3>
+        <p class="artist-card__genre">Acoustic Reggae · Roots Reggae</p>
+        <p class="artist-card__status">SOON</p>
+        <p class="artist-card__bio">Final Psalm — an independent Ukrainian music project by Dan, blending acoustic reggae, personal songwriting and spiritual reflection. Warm male baritone, acoustic guitar and a gentle reggae rhythm carry songs about love, loss, hope, freedom and the light that continues to live within us.</p>
+        <div class="artist-card__foot">
+          <a href="finalpsalm.html" tabindex="-1" aria-hidden="true">1 album + 3 singles →</a>
+          <span>Acoustic Reggae · 2013</span>
         </div>
       </article>
 
     </div>
 
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-
     <footer class="foot">
-
       <div class="foot__grid">
-
-        <!-- BRAND -->
-
         <div class="foot__col">
-
-          <p class="foot__brand">
-            RADIUS<b>ARCHIVE</b>
-          </p>
-
+          <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
           <p class="foot__about">
             An independent fictional archive of lost broadcasts,
             underground recordings, magnetic tapes and reconstructed
             musical documents.
           </p>
-
         </div>
-
-        <!-- EXPLORE -->
-
         <div class="foot__col">
-
           <h4>Explore</h4>
-
           <ul>
-
-            <li>
-              <a href="index.html">
-                Home
-              </a>
-            </li>
-
-            <li>
-              <a href="projects.html">
-                Projects
-              </a>
-            </li>
-
-            <li>
-              <a href="about.html">
-                About
-              </a>
-            </li>
-
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="about.html">About</a></li>
           </ul>
-
         </div>
-
-        <!-- FOLLOW -->
-
         <div class="foot__col">
-
           <h4>Follow the Archive</h4>
-
           <ul>
-
-            <li>
-              <a href="ru/index.html">
-                Русская Версия
-              </a>
-            </li>
-
-            <li>
-              <a href="https://www.youtube.com/@rtv.archive"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                YouTube
-              </a>
-            </li>
-
-            <li>
-              <a href="https://audius.co/rtv.archive"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Audius
-              </a>
-            </li>
-
+            <li><a href="ru/index.html">Русская Версия</a></li>
+            <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+            <li><a href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">Audius</a></li>
           </ul>
-
         </div>
-
       </div>
-
-      <!-- FOOTER BOTTOM -->
-
       <div class="foot__btm">
-
-        <span>
-          ©
-          <span data-year>2026</span>
-          RADIUS ARCHIVE · RADINSK
-        </span>
-
-        <span>
-          <strong>● ARCHIVE ACTIVE</strong>
-          · EST. 1976
-        </span>
-
-        <span>
-          LOST · FOUND · RECONSTRUCTED
-        </span>
-
+        <span>© <span data-year>2026</span> RADIUS ARCHIVE · RADINSK</span>
+        <span><strong>● ARCHIVE ACTIVE</strong> · EST. 1976</span>
+        <span>LOST · FOUND · RECONSTRUCTED</span>
       </div>
-
     </footer>
 
   </main>
