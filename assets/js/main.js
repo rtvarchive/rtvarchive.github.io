@@ -28,7 +28,7 @@
 
   // Filter chips on releases / artists pages
   document.querySelectorAll('[data-filter-group]').forEach((group) => {
-    const chips = group.querySelectorAll('.chip');
+    const chips = group.querySelectorAll('.chip:not([data-filter-more])');
     chips.forEach((chip) => {
       chip.addEventListener('click', () => {
         chips.forEach((c) => c.classList.remove('is-on'));
@@ -72,5 +72,23 @@
   // Year stamp
   document.querySelectorAll('[data-year]').forEach((el) => {
     el.textContent = String(new Date().getFullYear());
+  });
+
+  // Filter chips "+ More" toggle
+  document.querySelectorAll('[data-filter-more]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const more = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!more) return;
+      const open = more.hasAttribute('hidden');
+      if (open) {
+        more.removeAttribute('hidden');
+      } else {
+        more.setAttribute('hidden', '');
+      }
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open
+        ? (btn.dataset.labelLess || '− Less')
+        : (btn.dataset.labelMore || '+ More');
+    });
   });
 })();
