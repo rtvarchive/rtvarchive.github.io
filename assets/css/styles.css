@@ -2625,3 +2625,27 @@ body::after {
   white-space: nowrap;
   opacity: 0.75;
 }
+
+/* =============================================================
+   SECTION SUB — microtext under section head
+============================================================= */
+
+.section__sub {
+  font-family: var(--ff-mono);
+  font-size: var(--t-mono-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--txt-dim);
+  max-width: 60ch;
+  margin: -1.5rem auto 2rem;
+  padding-inline: var(--gutter);
+  max-width: var(--max);
+  /* центрируем по ширине контента, как section__head */
+}
+
+@media (max-width: 720px) {
+  .section__sub {
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+  }
+}
