@@ -60,6 +60,18 @@
         <span data-en="VIA <em>Oriental Bazaar</em>" data-ru="ВИА <em>Восточный Базар</em>">VIA <em>Oriental Bazaar</em></span>
       </h1>
       <p class="page-head__sub" style="margin-inline: auto;" data-en="Star Road (1984)" data-ru="Звёздная дорога (1984)">Star Road (1984)</p>
+
+      <!-- КНОПКА КОПИРОВАНИЯ -->
+      <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+        <button onclick="copyLink()" class="stream-pill" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span data-en="Copy Link" data-ru="Копировать ссылку">Copy Link</span>
+        </button>
+      </div>
+
     </section>
 
     <div style="max-width: 800px; margin: 0 auto; padding: 2rem var(--gutter); text-align: center;">
@@ -96,9 +108,28 @@
         <li style="display: flex; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--line-soft);"><span class="track-number">11</span> <span class="track-title">Огни ночного базара</span></li>
       </ol>
     </div>
+
+    <!-- ТОСТ УВЕДОМЛЕНИЕ О КОПИРОВАНИИ -->
+    <div id="copy-toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--bg-elevated); color: var(--text-100); padding: 0.75rem 1.5rem; border-radius: 4px; border: 1px solid var(--line-mid); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 1000;">
+      <span data-en="Link copied!" data-ru="Ссылка скопирована!">Link copied!</span>
+    </div>
   </main>
 
   <script>
+    // ФУНКЦИЯ КОПИРОВАНИЯ ССЫЛКИ
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.style.opacity = '1';
+        setTimeout(() => {
+          toast.style.opacity = '0';
+        }, 2000);
+      }).catch(err => {
+        console.error('Ошибка копирования: ', err);
+      });
+    }
+
+    // ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ ЯЗЫКА
     function setLanguage(lang) {
       document.querySelectorAll('[data-lang]').forEach(function(l) {
         l.classList.remove('is-active');
