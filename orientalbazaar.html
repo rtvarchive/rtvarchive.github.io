@@ -11,6 +11,45 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  
+  <style>
+    /* Стили для модального окна */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(11, 13, 20, 0.85);
+      backdrop-filter: blur(5px);
+    }
+    .modal-content {
+      background-color: #0b0d14;
+      margin: 5% auto; 
+      padding: 2rem;
+      border: 1px solid #333;
+      width: 90%;
+      max-width: 600px;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .close-btn {
+      color: #fff;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .close-btn:hover {
+      color: #ff00ff;
+    }
+  </style>
 </head>
 <body>
   <aside class="side-rail" aria-label="RADIUS ARCHIVE">
@@ -31,11 +70,11 @@
         <li><a class="nav__link" href="about.html">About</a></li>
       </ul>
     </nav>
-      <div class="topbar__languages">
-    <a href="orientalbazaar.html" class="language-link is-active" lang="en">EN</a>
-    <span aria-hidden="true"> | </span>
-    <a href="ru/orientalbazaar.html" class="language-link" lang="ru">RU</a>
-  </div>
+    <div class="topbar__languages">
+      <a href="orientalbazaar.html" class="language-link is-active" lang="en">EN</a>
+      <span aria-hidden="true"> | </span>
+      <a href="ru/orientalbazaar.html" class="language-link" lang="ru">RU</a>
+    </div>
     <button class="menu-toggle" data-menu-toggle aria-expanded="false">Menu</button>
   </header>
 
@@ -45,63 +84,135 @@
       <h1 class="page-head__title">ВИА <em>Восточный Базар</em></h1>
       <p class="page-head__sub">VIA “Oriental Bazaar” — “Star Road” (1984)</p>
       <p class="page-head__sub">VIA “Oriental Bazaar” was a Soviet vocal-instrumental ensemble active on the concert circuit during the first half of the 1980s. In 1984, the group prepared the program “Star Road”, combining Soviet estrada songs with Eastern and folk-inspired motifs.</p>
-      <p class="page-head__sub">In 2026, a magnetic recording of the program, originally prepared by the ensemble in 1984, was discovered in a private archive. The recording had never been officially released.</p>
     </section>
 
-<div class="artist-grid" id="artist-list">
-  <article class="artist-card project-detail-card" id="oriental-bazaar" data-tag="Folk" data-reveal>
-    <div class="project-detail-layout">
-      <div class="artist-card__portrait">
-        <span class="artist-card__num">P · 11</span>
-        <img src="assets/img/11-oriental-bazaar.jpg" alt="PSYCHEDELIC ROCK · SPACE-DISCO" />
-      </div>
-      <div class="project-detail-info">
-        <h2 class="artist-card__name">ВИА Восточный Базар</h2>
-        <p class="artist-card__genre">PSYCHEDELIC ROCK · SPACE-DISCO</p>
-        <p class="artist-card__status">AVAILABLE / LISTEN</p>
-        <div class="artist-card__bio"><p>The vocal-instrumental ensemble (VIA) "Oriental Bazaar" was a Soviet band that performed as a concert group in the first half of the 1980s.</p></div>
-        <div class="project-streaming">
-          <p class="project-streaming__label">AVAILABLE / LISTEN</p>
-          <div class="project-streaming__links">
-            <!-- Передаем lang=en в хаб -->
-            <a class="stream-pill" href="listen/orientalbazaar.html?lang=en" style="font-size: 1.1em; padding: 1rem 2rem;">Listen on all platforms →</a>
+    <div class="artist-grid" id="artist-list">
+      <article class="artist-card project-detail-card" id="oriental-bazaar" data-tag="Folk" data-reveal>
+        <div class="project-detail-layout">
+          <div class="artist-card__portrait">
+            <span class="artist-card__num">P · 11</span>
+            <img src="assets/img/11-oriental-bazaar.jpg" alt="PSYCHEDELIC ROCK · SPACE-DISCO" />
+          </div>
+          <div class="project-detail-info">
+            <h2 class="artist-card__name">ВИА Восточный Базар</h2>
+            <p class="artist-card__genre">PSYCHEDELIC ROCK · SPACE-DISCO</p>
+            <p class="artist-card__status">AVAILABLE / LISTEN</p>
+            <div class="artist-card__bio"><p>The vocal-instrumental ensemble (VIA) "Oriental Bazaar" was a Soviet band that performed as a concert group in the first half of the 1980s.</p></div>
+            
+            <div class="project-streaming">
+              <p class="project-streaming__label">AVAILABLE / LISTEN</p>
+              <div class="project-streaming__links">
+                <!-- Кнопка открывает поп-ап -->
+                <button type="button" class="stream-pill" onclick="openListenModal()" style="font-size: 1.1em; padding: 1rem 2rem; cursor: pointer; background: transparent;">Listen on all platforms →</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="project-detail-spacer"></div>
+          <div class="project-tracklist">
+            <div class="project-tracklist__header"><span>TRACKLIST</span><span>1 Album</span></div>
+            <ol class="project-tracks">
+              <li><span class="track-number">01</span> <span class="track-title">Ветер над степью</span></li>
+              <li><span class="track-number">02</span> <span class="track-title">Чайхана</span></li>
+              <li><span class="track-number">03</span> <span class="track-title">Сказитель</span></li>
+              <li><span class="track-number">04</span> <span class="track-title">Али-Баба</span></li>
+              <li><span class="track-number">05</span> <span class="track-title">Зеркало</span></li>
+              <li><span class="track-number">06</span> <span class="track-title">Караван</span></li>
+              <li><span class="track-number">07</span> <span class="track-title">Дервиш</span></li>
+              <li><span class="track-number">08</span> <span class="track-title">Восточная любовь</span></li>
+              <li><span class="track-number">09</span> <span class="track-title">В саду, где лунный свет</span></li>
+              <li><span class="track-number">10</span> <span class="track-title">Звёздная дорога</span></li>
+              <li><span class="track-number">11</span> <span class="track-title">Огни ночного базара</span></li>
+            </ol>
           </div>
         </div>
-      </div>
-      <div class="project-detail-spacer"></div>
-      <div class="project-tracklist">
-        <div class="project-tracklist__header"><span>TRACKLIST</span><span>1 Album</span></div>
-        <ol class="project-tracks">
-          <li><span class="track-number">01</span> <span class="track-title">Ветер над степью</span></li>
-          <li><span class="track-number">02</span> <span class="track-title">Чайхана</span></li>
-          <li><span class="track-number">03</span> <span class="track-title">Сказитель</span></li>
-          <li><span class="track-number">04</span> <span class="track-title">Али-Баба</span></li>
-          <li><span class="track-number">05</span> <span class="track-title">Зеркало</span></li>
-          <li><span class="track-number">06</span> <span class="track-title">Караван</span></li>
-          <li><span class="track-number">07</span> <span class="track-title">Дервиш</span></li>
-          <li><span class="track-number">08</span> <span class="track-title">Восточная любовь</span></li>
-          <li><span class="track-number">09</span> <span class="track-title">В саду, где лунный свет</span></li>
-          <li><span class="track-number">10</span> <span class="track-title">Звёздная дорога</span></li>
-          <li><span class="track-number">11</span> <span class="track-title">Огни ночного базара</span></li>
-        </ol>
-      </div>
+        <div class="artist-card__foot"><span>PSYCHEDELIC ROCK · SPACE-DISCO</span><span>1 Album</span></div>
+      </article>
     </div>
-    <div class="artist-card__foot"><span>PSYCHEDELIC ROCK · SPACE-DISCO</span><span>1 Album</span></div>
-  </article>
-</div>
   </main>
 
-<footer class="foot">
-  <div class="foot__grid">
-    <div class="foot__col">
-      <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
-      <p class="foot__about">An independent label grown from the archives of the RADIUS Television Center (Radinsk, 1976–1998).</p>
+  <footer class="foot">
+    <div class="foot__grid">
+      <div class="foot__col">
+        <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
+        <p class="foot__about">An independent label grown from the archives of the RADIUS Television Center (Radinsk, 1976–1998).</p>
+      </div>
+      <div class="foot__col"><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li></ul></div>
+      <div class="foot__col"><h4>Follow</h4><ul><li><a href="ru/index.html">Русская Версия</a></li><li><a href="https://www.youtube.com/@rtv.archive" target="_blank">YouTube</a></li><li><a href="https://audius.co/rtv.archive" target="_blank">Audius</a></li></ul></div>
     </div>
-    <div class="foot__col"><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li></ul></div>
-    <div class="foot__col"><h4>Follow</h4><ul><li><a href="ru/index.html">Русская Версия</a></li><li><a href="https://www.youtube.com/@rtv.archive" target="_blank">YouTube</a></li><li><a href="https://audius.co/rtv.archive" target="_blank">Audius</a></li></ul></div>
+    <div class="foot__btm"><span>© <span data-year>2026</span> RADIUS ARCHIVE · RADINSK</span><span><strong>● ARCHIVE ACTIVE</strong> · EST. 1976</span><span>LOST · FOUND · RECONSTRUCTED</span></div>
+  </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО -->
+  <div id="listen-modal" class="modal">
+    <div class="modal-content" style="text-align: center;">
+      <span class="close-btn" onclick="closeListenModal()">&times;</span>
+      
+      <!-- Обложка альбома -->
+      <img src="assets/img/11-oriental-bazaar.jpg" alt="Oriental Bazaar" style="width: 100%; max-width: 250px; height: auto; margin-bottom: 1.5rem; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+      
+      <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">ВИА Восточный Базар</h2>
+      <p style="color: var(--text-300); margin-bottom: 2rem;">Star Road (1984)</p>
+
+      <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;">
+        <a class="stream-pill" href="https://music.apple.com/us/album/%D0%B7%D0%B2%D1%91%D0%B7%D0%B4%D0%BD%D0%B0%D1%8F-%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0/6817084898" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a class="stream-pill" href="https://open.spotify.com/album/51lgji7WU1Z1jmwrCn6pks?si=1TZWW7AiT-y823B34HDTeg" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a class="stream-pill" href="https://music.youtube.com/playlist?list=OLAK5uy_lCUY--0-ssoCXVA3NpQMFl0lWL9JZeFJ0&si=cKzKjFv4saLZhrHp" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a class="stream-pill" href="https://tidal.com/album/565062698/u" target="_blank" rel="noopener noreferrer">TIDAL</a>
+        <a class="stream-pill" href="https://music.amazon.com/albums/B0HLBXCCR8?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_K0n9GmqvEZaHo7r2C2x5IGUsY" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+        <a class="stream-pill" href="https://soundcloud.com/viavostochnyibazar/sets/zvyozdnaya-doroga" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+        <a class="stream-pill" href="https://audiomack.com/via-vostocnyj-bazar/album/zvezdnaa-doroga" target="_blank" rel="noopener noreferrer">Audiomack</a>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy Link
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="foot__btm"><span>© <span data-year>2026</span> RADIUS ARCHIVE · RADINSK</span><span><strong>● ARCHIVE ACTIVE</strong> · EST. 1976</span><span>LOST · FOUND · RECONSTRUCTED</span></div>
-</footer>
+
+  <!-- УВЕДОМЛЕНИЕ О КОПИРОВАНИИ -->
+  <div id="copy-toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a1d27; color: #fff; padding: 0.75rem 1.5rem; border-radius: 4px; border: 1px solid #333; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 10000;">
+    Link copied!
+  </div>
+
   <script src="assets/js/main.js"></script>
+  <script>
+    // Открытие и закрытие модального окна
+    function openListenModal() {
+      document.getElementById('listen-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeListenModal() {
+      document.getElementById('listen-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('listen-modal');
+      if (event.target == modal) {
+        closeListenModal();
+      }
+    });
+
+    // Копирование ссылки
+    function copyLink() {
+      const urlToCopy = window.location.href.split('?')[0];
+      navigator.clipboard.writeText(urlToCopy).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+      });
+    }
+
+    // АВТОМАТИЧЕСКОЕ ОТКРЫТИЕ ПОП-АПА ПРИ ПЕРЕХОДЕ ПО ССЫЛКЕ ?listen=1
+    window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('listen') === '1') {
+        openListenModal();
+      }
+    });
+  </script>
 </body>
 </html>

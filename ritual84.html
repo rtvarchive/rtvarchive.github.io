@@ -12,6 +12,45 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  
+  <style>
+    /* Стили для модального окна */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(11, 13, 20, 0.85);
+      backdrop-filter: blur(5px);
+    }
+    .modal-content {
+      background-color: #0b0d14;
+      margin: 5% auto; 
+      padding: 2rem;
+      border: 1px solid #333;
+      width: 90%;
+      max-width: 600px;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .close-btn {
+      color: #fff;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .close-btn:hover {
+      color: #ff00ff;
+    }
+  </style>
 </head>
 <body>
 
@@ -33,13 +72,11 @@
         <li><a class="nav__link" href="about.html">About</a></li>
       </ul>
     </nav>
-
-      <div class="topbar__languages">
-    <a href="ritual84.html" class="language-link is-active" lang="en">EN</a>
-    <span aria-hidden="true"> | </span>
-    <a href="ru/ritual84.html" class="language-link" lang="ru">RU</a>
-  </div>
-
+    <div class="topbar__languages">
+      <a href="ritual84.html" class="language-link is-active" lang="en">EN</a>
+      <span aria-hidden="true"> | </span>
+      <a href="ru/ritual84.html" class="language-link" lang="ru">RU</a>
+    </div>
     <button class="menu-toggle" data-menu-toggle aria-expanded="false">Menu</button>
   </header>
 
@@ -58,701 +95,316 @@
       </p>
     </section>
 
-<div class="artist-grid" id="artist-list">
+    <!-- SUMMER EXPEDITION -->
+    <div class="artist-grid" id="artist-list">
+      <article class="artist-card project-detail-card" id="ritual-84" data-tag="Ambient" data-reveal>
+        <div class="project-detail-layout">
+          <!-- COVER -->
+          <div class="artist-card__portrait">
+            <span class="artist-card__num">P · 03</span>
+            <img src="assets/img/03-ritual-84-summer-expedition-84.jpg" alt="Archival Field Recordings · 1984" />
+          </div>
 
-  <article
-    class="artist-card project-detail-card"
-    id="ritual-84"
-    data-tag="Ambient"
-    data-reveal
-  >
+          <!-- PROJECT INFO -->
+          <div class="project-detail-info">
+            <h2 class="artist-card__name">Летняя экспедиция, 84</h2>
+            <p class="artist-card__genre">Ambient · Ethnic electronica</p>
+            <p class="artist-card__status">AVAILABLE / LISTEN</p>
+            <div class="artist-card__bio">
+              <p>Ritual-84 — reconstructed field recordings from a summer expedition that never officially took place. Forest landscapes, ritual fragments, choral voices and early electronics preserve traces of a journey somewhere between folklore, memory and archival fiction.</p>
+            </div>
 
-    <div class="project-detail-layout">
+            <div class="project-streaming">
+              <p class="project-streaming__label">LISTEN TO Ритуал-84 - Летняя экспедиция, 84</p>
+              <div class="project-streaming__links">
+                <!-- Кнопка открывает первое окно -->
+                <button type="button" class="stream-pill" onclick="openListenModal('summer')" style="font-size: 1.1em; padding: 1rem 2rem; cursor: pointer; background: transparent;">Listen on all platforms →</button>
+              </div>
+              <p class="project-streaming__availability">
+                Also available through the RADIUS ARCHIVE distribution network on TikTok, Pandora, KKBOX, iMusica, iHeartRadio, Anghami, JioSaavn, AWA, Tencent Music, NetEase Cloud Music, Facebook Audio Library, Mixcloud, Boomplay, Snap, Peloton, Audiomack, JOOX, FLO, Tuned Global, YouTube Content ID and Facebook Rights Manager.
+              </p>
+            </div>
+          </div>
 
-      <!-- COVER -->
+          <div class="project-detail-spacer"></div>
 
-      <div class="artist-card__portrait">
-
-        <span class="artist-card__num">
-          P · 03
-        </span>
-
-        <img
-          src="assets/img/03-ritual-84-summer-expedition-84.jpg"
-          alt="Archival Field Recordings · 1984"
-        />
-
-      </div>
-
-
-      <!-- PROJECT INFO -->
-
-      <div class="project-detail-info">
-
-        <h2 class="artist-card__name">
-          Летняя экспедиция, 84
-        </h2>
-
-        <p class="artist-card__genre">
-          Ambient · Ethnic electronica
-        </p>
-
-        <p class="artist-card__status">
-          AVAILABLE / LISTEN
-        </p>
-
-        <div class="artist-card__bio">
-
-          <p>
-            Ritual-84 — reconstructed field recordings from a summer expedition that never officially took place. Forest landscapes, ritual fragments, choral voices and early electronics preserve traces of a journey somewhere between folklore, memory and archival fiction.
-          </p>
-
+          <!-- TRACKLIST — RIGHT COLUMN -->
+          <div class="project-tracklist">
+            <div class="project-tracklist__header">
+              <span>TRACKLIST</span>
+              <span>8 TRACKS</span>
+            </div>
+            <ol class="project-tracks">
+              <li><span class="track-number">01</span> <span class="track-title">Круг</span></li>
+              <li><span class="track-number">02</span> <span class="track-title">До рассвета</span></li>
+              <li><span class="track-number">03</span> <span class="track-title">Купальский фрагмент</span></li>
+              <li><span class="track-number">04</span> <span class="track-title">Солнцестояние</span></li>
+              <li><span class="track-number">05</span> <span class="track-title">Ветер</span></li>
+              <li><span class="track-number">06</span> <span class="track-title">Пепел</span></li>
+              <li><span class="track-number">07</span> <span class="track-title">Тени</span></li>
+              <li><span class="track-number">08</span> <span class="track-title">Купальський фрагмент (2026 Reconstruction)</span></li>
+            </ol>
+          </div>
         </div>
 
+        <div class="artist-card__foot">
+          <span>Archival Recordings · 1984</span>
+          <span>8 Tracks</span>
+        </div>
+      </article>
+    </div>
 
-       <!-- STREAMING / LISTEN -->
+    <!-- POLAR CIRCLE -->
+    <div class="artist-grid">
+      <article class="artist-card project-detail-card" id="ritual-84-polar-circle" data-tag="Ambient" data-reveal>
+        <div class="project-detail-layout">
+          <!-- COVER -->
+          <div class="artist-card__portrait">
+            <span class="artist-card__num">P · 03</span>
+            <img src="assets/img/03-ritual-84-polar-circle-86.jpg" alt="Archival Field Recordings · 1986" />
+          </div>
 
-<div class="project-streaming">
+          <!-- PROJECT INFO -->
+          <div class="project-detail-info">
+            <h2 class="artist-card__name">Заполярный Круг, 86</h2>
+            <p class="artist-card__genre">Ambient · Ethnic electronica</p>
+            <p class="artist-card__status">AVAILABLE / LISTEN</p>
+            <div class="artist-card__bio">
+              <p>Ritual-84 — reconstructed field recordings from a northern expedition that may never have officially taken place. Frozen landscapes, distant voices, ritual fragments and early electronic processing preserve traces of a journey lost somewhere between folklore, memory and archival fiction.</p>
+            </div>
 
-  <p class="project-streaming__label">
-    LISTEN TO Ритуал-84 - Летняя экспедиция, 84
-  </p>
+            <div class="project-streaming">
+              <p class="project-streaming__label">LISTEN TO Ритуал-84 - Заполярный Круг, 86</p>
+              <div class="project-streaming__links">
+                <!-- Кнопка открывает второе окно -->
+                <button type="button" class="stream-pill" onclick="openListenModal('polar')" style="font-size: 1.1em; padding: 1rem 2rem; cursor: pointer; background: transparent;">Listen on all platforms →</button>
+              </div>
+              <p class="project-streaming__availability">
+                Also available through the RADIUS ARCHIVE distribution network on TikTok, Pandora, KKBOX, iMusica, iHeartRadio, Anghami, JioSaavn, AWA, Tencent Music, NetEase Cloud Music, Facebook Audio Library, Mixcloud, Boomplay, Snap, Peloton, Audiomack, JOOX, FLO, Tuned Global, YouTube Content ID and Facebook Rights Manager.
+              </p>
+            </div>
+          </div>
 
-  <div class="project-streaming__links">
+          <div class="project-detail-spacer"></div>
 
-    <a
-      class="stream-pill"
-      href="https://music.apple.com/us/artist/ritual-84/6794672047"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Apple Music
-    </a>
-
-    <a
-      class="stream-pill"
-      href="https://open.spotify.com/artist/3icoYtUHq0kzWDguRfYdyH?si=9ZLOaw-_S3GzTqX-D9m-9g"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Spotify
-    </a>
-
-	<a
-      class="stream-pill"
-      href="https://music.youtube.com/playlist?list=OLAK5uy_lxERQ6_F6wZtlKBzyy7oK7qjkMtusCK7E&si=9h_d-xrXzOnaAxst"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      YouTube Music
-    </a>
-
-    <a
-      class="stream-pill"
-      href="https://tidal.com/album/546400595/u"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      TIDAL
-    </a>
-
-	<a
-      class="stream-pill"
-      href="https://music.amazon.com/artists/B0HBLHHPVB/ritual-84?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_u5uR8Duc3Rqt0T37WvGj3AevV"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Amazon Music
-    </a>
-
-  </div>
-
-  <p class="project-streaming__availability">
-    Also available through the RADIUS ARCHIVE distribution network on
-    TikTok, Pandora, KKBOX, iMusica, iHeartRadio, Anghami, JioSaavn,
-    AWA, Tencent Music, NetEase Cloud Music, Facebook Audio Library,
-    Mixcloud, Boomplay, Snap, Peloton, Audiomack, JOOX, FLO,
-    Tuned Global, YouTube Content ID and Facebook Rights Manager.
-  </p>
-
-</div>
-
-</div>
-
-<div class="project-detail-spacer"></div>
-
-      <!-- TRACKLIST — RIGHT COLUMN -->
-
-      <div class="project-tracklist">
-
-        <div class="project-tracklist__header">
-          <span>TRACKLIST</span>
-          <span>8 TRACKS</span>
+          <!-- TRACKLIST — RIGHT COLUMN -->
+          <div class="project-tracklist">
+            <div class="project-tracklist__header">
+              <span>TRACKLIST</span>
+              <span>9 TRACKS</span>
+            </div>
+            <ol class="project-tracks">
+              <li><span class="track-number">01</span> <span class="track-title">Мороз</span></li>
+              <li><span class="track-number">02</span> <span class="track-title">Наст</span></li>
+              <li><span class="track-number">03</span> <span class="track-title">Следы</span></li>
+              <li><span class="track-number">04</span> <span class="track-title">Дыхание</span></li>
+              <li><span class="track-number">05</span> <span class="track-title">Полынья</span></li>
+              <li><span class="track-number">06</span> <span class="track-title">Торосы</span></li>
+              <li><span class="track-number">07</span> <span class="track-title">Сияние</span></li>
+              <li><span class="track-number">08</span> <span class="track-title">Улов</span></li>
+              <li><span class="track-number">09</span> <span class="track-title">Тишина</span></li>
+            </ol>
+          </div>
         </div>
 
-        <ol class="project-tracks">
-
-          <li>
-            <span class="track-number">01</span>
-            <span class="track-title">Круг</span>
-          </li>
-
-          <li>
-            <span class="track-number">02</span>
-            <span class="track-title">До рассвета</span>
-          </li>
-
-          <li>
-            <span class="track-number">03</span>
-            <span class="track-title">Купальский фрагмент</span>
-          </li>
-
-		  <li>
-            <span class="track-number">04</span>
-            <span class="track-title">Солнцестояние</span>
-          </li>
-
-
-          <li>
-            <span class="track-number">05</span>
-            <span class="track-title">Ветер</span>
-          </li>
-
-          <li>
-            <span class="track-number">06</span>
-            <span class="track-title">Пепел</span>
-          </li>
-
-		  <li>
-            <span class="track-number">07</span>
-            <span class="track-title">Тени</span>
-          </li>
-
-		  <li>
-            <span class="track-number">08</span>
-            <span class="track-title">Купальський фрагмент (2026 Reconstruction)</span>
-          </li>
-
-        </ol>
-
-      </div>
-
-    </div>
-	<!-- PROJECT FOOTER -->
-
-    <div class="artist-card__foot">
-
-      <span>
-        Archival Recordings · 1984
-      </span>
-
-      <span>
-        8 Tracks
-      </span>
-
+        <div class="artist-card__foot">
+          <span>Archival Recordings · 1986</span>
+          <span>9 Tracks</span>
+        </div>
+      </article>
     </div>
 
-  </article>
+    <!-- CAUCASUS RIDGE (SOON) -->
+    <div class="artist-grid">
+      <article class="artist-card project-detail-card" id="ritual-84-caucasus-ridge" data-tag="Ambient" data-reveal>
+        <div class="project-detail-layout">
+          <!-- COVER -->
+          <div class="artist-card__portrait">
+            <span class="artist-card__num">P · 03</span>
+            <img src="assets/img/03-ritual-84-caucasian-ridge-88.jpg" alt="Archival Field Recordings · 1988" />
+          </div>
 
-</div>
+          <!-- PROJECT INFO -->
+          <div class="project-detail-info">
+            <h2 class="artist-card__name">Кавказский хребет, 88</h2>
+            <p class="artist-card__genre">Ambient · Ethnic electronica</p>
+            <p class="artist-card__status">SOON</p>
+            <div class="artist-card__bio">
+              <p>Ritual-84 — reconstructed field recordings from a Caucasus expedition that may never have officially taken place. Mountain settlements, polyphonic male voices, traditional instruments and early electronic processing preserve traces of a journey lost somewhere between folklore, memory and archival fiction.</p>
+            </div>
 
-	<!-- ЗАПОЛЯРНЫЙ КРУГ,86 -->
+            <div class="project-streaming">
+              <p class="project-streaming__label">LISTEN TO Ритуал-84 - Кавказский хребет, 88</p>
+              <div class="project-streaming__links">
+                <span class="stream-pill is-disabled">YouTube</span>
+                <span class="stream-pill is-disabled">Audius</span>
+              </div>
+              <p class="project-streaming__availability">
+                Streaming links will be added closer to release.
+              </p>
+            </div>
+          </div>
 
+          <div class="project-detail-spacer"></div>
 
-	<div class="artist-grid">
-
-  <article
-    class="artist-card project-detail-card"
-    id="ritual-84-polar-circle"
-    data-tag="Ambient"
-    data-reveal
-  >
-
-    <div class="project-detail-layout">
-
-      <!-- COVER -->
-
-      <div class="artist-card__portrait">
-
-        <span class="artist-card__num">
-          P · 03
-        </span>
-
-        <img
-          src="assets/img/03-ritual-84-polar-circle-86.jpg"
-          alt="Archival Field Recordings · 1986"
-        />
-
-      </div>
-
-
-      <!-- PROJECT INFO -->
-
-      <div class="project-detail-info">
-
-        <h2 class="artist-card__name">
-          Заполярный Круг, 86
-        </h2>
-
-        <p class="artist-card__genre">
-          Ambient · Ethnic electronica
-        </p>
-
-        <p class="artist-card__status">
-          AVAILABLE / LISTEN
-        </p>
-
-        <div class="artist-card__bio">
-
-          <p>
-            Ritual-84 — reconstructed field recordings from a northern expedition that may never have officially taken place. Frozen landscapes, distant voices, ritual fragments and early electronic processing preserve traces of a journey lost somewhere between folklore, memory and archival fiction.
-          </p>
-
+          <!-- TRACKLIST — RIGHT COLUMN -->
+          <div class="project-tracklist">
+            <div class="project-tracklist__header">
+              <span>TRACKLIST</span>
+              <span>9 TRACKS</span>
+            </div>
+            <ol class="project-tracks">
+              <li><span class="track-number">01</span> <span class="track-title">Предгорья</span></li>
+              <li><span class="track-number">02</span> <span class="track-title">Камни</span></li>
+              <li><span class="track-number">03</span> <span class="track-title">Ущелье</span></li>
+              <li><span class="track-number">04</span> <span class="track-title">საძოვრები</span></li>
+              <li><span class="track-number">05</span> <span class="track-title">Эхо гор</span></li>
+              <li><span class="track-number">06</span> <span class="track-title">მთაო, მიპასუხე</span></li>
+              <li><span class="track-number">07</span> <span class="track-title">Высота</span></li>
+              <li><span class="track-number">08</span> <span class="track-title">მთის საღამო</span></li>
+              <li><span class="track-number">09</span> <span class="track-title">Возвращение</span></li>
+            </ol>
+          </div>
         </div>
 
-
-       <!-- STREAMING / LISTEN -->
-
-<div class="project-streaming">
-
-  <p class="project-streaming__label">
-    LISTEN TO Ритуал-84 - Заполярный Круг, 86
-   </p>
-
-  <div class="project-streaming__links">
-
-    <a
-      class="stream-pill"
-      href="https://music.apple.com/us/album/polar-circle-86/6800247255"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Apple Music
-    </a>
-
-    <a
-      class="stream-pill"
-      href="https://open.spotify.com/album/1c3J3cfX72p8sF3euWfBin?si=b5Yw-Q5jSDKYyVEpMT6OcA"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Spotify
-    </a>
-
-	<a
-      class="stream-pill"
-      href="https://music.youtube.com/playlist?list=OLAK5uy_mECUWxxmVvLg5gU0qimz4kC5vlJ8977Xs&si=mHXV9p5di3S1So-L"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      YouTube Music
-    </a>
-
-    <a
-      class="stream-pill"
-      href="https://tidal.com/album/551349111/u"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      TIDAL
-    </a>
-
-	<a
-      class="stream-pill"
-      href="https://music.amazon.com/albums/B0HDT1V25B?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_IygeijkKk5TfmS9h7W2yTB4Um"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Amazon Music
-    </a>
-
-  </div>
-
-  <p class="project-streaming__availability">
-    Also available through the RADIUS ARCHIVE distribution network on
-    TikTok, Pandora, KKBOX, iMusica, iHeartRadio, Anghami, JioSaavn,
-    AWA, Tencent Music, NetEase Cloud Music, Facebook Audio Library,
-    Mixcloud, Boomplay, Snap, Peloton, Audiomack, JOOX, FLO,
-    Tuned Global, YouTube Content ID and Facebook Rights Manager.
-  </p>
-
-</div>
-
-</div>
-
-<div class="project-detail-spacer"></div>
-
-      <!-- TRACKLIST — RIGHT COLUMN -->
-
-      <div class="project-tracklist">
-
-        <div class="project-tracklist__header">
-          <span>TRACKLIST</span>
-          <span>9 TRACKS</span>
+        <div class="artist-card__foot">
+          <span>Archival Recordings · 1988</span>
+          <span>9 Tracks</span>
         </div>
-
-        <ol class="project-tracks">
-
-          <li>
-            <span class="track-number">01</span>
-            <span class="track-title">Мороз</span>
-          </li>
-
-          <li>
-            <span class="track-number">02</span>
-            <span class="track-title">Наст</span>
-          </li>
-
-          <li>
-            <span class="track-number">03</span>
-            <span class="track-title">Следы</span>
-          </li>
-
-		  <li>
-            <span class="track-number">04</span>
-            <span class="track-title">Дыхание</span>
-          </li>
-
-
-          <li>
-            <span class="track-number">05</span>
-            <span class="track-title">Полынья</span>
-          </li>
-
-          <li>
-            <span class="track-number">06</span>
-            <span class="track-title">Торосы</span>
-          </li>
-
-		  <li>
-            <span class="track-number">07</span>
-            <span class="track-title">Сияние</span>
-          </li>
-
-		  <li>
-            <span class="track-number">08</span>
-            <span class="track-title">Улов</span>
-          </li>
-
-		  <li>
-            <span class="track-number">09</span>
-            <span class="track-title">Тишина</span>
-          </li>
-
-        </ol>
-
-      </div>
-
+      </article>
     </div>
-
-
-    <!-- PROJECT FOOTER -->
-
-    <div class="artist-card__foot">
-
-      <span>
-        Archival Recordings · 1986
-      </span>
-
-      <span>
-        9 Tracks
-      </span>
-
-    </div>
-
-  </article>
-
-</div>
-
-	<!-- КАВКАЗСКИЙ ХРЕБЕТ, 88 -->
-
-
-	<div class="artist-grid">
-
-  <article
-    class="artist-card project-detail-card"
-    id="ritual-84-caucasus-ridge"
-    data-tag="Ambient"
-    data-reveal
-  >
-
-    <div class="project-detail-layout">
-
-      <!-- COVER -->
-
-      <div class="artist-card__portrait">
-
-        <span class="artist-card__num">
-          P · 03
-        </span>
-
-        <img
-          src="assets/img/03-ritual-84-caucasian-ridge-88.jpg"
-          alt="Archival Field Recordings · 1988"
-        />
-
-      </div>
-
-
-      <!-- PROJECT INFO -->
-
-      <div class="project-detail-info">
-
-        <h2 class="artist-card__name">
-          Кавказский хребет, 88
-        </h2>
-
-        <p class="artist-card__genre">
-          Ambient · Ethnic electronica
-        </p>
-
-        <p class="artist-card__status">
-          SOON
-        </p>
-
-        <div class="artist-card__bio">
-
-          <p>
-            Ritual-84 — reconstructed field recordings from a Caucasus expedition that may never have officially taken place. Mountain settlements, polyphonic male voices, traditional instruments and early electronic processing preserve traces of a journey lost somewhere between folklore, memory and archival fiction.
-          </p>
-
-        </div>
-
-
-       <!-- STREAMING / LISTEN -->
-
-<div class="project-streaming">
-
-  <p class="project-streaming__label">
-    LISTEN TO Ритуал-84 - Кавказский хребет, 88
-  </p>
-
-  <div class="project-streaming__links">
-
-    <span class="stream-pill is-disabled">YouTube</span>
-
-    <span class="stream-pill is-disabled">Audius</span>
-
-  </div>
-
-  <p class="project-streaming__availability">
-    Streaming links will be added closer to release.
-  </p>
-
-</div>
-
-</div>
-
-<div class="project-detail-spacer"></div>
-
-      <!-- TRACKLIST — RIGHT COLUMN -->
-
-      <div class="project-tracklist">
-
-        <div class="project-tracklist__header">
-          <span>TRACKLIST</span>
-          <span>9 TRACKS</span>
-        </div>
-
-        <ol class="project-tracks">
-
-          <li>
-            <span class="track-number">01</span>
-            <span class="track-title">Предгорья</span>
-          </li>
-
-          <li>
-            <span class="track-number">02</span>
-            <span class="track-title">Камни</span>
-          </li>
-
-          <li>
-            <span class="track-number">03</span>
-            <span class="track-title">Ущелье</span>
-          </li>
-
-          <li>
-            <span class="track-number">04</span>
-            <span class="track-title">საძოვრები</span>
-          </li>
-
-          <li>
-            <span class="track-number">05</span>
-            <span class="track-title">Эхо гор</span>
-          </li>
-
-          <li>
-            <span class="track-number">06</span>
-            <span class="track-title">მთაო, მიპასუხე</span>
-          </li>
-
-          <li>
-            <span class="track-number">07</span>
-            <span class="track-title">Высота</span>
-          </li>
-
-          <li>
-            <span class="track-number">08</span>
-            <span class="track-title">მთის საღამო</span>
-          </li>
-
-          <li>
-            <span class="track-number">09</span>
-            <span class="track-title">Возвращение</span>
-          </li>
-
-        </ol>
-
-      </div>
-
-    </div>
-
-
-    <!-- PROJECT FOOTER -->
-
-    <div class="artist-card__foot">
-
-      <span>
-        Archival Recordings · 1988
-      </span>
-
-      <span>
-        9 Tracks
-      </span>
-
-    </div>
-
-  </article>
-
-</div>
-
   </main>
 
-  <!-- =========================================================
-     FOOTER
-========================================================== -->
-
-<footer class="foot">
-
-  <div class="foot__grid">
-
-    <!-- BRAND -->
-
-    <div class="foot__col">
-
-      <p class="foot__brand">
-        RADIUS<b>ARCHIVE</b>
-      </p>
-
-      <p class="foot__about">
-       An independent label grown from the archives of the RADIUS
-		Television Center (Radinsk, 1976–1998).
-		Lost sounds. Found forever.
-      </p>
-
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="foot__grid">
+      <div class="foot__col">
+        <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
+        <p class="foot__about">An independent label grown from the archives of the RADIUS Television Center (Radinsk, 1976–1998). Lost sounds. Found forever.</p>
+      </div>
+      <div class="foot__col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h4>Follow the Archive</h4>
+        <ul>
+          <li><a href="ru/index.html">Русская Версия</a></li>
+          <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><a href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">Audius</a></li>
+        </ul>
+      </div>
     </div>
-
-
-    <!-- EXPLORE -->
-
-    <div class="foot__col">
-
-      <h4>
-        Explore
-      </h4>
-
-      <ul>
-
-	  <li>
-          <a href="index.html">
-            Home
-          </a>
-        </li>
-
-        <li>
-          <a href="projects.html">
-            Projects
-          </a>
-        </li>
-
-		<li>
-          <a href="about.html">
-            About
-          </a>
-        </li>
-
-      </ul>
-
+    <div class="foot__btm">
+      <span>© <span data-year>2026</span> RADIUS ARCHIVE · RADINSK</span>
+      <span><strong>● ARCHIVE ACTIVE</strong> · EST. 1976</span>
+      <span>LOST · FOUND · RECONSTRUCTED</span>
     </div>
+  </footer>
 
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ SUMMER EXPEDITION -->
+  <div id="listen-modal-summer" class="modal">
+    <div class="modal-content" style="text-align: center;">
+      <span class="close-btn" onclick="closeListenModal('summer')">&times;</span>
+      
+      <img src="assets/img/03-ritual-84-summer-expedition-84.jpg" alt="Летняя экспедиция, 84" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+      
+      <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">Летняя экспедиция, 84</h2>
+      <p style="color: var(--text-300); margin-bottom: 2rem;">Ritual-84 (1984)</p>
 
-    <!-- FOLLOW -->
+      <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;">
+        <a class="stream-pill" href="https://music.apple.com/us/artist/ritual-84/6794672047" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a class="stream-pill" href="https://open.spotify.com/artist/3icoYtUHq0kzWDguRfYdyH?si=9ZLOaw-_S3GzTqX-D9m-9g" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a class="stream-pill" href="https://music.youtube.com/playlist?list=OLAK5uy_lxERQ6_F6wZtlKBzyy7oK7qjkMtusCK7E&si=9h_d-xrXzOnaAxst" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a class="stream-pill" href="https://tidal.com/album/546400595/u" target="_blank" rel="noopener noreferrer">TIDAL</a>
+        <a class="stream-pill" href="https://music.amazon.com/artists/B0HBLHHPVB/ritual-84?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_u5uR8Duc3Rqt0T37WvGj3AevV" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+        <a class="stream-pill" href="https://audiomack.com/ritual-84" target="_blank" rel="noopener noreferrer">Audiomack</a>
+      </div>
 
-    <div class="foot__col">
-
-      <h4>
-        Follow the Archive
-      </h4>
-
-      <ul>
-
-	  <li>
-          <a href="ru/index.html"
-             rel="noopener noreferrer">
-            Русская Версия
-          </a>
-        </li>
-
-        <li>
-          <a href="https://www.youtube.com/@rtv.archive"
-             target="_blank"
-             rel="noopener noreferrer">
-            YouTube
-          </a>
-        </li>
-
-        <li>
-          <a href="https://audius.co/rtv.archive"
-             target="_blank"
-             rel="noopener noreferrer">
-            Audius
-          </a>
-        </li>
-
-      </ul>
-
+      <div style="margin-top: 2rem;">
+        <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy Link
+        </button>
+      </div>
     </div>
-
   </div>
 
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ POLAR CIRCLE -->
+  <div id="listen-modal-polar" class="modal">
+    <div class="modal-content" style="text-align: center;">
+      <span class="close-btn" onclick="closeListenModal('polar')">&times;</span>
+      
+      <img src="assets/img/03-ritual-84-polar-circle-86.jpg" alt="Заполярный Круг, 86" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+      
+      <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">Заполярный Круг, 86</h2>
+      <p style="color: var(--text-300); margin-bottom: 2rem;">Ritual-84 (1986)</p>
 
-  <!-- FOOTER BOTTOM -->
+      <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;">
+        <a class="stream-pill" href="https://music.apple.com/us/album/polar-circle-86/6800247255" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a class="stream-pill" href="https://open.spotify.com/album/1c3J3cfX72p8sF3euWfBin?si=b5Yw-Q5jSDKYyVEpMT6OcA" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a class="stream-pill" href="https://music.youtube.com/playlist?list=OLAK5uy_mECUWxxmVvLg5gU0qimz4kC5vlJ8977Xs&si=mHXV9p5di3S1So-L" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a class="stream-pill" href="https://tidal.com/album/551349111/u" target="_blank" rel="noopener noreferrer">TIDAL</a>
+        <a class="stream-pill" href="https://music.amazon.com/albums/B0HDT1V25B?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_IygeijkKk5TfmS9h7W2yTB4Um" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+        <a class="stream-pill" href="https://audiomack.com/ritual-84" target="_blank" rel="noopener noreferrer">Audiomack</a>
+      </div>
 
-  <div class="foot__btm">
-
-    <span>
-      ©
-      <span data-year>
-        2026
-      </span>
-      RADIUS ARCHIVE · RADINSK
-    </span>
-
-    <span>
-      <strong>
-        ● ARCHIVE ACTIVE
-      </strong>
-      · EST. 1976
-    </span>
-
-    <span>
-      LOST · FOUND · RECONSTRUCTED
-    </span>
-
+      <div style="margin-top: 2rem;">
+        <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy Link
+        </button>
+      </div>
+    </div>
   </div>
 
-</footer>
+  <!-- УВЕДОМЛЕНИЕ О КОПИРОВАНИИ -->
+  <div id="copy-toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a1d27; color: #fff; padding: 0.75rem 1.5rem; border-radius: 4px; border: 1px solid #333; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 10000;">
+    Link copied!
+  </div>
 
   <script src="assets/js/main.js"></script>
+  <script>
+    // Открытие и закрытие модальных окон
+    function openListenModal(id) {
+      document.getElementById('listen-modal-' + id).style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeListenModal(id) {
+      document.getElementById('listen-modal-' + id).style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    window.addEventListener('click', function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+
+    function copyLink() {
+      const urlToCopy = window.location.href.split('?')[0];
+      navigator.clipboard.writeText(urlToCopy).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+      });
+    }
+
+    // АВТОМАТИЧЕСКОЕ ОТКРЫТИЕ ПОП-АПА ПО ССЫЛКЕ (?listen=summer или ?listen=polar)
+    window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const listenParam = urlParams.get('listen');
+      if (listenParam === 'summer' || listenParam === 'polar') {
+        openListenModal(listenParam);
+      }
+    });
+  </script>
 </body>
 </html>
