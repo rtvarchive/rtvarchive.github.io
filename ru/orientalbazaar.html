@@ -75,7 +75,7 @@
       <span aria-hidden="true"> | </span>
       <a href="orientalbazaar.html" class="language-link is-active" lang="ru">RU</a>
     </div>
-    <button class="menu-toggle" data-menu-toggle aria-expanded="false">Меню</button>
+    <button class="menu-toggle" data-menu-toggle aria-expanded="false">Menu</button>
   </header>
 
   <main class="page">
@@ -102,7 +102,6 @@
             <div class="project-streaming">
               <p class="project-streaming__label">ДОСТУПНО / СЛУШАТЬ</p>
               <div class="project-streaming__links">
-                <!-- Кнопка открывает поп-ап -->
                 <button type="button" class="stream-pill" onclick="openListenModal()" style="font-size: 1.1em; padding: 1rem 2rem; cursor: pointer; background: transparent;">Слушать на всех платформах →</button>
               </div>
             </div>
@@ -148,8 +147,8 @@
     <div class="modal-content" style="text-align: center;">
       <span class="close-btn" onclick="closeListenModal()">&times;</span>
       
-      <!-- Обложка альбома -->
-      <img src="../assets/img/11-oriental-bazaar.jpg" alt="Восточный Базар" style="width: 100%; max-width: 250px; height: auto; margin-bottom: 1.5rem; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+      <!-- Обложка (ИДЕАЛЬНО ПО ЦЕНТРУ) -->
+      <img src="../assets/img/11-oriental-bazaar.jpg" alt="Восточный Базар" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
       
       <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">ВИА Восточный Базар</h2>
       <p style="color: var(--text-300); margin-bottom: 2rem;">Звёздная дорога (1984)</p>
@@ -180,7 +179,6 @@
 
   <script src="../assets/js/main.js"></script>
   <script>
-    // Открытие и закрытие модального окна
     function openListenModal() {
       document.getElementById('listen-modal').style.display = 'block';
       document.body.style.overflow = 'hidden';
@@ -196,7 +194,6 @@
       }
     });
 
-    // Копирование ссылки
     function copyLink() {
       const urlToCopy = window.location.href.split('?')[0];
       navigator.clipboard.writeText(urlToCopy).then(() => {
@@ -206,7 +203,6 @@
       });
     }
 
-    // АВТОМАТИЧЕСКОЕ ОТКРЫТИЕ ПОП-АПА ПРИ ПЕРЕХОДЕ ПО ССЫЛКЕ ?listen=1
     window.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('listen') === '1') {
