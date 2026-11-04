@@ -27,6 +27,8 @@
 
 <body>
 
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
   <aside class="side-rail" aria-label="RADIUS ARCHIVE">
     <div class="side-rail__mark">
       RADIUS · ARCHIVE
@@ -46,35 +48,35 @@
     </div>
 
 
-    <nav aria-label="Основная навигация">
+    <nav id="primary-nav" aria-label="Основная навигация">
       <ul class="nav__list" data-nav-list>
         <li>
-          <a class="nav__link is-active" href="index.html" aria-current="page">Главная</a>
+          <a class="nav__link is-active" href="index.html" aria-current="page" data-testid="nav-home">Главная</a>
         </li>
         <li>
-          <a class="nav__link" href="projects.html">Проекты</a>
+          <a class="nav__link" href="projects.html" data-testid="nav-projects">Проекты</a>
         </li>
         <li>
-          <a class="nav__link" href="about.html">Об архиве</a>
+          <a class="nav__link" href="about.html" data-testid="nav-about">Об архиве</a>
         </li>
       </ul>
     </nav>
 
       <div class="topbar__languages">
-    <a href="../index.html" class="language-link" lang="en">EN</a>
+    <a href="../index.html" class="language-link" lang="en" data-testid="lang-en">EN</a>
     <span aria-hidden="true"> | </span>
-    <a href="index.html" class="language-link is-active" lang="ru">RU</a>
+    <a href="index.html" class="language-link is-active" lang="ru" aria-current="page" data-testid="lang-ru">RU</a>
   </div>
 
 
-    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-nav">
+    <button class="menu-toggle" data-menu-toggle data-testid="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
       Меню
     </button>
 
   </header>
 
 
-  <main class="page">
+  <main class="page" id="main">
 
     <div class="hero-banner">
 
@@ -84,19 +86,19 @@
         class="hero-banner__image">
 
 
-      <div class="hero__ticker">
+      <div class="hero__ticker" data-testid="hero-ticker">
 
         <span>
           <strong>● АКТИВЕН</strong>
           RADIUS ARCHIVE
         </span>
 
-        <span class="stat">
+        <span class="stat" data-testid="hero-stat-projects">
           Проектов
           <b>15</b>
         </span>
 
-        <span class="stat">
+        <span class="stat" data-testid="hero-stat-releases">
           Релизов
           <b>40+</b>
         </span>
@@ -116,7 +118,33 @@
     </div>
 
 
-    <section class="section" aria-labelledby="projects-heading">
+    <section class="section section--about" aria-labelledby="about-heading" data-testid="section-about">
+
+      <div class="section__head">
+
+        <span class="section__num">
+          Раздел 01 · Архив
+        </span>
+
+        <h2 class="section__title" id="about-heading">
+          Лейбл, собранный из
+          <em>фрагментов</em>
+        </h2>
+
+        <a class="section__more" href="about.html" data-testid="section-about-more">
+          Об архиве →
+        </a>
+
+      </div>
+
+      <p class="section__sub">
+        RADIUS ARCHIVE вырос из архивов Телецентра «РАДИУС» — вещательного комплекса в закрытом научном городе Радинск, работавшего с 1976 по 1998 год. Внутренние передачи, музыкальные программы, документальные фильмы и ночные эфиры сохранились лишь фрагментами: магнитные ленты, кассеты, фотографии и редкие документы. Каждый релиз на этом лейбле — реконструкция одного из таких фрагментов, запись, которая могла существовать где-то между историей, памятью и альтернативной реальностью.
+      </p>
+
+    </section>
+
+
+    <section class="section" aria-labelledby="projects-heading" data-testid="section-catalogue">
 
       <div class="section__head">
 
@@ -142,7 +170,7 @@
       <div class="roster">
 
 
-        <a class="roster__row" href="605.html" data-reveal>
+        <a class="roster__row" href="605.html" data-reveal data-testid="roster-row-01">
 
           <span class="roster__num">01</span>
 
@@ -165,7 +193,7 @@
         </a>
 
 
-        <a class="roster__row" href="phasezero.html" data-reveal>
+        <a class="roster__row" href="phasezero.html" data-reveal data-testid="roster-row-02">
 
           <span class="roster__num">02</span>
 
@@ -188,7 +216,7 @@
         </a>
 
 
-        <a class="roster__row" href="ritual84.html" data-reveal>
+        <a class="roster__row" href="ritual84.html" data-reveal data-testid="roster-row-03">
 
           <span class="roster__num">03</span>
 
@@ -211,7 +239,7 @@
         </a>
 
 
-        <a class="roster__row" href="radius78.html" data-reveal>
+        <a class="roster__row" href="radius78.html" data-reveal data-testid="roster-row-04">
 
           <span class="roster__num">04</span>
 
@@ -237,7 +265,7 @@
     </section>
 
 
-    <section class="section" aria-labelledby="streams-heading">
+    <section class="section" aria-labelledby="streams-heading" data-testid="section-channels">
 
       <div class="section__head">
 
@@ -250,67 +278,73 @@
           <em>Смотреть</em>
         </h2>
 
-        <a class="section__more" href="about.html">
-          Об архиве →
+        <a class="section__more" href="projects.html" data-testid="channels-more">
+          Все каналы →
         </a>
 
       </div>
 
       <p class="section__sub">
-        Большинство релизов доступны на стриминговых платформах, включая YouTube и Audius. Полный каталог — на странице «Проекты».
+        Проекты архива и внешние платформы. Полный каталог — на странице «Проекты».
       </p>
 
+      <div class="filters" data-testid="channels">
 
-      <div class="streams">
-
-        
-        <a class="stream-pill" href="605.html">
-          <span class="glyph"></span>
+        <a class="chip" href="https://rtvarchive.github.io/ru/605.html?listen=1" data-testid="channel-605">
           605 Микрорайон
         </a>
 
-        <a class="stream-pill" href="phasezero.html">
-          <span class="glyph"></span>
+        <a class="chip" href="https://rtvarchive.github.io/ru/phasezero.html?listen=1" data-testid="channel-phasezero">
           ФАЗА/НОЛЬ
         </a>
 
-        <a class="stream-pill" href="ritual84.html">
-          <span class="glyph"></span>
+        <a class="chip" href="ritual84.html" data-testid="channel-ritual84">
           Ритуал-84
         </a>
 
-        <a class="stream-pill" href="sanatoriumofdreams.html">
-          <span class="glyph"></span>
+        <a class="chip" href="https://rtvarchive.github.io/ru/sanatoriumofdreams.html?listen=1" data-testid="channel-sanatorium">
           Санаторий Снов
         </a>
 
-        <a class="stream-pill" href="kolosvit.html">
-          <span class="glyph"></span>
+        <a class="chip" href="https://rtvarchive.github.io/ru/kolosvit.html?listen=1" data-testid="channel-kolosvit">
           Ансамбль «Колосвіт»
         </a>
 
-        <a class="stream-pill" href="orientalbazaar.html">
-          <span class="glyph"></span>
+        <a class="chip" href="https://rtvarchive.github.io/ru/orientalbazaar.html?listen=1" data-testid="channel-orientalbazaar">
           ВИА «Восточный Базар»
         </a>
-		
-		<a class="stream-pill" href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">
-          <span class="glyph"></span>
-          YouTube
-        </a>
 
-        <a class="stream-pill" href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">
-          <span class="glyph"></span>
-          AUDIUS
-        </a>
+        <button class="chip chip--more" type="button" data-channels-more
+                data-label-more="+ Ещё" data-label-less="− Свернуть"
+                aria-expanded="false" aria-controls="channels-more"
+                data-testid="channels-more-toggle">+ Ещё</button>
 
+        <div class="filters__more" id="channels-more" hidden>
+
+          <a class="chip" href="https://rtvarchive.github.io/ru/gurtgroove.html?listen=1" data-testid="channel-gurtgroove">
+            ГУРТ ГРУВ
+          </a>
+
+          <a class="chip" href="https://rtvarchive.github.io/ru/finalpsalm.html?listen=1" data-testid="channel-finalpsalm">
+            Останній Псалом
+          </a>
+
+          <a class="chip" href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer" data-testid="channel-youtube">
+            YouTube ↗
+          </a>
+
+          <a class="chip" href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer" data-testid="channel-audius">
+            Audius ↗
+          </a>
+
+        </div>
 
       </div>
 
     </section>
 
 
-    <section class="section" aria-labelledby="press-heading">
+    <section class="section" aria-labelledby="press-heading" data-testid="section-statement">
 
       <div class="section__head">
 
@@ -329,7 +363,7 @@
       <div class="press">
 
 
-        <blockquote class="press__quote" data-reveal>
+        <blockquote class="press__quote" data-reveal data-testid="press-quote-1">
 
           <p class="press__text">
             Мы издаём то, что сохранил архив.
@@ -345,7 +379,7 @@
         </blockquote>
 
 
-        <blockquote class="press__quote" data-reveal>
+        <blockquote class="press__quote" data-reveal data-testid="press-quote-2">
 
           <p class="press__text">
             Лейбл, собранный из фрагментов.
@@ -361,7 +395,7 @@
         </blockquote>
 
 
-        <blockquote class="press__quote" data-reveal>
+        <blockquote class="press__quote" data-reveal data-testid="press-quote-3">
 
           <p class="press__text">
             RADIUS ARCHIVE.
@@ -381,7 +415,7 @@
     </section>
 
 
-    <footer class="foot">
+    <footer class="foot" data-testid="footer">
 
       <div class="foot__grid">
 
@@ -405,9 +439,9 @@
           <h4>Разделы</h4>
 
           <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="projects.html">Проекты</a></li>
-            <li><a href="about.html">О проекте</a></li>
+            <li><a href="index.html" data-testid="footer-nav-home">Главная</a></li>
+            <li><a href="projects.html" data-testid="footer-nav-projects">Проекты</a></li>
+            <li><a href="about.html" data-testid="footer-nav-about">О проекте</a></li>
           </ul>
 
         </div>
@@ -418,7 +452,7 @@
           <h4>Архив в сети</h4>
 
           <ul>
-            <li><a href="../index.html">English Version</a></li>
+            <li><a href="../index.html" data-testid="footer-lang-en">English Version</a></li>
             <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
             <li><a href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">Audius</a></li>
           </ul>
@@ -431,7 +465,7 @@
       <div class="foot__btm">
 
         <span>
-          © <span data-year>2026</span> RADIUS ARCHIVE · РАДИНСК
+          © <span data-year data-testid="footer-year">2026</span> RADIUS ARCHIVE · РАДИНСК
         </span>
 
         <span>
