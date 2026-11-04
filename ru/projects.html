@@ -15,6 +15,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
   <aside class="side-rail" aria-label="RADIUS ARCHIVE">
     <div class="side-rail__mark">RADIUS · ARCHIVE</div>
     <span class="side-rail__pulse" aria-hidden="true"></span>
@@ -28,22 +30,22 @@
     </div>
     <nav id="primary-nav" aria-label="Основная навигация">
       <ul class="nav__list" data-nav-list>
-        <li><a class="nav__link" href="index.html">Главная</a></li>
-        <li><a class="nav__link is-active" href="projects.html" aria-current="page">Проекты</a></li>
-        <li><a class="nav__link" href="about.html">Об архиве</a></li>
+        <li><a class="nav__link" href="index.html" data-testid="nav-home">Главная</a></li>
+        <li><a class="nav__link is-active" href="projects.html" aria-current="page" data-testid="nav-projects">Проекты</a></li>
+        <li><a class="nav__link" href="about.html" data-testid="nav-about">Об архиве</a></li>
       </ul>
-	  
     </nav>
-      <div class="topbar__languages">
-    <a href="../projects.html" class="language-link" lang="en">EN</a>
-    <span aria-hidden="true"> | </span>
-    <a href="projects.html" class="language-link is-active" lang="ru">RU</a>
-  </div>
-  
-    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-nav">Меню</button>
+
+    <div class="topbar__languages">
+      <a href="../projects.html" class="language-link" lang="en" data-testid="lang-en">EN</a>
+      <span aria-hidden="true"> | </span>
+      <a href="projects.html" class="language-link is-active" lang="ru" aria-current="page" data-testid="lang-ru">RU</a>
+    </div>
+
+    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-nav" data-testid="menu-toggle">Меню</button>
   </header>
 
-  <main class="page">
+  <main class="page" id="main">
 
     <section class="page-head">
       <p class="page-head__crumb"><a href="index.html">RADIUS ARCHIVE</a> / Проекты</p>
@@ -54,30 +56,33 @@
       <p class="page-head__sub">
         RADIUS ARCHIVE — независимый лейбл, выросший из архивов Телецентра «РАДИУС» (Радинск, 1976–1998). Каждый проект — релиз из одного и того же мира: утраченная кассета, исчезнувший эфир или запись, которая могла существовать где-то между реальностью, памятью и альтернативной историей.
       </p>
+      <p class="page-head__sub" style="margin-top: 1rem;">
+        Каталог охватывает разные десятилетия и жанры: от сырого пост-панка подпольной сцены 80-х до синтетических волн позднего СССР и независимых проектов 90-х. Каждый релиз бережно восстановлен из сохранившихся фрагментов, сохраняя шум ленты, износ и атмосферу оригинального носителя. Это не просто записи — это артефакты параллельной истории, которые ждут своего открытия.
+      </p>
     </section>
 
     <div class="filters" data-filter-group data-filter-target="#artist-list">
-      <button class="chip is-on" data-filter="all">Все проекты</button>
-      <button class="chip" data-filter="Post-punk">постпанк</button>
-      <button class="chip" data-filter="Synthpop">синти-поп</button>
-      <button class="chip" data-filter="Ambient">эмбиент</button>
-      <button class="chip" data-filter="Rock">рок</button>
-      <button class="chip" data-filter="Pop">поп</button>
-      <button class="chip" data-filter="Folk">фолк</button>
+      <button class="chip is-on" data-filter="all" data-testid="filter-all">Все проекты</button>
+      <button class="chip" data-filter="Post-punk" data-testid="filter-postpunk">постпанк</button>
+      <button class="chip" data-filter="Synthpop" data-testid="filter-synthpop">синти-поп</button>
+      <button class="chip" data-filter="Ambient" data-testid="filter-ambient">эмбиент</button>
+      <button class="chip" data-filter="Rock" data-testid="filter-rock">рок</button>
+      <button class="chip" data-filter="Pop" data-testid="filter-pop">поп</button>
+      <button class="chip" data-filter="Folk" data-testid="filter-folk">фолк</button>
       <button class="chip chip--more" data-filter-more
               data-label-more="+ Ещё" data-label-less="− Свернуть"
-              aria-expanded="false" aria-controls="filters-more">+ Ещё</button>
+              aria-expanded="false" aria-controls="filters-more" data-testid="filter-more">+ Ещё</button>
       <div class="filters__more" id="filters-more" hidden>
-        <button class="chip" data-filter="Hip-Hop">хип-хоп</button>
-        <button class="chip" data-filter="Reggae">регги</button>
-        <button class="chip" data-filter="Broadcast">вещание</button>
-        <button class="chip" data-filter="Classical">классическая музыка</button>
+        <button class="chip" data-filter="Hip-Hop" data-testid="filter-hiphop">хип-хоп</button>
+        <button class="chip" data-filter="Reggae" data-testid="filter-reggae">регги</button>
+        <button class="chip" data-filter="Broadcast" data-testid="filter-broadcast">вещание</button>
+        <button class="chip" data-filter="Classical" data-testid="filter-classical">классическая музыка</button>
       </div>
     </div>
 
     <div class="artist-grid" id="artist-list">
 
-      <article class="artist-card" id="605-mikrorayon" data-tag="Post-punk" data-reveal>
+      <article class="artist-card" id="605-mikrorayon" data-tag="Post-punk" data-reveal data-testid="artist-card-01">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 01</span>
           <img src="../assets/img/01-605-album.jpg" alt="605 Микрорайон — Архивные записи, 1986–1993" />
@@ -86,15 +91,15 @@
           <a class="artist-card__link" href="605.html">605 Микрорайон</a>
         </h3>
         <p class="artist-card__genre">Постпанк · Альтернативный рок</p>
-        <p class="artist-card__status">ДОСТУПНО / СЛУШАТЬ</p>
-        <p class="artist-card__bio">Шум кассеты, старые магнитофонные записи, пустые дворы и фрагменты повседневной жизни сохраняют память о городе, которого, возможно, больше не существует.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-01">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">605 Микрорайон — утраченные записи в стиле пост-панк и колдвейв из забытого городского архива. Шум кассеты, подвальные репетиции, пустые дворы и фрагменты повседневной жизни сохраняют память о городе, которого, возможно, больше не существует. Эти треки передают сырую, неотполированную энергию позднесоветской андеграундной сцены, где каждый искажённый аккорд и эхо вокала звучат как сигнал из параллельной реальности.</p>
         <div class="artist-card__foot">
           <a href="605.html" tabindex="-1" aria-hidden="true">13 синглов →</a>
-          <span>Архивные записи · 1986–1993</span>
+          <span>1986–1993 · Архивные записи</span>
         </div>
       </article>
 
-      <article class="artist-card" id="phase-zero" data-tag="Synthpop" data-reveal>
+      <article class="artist-card" id="phase-zero" data-tag="Synthpop" data-reveal data-testid="artist-card-02">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 02</span>
           <img src="../assets/img/02-phase-zero-album.jpg" alt="ФАЗА/НОЛЬ — архив Института Тишины" />
@@ -103,15 +108,15 @@
           <a class="artist-card__link" href="phasezero.html">ФАЗА/НОЛЬ</a>
         </h3>
         <p class="artist-card__genre">Синти-поп · Колдвейв</p>
-        <p class="artist-card__status">ДОСТУПНО / СЛУШАТЬ</p>
-        <p class="artist-card__bio">ФАЗА/НОЛЬ — восстановленные записи, приписываемые вымышленному Институту Тишины. Синт-поп, колдвейв и элементы советвейва проявляются сквозь деградацию магнитной ленты, лабораторные сигналы и фрагменты исследовательского архива, который никогда не должен был быть найден.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-02">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">ФАЗА/НОЛЬ — восстановленные записи, приписываемые вымышленному Институту Тишины. Синт-поп, колдвейв и элементы советвейва проявляются сквозь деградацию магнитной ленты, лабораторные сигналы и фрагменты исследовательского архива, который никогда не должен был быть найден. Завораживающая смесь ранней электроники и институциональной изоляции, где аналоговые синтезаторы и механические ритмы рисуют портрет мира, зависшего между наукой и памятью.</p>
         <div class="artist-card__foot">
           <a href="phasezero.html" tabindex="-1" aria-hidden="true">11 синглов →</a>
-          <span>Архивные записи · 1989–1999</span>
+          <span>1989–1999 · Архивные записи</span>
         </div>
       </article>
 
-      <article class="artist-card" id="ritual-84" data-tag="Ambient" data-reveal>
+      <article class="artist-card" id="ritual-84" data-tag="Ambient" data-reveal data-testid="artist-card-03">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 03</span>
           <img src="../assets/img/03-ritual-84.jpg" alt="Ритуал-84 — архивные полевые записи" />
@@ -120,15 +125,15 @@
           <a class="artist-card__link" href="ritual84.html">Ритуал-84</a>
         </h3>
         <p class="artist-card__genre">Эмбиент · Этно-электроника</p>
-        <p class="artist-card__status">ДОСТУПНО / СЛУШАТЬ</p>
-        <p class="artist-card__bio">Ritual-84 — реконструированные полевые записи экспедиций, которые официально никогда не проводились. Северные пейзажи, фрагменты ритуалов, ранняя электроника и повреждённая магнитная лента сохраняют следы путешествий, существующих где-то между фольклором, памятью и архивной фикцией.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-03">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">Ritual-84 — реконструированные полевые записи экспедиций, которые официально никогда не проводились. Северные пейзажи, фрагменты ритуалов, ранняя электроника и повреждённая магнитная лента сохраняют следы путешествий, существующих где-то между фольклором, памятью и архивной фикцией. Глубокое, иммерсивное погружение в воображаемую этнографию, где горловое пение, полевые записи и аналоговые дроны сливаются в единый ритуалистический саундскейп.</p>
         <div class="artist-card__foot">
           <a href="ritual84.html" tabindex="-1" aria-hidden="true">3 альбома →</a>
-          <span>Архивные полевые записи</span>
+          <span>1984–1988 · Архивные полевые записи</span>
         </div>
       </article>
 
-      <article class="artist-card" id="radius-78" data-tag="Broadcast" data-reveal>
+      <article class="artist-card" id="radius-78" data-tag="Broadcast" data-reveal data-testid="artist-card-04">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 04</span>
           <img src="../assets/img/04-radius-78.jpg" alt="Радиус-78 — архив передач Телецентра «РАДИУС»" />
@@ -137,15 +142,15 @@
           <a class="artist-card__link" href="radius78.html">Радиус-78</a>
         </h3>
         <p class="artist-card__genre">Вещание · Потерянные материалы</p>
-        <p class="artist-card__status">YouTube + Audius</p>
-        <p class="artist-card__bio">Радиус-78 — вымышленная коллекция передач Телецентра РАДИУС, охватывающая период с конца 1970-х годов до последних лет существования архива. Тестовые сигналы, записи дикторов, музыкальные программы и утраченные трансляции воссоздают фрагменты альтернативной истории вещания.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-04">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">Радиус-78 — вымышленная коллекция передач Телецентра РАДИУС, охватывающая период с конца 1970-х годов до последних лет существования архива. Тестовые сигналы, записи дикторов, музыкальные программы и утраченные трансляции воссоздают фрагменты альтернативной истории вещания. Прямая линия к эфиру города, которого никогда не было, запечатлевшая тепло аналогового телевидения и жутковатую красоту помех.</p>
         <div class="artist-card__foot">
           <a href="radius78.html" tabindex="-1" aria-hidden="true">5 синглов →</a>
-          <span>Архивы вещания · 1978–1998</span>
+          <span>1978–1998 · Архивы вещания</span>
         </div>
       </article>
 
-      <article class="artist-card" id="crystal-orchestra" data-tag="Classical" data-reveal>
+      <article class="artist-card" id="crystal-orchestra" data-tag="Classical" data-reveal data-testid="artist-card-05">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 05</span>
           <img src="../assets/img/05-crystal-orchestra.jpg" alt="Оркестр Кристалл — штатный оркестр телевизионной студии" />
@@ -154,15 +159,15 @@
           <a class="artist-card__link" href="crystal.html">Оркестр Кристалл</a>
         </h3>
         <p class="artist-card__genre">Классическая музыка · Оркестровая музыка</p>
-        <p class="artist-card__status">YouTube + Audius</p>
-        <p class="artist-card__bio">Оркестр Кристалл — реконструированные записи вымышленного телевизионного студийного оркестра, действовавшего в конце 1970-х годов. Оркестровые темы, концертные аранжировки и фоновая музыка сохраняют звучание исчезнувшей производственной студии и передач, которым этот оркестр помогал появиться на свет.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-05">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">Оркестр Кристалл — реконструированные записи вымышленного телевизионного студийного оркестра, действовавшего в конце 1970-х годов. Оркестровые темы, концертные аранжировки и фоновая музыка сохраняют звучание исчезнувшей производственной студии и передач, которым этот оркестр помогал появиться на свет. Тёплые струнные и нежные духовые вызывают в памяти золотой век советского телевидения, создавая ностальгический саундтрек для эпохи, которая существует только в памяти.</p>
         <div class="artist-card__foot">
           <a href="crystal.html" tabindex="-1" aria-hidden="true">5 синглов →</a>
-          <span>Избранные записи</span>
+          <span>1976–1980 · Избранные записи</span>
         </div>
       </article>
 
-      <article class="artist-card" id="sanatorium-of-dreams" data-tag="Rock Pop" data-reveal>
+      <article class="artist-card" id="sanatorium-of-dreams" data-tag="Rock Pop" data-reveal data-testid="artist-card-06">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 06</span>
           <img src="../assets/img/06-sanatorium-of-dreams.jpg" alt="Санаторий Снов — Город потерянного времени" />
@@ -171,15 +176,15 @@
           <a class="artist-card__link" href="sanatoriumofdreams.html">Санаторий Снов</a>
         </h3>
         <p class="artist-card__genre">Дрим-поп · Софт-рок</p>
-        <p class="artist-card__status">ДОСТУПНО / СЛУШАТЬ</p>
-        <p class="artist-card__bio">Санаторий Снов — небольшая коллекция городских историй, разворачивающихся где-то между памятью и реальностью. Забытые улицы, знакомые лица и пустые дворы проходят сквозь мир, где повседневная жизнь постепенно становится странной, а воспоминания могут принадлежать не всегда тем, кто их хранит.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-06">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">Санаторий Снов — небольшая коллекция городских историй, разворачивающихся где-то между памятью и реальностью. Забытые улицы, знакомые лица и пустые дворы проходят сквозь мир, где повседневная жизнь постепенно становится странной, а воспоминания могут принадлежать не всегда тем, кто их хранит. Меланхоличные, мечтательные и глубоко атмосферные, эти песни звучат как ночная прогулка по городу, который существует только во снах.</p>
         <div class="artist-card__foot">
           <a href="sanatoriumofdreams.html" tabindex="-1" aria-hidden="true">5 синглов →</a>
-          <span>Восстановленные сны · Магический реализм</span>
+          <span>1994 · Восстановленные сны</span>
         </div>
       </article>
 
-      <article class="artist-card" id="wild-honey" data-tag="Folk" data-reveal>
+      <article class="artist-card" id="wild-honey" data-tag="Folk" data-reveal data-testid="artist-card-07">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 07</span>
           <img src="../assets/img/07-wild-honey.jpg" alt="Дикий Мёд — сельские легенды и устная память" />
@@ -188,15 +193,15 @@
           <a class="artist-card__link" href="wildhoney.html">Дикий Мёд</a>
         </h3>
         <p class="artist-card__genre">Фолк-нуар · Готический фолк</p>
-        <p class="artist-card__status">YouTube + Audius</p>
-        <p class="artist-card__bio">Дикий Мёд — цикл сельских легенд, собранных как фрагменты устной памяти. Фолк-нуар песни, шёпот историй и далёкие голоса сохраняют предания, которые жили среди людей, каждый раз меняя свой облик, когда их вспоминали и пересказывали.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-07">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">Дикий Мёд — цикл сельских легенд, собранных как фрагменты устной памяти. Фолк-нуар песни, шёпот историй и далёкие голоса сохраняют предания, которые жили среди людей, каждый раз меняя свой облик, когда их вспоминали и пересказывали. Завораживающее путешествие в тёмные уголки фольклора и памяти, где акустические инструменты и призрачные гармонии создают атмосферу тихого, древнего ужаса.</p>
         <div class="artist-card__foot">
           <a href="wildhoney.html" tabindex="-1" aria-hidden="true">3 сингла →</a>
-          <span>Фолк-нуар · Сельский архив</span>
+          <span>1990-е · Сельский архив</span>
         </div>
       </article>
 
-      <article class="artist-card" id="heather-wanderers" data-tag="Folk" data-reveal>
+      <article class="artist-card" id="heather-wanderers" data-tag="Folk" data-reveal data-testid="artist-card-08">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 08</span>
           <img src="../assets/img/08-heather-wanderers-song-of-neris.jpg" alt="Скитальцы Вереска — Песнь Нэрис" />
@@ -205,15 +210,15 @@
           <a class="artist-card__link" href="heatherwanderers.html">Скитальцы Вереска</a>
         </h3>
         <p class="artist-card__genre">Саундтрек · Телеспектакль</p>
-        <p class="artist-card__status">YouTube + Audius</p>
-        <p class="artist-card__bio">Скитальцы Вереска — сохранившийся аудиоархив вымышленного телевизионного спектакля, представленный как восстановленная запись эфира 1983 года. Оригинальная постановка, съёмка спектакля и визуальные материалы были утрачены, оставив лишь саундтрек и фрагменты истории, сохранившиеся в песнях.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-08">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">Скитальцы Вереска — сохранившийся аудиоархив вымышленного телевизионного спектакля, представленный как восстановленная запись эфира 1983 года. Оригинальная постановка, съёмка спектакля и визуальные материалы были утрачены, оставив лишь саундтрек и фрагменты истории, сохранившиеся в песнях. Выразительное средневековое фолк-нуар повествование, где старинные инструменты и хрупкий вокал рассказывают историю любви, долга и утраты.</p>
         <div class="artist-card__foot">
           <a href="heatherwanderers.html" tabindex="-1" aria-hidden="true">1 альбом →</a>
-          <span>Саундтрек · Телеспектакль</span>
+          <span>1983 · Телеспектакль</span>
         </div>
       </article>
 
-      <article class="artist-card" id="vanity-fair" data-tag="Pop" data-reveal>
+      <article class="artist-card" id="vanity-fair" data-tag="Pop" data-reveal data-testid="artist-card-09">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 09</span>
           <img src="../assets/img/09-vanity-fair.jpg" alt="ВИА Ярмарка Тщеславия" />
@@ -222,15 +227,15 @@
           <a class="artist-card__link" href="vanityfair.html">ВИА Ярмарка Тщеславия</a>
         </h3>
         <p class="artist-card__genre">ВИА · Барокко-поп</p>
-        <p class="artist-card__status">YouTube + Audius</p>
-        <p class="artist-card__bio">ВИА «Ярмарка Тщеславия» — художественная реконструкция вымышленного ансамбля 1976–1979 годов, соединявшего камерный оркестр, акустический рок и элементы барокко-попа. Сохранившиеся песни рассказывают небольшие истории о людях, любви, памяти и тщеславии.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-09">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">ВИА «Ярмарка Тщеславия» — художественная реконструкция вымышленного ансамбля 1976–1979 годов, соединявшего камерный оркестр, акустический рок и элементы барокко-попа. Сохранившиеся песни рассказывают небольшие истории о людях, любви, памяти и тщеславии. Изысканный взгляд на советскую традицию ВИА в стиле камер-поп, где пышные струнные аранжировки и литературные тексты создают мир элегантности и тихой меланхолии.</p>
         <div class="artist-card__foot">
           <a href="vanityfair.html" tabindex="-1" aria-hidden="true">3 сингла →</a>
-          <span>ВИА · Барокко-поп</span>
+          <span>1976–1979 · Барокко-поп</span>
         </div>
       </article>
 
-      <article class="artist-card" id="ensemble-kolosvit" data-tag="Folk" data-reveal>
+      <article class="artist-card" id="ensemble-kolosvit" data-tag="Folk" data-reveal data-testid="artist-card-10">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 10</span>
           <img src="../assets/img/10-kolosvit-album.jpg" alt="Ансамбль Колосвіт — украинский фолк-ансамбль" />
@@ -239,15 +244,15 @@
           <a class="artist-card__link" href="kolosvit.html">Ансамбль Колосвіт</a>
         </h3>
         <p class="artist-card__genre">Народная музыка · Психоделический фолк-рок</p>
-        <p class="artist-card__status">ДОСТУПНО / СЛУШАТЬ</p>
-        <p class="artist-card__bio">Украинский фольклорный ансамбль 1970–1974 годов. В ранних записях — народные песни и традиционные мелодии. К середине десятилетия звучание становится более психоделическим, с заметным уклоном в фолк-рок.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-10">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">Украинский фольклорный ансамбль 1970–1974 годов. В ранних записях — народные песни и традиционные мелодии. К середине десятилетия звучание становится более психоделическим, с заметным уклоном в фолк-рок. Прекрасное органичное слияние древних мелодий и ранней психоделии, где традиционные инструменты и экспериментальные аранжировки создают вневременное, гипнотическое звучание.</p>
         <div class="artist-card__foot">
           <a href="kolosvit.html" tabindex="-1" aria-hidden="true">1 альбом →</a>
-          <span>Фолк · Психоделический фолк-рок</span>
+          <span>1970–1974 · Украинский фолк</span>
         </div>
       </article>
 
-      <article class="artist-card" id="oriental-bazaar" data-tag="Rock Folk" data-reveal>
+      <article class="artist-card" id="oriental-bazaar" data-tag="Rock Folk" data-reveal data-testid="artist-card-11">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 11</span>
           <img src="../assets/img/11-oriental-bazaar.jpg" alt="ВИА Восточный Базар — Звёздная дорога" />
@@ -256,15 +261,15 @@
           <a class="artist-card__link" href="orientalbazaar.html">ВИА Восточный Базар</a>
         </h3>
         <p class="artist-card__genre">Психоделический фолк-рок · Спейс-диско</p>
-        <p class="artist-card__status">ДОСТУПНО / СЛУШАТЬ</p>
-        <p class="artist-card__bio">ВИА «Восточный Базар» — советский вокально-инструментальный ансамбль, работавший в концертном составе в первой половине 1980-х годов. В 1984 году коллектив подготовил программу «Звёздная дорога», объединившую эстрадные песни с восточными и фольклорными мотивами.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-11">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">ВИА «Восточный Базар» — советский вокально-инструментальный ансамбль, работавший в концертном составе в первой половине 1980-х годов. В 1984 году коллектив подготовил программу «Звёздная дорога», объединившую эстрадные песни с восточными и фольклорными мотивами. Экзотическое, космическое путешествие в позднесоветский психоделический рок, где фанковые грувы, восточные мелодии и синтезаторы спейс-диско создают поистине уникальное и незабываемое звучание.</p>
         <div class="artist-card__foot">
           <a href="orientalbazaar.html" tabindex="-1" aria-hidden="true">1 альбом →</a>
-          <span>Психоделический фолк-рок · Спейс-диско</span>
+          <span>1984 · Психоделический фолк-рок</span>
         </div>
       </article>
 
-      <article class="artist-card" id="dima-milan" data-tag="Pop" data-reveal>
+      <article class="artist-card" id="dima-milan" data-tag="Pop" data-reveal data-testid="artist-card-12">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 12</span>
           <img src="../assets/img/12-dima-milan.jpg" alt="Дима Милан — российский поп-певец конца 1990-х" />
@@ -273,15 +278,15 @@
           <a class="artist-card__link" href="dimamilan.html">Дима Милан</a>
         </h3>
         <p class="artist-card__genre">Поп · Ню-диско</p>
-        <p class="artist-card__status">СКОРО НА КАНАЛЕ</p>
-        <p class="artist-card__bio">Дима Милан — российский певец конца 1990-х. В 1998–1999 годах он записывает несколько собственных песен для небольшого регионального музыкального лейбла. Простые романтические песни о любви, расставании, ожидании, одиночестве и случайных встречах рассчитаны на радио, кассетные сборники и промо-CD.</p>
+        <p class="artist-card__status" data-status="soon" data-testid="status-12">СКОРО НА КАНАЛЕ</p>
+        <p class="artist-card__bio">Дима Милан — российский певец конца 1990-х. В 1998–1999 годах он записывает несколько собственных песен для небольшого регионального музыкального лейбла. Простые романтические песни о любви, расставании, ожидании, одиночестве и случайных встречах рассчитаны на радио, кассетные сборники и промо-CD. Ностальгическое путешествие в золотую эпоху российской радиопоп-музыки, где запоминающиеся мелодии и искренние тексты передают дух ушедшего времени.</p>
         <div class="artist-card__foot">
           <a href="dimamilan.html" tabindex="-1" aria-hidden="true">6 синглов →</a>
-          <span>Поп · Ню-диско</span>
+          <span>1998–1999 · Поп</span>
         </div>
       </article>
 
-      <article class="artist-card" id="storm-front" data-tag="Rock" data-reveal>
+      <article class="artist-card" id="storm-front" data-tag="Rock" data-reveal data-testid="artist-card-13">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 13</span>
           <img src="../assets/img/13-storm-front.jpg" alt="Штормовой Фронт" />
@@ -290,15 +295,15 @@
           <a class="artist-card__link" href="stormfront.html">Штормовой Фронт</a>
         </h3>
         <p class="artist-card__genre">Хард-рок · Пауэр-баллада</p>
-        <p class="artist-card__status">СКОРО НА КАНАЛЕ</p>
-        <p class="artist-card__bio">«Штормовой Фронт» — рок-группа начала 1990-х, сформировавшая собственное звучание на пересечении мелодичного хард-рока и мощной рок-баллады. Выразительный мужской вокал, электрические гитары, живые барабаны и эмоциональные соло несут песни о любви, памяти, вере и необходимости продолжать путь, когда простых ответов уже нет.</p>
+        <p class="artist-card__status" data-status="soon" data-testid="status-13">СКОРО НА КАНАЛЕ</p>
+        <p class="artist-card__bio">«Штормовой Фронт» — рок-группа начала 1990-х, сформировавшая собственное звучание на пересечении мелодичного хард-рока и мощной рок-баллады. Выразительный мужской вокал, электрические гитары, живые барабаны и эмоциональные соло несут песни о любви, памяти, вере и необходимости продолжать путь, когда простых ответов уже нет. По-настоящему стадионное звучание золотой эпохи жанра, где взмывающие припевы и страстное исполнение оставляют неизгладимое впечатление.</p>
         <div class="artist-card__foot">
           <a href="stormfront.html" tabindex="-1" aria-hidden="true">4 сингла →</a>
-          <span>Мелодичный хард-рок · 1993–1994</span>
+          <span>1993–1994 · Мелодичный хард-рок</span>
         </div>
       </article>
 
-      <article class="artist-card" id="gurt-groove" data-tag="Hip-Hop" data-reveal>
+      <article class="artist-card" id="gurt-groove" data-tag="Hip-Hop" data-reveal data-testid="artist-card-14">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 14</span>
           <img src="../assets/img/14-gurt-groove.jpg" alt="ГУРТ ГРУВ — Ритм міста" />
@@ -307,15 +312,15 @@
           <a class="artist-card__link" href="gurtgroove.html">ГУРТ ГРУВ</a>
         </h3>
         <p class="artist-card__genre">Фанк · Брейкбит · Инструментальный хип-хоп</p>
-        <p class="artist-card__status">ДОСТУПНО / СЛУШАТЬ</p>
-        <p class="artist-card__bio">ГУРТ ГРУВ — украинский коллектив, сформированный в 1998 году; его звучание построено вокруг фанка, брейкбита, фанки-брейка и альтернативного инструментального хип-хопа. Живые инструменты, семплы, бас и ритм формируют основу музыки, существующей на пересечении клубной культуры, хип-хопа и электронной сцены конца 1990-х.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-14">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">ГУРТ ГРУВ — украинский коллектив, сформированный в 1998 году; его звучание построено вокруг фанка, брейкбита, фанки-брейка и альтернативного инструментального хип-хопа. Живые инструменты, семплы, бас и ритм формируют основу музыки, существующей на пересечении клубной культуры, хип-хопа и электронной сцены конца 1990-х. Сырой, заразительный грув, передающий энергию андеграундной сцены, где тяжёлые биты и фанковые басовые линии создают неотразимую танцпольную атмосферу.</p>
         <div class="artist-card__foot">
           <a href="gurtgroove.html" tabindex="-1" aria-hidden="true">1 альбом →</a>
-          <span>Фанк · Брейкбит · 1998–2001</span>
+          <span>1998–2001 · Фанк / Брейкбит</span>
         </div>
       </article>
 
-      <article class="artist-card" id="final-psalm" data-tag="Reggae" data-reveal>
+      <article class="artist-card" id="final-psalm" data-tag="Reggae" data-reveal data-testid="artist-card-15">
         <div class="artist-card__portrait">
           <span class="artist-card__num">P · 15</span>
           <img src="../assets/img/15-final-psalm.jpg" alt="Останній Псалом — Поки горить вогонь" />
@@ -324,11 +329,11 @@
           <a class="artist-card__link" href="finalpsalm.html">Останній Псалом</a>
         </h3>
         <p class="artist-card__genre">Акустическое регги · Рутс-регги</p>
-        <p class="artist-card__status">ДОСТУПНО / СЛУШАТЬ</p>
-        <p class="artist-card__bio">«Останній Псалом» — независимый украинский музыкальный проект Дана, соединяющий акустическое регги, личную лирику и духовные размышления. Тёплый мужской баритон, акустическая гитара и мягкий регги-ритм несут песни о любви, потерях, надежде, свободе и свете, который продолжает жить внутри нас.</p>
+        <p class="artist-card__status" data-status="available" data-testid="status-15">ДОСТУПНО / СЛУШАТЬ</p>
+        <p class="artist-card__bio">«Останній Псалом» — независимый украинский музыкальный проект Дана, соединяющий акустическое регги, личную лирику и духовные размышления. Тёплый мужской баритон, акустическая гитара и мягкий регги-ритм несут песни о любви, потерях, надежде, свободе и свете, который продолжает жить внутри нас. Глубоко духовный и вдохновляющий опыт прослушивания, где искренние тексты и органичный инструментарий создают ощущение покоя и стойкости.</p>
         <div class="artist-card__foot">
           <a href="finalpsalm.html" tabindex="-1" aria-hidden="true">1 альбом + 3 сингла →</a>
-          <span>Акустическое регги · 2013</span>
+          <span>2013 · Акустическое регги</span>
         </div>
       </article>
 
