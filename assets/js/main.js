@@ -13,7 +13,7 @@
     });
   }
 
-  // Build waveform bars dynamically (deterministic seed for consistent rendering)
+  // Build waveform bars dynamically
   const wave = document.querySelector('[data-waveform]');
   if (wave) {
     const heights = [22, 38, 64, 48, 90, 72, 55, 28, 44, 80, 92, 60, 36, 52, 74, 88, 46, 30, 58, 82, 68, 42, 26, 70, 95, 55, 38, 62, 84, 48];
@@ -74,27 +74,8 @@
     el.textContent = String(new Date().getFullYear());
   });
 
-  // Filter chips "+ More" toggle
-  document.querySelectorAll('[data-filter-more]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const more = document.getElementById(btn.getAttribute('aria-controls'));
-      if (!more) return;
-      const open = more.hasAttribute('hidden');
-      if (open) {
-        more.removeAttribute('hidden');
-      } else {
-        more.setAttribute('hidden', '');
-      }
-      btn.setAttribute('aria-expanded', String(open));
-      btn.textContent = open
-        ? (btn.dataset.labelLess || '− Less')
-        : (btn.dataset.labelMore || '+ More');
-    });
-  });
-})();
-
   // Универсальный обработчик для кнопок "показать еще" (More / Less)
-  // Работает для [data-filter-more] и [data-channels-more]
+  // Работает и для фильтров на странице проектов, и для каналов на главной
   const moreButtons = document.querySelectorAll('[data-filter-more], [data-channels-more]');
   
   moreButtons.forEach(btn => {
@@ -119,48 +100,8 @@
       }
     });
   });
-  
-    // Обработчик формы отправки материалов (Web3Forms)
-  const submissionForm = document.querySelector('[data-testid="submission-form"]');
-  
-  if (submissionForm) {
-    submissionForm.addEventListener('submit', function(e) {
-      e.preventDefault(); // Отменяем перезагрузку
-      
-      const submitBtn = this.querySelector('button[type="submit"]');
-      const statusMsg = this.querySelector('[data-testid="submission-status"]');
-      const formData = new FormData(this);
-      
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Transmitting...';
-      submitBtn.disabled = true;
-      
-      fetch(this.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          submissionForm.reset();
-          submissionForm.style.display = 'none';
-          statusMsg.removeAttribute('hidden');
-        } else {
-          alert('Transmission failed. Please try again later.');
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-        }
-      })
-      .catch(error => {
-        alert('Network error. Please check your connection.');
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      });
-    });
-  }
-  
-    // Обработчик формы отправки материалов (Web3Forms)
+
+  // Обработчик формы отправки материалов (Web3Forms) - ОДИН РАЗ!
   const submissionForm = document.querySelector('[data-testid="submission-form"]');
   
   if (submissionForm) {
@@ -185,7 +126,7 @@
         if (data.success) {
           submissionForm.reset();
           submissionForm.style.display = 'none';
-          statusMsg.removeAttribute('hidden');
+          if (statusMsg) statusMsg.removeAttribute('hidden');
         } else {
           alert('Transmission failed. Please try again later.');
           submitBtn.textContent = originalText;
@@ -200,43 +141,4 @@
     });
   }
 
-  // Обработчик формы отправки материалов (Web3Forms)
-  const submissionForm = document.querySelector('[data-testid="submission-form"]');
-  
-  if (submissionForm) {
-    submissionForm.addEventListener('submit', function(e) {
-      e.preventDefault(); // Отменяем перезагрузку страницы
-      
-      const submitBtn = this.querySelector('button[type="submit"]');
-      const statusMsg = this.querySelector('[data-testid="submission-status"]');
-      const formData = new FormData(this);
-      
-      // Меняем текст кнопки на время отправки
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Transmitting...';
-      submitBtn.disabled = true;
-      
-      fetch(this.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          submissionForm.reset();
-          submissionForm.style.display = 'none'; // Прячем форму
-          statusMsg.removeAttribute('hidden'); // Показываем наше сообщение
-        } else {
-          alert('Transmission failed. Please try again later.');
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-        }
-      })
-      .catch(error => {
-        alert('Network error. Please check your connection.');
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      });
-    });
-  }
+})(); // Закрываем основную функцию
