@@ -92,3 +92,151 @@
     });
   });
 })();
+
+  // Универсальный обработчик для кнопок "показать еще" (More / Less)
+  // Работает для [data-filter-more] и [data-channels-more]
+  const moreButtons = document.querySelectorAll('[data-filter-more], [data-channels-more]');
+  
+  moreButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const targetId = btn.getAttribute('aria-controls');
+      const target = document.getElementById(targetId);
+      
+      if (!target) return;
+      
+      const isHidden = target.hasAttribute('hidden');
+      
+      if (isHidden) {
+        target.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.textContent = btn.getAttribute('data-label-less') || '− Less';
+      } else {
+        target.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = btn.getAttribute('data-label-more') || '+ More';
+      }
+    });
+  });
+  
+    // Обработчик формы отправки материалов (Web3Forms)
+  const submissionForm = document.querySelector('[data-testid="submission-form"]');
+  
+  if (submissionForm) {
+    submissionForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Отменяем перезагрузку
+      
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const statusMsg = this.querySelector('[data-testid="submission-status"]');
+      const formData = new FormData(this);
+      
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Transmitting...';
+      submitBtn.disabled = true;
+      
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          submissionForm.reset();
+          submissionForm.style.display = 'none';
+          statusMsg.removeAttribute('hidden');
+        } else {
+          alert('Transmission failed. Please try again later.');
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(error => {
+        alert('Network error. Please check your connection.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+  }
+  
+    // Обработчик формы отправки материалов (Web3Forms)
+  const submissionForm = document.querySelector('[data-testid="submission-form"]');
+  
+  if (submissionForm) {
+    submissionForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Отменяем перезагрузку страницы
+      
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const statusMsg = this.querySelector('[data-testid="submission-status"]');
+      const formData = new FormData(this);
+      
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Transmitting...';
+      submitBtn.disabled = true;
+      
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          submissionForm.reset();
+          submissionForm.style.display = 'none';
+          statusMsg.removeAttribute('hidden');
+        } else {
+          alert('Transmission failed. Please try again later.');
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(error => {
+        alert('Network error. Please check your connection.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+  }
+
+  // Обработчик формы отправки материалов (Web3Forms)
+  const submissionForm = document.querySelector('[data-testid="submission-form"]');
+  
+  if (submissionForm) {
+    submissionForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Отменяем перезагрузку страницы
+      
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const statusMsg = this.querySelector('[data-testid="submission-status"]');
+      const formData = new FormData(this);
+      
+      // Меняем текст кнопки на время отправки
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Transmitting...';
+      submitBtn.disabled = true;
+      
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          submissionForm.reset();
+          submissionForm.style.display = 'none'; // Прячем форму
+          statusMsg.removeAttribute('hidden'); // Показываем наше сообщение
+        } else {
+          alert('Transmission failed. Please try again later.');
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(error => {
+        alert('Network error. Please check your connection.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+  }
