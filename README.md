@@ -6,6 +6,14 @@ The project reconstructs lost recordings, broadcasts, and artifacts from a paral
 
 > **Disclaimer:** A work of fiction. RADIUS ARCHIVE is an original archival reconstruction project. All characters, bands, institutes, and events are fictional.
 
+## QA & Documentation
+This project includes a full Software Testing Life Cycle (STLC) documentation:
+- [Software Test Plan (STP)](docs/STP.md)
+- [Software Test Description (STD)](docs/STD.md)
+- [Software Test Report (STR)](docs/STR.md)
+
+Automated tests are built with Playwright and run via GitHub Actions.
+
 ## Project Structure
 
 - `index.html` / `ru/index.html` — Home page (hero, catalog, channels, manifesto)
