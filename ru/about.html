@@ -20,7 +20,7 @@
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(11, 13, 20, 0.85);
       backdrop-filter: blur(5px);
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       z-index: 1000;
@@ -29,6 +29,7 @@
       transition: opacity 0.3s ease;
     }
     .modal-overlay.is-active {
+	  display: flex;
       opacity: 1;
       pointer-events: auto;
     }
@@ -408,7 +409,7 @@
           </p>
         </div>
         <div class="foot__col">
-          <h4>Разделы</h4>
+          <h2 class="foot__heading">Разделы</h2>
           <ul>
             <li><a href="index.html">Главная</a></li>
             <li><a href="projects.html">Проекты</a></li>
@@ -416,7 +417,7 @@
           </ul>
         </div>
         <div class="foot__col">
-          <h4>Архив в сети</h4>
+          <h2 class="foot__heading">Архив в сети</h2>
           <ul>
             <li><a href="../about.html">English Version</a></li>
             <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
