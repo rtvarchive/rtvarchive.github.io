@@ -29,19 +29,19 @@ test.describe('Signal Room - Functionality & A11y', () => {
     expect(newDate).not.toBe(initialDate);
   });
 
-    test('TC-SIG-02: Report Interference form submission', async ({ page }) => {
+      test('TC-SIG-02: Report Interference form submission', async ({ page }) => {
     // Заполняем форму
     await signalPage.fillReportForm('signal-room-en.html', 'Test interference description');
     
     // Нажимаем "File Report"
     await signalPage.submitReport();
     
-    // Проверяем, что кнопка в какой-то момент показала "Report Filed"
-    // Мы используем регулярное выражение, чтобы поймать "Filing..." или "Report Filed"
-    await expect(signalPage.btnSubmitReport).toHaveText(/Filing|Report Filed/, { timeout: 3000 });
+    // Ждем, пока появится модальное окно (попап)
+    const popup = page.locator('[data-testid="submission-popup"]');
+    await expect(popup).toHaveClass(/is-active/, { timeout: 5000 });
     
-    // Проверяем, что поля формы очистились (это происходит сразу после успеха)
-    await expect(signalPage.inputFreq).toHaveValue('');
+    // Проверяем, что форма скрылась
+    await expect(signalPage.reportForm).toBeHidden();
   });
 
   test('TC-SIG-03: A11y scan for Signal Room', async ({ page }) => {

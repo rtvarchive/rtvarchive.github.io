@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   
   <style>
-    /* Same styles as RU version */
+    /* Стили для Аппаратной */
     .signal-dashboard {
       background: rgba(11, 13, 20, 0.8);
       border: 1px solid var(--line-mid);
@@ -66,6 +66,67 @@
     .btn-primary:hover { filter: brightness(1.12); }
     .page-head__title { font-size: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); margin-bottom: 1rem; }
     .section__title { font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); }
+
+    /* Стили для попапа (скопированы с About) */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(11, 13, 20, 0.85);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.is-active { display: flex; opacity: 1; pointer-events: auto; }
+    .modal-box {
+      background: var(--ink-100, #10131c);
+      border: 1px solid var(--line-mid, rgba(211, 190, 164, 0.24));
+      border-top: 4px solid var(--neon-lime, #7b9c91);
+      padding: 3rem;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.is-active .modal-box { transform: translateY(0); }
+    .modal-icon { font-size: 3rem; margin-bottom: 1rem; color: var(--neon-lime, #7b9c91); }
+    .modal-title {
+      font-family: var(--ff-display, 'Bebas Neue', sans-serif);
+      font-size: 2.5rem;
+      color: var(--txt-bright, #e8d8bb);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .modal-text {
+      font-family: var(--ff-mono, 'JetBrains Mono', monospace);
+      font-size: 0.95rem;
+      color: var(--txt-soft, #c2b5a2);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .modal-close-btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      font-family: var(--ff-mono, 'JetBrains Mono', monospace);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid var(--neon-cyan, #6c8fa3);
+      color: var(--neon-cyan, #6c8fa3);
+      transition: all 0.25s;
+    }
+    .modal-close-btn:hover { background: rgba(108, 143, 163, 0.1); }
   </style>
 </head>
 <body>
@@ -93,8 +154,8 @@
     </nav>
     <div class="topbar__languages">
       <a href="signal-room-en.html" class="language-link is-active" lang="en" aria-current="page" data-testid="lang-en">EN</a>
-	<span aria-hidden="true"> | </span>
-	<a href="signal-room.html" class="language-link" lang="ru" data-testid="lang-ru">RU</a>
+      <span aria-hidden="true"> | </span>
+      <a href="signal-room.html" class="language-link" lang="ru" data-testid="lang-ru">RU</a>
     </div>
     <button class="menu-toggle" data-menu-toggle data-testid="menu-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
   </header>
@@ -157,14 +218,21 @@
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Report <em>Interference</em></h2>
         <p style="margin-bottom: 2rem; color: var(--txt-soft); max-width: 60ch;">If you've detected signal distortion, routing issues, or a lost fragment, file a report with the control room.</p>
         
-        <form class="form-grid" style="max-width: 600px;" id="report-form">
+        <!-- ФОРМА: action и access_key как в About -->
+        <form class="form-grid" style="max-width: 600px;" id="report-form" action="https://api.web3forms.com/submit" method="POST">
+          
+          <!-- Скрытые поля для Web3Forms -->
+          <input type="hidden" name="access_key" value="170f64f4-4ec9-4f4f-97ec-4144bf06bce0">
+          <input type="hidden" name="redirect" value="false">
+          <input type="hidden" name="subject" value="RADIUS ARCHIVE: New Interference Report">
+
           <div class="field">
             <label for="freq">Frequency / Page</label>
-            <input type="text" id="freq" placeholder="e.g., projects.html" required>
+            <input type="text" id="freq" name="freq" placeholder="e.g., projects.html" required>
           </div>
           <div class="field">
             <label for="type">Type of Interference</label>
-            <select id="type">
+            <select id="type" name="type">
               <option>Page won't open</option>
               <option>Language won't switch</option>
               <option>Listening window won't open</option>
@@ -175,7 +243,7 @@
           </div>
           <div class="field">
             <label for="desc">Description</label>
-            <textarea id="desc" rows="4" placeholder="Describe what happened..." required></textarea>
+            <textarea id="desc" name="desc" rows="4" placeholder="Describe what happened..." required></textarea>
           </div>
           <button type="submit" class="btn-primary" style="width: max-content; margin-top: 1rem;" data-testid="btn-submit-report">File Report</button>
         </form>
@@ -206,9 +274,24 @@
     </div>
   </footer>
 
+  <!-- МОДАЛЬНОЕ ОКНО (ПОПАП) -->
+  <div id="success-modal" class="modal-overlay" data-testid="submission-popup">
+    <div class="modal-box">
+      <div class="modal-icon">✓</div>
+      <h2 class="modal-title">REPORT RECEIVED</h2>
+      <p class="modal-text">
+        Your interference report has been logged.<br>
+        The duty operator will investigate shortly.
+      </p>
+      <button id="close-modal" class="modal-close-btn" data-testid="popup-close">Return to Signal Room</button>
+    </div>
+  </div>
+
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      
+      // 1. Кнопка "Запросить последний отчёт" (имитация)
       const btnStartCheck = document.querySelector('[data-testid="btn-start-check"]');
       if (btnStartCheck) {
         btnStartCheck.addEventListener('click', function() {
@@ -232,26 +315,67 @@
           }, 1500);
         });
       }
+
+      // 2. Форма "Report Interference" (РЕАЛЬНАЯ отправка через Web3Forms)
       const reportForm = document.getElementById('report-form');
+      const modal = document.getElementById('success-modal');
+      const closeModalBtn = document.getElementById('close-modal');
+
       if (reportForm) {
         reportForm.addEventListener('submit', function(e) {
           e.preventDefault();
+          
           const submitBtn = this.querySelector('button[type="submit"]');
+          const formData = new FormData(this);
+          
           const originalText = submitBtn.textContent;
           submitBtn.textContent = 'Filing...';
           submitBtn.disabled = true;
-          setTimeout(() => {
-            submitBtn.textContent = 'Report Filed';
-            submitBtn.style.backgroundColor = 'var(--neon-cyan)';
-            reportForm.reset();
-            setTimeout(() => {
+          
+          fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              reportForm.reset();
+              reportForm.style.display = 'none'; // Скрываем форму
+              modal.classList.add('is-active'); // Показываем попап
+            } else {
+              alert('Filing failed. Please try again later.');
               submitBtn.textContent = originalText;
               submitBtn.disabled = false;
-              submitBtn.style.backgroundColor = 'var(--neon-magenta)';
-            }, 4000);
-          }, 1000);
+            }
+          })
+          .catch(error => {
+            alert('Network error. Please check your connection.');
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          });
         });
       }
+
+      // Закрытие попапа
+      if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', function() {
+          modal.classList.remove('is-active');
+        });
+      }
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.classList.remove('is-active');
+          }
+        });
+      }
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+          modal.classList.remove('is-active');
+        }
+      });
+
     });
   </script>
 </body>
