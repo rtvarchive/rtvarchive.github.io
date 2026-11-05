@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="ru">
+<script data-goatcounter="https://rtvarchive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>О проекте · RADIUS ARCHIVE | Lost Sounds. Found Forever.</title>
+  <meta name="description" content="О проекте RADIUS ARCHIVE — независимый лейбл, выросший из архивов Телецентра «РАДИУС» (Радинск, 1976–1998)." />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+
+  <!-- Стили для модального окна (Попапа) -->
+  <style>
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(11, 13, 20, 0.85);
+      backdrop-filter: blur(5px);
+      display: none; /* Изначально скрыто — как в EN */
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.is-active {
+      display: flex; /* Показываем при активации */
+      opacity: 1;
+    }
+    .modal-box {
+      background: var(--ink-100, #10131c);
+      border: 1px solid var(--line-mid, rgba(211, 190, 164, 0.24));
+      border-top: 4px solid var(--neon-lime, #7b9c91);
+      padding: 3rem;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.is-active .modal-box {
+      transform: translateY(0);
+    }
+    .modal-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--neon-lime, #7b9c91);
+    }
+    .modal-title {
+      font-family: var(--ff-display, 'Bebas Neue', sans-serif);
+      font-size: 2.5rem;
+      color: var(--txt-bright, #e8d8bb);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .modal-text {
+      font-family: var(--ff-mono, 'JetBrains Mono', monospace);
+      font-size: 0.95rem;
+      color: var(--txt-soft, #c2b5a2);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .modal-close-btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      font-family: var(--ff-mono, 'JetBrains Mono', monospace);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid var(--neon-cyan, #6c8fa3);
+      color: var(--neon-cyan, #6c8fa3);
+      transition: all 0.25s;
+    }
+    .modal-close-btn:hover {
+      background: rgba(108, 143, 163, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <aside class="side-rail" aria-label="RADIUS ARCHIVE">
+    <div class="side-rail__mark">RADIUS · ARCHIVE</div>
+    <span class="side-rail__pulse" aria-hidden="true"></span>
+    <div class="side-rail__year">ОСН. 1976 · РАДИНСК</div>
+  </aside>
+
+  <header class="topbar">
+    <div class="topbar__signal">
+      <span class="dot" aria-hidden="true"></span>
+      <span>RADIUS ARCHIVE</span>
+    </div>
+    
+    <nav id="primary-nav" aria-label="Основная навигация">
+      <ul class="nav__list" data-nav-list>
+        <li><a class="nav__link" href="index.html" data-testid="nav-home">Главная</a></li>
+        <li><a class="nav__link" href="projects.html" data-testid="nav-projects">Проекты</a></li>
+        <li><a class="nav__link is-active" href="about.html" aria-current="page" data-testid="nav-about">Об архиве</a></li>
+      </ul>
+    </nav>
+
+    <div class="topbar__languages">
+      <a href="../about.html" class="language-link" lang="en" data-testid="lang-en">EN</a>
+      <span aria-hidden="true"> | </span>
+      <a href="about.html" class="language-link is-active" lang="ru" aria-current="page" data-testid="lang-ru">RU</a>
+    </div>
+
+    <button class="menu-toggle" data-menu-toggle data-testid="menu-toggle" aria-expanded="false" aria-controls="primary-nav">Меню</button>
+  </header>
+
+  <main class="page" id="main">
+
+    <!-- 2-КОЛОНОЧНАЯ СЕТКА -->
+    <div style="display: grid; grid-template-columns: 1fr; gap: 4rem; margin-bottom: 5rem; align-items: start;" class="about-layout">
+      <style>
+        @media (min-width: 992px) {
+          .about-layout { grid-template-columns: 1.5fr 1fr !important; }
+        }
+      </style>
+
+      <section class="page-head" style="border-bottom: none; padding-bottom: 0;">
+        <p class="page-head__crumb">
+          <a href="index.html">RADIUS ARCHIVE</a> / О проекте
+        </p>
+        <h1 class="page-head__title">
+          Внутри <em>RADIUS ARCHIVE</em>
+        </h1>
+
+        <div class="page-head__sub">
+          <p>
+            RADIUS ARCHIVE — независимый лейбл, выросший из архивов Телевизионного центра «РАДИУС» — утраченного вещательного комплекса закрытого научного города Радинск.
+          </p>
+          <p>
+            Телевизионный центр работал с 1976 по 1998 год, создавая внутренние телевизионные передачи, культурные и музыкальные программы, документальные фильмы и ночные эфиры для жителей города. Со временем записи оказались разбросаны, забыты или просто исчезли.
+          </p>
+          <p>
+            Лейбл выпускает то, что сохранилось.
+          </p>
+          <p>
+            Мы выпускаем музыку, обложки альбомов, фотографии, биографии, записи телеэфиров и другие материалы как фрагменты этого мира. Каждый проект существует в рамках одной общей вселенной, но может относиться к разным периодам, архивным коллекциям или забытым историям.
+          </p>
+          <p>
+            Один из вопросов, который нам задают чаще всего:
+            <em>«Это настоящий лейбл или художественный проект?»</em>
+          </p>
+          <p>
+            Ответ: и то, и другое.
+          </p>
+          <p>
+            RADIUS ARCHIVE — независимый лейбл, построенный на вымышленном архиве, созданный человеком с использованием технологий искусственного интеллекта. Представленные материалы не являются подлинными историческими записями. Это релизы из архива, которого никогда не существовало — или, возможно, существовало в реальности, немного отличной от нашей.
+          </p>
+          <p>
+            Для нас важнее всего ощущение открытия — чувство, будто вы нашли старую кассету, забытую телевизионную передачу или пластинку из места, которое кажется странно знакомым.
+          </p>
+          <p>
+            Технология — лишь часть процесса. Настоящая цель — сохранять этот мир живым: прожитым, несовершенным и далёким, сохранённым в отдельных фрагментах.
+          </p>
+          <p>
+            Спасибо, что слушаете, исследуете и помогаете сохранять сигнал.
+          </p>
+          <p>
+            — RADIUS ARCHIVE
+          </p>
+          <p style="margin-top: 2rem; font-size: 0.9em; opacity: 0.8;">
+            📡 <em>«Если эта музыка кажется вам знакомой, возможно, сигнал пришёл из другой реальности.»</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- КАРТИНКА -->
+      <div style="display: flex; justify-content: center; width: 100%;">
+        <div style="
+          background: #f4ebd9; 
+          padding: 0.6rem 0.6rem 2rem 0.6rem; 
+          border-radius: 2px; 
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+          position: sticky;
+          top: 8rem;
+          width: 100%;
+          max-width: 420px; 
+          opacity: 0.95; 
+          transition: opacity 0.3s;
+          margin-top: 160px;
+        " onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.95'">
+          <img 
+            src="../assets/img/about-archive-photo.jpg" 
+            alt="Аппаратная Телецентра РАДИУС, Радинск"
+            style="
+              width: 100%; 
+              height: auto; 
+              max-height: 55vh; 
+              object-fit: cover; 
+              display: block; 
+              filter: sepia(30%) contrast(0.95) brightness(0.9);
+              border: 1px solid rgba(0, 0, 0, 0.1);
+            "
+          >
+          <div style="
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: #333;
+            margin-top: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: right;
+            line-height: 1.4;
+          ">
+            Рис 1. Аппаратная вещания.<br>
+            Радинск · Конец 1970-х.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ТАЙМЛАЙН -->
+    <section class="section" aria-labelledby="timeline-heading">
+      <div class="section__head">
+        <span class="section__num">Хроника архива</span>
+        <h2 class="section__title" id="timeline-heading">
+          Хроника <em>сигнала</em>
+        </h2>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; padding-left: 1rem; border-left: 2px solid var(--line-soft);">
+        
+        <div style="position: relative;">
+          <div style="position: absolute; left: -1.35rem; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--neon-magenta); box-shadow: 0 0 8px rgba(200, 61, 115, 0.5);"></div>
+          <span style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-magenta); letter-spacing: 0.1em; display: block; margin-bottom: 0.25rem;">1976</span>
+          <div>
+            <h3 style="font-family: var(--ff-body); font-size: 1.2rem; margin: 0 0 0.5rem 0; color: var(--txt-bright);">Основание</h3>
+            <p style="margin: 0; color: var(--txt-soft); font-size: 0.95rem; line-height: 1.5;">Телевизионный центр «РАДИУС» начинает внутреннее вещание в закрытом городе Радинск.</p>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="position: absolute; left: -1.35rem; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--neon-magenta); box-shadow: 0 0 8px rgba(200, 61, 115, 0.5);"></div>
+          <span style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-magenta); letter-spacing: 0.1em; display: block; margin-bottom: 0.25rem;">1984</span>
+          <div>
+            <h3 style="font-family: var(--ff-body); font-size: 1.2rem; margin: 0 0 0.5rem 0; color: var(--txt-bright);">Экспериментальная эпоха</h3>
+            <p style="margin: 0; color: var(--txt-soft); font-size: 0.95rem; line-height: 1.5;">Записываются музыкальные программы, полевые экспедиции и первые экспериментальные аудиоархивы.</p>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="position: absolute; left: -1.35rem; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--neon-magenta); box-shadow: 0 0 8px rgba(200, 61, 115, 0.5);"></div>
+          <span style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-magenta); letter-spacing: 0.1em; display: block; margin-bottom: 0.25rem;">1991</span>
+          <div>
+            <h3 style="font-family: var(--ff-body); font-size: 1.2rem; margin: 0 0 0.5rem 0; color: var(--txt-bright);">Переходный период</h3>
+            <p style="margin: 0; color: var(--txt-soft); font-size: 0.95rem; line-height: 1.5;">Телецентру предстоит реорганизация. Множество записей теряются или рассеиваются по стране.</p>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="position: absolute; left: -1.35rem; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--neon-magenta); box-shadow: 0 0 8px rgba(200, 61, 115, 0.5);"></div>
+          <span style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-magenta); letter-spacing: 0.1em; display: block; margin-bottom: 0.25rem;">1998</span>
+          <div>
+            <h3 style="font-family: var(--ff-body); font-size: 1.2rem; margin: 0 0 0.5rem 0; color: var(--txt-bright);">Тишина</h3>
+            <p style="margin: 0; color: var(--txt-soft); font-size: 0.95rem; line-height: 1.5;">Официальное вещание прекращается. Оставшиеся архивы опечатаны и забыты.</p>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="position: absolute; left: -1.35rem; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--neon-magenta); box-shadow: 0 0 8px rgba(200, 61, 115, 0.5);"></div>
+          <span style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-magenta); letter-spacing: 0.1em; display: block; margin-bottom: 0.25rem;">2026</span>
+          <div>
+            <h3 style="font-family: var(--ff-body); font-size: 1.2rem; margin: 0 0 0.5rem 0; color: var(--txt-bright);">Реставрация</h3>
+            <p style="margin: 0; color: var(--txt-soft); font-size: 0.95rem; line-height: 1.5;">RADIUS ARCHIVE начинает оцифровку и реконструкцию сохранившихся фрагментов.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- НИЖНИЙ БЛОК -->
+    <div class="two-col">
+      <aside>
+        <h3>RADIUS ARCHIVE</h3>
+        <dl class="metalist">
+          <dt>Лейбл</dt>
+          <dd>Независимый лейбл, выросший из архивов Телецентра «РАДИУС»</dd>
+          <dt>Период архива</dt>
+          <dd>1976 — 1998</dd>
+          <dt>Местоположение</dt>
+          <dd>Радинск · Закрытый научный город</dd>
+          <dt>Телецентр</dt>
+          <dd>Телевизионный центр «РАДИУС»</dd>
+          <dt>Контакты</dt>
+          <dd><a href="mailto:rtv.archive@gmail.com">rtv.archive@gmail.com</a></dd>
+        </dl>
+
+        <h3 style="margin-top: 2rem;">Проверка сигнала</h3>
+        <p>
+          Столкнулись с проблемой в архиве? Вы можете сообщить о сбое сигнала нашему дежурному оператору.
+        </p>
+        <p>
+          <a href="#" style="
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            font-family: var(--ff-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            background: transparent;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            transition: all 0.25s;
+          " data-testid="signal-room-link">Перейти в аппаратную →</a>
+        </p>
+      </aside>
+
+      <div>
+        <h3>Материалы для архива</h3>
+        <p>
+          Если у вас сохранились запись, фотография, документ или история, связанные с Телевизионным центром «РАДИУС», мы будем рады ознакомиться с ними. Нас интересуют забытые телевизионные передачи, неопознанные магнитные записи и любые материалы из архива.
+        </p>
+        <p style="margin-bottom: 1.5rem;">
+          Отправьте личную ссылку или краткое описание материала.
+        </p>
+
+        <!-- РАБОЧАЯ ФОРМА -->
+        <form class="submission-form" id="submission-form" data-testid="submission-form" action="https://api.web3forms.com/submit" method="POST" style="
+          display: flex; 
+          flex-direction: column; 
+          gap: 1.5rem; 
+          width: 100%; 
+          max-width: 600px; 
+          background: rgba(255, 255, 255, 0.02); 
+          padding: 2rem; 
+          border-radius: 4px; 
+          border: 1px solid var(--line-mid); 
+          box-sizing: border-box;
+        ">
+          
+          <input type="hidden" name="access_key" value="170f64f4-4ec9-4f4f-97ec-4144bf06bce0">
+          <input type="hidden" name="redirect" value="false">
+          <input type="hidden" name="subject" value="RADIUS ARCHIVE: Новый фрагмент (RU)">
+          
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="sub-email" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Ваш Email (опционально)</label>
+            <input type="email" id="sub-email" name="email" placeholder="name@example.com" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;" data-testid="submission-email">
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="sub-link" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Ссылка на материал *</label>
+            <input type="url" id="sub-link" name="link" required placeholder="https://..." style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;" data-testid="submission-link">
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="sub-desc" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Краткое описание *</label>
+            <textarea id="sub-desc" name="message" rows="4" required placeholder="Что это за фрагмент?" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none; resize: vertical; min-height: 120px;" data-testid="submission-desc"></textarea>
+          </div>
+          
+          <button type="submit" style="
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            font-family: var(--ff-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+            background: var(--neon-magenta);
+            color: #ffffff;
+            width: max-content;
+            transition: all 0.25s;
+          " data-testid="submission-submit">Отправить фрагмент</button>
+        </form>
+
+        <h3 style="margin-top: 3rem;">О материалах</h3>
+        <p>
+          RADIUS ARCHIVE объединяет музыку, архивные записи, обложки альбомов, фотографии, биографии, фрагменты телевизионных передач и другие материалы из истории Телевизионного центра «РАДИУС».
+        </p>
+        <p>
+          Каждый проект представляет собой отдельный фрагмент архива. Некоторые материалы выглядят как утраченные записи, забытые релизы или найденные документы, тогда как другие рассказывают истории и знакомят с артистами, существующими только во вселенной RADIUS ARCHIVE.
+        </p>
+
+        <h3 style="margin-top: 3rem;">Отказ от ответственности</h3>
+        <p>
+          RADIUS ARCHIVE — независимый лейбл, построенный на вымышленном архиве, созданный человеком с использованием технологий искусственного интеллекта. Представленные материалы не являются подлинными историческими записями или документами.
+        </p>
+      </div>
+    </div>
+
+    <footer class="foot" data-testid="footer">
+      <div class="foot__grid">
+        <div class="foot__col">
+          <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
+          <p class="foot__about">
+            Независимый лейбл, выросший из архивов Телецентра «РАДИУС» (Радинск, 1976–1998). Утраченные звуки. Найдены навсегда.
+          </p>
+        </div>
+        <div class="foot__col">
+          <h4>Разделы</h4>
+          <ul>
+            <li><a href="index.html" data-testid="footer-home">Главная</a></li>
+            <li><a href="projects.html" data-testid="footer-projects">Проекты</a></li>
+            <li><a href="about.html" data-testid="footer-about">О проекте</a></li>
+          </ul>
+        </div>
+        <div class="foot__col">
+          <h4>Архив в сети</h4>
+          <ul>
+            <li><a href="../about.html" data-testid="footer-lang-en">English Version</a></li>
+            <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+            <li><a href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">Audius</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot__btm">
+        <span>© <span data-year data-testid="footer-year">2026</span> RADIUS ARCHIVE · РАДИНСК</span>
+        <span><strong>● АРХИВ АКТИВЕН</strong> · ОСН. 1976</span>
+        <span>УТРАЧЕНО · НАЙДЕНО · ВОССТАНОВЛЕНО</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- МОДАЛЬНОЕ ОКНО (ПОПАП) -->
+  <div id="success-modal" class="modal-overlay" data-testid="submission-popup">
+    <div class="modal-box">
+      <div class="modal-icon">✓</div>
+      <h2 class="modal-title">СИГНАЛ ПРИНЯТ</h2>
+      <p class="modal-text">
+        Ваш фрагмент успешно записан в очередь архива.<br>
+        Дежурный оператор рассмотрит заявку в ближайшее время.
+      </p>
+      <button id="close-modal" class="modal-close-btn" data-testid="popup-close">Вернуться в архив</button>
+    </div>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+
+  <!-- СКРИПТ ОТПРАВКИ И ПОПАПА -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const submissionForm = document.getElementById('submission-form');
+      const modal = document.getElementById('success-modal');
+      const closeModalBtn = document.getElementById('close-modal');
+      
+      if (submissionForm) {
+        submissionForm.addEventListener('submit', function(e) {
+          e.preventDefault(); 
+          
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const formData = new FormData(this);
+          
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = 'Передача сигнала...';
+          submitBtn.disabled = true;
+          
+          fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              submissionForm.reset();
+              submissionForm.style.display = 'none';
+              modal.classList.add('is-active');
+            } else {
+              alert('Ошибка передачи. Пожалуйста, попробуйте позже.');
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+            }
+          })
+          .catch(error => {
+            alert('Ошибка сети. Пожалуйста, проверьте соединение.');
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          });
+        });
+      }
+
+      if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', function() {
+          modal.classList.remove('is-active');
+        });
+      }
+      
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.classList.remove('is-active');
+          }
+        });
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+          modal.classList.remove('is-active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

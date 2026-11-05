@@ -1,0 +1,20 @@
+{
+  "name": "rtv-archive-web",
+  "version": "1.0.0",
+  "description": "An independent archival music project built around a fictional television center in the closed city of Radinsk (1976–1998).",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1"
+  }
+}
