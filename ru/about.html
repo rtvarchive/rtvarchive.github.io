@@ -320,7 +320,7 @@
             border: 1px solid var(--neon-cyan);
             color: var(--neon-cyan);
             transition: all 0.25s;
-          ">Перейти в аппаратную →</a>
+          " data-testid="signal-room-link">Перейти в аппаратную →</a>
         </p>
       </aside>
 
@@ -353,17 +353,17 @@
           
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="sub-email" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Ваш Email (опционально)</label>
-            <input type="email" id="sub-email" name="email" placeholder="name@example.com" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;">
+            <input type="email" id="sub-email" name="email" placeholder="name@example.com" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;" data-testid="submission-email">
           </div>
           
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="sub-link" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Ссылка на материал *</label>
-            <input type="url" id="sub-link" name="link" required placeholder="https://..." style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;">
+            <input type="url" id="sub-link" name="link" required placeholder="https://..." style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;" data-testid="submission-link">
           </div>
           
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="sub-desc" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Краткое описание *</label>
-            <textarea id="sub-desc" name="message" rows="4" required placeholder="Что это за фрагмент?" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none; resize: vertical; min-height: 120px;"></textarea>
+            <textarea id="sub-desc" name="message" rows="4" required placeholder="Что это за фрагмент?" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none; resize: vertical; min-height: 120px;" data-testid="submission-desc"></textarea>
           </div>
           
           <button type="submit" style="
@@ -381,7 +381,7 @@
             color: var(--txt-bright);
             width: max-content;
             transition: all 0.25s;
-          ">Отправить фрагмент</button>
+          " data-testid="submission-submit">Отправить фрагмент</button>
         </form>
 
         <h3 style="margin-top: 3rem;">О материалах</h3>
@@ -399,7 +399,7 @@
       </div>
     </div>
 
-    <footer class="foot">
+    <footer class="foot" data-testid="footer">
       <div class="foot__grid">
         <div class="foot__col">
           <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
@@ -434,7 +434,7 @@
   </main>
 
   <!-- МОДАЛЬНОЕ ОКНО (ПОПАП) -->
-  <div id="success-modal" class="modal-overlay">
+  <div id="success-modal" class="modal-overlay" data-testid="submission-popup">
     <div class="modal-box">
       <div class="modal-icon">✓</div>
       <h2 class="modal-title">СИГНАЛ ПРИНЯТ</h2>
@@ -442,7 +442,7 @@
         Ваш фрагмент успешно записан в очередь архива.<br>
         Дежурный оператор рассмотрит заявку в ближайшее время.
       </p>
-      <button id="close-modal" class="modal-close-btn">Вернуться в архив</button>
+      <button id="close-modal" class="modal-close-btn" data-testid="popup-close">Вернуться в архив</button>
     </div>
   </div>
 
@@ -504,6 +504,12 @@
           }
         });
       }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+          modal.classList.remove('is-active');
+        }
+      });
     });
   </script>
 </body>
