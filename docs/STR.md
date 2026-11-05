@@ -51,6 +51,9 @@ During the testing cycle, several defects were identified and resolved:
    - *Fix:* Added an invisible `<h1 class="sr-only">` for screen readers and SEO.
    - *Issue:* Invalid heading order in the footer (skipping from `<h1>` to `<h4>`).
    - *Fix:* Replaced `<h4>` tags with `<h2 class="foot__heading">` to maintain a logical document outline.
+4. **Functional (Signal Room):**
+   - *Issue:* The "Report Interference" form initially only simulated submission.
+   - *Fix:* Integrated Web3Forms API and added a success popup, matching the functionality of the About page.   
 
 ## 5. CI/CD Integration
 A GitHub Actions workflow (`.github/workflows/playwright.yml`) was configured to run the entire test suite on every push to the `main` branch. 
