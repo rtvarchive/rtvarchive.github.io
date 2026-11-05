@@ -6,324 +6,246 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Дима Милан · RADIUS ARCHIVE</title>
-  <meta name="description" content="RADIUS ARCHIVE | Lost Broadcasts, Tapes & Music Archives." />
+  <meta name="description" content="Дима Милан — российский певец конца 1990-х. Простые романтические песни для радио, кассетных сборников и промо-CD. Поп, 1998–1999." />
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/styles.css" />
+  
+  <style>
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(11, 13, 20, 0.85);
+      backdrop-filter: blur(5px);
+    }
+    .modal-content {
+      background-color: #0b0d14;
+      margin: 5% auto; 
+      padding: 2rem;
+      border: 1px solid #333;
+      width: 90%;
+      max-width: 600px;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .close-btn {
+      color: #fff;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .close-btn:hover {
+      color: #ff00ff;
+    }
+  </style>
 </head>
 <body>
 
- <aside class="side-rail" aria-label="RADIUS ARCHIVE">
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <aside class="side-rail" aria-label="RADIUS ARCHIVE">
     <div class="side-rail__mark">RADIUS · ARCHIVE</div>
     <span class="side-rail__pulse" aria-hidden="true"></span>
     <div class="side-rail__year">ОСН. 1976 · РАДИНСК</div>
   </aside>
 
   <header class="topbar">
-
     <div class="topbar__signal">
       <span class="dot" aria-hidden="true"></span>
       <span>RADIUS ARCHIVE</span>
     </div>
-
-    <nav aria-label="Основная навигация">
+    <nav id="primary-nav" aria-label="Основная навигация">
       <ul class="nav__list" data-nav-list>
-        <li><a class="nav__link" href="index.html">Главная</a></li>
-        <li><a class="nav__link is-active" href="projects.html">Проекты</a></li>
-        <li><a class="nav__link" href="about.html">Об архиве</a></li>
+        <li><a class="nav__link" href="index.html" data-testid="nav-home">Главная</a></li>
+        <li><a class="nav__link is-active" href="projects.html" aria-current="page" data-testid="nav-projects">Проекты</a></li>
+        <li><a class="nav__link" href="about.html" data-testid="nav-about">Об архиве</a></li>
       </ul>
     </nav>
 
-      <div class="topbar__languages">
-    <a href="../dimamilan.html" class="language-link" lang="en">EN</a>
-    <span aria-hidden="true"> | </span>
-    <a href="dimamilan.html" class="language-link is-active" lang="ru">RU</a>
-  </div>
+    <div class="topbar__languages">
+      <a href="../dimamilan.html" class="language-link" lang="en" data-testid="lang-en">EN</a>
+      <span aria-hidden="true"> | </span>
+      <a href="dimamilan.html" class="language-link is-active" lang="ru" aria-current="page" data-testid="lang-ru">RU</a>
+    </div>
 
-    <button class="menu-toggle" data-menu-toggle aria-expanded="false">Menu</button>
+    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-nav" data-testid="menu-toggle">Меню</button>
   </header>
 
-  <main class="page">
+  <main class="page" id="main">
     <section class="page-head">
-      <p class="page-head__crumb"><a href="index.html">RADIUS ARCHIVE</a><a href="projects.html"> /Проекты</a> /Дима Милан</p>
+      <p class="page-head__crumb">
+        <a href="index.html">RADIUS ARCHIVE</a> /
+        <a href="projects.html">Проекты</a> /
+        Дима Милан
+      </p>
       <h1 class="page-head__title">Дима <em>Милан</em></h1>
-      <p class="page-head__sub">
-        Дима Милан — российский певец, получивший известность в конце 1990-х годов. Его песни были рассчитаны прежде всего на радио, кассетные сборники, телевизионные музыкальные программы и недорогие промо-CD.
-      </p>
-      <p class="page-head__sub">
-        В 1998–1999 годах Дима Милан получает возможность записать несколько собственных песен для небольшого регионального музыкального лейбла. Материал рассчитан на радио, кассетные сборники и недорогие промо-CD. Песни простые, романтические и легко запоминающиеся: любовь, расставание, ожидание, случайная встреча, одиночество, Новый год.
-      </p>
-      <p class="page-head__sub">
-        В текстах нет сложной поэзии — это прямые человеческие истории, характерные для российской эстрады конца 1990-х. Музыка тёплая и мелодичная: акустическая и электрическая гитара, пиано, мелодичный бас, драм-машина, мягкая перкуссия и ненавязчивые аналоговые синтезаторы.
-      </p>
-      <p class="page-head__sub">
-        У Димы Милана тёплый мужской баритон, естественное русское произношение и искренняя, немного наивная манера исполнения. Медленные песни звучат романтично и слегка меланхолично, более быстрые — легко и танцевально.
-      </p>
-      <p class="page-head__sub">
-        Его стиль — простая российская радиопоп-музыка рубежа 1990-х и 2000-х: искренняя, немного «липкая», мелодичная и без стремления казаться сложнее, чем она есть.
-      </p>
+      
+      <div class="page-head__sub">
+        <p>Дима Милан — российский певец, получивший известность в конце 1990-х годов. В 1998–1999 годах он записывает несколько собственных песен для небольшого регионального музыкального лейбла, рассчитанных на радио, кассетные сборники, телевизионные музыкальные программы и недорогие промо-CD. В текстах нет сложной поэзии — это прямые человеческие истории о любви, расставании, ожидании, случайной встрече и одиночестве, характерные для российской эстрады конца 1990-х. Музыка тёплая и мелодичная, с тёплым мужским баритоном, естественным русским произношением и искренней, немного наивной манерой исполнения.</p>
+      </div>
     </section>
 
-<div class="artist-grid" id="artist-list">
+    <div class="artist-grid" id="artist-list">
+      <article class="artist-card project-detail-card" id="dimamilan" data-tag="Pop" data-reveal data-testid="project-detail">
+        <div class="project-detail-layout">
+          <!-- COVER -->
+          <div class="artist-card__portrait" data-testid="project-cover">
+            <span class="artist-card__num">P · 12</span>
+            <img src="../assets/img/12-dima-milan.jpg" alt="Дима Милан — Поп-певец" />
+          </div>
 
-  <article
-    class="artist-card project-detail-card"
-    id="dimamilan"
-    data-tag="Pop"
-    data-reveal
-  >
+          <!-- PROJECT INFO -->
+          <div class="project-detail-info">
+            <h2 class="artist-card__name">Дима Милан</h2>
+            <p class="artist-card__genre">Поп · Ню-диско</p>
+            <p class="artist-card__status" data-status="soon" data-testid="project-status">СКОРО НА КАНАЛЕ</p>
+            <div class="artist-card__bio">
+              <p>Дима Милан — российский певец конца 1990-х. В 1998–1999 годах он записывает несколько собственных песен для небольшого регионального музыкального лейбла. Простые романтические песни о любви, расставании, ожидании, одиночестве и случайных встречах рассчитаны на радио, кассетные сборники и промо-CD.</p>
+            </div>
 
-    <div class="project-detail-layout">
+            <!-- STREAMING / LISTEN -->
+            <div class="project-streaming">
+              <p class="project-streaming__label">СКОРО НА КАНАЛЕ</p>
+              <div class="project-streaming__links">
+                <button type="button" class="stream-pill is-disabled" data-testid="listen-button" disabled>Слушать на YouTube и Audius →</button>
+              </div>
+              <p class="project-streaming__availability">
+                Ссылки на стриминговые платформы появятся ближе к релизу.
+              </p>
+            </div>
+          </div>
 
-      <!-- COVER -->
+          <div class="project-detail-spacer"></div>
 
-      <div class="artist-card__portrait">
-
-        <span class="artist-card__num">
-          P · 12
-        </span>
-
-        <img
-          src="../assets/img/12-dima-milan.jpg"
-          alt="Pop · Nu Disco"
-        />
-
-      </div>
-
-
-      <!-- PROJECT INFO -->
-
-      <div class="project-detail-info">
-
-        <h2 class="artist-card__name">
-          Дима Милан
-        </h2>
-
-        <p class="artist-card__genre">
-          ПОП · Ню-диско
-        </p>
-
-        <p class="artist-card__status">
-          СКОРО НА КАНАЛЕ
-        </p>
-
-        <div class="artist-card__bio">
-
-          <p>
-            Дима Милан — российский певец конца 1990-х. В 1998–1999 годах он записывает несколько собственных песен для небольшого регионального музыкального лейбла. Простые романтические песни о любви, расставании, ожидании, одиночестве и случайных встречах рассчитаны на радио, кассетные сборники и промо-CD.
-          </p>
-
+          <!-- TRACKLIST — RIGHT COLUMN -->
+          <div class="project-tracklist" data-testid="project-tracklist">
+            <div class="project-tracklist__header">
+              <span>СПИСОК ТРЕКОВ</span>
+              <span>6 СИНГЛОВ</span>
+            </div>
+            <ol class="project-tracks">
+              <li><span class="track-number">01</span> <span class="track-title">Восточная любовь</span></li>
+              <li><span class="track-number">02</span> <span class="track-title">Ты не одна</span></li>
+              <li><span class="track-number">03</span> <span class="track-title">Останься со мной</span></li>
+              <li><span class="track-number">04</span> <span class="track-title">Под Новый Год</span></li>
+              <li><span class="track-number">05</span> <span class="track-title">Не звони</span></li>
+              <li><span class="track-number">06</span> <span class="track-title">Не звони (Лирическая версия)</span></li>
+            </ol>
+          </div>
         </div>
 
-
-        <!-- STREAMING / LISTEN -->
-
-<div class="project-streaming">
-
-  <p class="project-streaming__label">
-    Слушать музыку Димы Милана
-  </p>
-
-  <div class="project-streaming__links">
-
-    <span class="stream-pill is-disabled">YouTube</span>
-
-    <span class="stream-pill is-disabled">Audius</span>
-
-  </div>
-
-  <p class="project-streaming__availability">
-    Ссылки на стриминговые платформы появятся ближе к релизу.
-  </p>
-
-</div>
-
-</div>
-
-<div class="project-detail-spacer"></div>
-
-      <!-- TRACKLIST — RIGHT COLUMN -->
-
-      <div class="project-tracklist">
-
-        <div class="project-tracklist__header">
-          <span>СПИСОК ТРЕКОВ</span>
-          <span>6 синглов</span>
+        <!-- PROJECT FOOTER -->
+        <div class="artist-card__foot">
+          <span>1998–1999 · Поп</span>
+          <span>6 Синглов</span>
         </div>
-
-        <ol class="project-tracks">
-
-          <li>
-            <span class="track-number">01</span>
-            <span class="track-title">Восточная любовь</span>
-          </li>
-
-          <li>
-            <span class="track-number">02</span>
-            <span class="track-title">Ты не одна</span>
-          </li>
-
-          <li>
-            <span class="track-number">03</span>
-            <span class="track-title">Останься со мной</span>
-          </li>
-
-		  <li>
-            <span class="track-number">04</span>
-            <span class="track-title">Под Новый Год</span>
-          </li>
-
-		  <li>
-            <span class="track-number">05</span>
-            <span class="track-title">Не звони</span>
-          </li>
-
-		  <li>
-            <span class="track-number">06</span>
-            <span class="track-title">Не звони (Лирическая версия)</span>
-          </li>
-
-        </ol>
-
-      </div>
-
+      </article>
     </div>
-	<!-- PROJECT FOOTER -->
-
-    <div class="artist-card__foot">
-
-      <span>
-        ПОП · Ню-диско
-      </span>
-
-      <span>
-        6 синглов
-      </span>
-
-    </div>
-
-  </article>
-
-</div>
-
   </main>
 
-<!-- =========================================================
-       FOOTER
-  ========================================================== -->
-
-  <footer class="foot">
-
+  <footer class="foot" data-testid="footer">
     <div class="foot__grid">
-
-      <!-- BRAND -->
-
       <div class="foot__col">
-
-        <p class="foot__brand">
-          RADIUS<b>ARCHIVE</b>
-        </p>
-
-        <p class="foot__about">
-          Независимый лейбл, выросший из архивов Телецентра «РАДИУС»
-		(Радинск, 1976–1998). Утраченные звуки. Найдены навсегда.
-        </p>
-
+        <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
+        <p class="foot__about">Независимый лейбл, выросший из архивов Телецентра «РАДИУС» (Радинск, 1976–1998). Утраченные звуки. Найдены навсегда.</p>
       </div>
-
-      <!-- EXPLORE -->
-
       <div class="foot__col">
-
         <h4>Разделы</h4>
-
         <ul>
-
-          <li>
-            <a href="index.html">
-              Главная
-            </a>
-          </li>
-
-          <li>
-            <a href="projects.html">
-              Проекты
-            </a>
-          </li>
-
-          <li>
-            <a href="about.html">
-              О проекте
-            </a>
-          </li>
-
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="projects.html">Проекты</a></li>
+          <li><a href="about.html">О проекте</a></li>
         </ul>
-
       </div>
-
-      <!-- FOLLOW -->
-
       <div class="foot__col">
-
         <h4>Архив в сети</h4>
-
         <ul>
-
-          <li>
-            <a href="../index.html"
-               rel="noopener noreferrer">
-              English Version
-            </a>
-          </li>
-
-          <li>
-            <a href="https://www.youtube.com/@rtv.archive"
-               target="_blank"
-               rel="noopener noreferrer">
-              YouTube
-            </a>
-          </li>
-
-          <li>
-            <a href="https://audius.co/rtv.archive"
-               target="_blank"
-               rel="noopener noreferrer">
-              Audius
-            </a>
-          </li>
-
+          <li><a href="../index.html">English Version</a></li>
+          <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><a href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">Audius</a></li>
         </ul>
-
       </div>
-
     </div>
-
-    <!-- FOOTER BOTTOM -->
-
     <div class="foot__btm">
-
-      <span>
-        ©
-        <span data-year>2026</span>
-        RADIUS ARCHIVE · РАДИНСК
-      </span>
-
-      <span>
-        <strong>● АРХИВ АКТИВЕН</strong>
-        · ОСН. 1976
-      </span>
-
-      <span>
-        УТРАЧЕНО · НАЙДЕНО · ВОССТАНОВЛЕНО
-      </span>
-
+      <span>© <span data-year>2026</span> RADIUS ARCHIVE · РАДИНСК</span>
+      <span><strong>● АРХИВ АКТИВЕН</strong> · ОСН. 1976</span>
+      <span>УТРАЧЕНО · НАЙДЕНО · ВОССТАНОВЛЕНО</span>
     </div>
-
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <!-- МОДАЛЬНОЕ ОКНО (ГОТОВО К БУДУЩЕМУ РЕЛИЗУ) -->
+  <div id="listen-modal" class="modal" data-testid="listen-modal">
+    <div class="modal-content" style="text-align: center;">
+      <span class="close-btn" onclick="closeListenModal()" data-testid="modal-close">&times;</span>
+      
+      <img src="../assets/img/12-dima-milan.jpg" alt="Дима Милан" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+      
+      <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">Дима Милан</h2>
+      <p style="color: var(--text-300); margin-bottom: 2rem;">Поп (1998–1999)</p>
 
+      <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;" data-testid="platform-links">
+        <span class="stream-pill is-disabled">YouTube</span>
+        <span class="stream-pill is-disabled">Audius</span>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;" data-testid="copy-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Копировать ссылку
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- УВЕДОМЛЕНИЕ О КОПИРОВАНИИ -->
+  <div id="copy-toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a1d27; color: #fff; padding: 0.75rem 1.5rem; border-radius: 4px; border: 1px solid #333; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 10000;">
+    Ссылка скопирована!
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    function openListenModal() {
+      document.getElementById('listen-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeListenModal() {
+      document.getElementById('listen-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('listen-modal');
+      if (event.target == modal) {
+        closeListenModal();
+      }
+    });
+
+    function copyLink() {
+      const urlToCopy = window.location.href.split('?')[0];
+      navigator.clipboard.writeText(urlToCopy).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('listen') === '1') {
+        openListenModal();
+      }
+    });
+  </script>
 </body>
 </html>
