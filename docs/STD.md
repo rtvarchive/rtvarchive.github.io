@@ -72,6 +72,15 @@ Each test case includes:
 | **TC-A11Y-01** | Axe-core scan (Home) | Medium | Open `index.html` | 1. Run `axe` scan | No critical or serious violations (e.g., missing alt text, bad contrast). | A11y |
 | **TC-A11Y-02** | Axe-core scan (About) | Medium | Open `about.html` | 1. Run `axe` scan | No critical violations. Form labels are correctly linked to inputs. | A11y |
 
+### Suite 6: Signal Room (SIG)
+*Validates the functionality of the Signal Room (Аппаратная) page.*
+
+| ID | Title | Priority | Preconditions | Steps | Expected Result | Type |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **TC-SIG-01** | Request Latest Report | High | Open `signal-room-en.html` | 1. Click "Request Latest Report" button | Button text changes to "Requesting...", then "Report Received". Date updates to current time. | Functional |
+| **TC-SIG-02** | Report Interference Form | High | Open `signal-room-en.html` | 1. Fill "Frequency" and "Description"<br>2. Click "File Report" | Form submits, button text changes to "Report Filed". Form resets. | Functional |
+| **TC-SIG-03** | A11y Scan (Signal Room) | Medium | Open `signal-room-en.html` | 1. Run `axe` scan | No critical or serious violations. | A11y |
+
 ---
 
 ## 4. Out of Scope (for this phase)

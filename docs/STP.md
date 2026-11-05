@@ -10,12 +10,16 @@ This document outlines the test plan for the RADIUS ARCHIVE web project. It defi
 ## 2. Scope of Testing
 ### 2.1. In Scope
 The following areas and features will be tested:
-*   **Navigation & Routing:** Primary navigation (Home, Projects, About), language switching (EN ↔ RU), skip-links, and 404 page routing.
+*   **Navigation & Routing:** Primary navigation (Home, Projects, About, Signal Room), language switching (EN ↔ RU), skip-links, and 404 page routing.
 *   **Interactive Elements (JS):**
     *   Mobile menu toggle.
     *   Filtering system on the Projects page (genre tags, "+ More" toggle).
     *   "Channels" section toggle on the Index page ("+ More channels").
     *   Audio streaming modals on Project pages (open/close via button, deep-link `?listen=1`, close via Esc/backdrop).
+    *   **Signal Room (Аппаратная):**
+        *   "Request Latest Report" button interaction and date update.
+        *   "Report Interference" form validation and submission (simulated).
+        *   Verification log rendering.
 *   **Forms & User Input:**
     *   "Archive Submissions" form validation (required fields).
     *   Form submission flow via Web3Forms API (mocked for automation).

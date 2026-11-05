@@ -1,15 +1,15 @@
 # Software Test Report (STR)
 **Project:** RADIUS ARCHIVE Web Application
-**Version:** 1.0
+**Version:** 1.1
 **Date:** November 2026
 **Author:** QA Engineer
 
 ## 1. Executive Summary
-This document represents the final Software Test Report for the RADIUS ARCHIVE web application. The primary objective was to validate the functional, UI, and accessibility (A11y) aspects of the static multi-page website before the implementation of the "Signal Room" (Аппаратная) feature.
+This document represents the final Software Test Report for the RADIUS ARCHIVE web application. The primary objective was to validate the functional, UI, and accessibility (A11y) aspects of the static multi-page website, including the newly implemented "Signal Room" (Аппаратная) feature.
 
-Testing was conducted locally (Windows environment) and automated in the cloud via GitHub Actions. A total of 12 automated Playwright tests were designed and executed across three major browser engines (Chromium, Firefox, WebKit). 
+Testing was conducted locally (Windows environment) and automated in the cloud via GitHub Actions. A total of 16 automated Playwright test cases were designed and executed across three major browser engines (Chromium, Firefox, WebKit). 
 
-**Result:** All planned tests passed successfully (100% pass rate). The application is considered stable and ready for the next phase of development.
+**Result:** All planned tests passed successfully (100% pass rate). The application is considered stable and ready for production.
 
 ## 2. Test Environment & Tools
 - **Local Environment:** Windows 10, Node.js v20, PowerShell.
@@ -30,10 +30,11 @@ The following test suites were executed:
 | **About Page - Form & Popup** | TC-ABT-01, TC-ABT-03, TC-ABT-05, TC-ABT-07 | ✅ Passed |
 | **Projects Page - Filters & Statuses**| TC-PROJ-01, TC-PROJ-04 | ✅ Passed |
 | **Project Detail - Listen Modal** | TC-PRJ-01, TC-PRJ-02, TC-PRJ-04 | ✅ Passed |
+| **Signal Room (Аппаратная)** | TC-SIG-01, TC-SIG-02, TC-SIG-03 | ✅ Passed |
 | **Accessibility (A11y) Scans** | TC-A11Y-01 (Home), TC-A11Y-02 (About) | ✅ Passed |
 
-**Total Executions:** 36 (12 tests × 3 browsers).
-**Passed:** 36.
+**Total Executions:** 48 (16 tests × 3 browsers).
+**Passed:** 48.
 **Failed:** 0.
 
 ## 4. Defects Found and Fixed During Testing
@@ -57,8 +58,8 @@ The CI pipeline installs dependencies, installs Playwright browsers, runs tests,
 The pipeline is currently green (passing).
 
 ## 6. Conclusion and Recommendations
-The RADIUS ARCHIVE web application has successfully passed the initial QA phase. The core functionality (navigation, language switching, form submission, and modals) works reliably across all tested browsers. 
+The RADIUS ARCHIVE web application has successfully passed the QA phase. The core functionality (navigation, language switching, form submission, and modals) works reliably across all tested browsers. 
 
-The high standards of Accessibility (A11y) are met. The project is fully ready for the implementation and integration of the upcoming **"Signal Room" (Аппаратная)** page.
+The high standards of Accessibility (A11y) are met. The **"Signal Room" (Аппаратная)** page has been successfully implemented and tested. It is fully integrated into the main navigation and ready for production use.
 
-**Status: READY FOR NEXT PHASE.**
+**Status: READY FOR RELEASE.**
