@@ -1,33 +1,42 @@
-# RTV ARCHIVE WEB SITE
+# RADIUS ARCHIVE — RADIUS TV ARCHIVE
 
-A free, self-contained HTML template for an independent music label, artist
-collective, or radio station.
+An independent archival music project built around a fictional television center in the closed city of Radinsk (1976–1998). 
 
-## Pages
+The project reconstructs lost recordings, broadcasts, and artifacts from a parallel history, presented through a dark, retro-futuristic web interface inspired by Soviet television, VHS aesthetics, and analog tape degradation.
 
-- `index.html` — Home (hero with kinetic marquee, releases, roster, tour, press)
-- `archive.html` — Catalogue grid with format / genre filters
-- `projects.html` — Roster grid with bios and listening links
-- `about.html` — Studio info, demo submissions, contact form, stockist list
+> **Disclaimer:** A work of fiction. RADIUS ARCHIVE is an original archival reconstruction project. All characters, bands, institutes, and events are fictional.
 
-## Tech
+## Project Structure
 
-- Static HTML, vanilla CSS, vanilla JS (no build step, no framework)
-- Google Fonts: Bebas Neue (display), Syne (body), JetBrains Mono (mono)
-- Polished SVG placeholders in `assets/img/` — replace with your own art
-- Reduced-motion friendly, keyboard accessible, semantic landmarks
-- Responsive at 320 / 768 / 1024 / 1440
+- `index.html` / `ru/index.html` — Home page (hero, catalog, channels, manifesto)
+- `projects.html` / `ru/projects.html` — Full catalog of 15 musical projects with filters
+- `about.html` / `ru/about.html` — Archive lore, timeline, and Web3Forms submission
+- `404.html` / `ru/404.html` — Custom "Signal Lost" error page with CRT test card
+- `[project-name].html` — Individual project pages (e.g., `605.html`, `phasezero.html`) with tracklists and streaming modals.
+- `assets/css/styles.css` — Global design system (colors, typography, layout)
+- `assets/js/main.js` — Core interactive logic (filters, modals, mobile menu, form submission)
+- `assets/img/` — Cover art, banners, and the 404 TV test card.
 
-## Replacing the placeholders
+## Tech Stack
 
-Every `<img>` is preceded by descriptive `alt` text and references SVG art in
-`assets/img/`. Drop in your own cover art and artist portraits at the same
-paths and the layout will absorb them. SVG covers are square (`100x100`
-viewBox); portraits are 5:6.
+- **Static HTML / CSS / JS** — No build step, no frameworks.
+- **Typography:** Google Fonts (`Bebas Neue`, `Syne`, `JetBrains Mono`).
+- **Responsive:** Mobile-first, fluid typography, adaptive grids.
+- **Accessibility:** Semantic landmarks, `aria` attributes, focus states, skip-links.
+- **Forms:** Integrated with [Web3Forms](https://web3forms.com/) for archive submissions and bug reports.
+
+## Core Interactions
+
+- **Playlists & Modals:** Each project page features a streaming modal triggered by the "Listen on all platforms" button or the `?listen=1` deep link.
+- **Filters:** The Projects page includes genre filtering with a "Show More" toggle.
+- **Submissions:** The About page features a working submission form that sends entries directly to the archive's email.
+- **404 Error:** A custom 404 page styled as a malfunctioning Soviet television test card, complete with static noise and a return button.
 
 ## Customising
 
-All design tokens live at the top of `assets/css/styles.css` as CSS custom
-properties — palette, neon accents, type scale, spacing rhythm, motion easing.
-Adjust there to recolor or rescale the whole template.
+Design tokens (colors, fonts, spacing) are defined as CSS custom properties at the top of `assets/css/styles.css`. Update these variables to adjust the global theme.
 
+## Testing & QA
+
+The project is prepared for automated testing (Playwright). 
+Key elements are marked with `data-testid` attributes (e.g., `nav-home`, `artist-card-01`, `listen-button`, `submission-form`, `channel-605`) to ensure stable selectors for QA automation.

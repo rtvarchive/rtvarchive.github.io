@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gurt Groove · RADIUS ARCHIVE</title>
-  <meta name="description" content="RADIUS ARCHIVE | Lost Broadcasts, Tapes & Music Archives." />
+  <meta name="description" content="Gurt Groove — a Ukrainian group formed in 1998, built around funk, breakbeat, funky breaks and alternative instrumental hip-hop. Funk, 1998–2001." />
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   
   <style>
-    /* Стили для модального окна */
     .modal {
       display: none; 
       position: fixed; 
@@ -53,6 +52,9 @@
   </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <aside class="side-rail" aria-label="RADIUS ARCHIVE">
     <div class="side-rail__mark">RADIUS · ARCHIVE</div>
     <span class="side-rail__pulse" aria-hidden="true"></span>
@@ -64,73 +66,75 @@
       <span class="dot" aria-hidden="true"></span>
       <span>RADIUS ARCHIVE</span>
     </div>
-    <nav aria-label="Primary">
+    <nav id="primary-nav" aria-label="Primary">
       <ul class="nav__list" data-nav-list>
         <li><a class="nav__link" href="index.html" data-testid="nav-home">Home</a></li>
         <li><a class="nav__link is-active" href="projects.html" data-testid="nav-projects">Projects</a></li>
         <li><a class="nav__link" href="about.html" data-testid="nav-about">About</a></li>
       </ul>
     </nav>
-    
+
     <div class="topbar__languages">
       <a href="gurtgroove.html" class="language-link is-active" lang="en" data-testid="lang-en">EN</a>
       <span aria-hidden="true"> | </span>
       <a href="ru/gurtgroove.html" class="language-link" lang="ru" data-testid="lang-ru">RU</a>
     </div>
-    
-    <button class="menu-toggle" data-menu-toggle aria-expanded="false">Menu</button>
+
+    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-nav" data-testid="menu-toggle">Menu</button>
   </header>
 
-  <main class="page">
+  <main class="page" id="main">
     <section class="page-head">
-      <p class="page-head__crumb"><a href="index.html">RADIUS ARCHIVE</a><a href="projects.html"> /Projects</a> /Gurt Groove</p>
+      <p class="page-head__crumb">
+        <a href="index.html">RADIUS ARCHIVE</a> /
+        <a href="projects.html">Projects</a> /
+        Gurt Groove
+      </p>
       <h1 class="page-head__title">Gurt <em>Groove</em></h1>
-      <p class="page-head__sub">
-        Gurt Groove was a Ukrainian music group formed in 1998. The group emerged during a period when Ukrainian musicians were increasingly combining different rhythmic and electronic styles, experimenting with sampling, live instrumentation and new approaches to beat-driven music.
-      </p>
-      <p class="page-head__sub">
-        The musical foundation of Groove was built around funk and breakbeat. Their tracks combined funky break patterns, bass lines, instrumental riffs, samples and electronic elements. Alternative instrumental hip-hop was another important part of the group’s sound, without relying on a traditional rap-oriented song structure or making vocals the central element.
-      </p>
-      <p class="page-head__sub">
-        The group worked at the intersection of several contemporary scenes. Its music drew from club breakbeat, funk, funky breaks, instrumental hip-hop and electronic music of the late 1990s. Rather than following one specific genre formula, Groove built its tracks around rhythm, bass, repetition and movement, combining live instruments with electronic production techniques.
-      </p>
-      <p class="page-head__sub">
-        The main period of activity ran from 1998 into the early 2000s. During this time, the group developed a recognizable approach based on energetic rhythms, short instrumental phrases, repeating motifs and gradual changes within a track.
-      </p>
-      <p class="page-head__sub">
-        2001 is used as the main archival reference point for the project. This period represents the characteristic combination of funk, breakbeat, funky breaks and alternative instrumental hip-hop associated with Gurt Groove. Within the reconstruction, 2001 serves as the chronological reference for the group’s music and visual identity.
-      </p>
-      <p class="page-head__sub">
-        The musical language of Gurt Groove is built around funky bass lines, breakbeat and funky breaks, live drums and percussion, instrumental riffs, sampling, electronic textures, hip-hop-oriented rhythmic production and predominantly instrumental arrangements. The central element is the groove itself — a rhythmic pattern around which the composition develops.
-      </p>
+      
+      <div class="page-head__sub">
+        <p>Gurt Groove was a fictional Ukrainian music group formed in 1998, built around funk, breakbeat, funky breaks, and alternative instrumental hip-hop. Their tracks combined funky break patterns, bass lines, instrumental riffs, samples, and electronic elements, without relying on a traditional rap-oriented song structure or making vocals the central element. Rather than following one specific genre formula, Groove built its tracks around rhythm, bass, repetition, and movement, combining live instruments with electronic production techniques. The central element is the groove itself — a rhythmic pattern around which the composition develops.</p>
+      </div>
     </section>
 
     <div class="artist-grid" id="artist-list">
-      <article class="artist-card project-detail-card" id="gurt-groove" data-tag="Hip-Hop" data-project="gurtgroove" data-reveal>
+      <article class="artist-card project-detail-card" id="gurt-groove" data-tag="Hip-Hop" data-reveal data-testid="project-detail">
         <div class="project-detail-layout">
-          <div class="artist-card__portrait">
+          <!-- COVER -->
+          <div class="artist-card__portrait" data-testid="project-cover">
             <span class="artist-card__num">P · 14</span>
             <img src="assets/img/14-gurt-groove.jpg" alt="Gurt Groove — Rytm Mista" />
           </div>
+
+          <!-- PROJECT INFO -->
           <div class="project-detail-info">
             <h2 class="artist-card__name">Gurt Groove</h2>
-            <p class="artist-card__genre">FUNK · BREAKBEAT · INSTRUMENTAL HIP-HOP</p>
-            <p class="artist-card__status" data-testid="status-badge" data-status="available">AVAILABLE / LISTEN</p>
+            <p class="artist-card__genre">Funk · Breakbeat · Instrumental Hip-Hop</p>
+            <p class="artist-card__status" data-status="available" data-testid="project-status">AVAILABLE / LISTEN</p>
             <div class="artist-card__bio">
-              <p>Gurt Groove — a Ukrainian group formed in 1998, built around funk, breakbeat, funky breaks and alternative instrumental hip-hop. Live instruments, samples, bass and rhythm form the core of a sound that moves at the intersection of club culture, hip-hop and late-1990s electronic music.</p>
-            </div>
-            
-            <div class="project-streaming">
-              <p class="project-streaming__label">AVAILABLE / LISTEN</p>
-              <div class="project-streaming__links">
-                <button type="button" class="stream-pill" data-testid="listen-button" onclick="openListenModal()" style="font-size: 1.1em; padding: 1rem 2rem; cursor: pointer; background: transparent;">Listen on all platforms →</button>
-              </div>
+              <p>(ГУРТ ГРУВ) — a Ukrainian group formed in 1998, built around funk, breakbeat, funky breaks and alternative instrumental hip-hop. Live instruments, samples, bass and rhythm form the core of a sound that moves at the intersection of club culture, hip-hop and late-1990s electronic music.</p>
             </div>
 
+            <!-- STREAMING / LISTEN -->
+            <div class="project-streaming">
+              <p class="project-streaming__label">LISTEN TO GURT GROOVE</p>
+              <div class="project-streaming__links">
+                <button type="button" class="stream-pill" onclick="openListenModal()" style="font-size: 1.1em; padding: 1rem 2rem; cursor: pointer; background: transparent;" data-testid="listen-button">Listen on all platforms →</button>
+              </div>
+              <p class="project-streaming__availability">
+                Also available through the RADIUS ARCHIVE distribution network on TikTok, Pandora, KKBOX, iMusica, iHeartRadio, Anghami, JioSaavn, AWA, Tencent Music, NetEase Cloud Music, Facebook Audio Library, Mixcloud, Boomplay, Snap, Peloton, Audiomack, JOOX, FLO, Tuned Global, YouTube Content ID and Facebook Rights Manager.
+              </p>
+            </div>
           </div>
+
           <div class="project-detail-spacer"></div>
-          <div class="project-tracklist">
-            <div class="project-tracklist__header"><span>TRACKLIST</span><span>1 Album</span></div>
+
+          <!-- TRACKLIST — RIGHT COLUMN -->
+          <div class="project-tracklist" data-testid="project-tracklist">
+            <div class="project-tracklist__header">
+              <span>TRACKLIST</span>
+              <span>1 ALBUM</span>
+            </div>
             <ol class="project-tracks">
               <li><span class="track-number">01</span> <span class="track-title">Город ведёт</span></li>
               <li><span class="track-number">02</span> <span class="track-title">Не сбавляя ход</span></li>
@@ -143,45 +147,67 @@
             </ol>
           </div>
         </div>
-        <div class="artist-card__foot"><span>FUNK · BREAKBEAT · INSTRUMENTAL HIP-HOP</span><span>1 Album</span></div>
+
+        <!-- PROJECT FOOTER -->
+        <div class="artist-card__foot">
+          <span>1998–2001 · Funk / Breakbeat</span>
+          <span>1 Album</span>
+        </div>
       </article>
     </div>
   </main>
 
-  <footer class="foot">
+  <footer class="foot" data-testid="footer">
     <div class="foot__grid">
       <div class="foot__col">
         <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
-        <p class="foot__about">An independent label grown from the archives of the RADIUS Television Center (Radinsk, 1976–1998).</p>
+        <p class="foot__about">An independent label grown from the archives of the RADIUS Television Center (Radinsk, 1976–1998). Lost sounds. Found forever.</p>
       </div>
-      <div class="foot__col"><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li></ul></div>
-      <div class="foot__col"><h4>Follow</h4><ul><li><a href="ru/index.html">Русская Версия</a></li><li><a href="https://www.youtube.com/@rtv.archive" target="_blank">YouTube</a></li><li><a href="https://audius.co/rtv.archive" target="_blank">Audius</a></li></ul></div>
+      <div class="foot__col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h4>Follow the Archive</h4>
+        <ul>
+          <li><a href="ru/index.html">Русская Версия</a></li>
+          <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><a href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">Audius</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="foot__btm"><span>© <span data-year>2026</span> RADIUS ARCHIVE · RADINSK</span><span><strong>● ARCHIVE ACTIVE</strong> · EST. 1976</span><span>LOST · FOUND · RECONSTRUCTED</span></div>
+    <div class="foot__btm">
+      <span>© <span data-year>2026</span> RADIUS ARCHIVE · RADINSK</span>
+      <span><strong>● ARCHIVE ACTIVE</strong> · EST. 1976</span>
+      <span>LOST · FOUND · RECONSTRUCTED</span>
+    </div>
   </footer>
 
   <!-- МОДАЛЬНОЕ ОКНО -->
-  <div id="listen-modal" class="modal" data-testid="listen-popup" aria-hidden="true">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="listen-modal-title" style="text-align: center;">
-      <span class="close-btn" data-testid="popup-close" onclick="closeListenModal()" aria-label="Close">&times;</span>
+  <div id="listen-modal" class="modal" data-testid="listen-modal">
+    <div class="modal-content" style="text-align: center;">
+      <span class="close-btn" onclick="closeListenModal()" data-testid="modal-close">&times;</span>
       
-      <!-- Обложка (ИДЕАЛЬНО ПО ЦЕНТРУ) -->
-      <img src="assets/img/14-gurt-groove.jpg" alt="Gurt Groove — Rytm Mista" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+      <img src="assets/img/14-gurt-groove.jpg" alt="Gurt Groove" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
       
-      <h2 class="artist-card__name" id="listen-modal-title" style="margin-bottom: 0.5rem;">Gurt Groove</h2>
+      <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">Gurt Groove</h2>
       <p style="color: var(--text-300); margin-bottom: 2rem;">Rytm Mista (2001)</p>
 
-      <div class="project-streaming__links" data-testid="platform-links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;">
-        <a class="stream-pill" data-platform="apple" href="https://music.apple.com/us/album/%D1%80%D0%B8%D1%82%D0%BC-%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0/6829972655" target="_blank" rel="noopener noreferrer">Apple Music</a>
-        <a class="stream-pill" data-platform="spotify" href="https://open.spotify.com/album/5gBixXHAKVPWQwgZBu6omg?si=eI8HKTPNQMyckJZiIPY3KQ" target="_blank" rel="noopener noreferrer">Spotify</a>
-        <a class="stream-pill" data-platform="youtube" href="https://music.youtube.com/playlist?list=OLAK5uy_mUMArLgzZUnpUXLd9M2RP32t4c15vfFWk&si=XBjQWzQSjKgnU8ba" target="_blank" rel="noopener noreferrer">YouTube Music</a>
-        <a class="stream-pill" data-platform="tidal" href="https://tidal.com/album/575441437/u" target="_blank" rel="noopener noreferrer">TIDAL</a>
-        <a class="stream-pill" data-platform="amazon" href="https://music.amazon.com/albums/B0HQ628CWQ?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_A2Ir70V6YG9TtJp4s1eQ7LoLr" target="_blank" rel="noopener noreferrer">Amazon Music</a>
-        <a class="stream-pill" data-platform="audiomack" href="https://audiomack.com/gurt-gruv/album/ritm-goroda" target="_blank" rel="noopener noreferrer">Audiomack</a>
+      <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;" data-testid="platform-links">
+        <a class="stream-pill" href="https://music.apple.com/us/album/%D1%80%D0%B8%D1%82%D0%BC-%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0/6829972655" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a class="stream-pill" href="https://open.spotify.com/album/5gBixXHAKVPWQwgZBu6omg?si=eI8HKTPNQMyckJZiIPY3KQ" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a class="stream-pill" href="https://music.youtube.com/playlist?list=OLAK5uy_mUMArLgzZUnpUXLd9M2RP32t4c15vfFWk&si=XBjQWzQSjKgnU8ba" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a class="stream-pill" href="https://tidal.com/album/575441437/u" target="_blank" rel="noopener noreferrer">TIDAL</a>
+        <a class="stream-pill" href="https://music.amazon.com/albums/B0HQ628CWQ?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_A2Ir70V6YG9TtJp4s1eQ7LoLr" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+        <a class="stream-pill" href="https://audiomack.com/gurt-gruv/album/ritm-goroda" target="_blank" rel="noopener noreferrer">Audiomack</a>
       </div>
 
       <div style="margin-top: 2rem;">
-        <button type="button" class="stream-pill" data-testid="copy-link" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;">
+        <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;" data-testid="copy-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy Link
         </button>
@@ -211,13 +237,11 @@
       document.body.style.overflow = 'auto';
     }
 
-    // Закрытие по клику на фон
     window.addEventListener('click', function (event) {
       const modal = document.getElementById('listen-modal');
       if (event.target === modal) closeListenModal();
     });
 
-    // Закрытие по Escape
     document.addEventListener('keydown', function (e) {
       const modal = document.getElementById('listen-modal');
       if (e.key === 'Escape' && modal && modal.style.display === 'block') {
@@ -225,7 +249,6 @@
       }
     });
 
-    // Копирование ссылки (?lang=en)
     function copyLink() {
       const url = new URL(window.location.href);
       url.searchParams.set('lang', 'en');
@@ -244,7 +267,6 @@
       }
     }
 
-    // ДИПЛИНК: ?listen=1 — срабатывает сразу, без ожидания DOMContentLoaded
     (function handleDeepLink() {
       try {
         const params = new URLSearchParams(window.location.search);
