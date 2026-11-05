@@ -319,7 +319,7 @@
             border: 1px solid var(--neon-cyan);
             color: var(--neon-cyan);
             transition: all 0.25s;
-          ">Go to Signal Room →</a>
+          " data-testid="signal-room-link">Go to Signal Room →</a>
         </p>
       </aside>
 
@@ -352,17 +352,17 @@
           
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="sub-email" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Your Email (optional)</label>
-            <input type="email" id="sub-email" name="email" placeholder="name@example.com" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;">
+            <input type="email" id="sub-email" name="email" placeholder="name@example.com" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;" data-testid="submission-email">
           </div>
           
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="sub-link" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Link to Material *</label>
-            <input type="url" id="sub-link" name="link" required placeholder="https://..." style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;">
+            <input type="url" id="sub-link" name="link" required placeholder="https://..." style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none;" data-testid="submission-link">
           </div>
           
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="sub-desc" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Short Description *</label>
-            <textarea id="sub-desc" name="message" rows="4" required placeholder="What is this fragment?" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none; resize: vertical; min-height: 120px;"></textarea>
+            <textarea id="sub-desc" name="message" rows="4" required placeholder="What is this fragment?" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none; resize: vertical; min-height: 120px;" data-testid="submission-desc"></textarea>
           </div>
           
           <button type="submit" style="
@@ -380,7 +380,7 @@
             color: var(--txt-bright);
             width: max-content;
             transition: all 0.25s;
-          ">Submit Fragment</button>
+          " data-testid="submission-submit">Submit Fragment</button>
         </form>
 
         <h3 style="margin-top: 3rem;">About the Materials</h3>
@@ -398,7 +398,7 @@
       </div>
     </div>
 
-    <footer class="foot">
+    <footer class="foot" data-testid="footer">
       <div class="foot__grid">
         <div class="foot__col">
           <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
@@ -433,7 +433,7 @@
   </main>
 
   <!-- МОДАЛЬНОЕ ОКНО (ПОПАП) -->
-  <div id="success-modal" class="modal-overlay">
+  <div id="success-modal" class="modal-overlay" data-testid="submission-popup">
     <div class="modal-box">
       <div class="modal-icon">✓</div>
       <h2 class="modal-title">TRANSMISSION RECEIVED</h2>
@@ -441,7 +441,7 @@
         Your fragment has been successfully logged into the archive queue.<br>
         The duty operator will review your submission shortly.
       </p>
-      <button id="close-modal" class="modal-close-btn">Return to Archive</button>
+      <button id="close-modal" class="modal-close-btn" data-testid="popup-close">Return to Archive</button>
     </div>
   </div>
 
@@ -474,8 +474,8 @@
           .then(data => {
             if (data.success) {
               submissionForm.reset();
-              submissionForm.style.display = 'none'; // Прячем форму
-              modal.classList.add('is-active'); // Показываем попап
+              submissionForm.style.display = 'none';
+              modal.classList.add('is-active');
             } else {
               alert('Transmission failed. Please try again later.');
               submitBtn.textContent = originalText;
@@ -490,14 +490,12 @@
         });
       }
 
-      // Закрытие попапа
       if (closeModalBtn) {
         closeModalBtn.addEventListener('click', function() {
           modal.classList.remove('is-active');
         });
       }
       
-      // Закрытие по клику вне окна
       if (modal) {
         modal.addEventListener('click', function(e) {
           if (e.target === modal) {
@@ -505,6 +503,12 @@
           }
         });
       }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+          modal.classList.remove('is-active');
+        }
+      });
     });
   </script>
 </body>
