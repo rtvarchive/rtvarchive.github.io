@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ru">
+<script data-goatcounter="https://rtvarchive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Аппаратная · RADIUS ARCHIVE</title>
+  <meta name="description" content="Дежурная смена RADIUS ARCHIVE. Проверка целостности сигнала, журнал верификации и рапорты о помехах." />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  
+  <style>
+    /* Дополнительные стили для Аппаратной */
+    .signal-dashboard {
+      background: rgba(11, 13, 20, 0.8);
+      border: 1px solid var(--line-mid);
+      padding: 2rem;
+      margin-bottom: 3rem;
+      border-radius: 4px;
+    }
+    .signal-indicator {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--neon-magenta);
+      box-shadow: 0 0 15px var(--neon-magenta);
+      margin-right: 1rem;
+      vertical-align: middle;
+    }
+    .signal-indicator.is-stable { background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); }
+    .signal-indicator.is-warning { background: #ffcc00; box-shadow: 0 0 15px #ffcc00; }
+    .signal-indicator.is-error { background: #ff3333; box-shadow: 0 0 15px #ff3333; }
+    
+    .check-list { list-style: none; padding: 0; margin: 2rem 0; }
+    .check-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom: 1px solid var(--line-soft);
+      font-family: var(--ff-mono);
+    }
+    .check-list li:last-child { border-bottom: none; }
+    .check-status { font-weight: bold; }
+    .check-status.pass { color: var(--neon-lime); }
+    .check-status.fail { color: #ff3333; }
+    
+    .log-entry {
+      font-family: var(--ff-mono);
+      font-size: 0.85rem;
+      padding: 1rem;
+      border-left: 3px solid var(--neon-cyan);
+      background: rgba(108, 143, 163, 0.05);
+      margin-bottom: 1rem;
+    }
+    
+    .form-grid input, .form-grid select, .form-grid textarea {
+      width: 100%;
+      background: rgba(11, 13, 20, 0.7);
+      border: 1px solid var(--line-mid);
+      color: var(--txt-bright);
+      padding: 1rem;
+      font-family: var(--ff-mono);
+    }
+    
+    .btn-primary {
+      background: var(--neon-magenta);
+      color: #ffffff;
+      padding: 1rem 2rem;
+      font-family: var(--ff-mono);
+      font-weight: 600;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .btn-primary:hover { filter: brightness(1.12); }
+
+    /* Корректировка заголовков для Аппаратной */
+    .page-head__title {
+      font-size: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); /* Уменьшаем размер */
+      margin-bottom: 1rem;
+    }
+    .section__title {
+      font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); /* Уменьшаем размер */
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <aside class="side-rail" aria-label="RADIUS ARCHIVE">
+    <div class="side-rail__mark">RADIUS · ARCHIVE</div>
+    <span class="side-rail__pulse" aria-hidden="true"></span>
+    <div class="side-rail__year">ОСН. 1976 · РАДИНСК</div>
+  </aside>
+
+  <header class="topbar">
+    <div class="topbar__signal">
+      <span class="dot" aria-hidden="true"></span>
+      <span>RADIUS ARCHIVE</span>
+    </div>
+    <nav id="primary-nav" aria-label="Основная навигация">
+      <ul class="nav__list" data-nav-list>
+        <li><a class="nav__link" href="index.html" data-testid="nav-home">Главная</a></li>
+        <li><a class="nav__link" href="projects.html" data-testid="nav-projects">Проекты</a></li>
+        <li><a class="nav__link" href="about.html" data-testid="nav-about">Об архиве</a></li>
+        <li><a class="nav__link is-active" href="signal-room.html" data-testid="nav-signal-room" aria-current="page">Аппаратная</a></li>
+      </ul>
+    </nav>
+    <div class="topbar__languages">
+      <a href="signal-room-en.html" class="language-link" lang="en" data-testid="lang-en">EN</a>
+      <span aria-hidden="true"> | </span>
+      <a href="signal-room.html" class="language-link is-active" lang="ru" aria-current="page" data-testid="lang-ru">RU</a>
+    </div>
+    <button class="menu-toggle" data-menu-toggle data-testid="menu-toggle" aria-expanded="false" aria-controls="primary-nav">Меню</button>
+  </header>
+
+  <main class="page" id="main">
+    
+    <section class="page-head">
+      <p class="page-head__crumb">
+        <a href="index.html">RADIUS ARCHIVE</a> / Аппаратная
+      </p>
+      <h1 class="page-head__title">Дежурная <em>смена</em></h1>
+      <div class="page-head__sub">
+        <p>Отдел эфирного контроля RADIUS ARCHIVE. Здесь мы проверяем целостность сигнала, фиксируем помехи и восстанавливаем утраченные фрагменты реальности.</p>
+      </div>
+    </section>
+
+    <div class="shell" style="padding-top: 3rem; padding-bottom: 3rem;">
+      
+      <!-- ТАБЛО СОСТОЯНИЯ -->
+      <div class="signal-dashboard" data-testid="signal-dashboard">
+        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+          <span class="signal-indicator is-stable" data-testid="signal-indicator"></span>
+          <h2 style="font-family: var(--ff-display); font-size: 2rem; margin: 0;">Состояние сигнала</h2>
+        </div>
+        <p style="font-family: var(--ff-mono); color: var(--txt-soft); margin-bottom: 2rem;">
+          Последняя проверка: <span data-testid="last-check-date">04.11.2026 · 14:22</span> · Канал: Стабилен
+        </p>
+        <div style="display: flex; gap: 2rem; margin-bottom: 2rem; font-family: var(--ff-mono);">
+          <span>Проверок: <b data-testid="stat-total">36</b></span>
+          <span style="color: var(--neon-lime);">Пройдено: <b data-testid="stat-passed">36</b></span>
+          <span style="color: #ff3333;">Замечаний: <b data-testid="stat-failed">0</b></span>
+        </div>
+        <button class="btn-primary" data-testid="btn-start-check">Запросить последний отчёт</button>
+      </div>
+
+      <!-- ЧТО ПРОВЕРЯЕТСЯ -->
+      <section style="margin-bottom: 4rem;">
+        <h2 class="section__title" style="margin-bottom: 1.5rem;">Целостность <em>каналов</em></h2>
+        <ul class="check-list" data-testid="check-list">
+          <li><span>Целостность маршрутов</span> <span class="check-status pass">✓ Пройдено</span></li>
+          <li><span>Синхронизация языковых каналов</span> <span class="check-status pass">✓ Пройдено</span></li>
+          <li><span>Стабильность ретрансляции</span> <span class="check-status pass">✓ Пройдено</span></li>
+          <li><span>Качество исходящего сигнала</span> <span class="check-status pass">✓ Пройдено</span></li>
+          <li><span>Доступность канала</span> <span class="check-status pass">✓ Пройдено</span></li>
+          <li><span>Целостность носителя</span> <span class="check-status pass">✓ Пройдено</span></li>
+        </ul>
+      </section>
+
+      <!-- ЖУРНАЛ ВЕРИФИКАЦИИ -->
+      <section style="margin-bottom: 4rem;">
+        <h2 class="section__title" style="margin-bottom: 1.5rem;">Журнал <em>верификации</em></h2>
+        <div data-testid="verification-log">
+          <div class="log-entry">
+            <strong>ЗАПИСЬ №117</strong> · 04.11.2026 · 14:22 · Канал: стабилен · Проверок: 6 · Пройдено: 6
+          </div>
+          <div class="log-entry" style="border-left-color: var(--txt-dim); opacity: 0.7;">
+            <strong>ЗАПИСЬ №116</strong> · 04.11.2026 · 12:00 · Канал: стабилен · Проверок: 6 · Пройдено: 6
+          </div>
+        </div>
+      </section>
+
+      <!-- ФОРМА РАПОРТА -->
+      <section>
+        <h2 class="section__title" style="margin-bottom: 1.5rem;">Сообщить о <em>помехе</em></h2>
+        <p style="margin-bottom: 2rem; color: var(--txt-soft); max-width: 60ch;">Если вы обнаружили искажение сигнала, нарушение маршрутов или утрату фрагмента, передайте рапорт в аппаратную.</p>
+        
+        <form class="form-grid" style="max-width: 600px;" id="report-form">
+          <div class="field">
+            <label for="freq">Частота / Страница</label>
+            <input type="text" id="freq" placeholder="Например: projects.html" required>
+          </div>
+          <div class="field">
+            <label for="type">Характер помехи</label>
+            <select id="type">
+              <option>Не открывается страница</option>
+              <option>Не переключается язык</option>
+              <option>Не открывается окно прослушивания</option>
+              <option>Не копируется ссылка</option>
+              <option>Не работает внешняя ссылка</option>
+              <option>Иное</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="desc">Описание</label>
+            <textarea id="desc" rows="4" placeholder="Опишите, что произошло..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: max-content; margin-top: 1rem;" data-testid="btn-submit-report">Передать в аппаратную</button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="foot" data-testid="footer">
+    <div class="foot__grid">
+      <div class="foot__col">
+        <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
+        <p class="foot__about">Независимый лейбл, выросший из архивов Телецентра «РАДИУС» (Радинск, 1976–1998).</p>
+      </div>
+      <div class="foot__col">
+        <h2 class="foot__heading">Разделы</h2>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="projects.html">Проекты</a></li>
+          <li><a href="about.html">О проекте</a></li>
+          <li><a href="signal-room.html">Аппаратная</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__btm">
+      <span>© <span data-year>2026</span> RADIUS ARCHIVE · РАДИНСК</span>
+      <span><strong>● АРХИВ АКТИВЕН</strong> · ОСН. 1976</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  
+  <!-- ЛОГИКА АППАРАТНОЙ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // 1. Кнопка "Запросить последний отчёт"
+      const btnStartCheck = document.querySelector('[data-testid="btn-start-check"]');
+      if (btnStartCheck) {
+        btnStartCheck.addEventListener('click', function() {
+          const originalText = this.textContent;
+          this.textContent = 'Запрос данных...';
+          this.disabled = true;
+
+          // Имитация задержки (как будто запрашиваем данные с сервера)
+          setTimeout(() => {
+            this.textContent = 'Отчёт получен';
+            this.style.backgroundColor = 'var(--neon-lime)';
+            
+            // Меняем дату на текущую
+            const dateSpan = document.querySelector('[data-testid="last-check-date"]');
+            if (dateSpan) {
+              const now = new Date();
+              const formatted = now.toLocaleDateString('ru-RU') + ' · ' + now.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
+              dateSpan.textContent = formatted;
+            }
+
+            // Возвращаем кнопку в исходное состояние через 3 секунды
+            setTimeout(() => {
+              this.textContent = originalText;
+              this.disabled = false;
+              this.style.backgroundColor = 'var(--neon-magenta)';
+            }, 3000);
+          }, 1500);
+        });
+      }
+
+      // 2. Форма "Сообщить о помехе"
+      const reportForm = document.getElementById('report-form');
+      if (reportForm) {
+        reportForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalText = submitBtn.textContent;
+          
+          submitBtn.textContent = 'Передача в аппаратную...';
+          submitBtn.disabled = true;
+
+          // Имитация отправки
+          setTimeout(() => {
+            submitBtn.textContent = 'Рапорт принят';
+            submitBtn.style.backgroundColor = 'var(--neon-cyan)';
+            reportForm.reset();
+
+            setTimeout(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+              submitBtn.style.backgroundColor = 'var(--neon-magenta)';
+            }, 4000);
+          }, 1000);
+        });
+      }
+
+    });
+  </script>
+</body>
+</html>
