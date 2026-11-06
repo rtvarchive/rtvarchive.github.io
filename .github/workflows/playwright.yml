@@ -5,14 +5,17 @@ on:
     branches: [ "master", "main" ]
   pull_request:
     branches: [ "master", "main" ]
+  schedule:
+    - cron: '*/15 * * * *' # Запускать каждые 15 минут
 
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     
+    # ВАЖНО: Даем права на запись, чтобы бот мог пушить файл
     permissions:
-      contents: read
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -35,14 +38,15 @@ jobs:
       if: always()
       run: node generate-status.js
 
-    # Бот сохраняет результат как артефакт, а НЕ пушит в репозиторий
-    - name: Upload Signal Status Artifact
+    # ВОЗВРАЩАЕМ ШАГ ПУША, чтобы данные обновлялись на сайте
+    - name: Commit and Push Signal Status
       if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: signal-status
-        path: signal-status.json
-        retention-days: 5
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add signal-status.json
+        git commit -m "Update signal status from CI [skip ci]" || echo "No changes to commit"
+        git push
 
     - uses: actions/upload-artifact@v4
       if: always()
