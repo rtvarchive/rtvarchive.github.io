@@ -36,7 +36,12 @@ try {
 	}
         
         if (spec.ok === false) {
-          failedTests.push(spec.title);
+        failedTests.push({
+		title: spec.title,
+		error: spec.tests && spec.tests[0] && spec.tests[0].results && spec.tests[0].results[0] && spec.tests[0].results[0].error 
+		? spec.tests[0].results[0].error.message 
+		: 'Unknown error'
+		});
           channelStats[channelName].failed++;
         } else {
           channelStats[channelName].passed++;
