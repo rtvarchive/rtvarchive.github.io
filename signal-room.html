@@ -529,15 +529,30 @@
             }
           }
 
-          const channelList = document.getElementById('channel-list');
+                    const channelList = document.getElementById('channel-list');
           if (channelList && data.channels) {
             channelList.innerHTML = '';
+            
+            // Словарь для перевода названий каналов на русский
+            const channelNamesRu = {
+              'Route integrity': 'Целостность маршрутов',
+              'Language channel sync': 'Синхронизация языков',
+              'Channel accessibility': 'Доступность канала',
+              'Outgoing signal quality': 'Качество сигнала',
+              'Media integrity': 'Целостность носителя',
+              'Relay stability': 'Стабильность ретрансляции'
+            };
+
             data.channels.forEach(ch => {
               const li = document.createElement('li');
               const statusClass = ch.status === 'pass' ? 'pass' : 'fail';
               const statusText = ch.status === 'pass' ? '✓ Пройдено' : '✗ Ошибка';
               const style = ch.status === 'fail' ? 'color: #ff3333;' : '';
-              li.innerHTML = `<span>${ch.name}</span> <span class="check-status ${statusClass}" style="${style}">${statusText}</span>`;
+              
+              // Берем русское название из словаря, если есть, иначе оставляем английское
+              const displayName = channelNamesRu[ch.name] || ch.name; 
+              
+              li.innerHTML = `<span>${displayName}</span> <span class="check-status ${statusClass}" style="${style}">${statusText}</span>`;
               channelList.appendChild(li);
             });
           }
