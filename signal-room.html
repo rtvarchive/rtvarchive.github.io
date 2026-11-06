@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   
   <style>
-    /* Дополнительные стили для Аппаратной */
+    /* Стили для Аппаратной */
     .signal-dashboard {
       background: rgba(11, 13, 20, 0.8);
       border: 1px solid var(--line-mid);
@@ -81,14 +81,8 @@
     }
     .btn-primary:hover { filter: brightness(1.12); }
 
-    /* Корректировка заголовков для Аппаратной */
-    .page-head__title {
-      font-size: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); /* Уменьшаем размер */
-      margin-bottom: 1rem;
-    }
-    .section__title {
-      font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); /* Уменьшаем размер */
-    }
+    .page-head__title { font-size: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); margin-bottom: 1rem; }
+    .section__title { font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); }
 
     /* Стили для блока с ошибками */
     #failed-tests-list {
@@ -103,6 +97,67 @@
     }
     #failed-tests-list strong { color: #ff3333; display: block; margin-bottom: 0.5rem; }
     #failed-tests-ul { margin: 0; padding-left: 1.5rem; }
+
+    /* Стили для попапа */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(11, 13, 20, 0.85);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.is-active { display: flex; opacity: 1; pointer-events: auto; }
+    .modal-box {
+      background: var(--ink-100, #10131c);
+      border: 1px solid var(--line-mid, rgba(211, 190, 164, 0.24));
+      border-top: 4px solid var(--neon-lime, #7b9c91);
+      padding: 3rem;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.is-active .modal-box { transform: translateY(0); }
+    .modal-icon { font-size: 3rem; margin-bottom: 1rem; color: var(--neon-lime, #7b9c91); }
+    .modal-title {
+      font-family: var(--ff-display, 'Bebas Neue', sans-serif);
+      font-size: 2.5rem;
+      color: var(--txt-bright, #e8d8bb);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .modal-text {
+      font-family: var(--ff-mono, 'JetBrains Mono', monospace);
+      font-size: 0.95rem;
+      color: var(--txt-soft, #c2b5a2);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .modal-close-btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      font-family: var(--ff-mono, 'JetBrains Mono', monospace);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid var(--neon-cyan, #6c8fa3);
+      color: var(--neon-cyan, #6c8fa3);
+      transition: all 0.25s;
+    }
+    .modal-close-btn:hover { background: rgba(108, 143, 163, 0.1); }
   </style>
 </head>
 <body>
@@ -150,7 +205,6 @@
 
     <div class="shell" style="padding-top: 3rem; padding-bottom: 3rem;">
       
-      <!-- ТАБЛО СОСТОЯНИЯ -->
       <div class="signal-dashboard" data-testid="signal-dashboard">
         <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
           <span class="signal-indicator is-stable" data-testid="signal-indicator"></span>
@@ -165,7 +219,7 @@
           <span style="color: #ff3333;">Замечаний: <b data-testid="stat-failed">0</b></span>
         </div>
 
-        <!-- НОВЫЙ БЛОК ДЛЯ ВЫВОДА ОШИБОК -->
+        <!-- БЛОК ДЛЯ ВЫВОДА ОШИБОК -->
         <div id="failed-tests-list">
           <strong>ОБНАРУЖЕНЫ ПОМЕХИ:</strong>
           <ul id="failed-tests-ul"></ul>
@@ -174,33 +228,22 @@
         <button class="btn-primary" data-testid="btn-start-check">Запросить последний отчёт</button>
       </div>
 
-      <!-- ЧТО ПРОВЕРЯЕТСЯ -->
       <section style="margin-bottom: 4rem;">
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Целостность <em>каналов</em></h2>
-        <ul class="check-list" data-testid="check-list">
-          <li><span>Целостность маршрутов</span> <span class="check-status pass">✓ Пройдено</span></li>
-          <li><span>Синхронизация языковых каналов</span> <span class="check-status pass">✓ Пройдено</span></li>
-          <li><span>Стабильность ретрансляции</span> <span class="check-status pass">✓ Пройдено</span></li>
-          <li><span>Качество исходящего сигнала</span> <span class="check-status pass">✓ Пройдено</span></li>
-          <li><span>Доступность канала</span> <span class="check-status pass">✓ Пройдено</span></li>
-          <li><span>Целостность носителя</span> <span class="check-status pass">✓ Пройдено</span></li>
+        <ul class="check-list" data-testid="check-list" id="channel-list">
+          <!-- Сюда JS будет вставлять элементы -->
+          <li><span>Загрузка...</span> <span class="check-status">...</span></li>
         </ul>
       </section>
 
-      <!-- ЖУРНАЛ ВЕРИФИКАЦИИ -->
       <section style="margin-bottom: 4rem;">
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Журнал <em>верификации</em></h2>
-        <div data-testid="verification-log">
-          <div class="log-entry">
-            <strong>ЗАПИСЬ №117</strong> · 04.11.2026 · 14:22 · Канал: стабилен · Проверок: 6 · Пройдено: 6
-          </div>
-          <div class="log-entry" style="border-left-color: var(--txt-dim); opacity: 0.7;">
-            <strong>ЗАПИСЬ №116</strong> · 04.11.2026 · 12:00 · Канал: стабилен · Проверок: 6 · Пройдено: 6
-          </div>
+        <div data-testid="verification-log" id="verification-log-list">
+          <!-- Сюда JS будет вставлять записи -->
+          <div class="log-entry">Загрузка истории...</div>
         </div>
       </section>
 
-      <!-- ФОРМА РАПОРТА -->
       <section>
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Сообщить о <em>помехе</em></h2>
         <p style="margin-bottom: 2rem; color: var(--txt-soft); max-width: 60ch;">Если вы обнаружили искажение сигнала, нарушение маршрутов или утрату фрагмента, передайте рапорт в аппаратную.</p>
@@ -260,7 +303,6 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       
-      // 1. Кнопка "Запросить последний отчёт"
       const btnStartCheck = document.querySelector('[data-testid="btn-start-check"]');
       const signalIndicator = document.querySelector('[data-testid="signal-indicator"]');
       const dateSpan = document.querySelector('[data-testid="last-check-date"]');
@@ -275,32 +317,27 @@
         btnStartCheck.textContent = 'Запрос данных...';
         btnStartCheck.disabled = true;
 
-        // Показываем "предупреждение" (желтый), пока грузим
         if (signalIndicator) {
           signalIndicator.classList.remove('is-stable', 'is-error');
           signalIndicator.classList.add('is-warning');
         }
 
         try {
-          // Cache-busting: добавляем timestamp, чтобы браузер не кэшировал
           const response = await fetch(`signal-status.json?t=${Date.now()}`);
           if (!response.ok) throw new Error('Network response was not ok');
           const data = await response.json();
 
-          // Обновляем цифры
+          // 1. Обновляем цифры
           if (statTotal) statTotal.textContent = data.total;
           if (statPassed) statPassed.textContent = data.passed;
           if (statFailed) statFailed.textContent = data.failed;
 
-          // --- ЛОГИКА ДЛЯ ВЫВОДА ОШИБОК ---
+          // 2. Вывод ошибок
           const failedListContainer = document.getElementById('failed-tests-list');
           const failedListUl = document.getElementById('failed-tests-ul');
-          
           if (failedListContainer && failedListUl) {
-            failedListUl.innerHTML = ''; // Очищаем старый список
-            
+            failedListUl.innerHTML = '';
             if (data.failedTests && data.failedTests.length > 0) {
-              // Если есть ошибки — показываем блок и заполняем его
               failedListContainer.style.display = 'block';
               data.failedTests.forEach(testName => {
                 const li = document.createElement('li');
@@ -308,28 +345,60 @@
                 failedListUl.appendChild(li);
               });
             } else {
-              // Если ошибок нет — скрываем блок
               failedListContainer.style.display = 'none';
             }
           }
-          // ----------------------------------------
 
-          // Обновляем дату
+          // 3. РЕНДЕР ЦЕЛОСТНОСТИ КАНАЛОВ
+          const channelList = document.getElementById('channel-list');
+          if (channelList && data.channels) {
+            channelList.innerHTML = '';
+            data.channels.forEach(ch => {
+              const li = document.createElement('li');
+              const statusClass = ch.status === 'pass' ? 'pass' : 'fail';
+              const statusText = ch.status === 'pass' ? '✓ Пройдено' : '✗ Ошибка';
+              const style = ch.status === 'fail' ? 'color: #ff3333;' : '';
+              li.innerHTML = `<span>${ch.name}</span> <span class="check-status ${statusClass}" style="${style}">${statusText}</span>`;
+              channelList.appendChild(li);
+            });
+          }
+
+          // 4. РЕНДЕР ЖУРНАЛА ВЕРИФИКАЦИИ
+          const logList = document.getElementById('verification-log-list');
+          if (logList && data.history) {
+            logList.innerHTML = '';
+            data.history.forEach((record, index) => {
+              const date = new Date(record.date);
+              const formattedDate = date.toLocaleDateString('ru-RU') + ' · ' + date.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
+              const isStable = record.status === 'stable';
+              const borderColor = isStable ? 'var(--neon-cyan)' : '#ff3333';
+              const statusText = isStable ? 'стабилен' : 'помехи';
+              const opacity = index > 0 ? '0.7' : '1';
+
+              const logEntry = document.createElement('div');
+              logEntry.className = 'log-entry';
+              logEntry.style.borderLeftColor = borderColor;
+              logEntry.style.opacity = opacity;
+              logEntry.innerHTML = `<strong>ЗАПИСЬ №${record.record}</strong> · ${formattedDate} · Канал: ${statusText} · Проверок: ${record.total} · Пройдено: ${record.passed}`;
+              logList.appendChild(logEntry);
+            });
+          }
+
+          // 5. Обновляем дату и индикатор
           if (dateSpan && data.lastCheck) {
             const date = new Date(data.lastCheck);
             const formatted = date.toLocaleDateString('ru-RU') + ' · ' + date.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
             dateSpan.textContent = formatted;
           }
 
-          // Меняем индикатор
           if (signalIndicator) {
             signalIndicator.classList.remove('is-stable', 'is-warning', 'is-error');
             if (data.failed > 0) {
-              signalIndicator.classList.add('is-error'); // Красный — есть ошибки
+              signalIndicator.classList.add('is-error');
             } else if (data.total === 0) {
-              signalIndicator.classList.add('is-warning'); // Желтый — нет данных
+              signalIndicator.classList.add('is-warning');
             } else {
-              signalIndicator.classList.add('is-stable'); // Зеленый — всё ок
+              signalIndicator.classList.add('is-stable');
             }
           }
 
@@ -345,7 +414,6 @@
           btnStartCheck.style.backgroundColor = '#ff3333';
         }
 
-        // Возвращаем кнопку в исходное состояние
         setTimeout(() => {
           btnStartCheck.textContent = originalText || 'Запросить последний отчёт';
           btnStartCheck.disabled = false;
@@ -355,24 +423,22 @@
 
       if (btnStartCheck) {
         btnStartCheck.addEventListener('click', updateDashboard);
-        
-        // Автоматически запрашиваем статус при загрузке страницы
-        updateDashboard();
+        updateDashboard(); // Автозапуск при загрузке
       }
 
-      // 2. Форма "Сообщить о помехе"
+      // Логика попапа и формы (осталась без изменений)
       const reportForm = document.getElementById('report-form');
+      const modal = document.getElementById('success-modal');
+      const closeModalBtn = document.getElementById('close-modal');
+
       if (reportForm) {
         reportForm.addEventListener('submit', function(e) {
           e.preventDefault();
-          
           const submitBtn = this.querySelector('button[type="submit"]');
           const originalText = submitBtn.textContent;
-          
           submitBtn.textContent = 'Передача в аппаратную...';
           submitBtn.disabled = true;
 
-          // Имитация отправки
           setTimeout(() => {
             submitBtn.textContent = 'Рапорт принят';
             submitBtn.style.backgroundColor = 'var(--neon-cyan)';

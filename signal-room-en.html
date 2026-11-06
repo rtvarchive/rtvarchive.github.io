@@ -48,6 +48,8 @@
     .check-list li:last-child { border-bottom: none; }
     .check-status { font-weight: bold; }
     .check-status.pass { color: var(--neon-lime); }
+    .check-status.fail { color: #ff3333; }
+    
     .log-entry {
       font-family: var(--ff-mono);
       font-size: 0.85rem;
@@ -56,6 +58,16 @@
       background: rgba(108, 143, 163, 0.05);
       margin-bottom: 1rem;
     }
+    
+    .form-grid input, .form-grid select, .form-grid textarea {
+      width: 100%;
+      background: rgba(11, 13, 20, 0.7);
+      border: 1px solid var(--line-mid);
+      color: var(--txt-bright);
+      padding: 1rem;
+      font-family: var(--ff-mono);
+    }
+    
     .btn-primary {
       background: var(--neon-magenta);
       color: #ffffff;
@@ -68,6 +80,7 @@
       transition: all 0.25s;
     }
     .btn-primary:hover { filter: brightness(1.12); }
+
     .page-head__title { font-size: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); margin-bottom: 1rem; }
     .section__title { font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); }
 
@@ -85,7 +98,7 @@
     #failed-tests-list strong { color: #ff3333; display: block; margin-bottom: 0.5rem; }
     #failed-tests-ul { margin: 0; padding-left: 1.5rem; }
 
-    /* Стили для попапа (скопированы с About) */
+    /* Стили для попапа */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -206,7 +219,7 @@
           <span style="color: #ff3333;">Issues: <b data-testid="stat-failed">0</b></span>
         </div>
 
-        <!-- НОВЫЙ БЛОК ДЛЯ ВЫВОДА ОШИБОК -->
+        <!-- БЛОК ДЛЯ ВЫВОДА ОШИБОК -->
         <div id="failed-tests-list">
           <strong>DETECTED INTERFERENCE:</strong>
           <ul id="failed-tests-ul"></ul>
@@ -217,25 +230,17 @@
 
       <section style="margin-bottom: 4rem;">
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Channel <em>Integrity</em></h2>
-        <ul class="check-list" data-testid="check-list">
-          <li><span>Route integrity</span> <span class="check-status pass">✓ Passed</span></li>
-          <li><span>Language channel sync</span> <span class="check-status pass">✓ Passed</span></li>
-          <li><span>Relay stability</span> <span class="check-status pass">✓ Passed</span></li>
-          <li><span>Outgoing signal quality</span> <span class="check-status pass">✓ Passed</span></li>
-          <li><span>Channel accessibility</span> <span class="check-status pass">✓ Passed</span></li>
-          <li><span>Media integrity</span> <span class="check-status pass">✓ Passed</span></li>
+        <ul class="check-list" data-testid="check-list" id="channel-list">
+          <!-- Сюда JS будет вставлять элементы -->
+          <li><span>Loading...</span> <span class="check-status">...</span></li>
         </ul>
       </section>
 
       <section style="margin-bottom: 4rem;">
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Verification <em>Log</em></h2>
-        <div data-testid="verification-log">
-          <div class="log-entry">
-            <strong>RECORD #117</strong> · 04.11.2026 · 14:22 · Channel: stable · Checks: 6 · Passed: 6
-          </div>
-          <div class="log-entry" style="border-left-color: var(--txt-dim); opacity: 0.7;">
-            <strong>RECORD #116</strong> · 04.11.2026 · 12:00 · Channel: stable · Checks: 6 · Passed: 6
-          </div>
+        <div data-testid="verification-log" id="verification-log-list">
+          <!-- Сюда JS будет вставлять записи -->
+          <div class="log-entry">Loading history...</div>
         </div>
       </section>
 
@@ -243,10 +248,8 @@
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Report <em>Interference</em></h2>
         <p style="margin-bottom: 2rem; color: var(--txt-soft); max-width: 60ch;">If you've detected signal distortion, routing issues, or a lost fragment, file a report with the control room.</p>
         
-        <!-- ФОРМА: action и access_key как в About -->
         <form class="form-grid" style="max-width: 600px;" id="report-form" action="https://api.web3forms.com/submit" method="POST">
           
-          <!-- Скрытые поля для Web3Forms -->
           <input type="hidden" name="access_key" value="170f64f4-4ec9-4f4f-97ec-4144bf06bce0">
           <input type="hidden" name="redirect" value="false">
           <input type="hidden" name="subject" value="RADIUS ARCHIVE: New Interference Report">
@@ -316,7 +319,6 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       
-      // 1. Кнопка "Запросить последний отчёт" (реальное чтение JSON)
       const btnStartCheck = document.querySelector('[data-testid="btn-start-check"]');
       const signalIndicator = document.querySelector('[data-testid="signal-indicator"]');
       const dateSpan = document.querySelector('[data-testid="last-check-date"]');
@@ -331,32 +333,27 @@
         btnStartCheck.textContent = 'Requesting...';
         btnStartCheck.disabled = true;
 
-        // Показываем "предупреждение" (желтый), пока грузим
         if (signalIndicator) {
           signalIndicator.classList.remove('is-stable', 'is-error');
           signalIndicator.classList.add('is-warning');
         }
 
         try {
-          // Cache-busting: добавляем timestamp, чтобы браузер не кэшировал
           const response = await fetch(`signal-status.json?t=${Date.now()}`);
           if (!response.ok) throw new Error('Network response was not ok');
           const data = await response.json();
 
-          // Обновляем цифры
+          // 1. Обновляем цифры
           if (statTotal) statTotal.textContent = data.total;
           if (statPassed) statPassed.textContent = data.passed;
           if (statFailed) statFailed.textContent = data.failed;
 
-          // --- НОВАЯ ЛОГИКА ДЛЯ ВЫВОДА ОШИБОК ---
+          // 2. Вывод ошибок
           const failedListContainer = document.getElementById('failed-tests-list');
           const failedListUl = document.getElementById('failed-tests-ul');
-          
           if (failedListContainer && failedListUl) {
-            failedListUl.innerHTML = ''; // Очищаем старый список
-            
+            failedListUl.innerHTML = '';
             if (data.failedTests && data.failedTests.length > 0) {
-              // Если есть ошибки — показываем блок и заполняем его
               failedListContainer.style.display = 'block';
               data.failedTests.forEach(testName => {
                 const li = document.createElement('li');
@@ -364,28 +361,60 @@
                 failedListUl.appendChild(li);
               });
             } else {
-              // Если ошибок нет — скрываем блок
               failedListContainer.style.display = 'none';
             }
           }
-          // ----------------------------------------
 
-          // Обновляем дату
+          // 3. РЕНДЕР ЦЕЛОСТНОСТИ КАНАЛОВ
+          const channelList = document.getElementById('channel-list');
+          if (channelList && data.channels) {
+            channelList.innerHTML = '';
+            data.channels.forEach(ch => {
+              const li = document.createElement('li');
+              const statusClass = ch.status === 'pass' ? 'pass' : 'fail';
+              const statusText = ch.status === 'pass' ? '✓ Passed' : '✗ Failed';
+              const style = ch.status === 'fail' ? 'color: #ff3333;' : '';
+              li.innerHTML = `<span>${ch.name}</span> <span class="check-status ${statusClass}" style="${style}">${statusText}</span>`;
+              channelList.appendChild(li);
+            });
+          }
+
+          // 4. РЕНДЕР ЖУРНАЛА ВЕРИФИКАЦИИ
+          const logList = document.getElementById('verification-log-list');
+          if (logList && data.history) {
+            logList.innerHTML = '';
+            data.history.forEach((record, index) => {
+              const date = new Date(record.date);
+              const formattedDate = date.toLocaleDateString('en-GB') + ' · ' + date.toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'});
+              const isStable = record.status === 'stable';
+              const borderColor = isStable ? 'var(--neon-cyan)' : '#ff3333';
+              const statusText = isStable ? 'stable' : 'interference';
+              const opacity = index > 0 ? '0.7' : '1';
+
+              const logEntry = document.createElement('div');
+              logEntry.className = 'log-entry';
+              logEntry.style.borderLeftColor = borderColor;
+              logEntry.style.opacity = opacity;
+              logEntry.innerHTML = `<strong>RECORD #${record.record}</strong> · ${formattedDate} · Channel: ${statusText} · Checks: ${record.total} · Passed: ${record.passed}`;
+              logList.appendChild(logEntry);
+            });
+          }
+
+          // 5. Обновляем дату и индикатор
           if (dateSpan && data.lastCheck) {
             const date = new Date(data.lastCheck);
             const formatted = date.toLocaleDateString('en-GB') + ' · ' + date.toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'});
             dateSpan.textContent = formatted;
           }
 
-          // Меняем индикатор
           if (signalIndicator) {
             signalIndicator.classList.remove('is-stable', 'is-warning', 'is-error');
             if (data.failed > 0) {
-              signalIndicator.classList.add('is-error'); // Красный — есть ошибки
+              signalIndicator.classList.add('is-error');
             } else if (data.total === 0) {
-              signalIndicator.classList.add('is-warning'); // Желтый — нет данных
+              signalIndicator.classList.add('is-warning');
             } else {
-              signalIndicator.classList.add('is-stable'); // Зеленый — всё ок
+              signalIndicator.classList.add('is-stable');
             }
           }
 
@@ -401,7 +430,6 @@
           btnStartCheck.style.backgroundColor = '#ff3333';
         }
 
-        // Возвращаем кнопку в исходное состояние
         setTimeout(() => {
           btnStartCheck.textContent = originalText || 'Request Latest Report';
           btnStartCheck.disabled = false;
@@ -411,12 +439,10 @@
 
       if (btnStartCheck) {
         btnStartCheck.addEventListener('click', updateDashboard);
-        
-        // Автоматически запрашиваем статус при загрузке страницы
-        updateDashboard();
+        updateDashboard(); // Автозапуск при загрузке
       }
 
-      // 2. Форма "Report Interference" (РЕАЛЬНАЯ отправка через Web3Forms)
+      // Логика попапа и формы (осталась без изменений)
       const reportForm = document.getElementById('report-form');
       const modal = document.getElementById('success-modal');
       const closeModalBtn = document.getElementById('close-modal');
@@ -424,10 +450,8 @@
       if (reportForm) {
         reportForm.addEventListener('submit', function(e) {
           e.preventDefault();
-          
           const submitBtn = this.querySelector('button[type="submit"]');
           const formData = new FormData(this);
-          
           const originalText = submitBtn.textContent;
           submitBtn.textContent = 'Filing...';
           submitBtn.disabled = true;
@@ -441,8 +465,8 @@
           .then(data => {
             if (data.success) {
               reportForm.reset();
-              reportForm.style.display = 'none'; // Скрываем форму
-              modal.classList.add('is-active'); // Показываем попап
+              reportForm.style.display = 'none';
+              modal.classList.add('is-active');
             } else {
               alert('Filing failed. Please try again later.');
               submitBtn.textContent = originalText;
@@ -457,7 +481,6 @@
         });
       }
 
-      // Закрытие попапа
       if (closeModalBtn) {
         closeModalBtn.addEventListener('click', function() {
           modal.classList.remove('is-active');
