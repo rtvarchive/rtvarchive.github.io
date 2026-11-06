@@ -10,6 +10,11 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    
+    # Важно: даем права на запись, чтобы экшен мог пушить файл
+    permissions:
+      contents: write
+
     steps:
     - uses: actions/checkout@v4
 
@@ -23,9 +28,51 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
+    # Меняем команду, чтобы Playwright сразу выдал JSON-отчет
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test --reporter=json > test-results.json
+      continue-on-error: true # Не прерываем пайплайн, если тесты упали (нам нужен их результат)
 
+    # Генерируем signal-status.json из отчета Playwright
+    - name: Generate Signal Status
+      if: always()
+      run: |
+        node -e "
+          const fs = require('fs');
+          try {
+            const raw = fs.readFileSync('test-results.json', 'utf8');
+            const report = JSON.parse(raw);
+            const stats = report.stats;
+            
+            // Считаем общее количество, успешные и упавшие
+            const data = {
+              lastCheck: new Date().toISOString(),
+              total: stats.expected + stats.unexpected + stats.flaky,
+              passed: stats.expected + stats.flaky,
+              failed: stats.unexpected
+            };
+            
+            fs.writeFileSync('signal-status.json', JSON.stringify(data, null, 2));
+            console.log('Signal status JSON generated:', data);
+          } catch (e) {
+            console.error('Error parsing report:', e);
+            // Если что-то пошло не так, пишем аварийные данные
+            const data = { lastCheck: new Date().toISOString(), total: 0, passed: 0, failed: 1 };
+            fs.writeFileSync('signal-status.json', JSON.stringify(data, null, 2));
+          }
+        "
+
+    # Коммитим и пушим файл статуса
+    - name: Commit and Push Signal Status
+      if: always()
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add signal-status.json
+        git commit -m "Update signal status from CI [skip ci]" || echo "No changes to commit"
+        git push
+
+    # Оставляем артефакт как было
     - uses: actions/upload-artifact@v4
       if: always()
       with:
