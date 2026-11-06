@@ -29,7 +29,11 @@ try {
     
     if (suite.specs) {
       suite.specs.forEach(spec => {
-        const channelName = channelMapping[fileName.split('/').pop()] || channelMapping['default'];
+        let channelName = channelMapping[fileName.split('/').pop()] || channelMapping['default'];
+	// Если в названии теста есть A11y или Accessibility, принудительно кидаем в Channel accessibility
+	if (spec.title.includes('A11y') || spec.title.includes('Accessibility')) {
+	channelName = 'Channel accessibility';
+	}
         
         if (spec.ok === false) {
           failedTests.push(spec.title);
