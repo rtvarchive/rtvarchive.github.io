@@ -31,10 +31,11 @@
       box-shadow: 0 0 15px var(--neon-magenta);
       margin-right: 1rem;
       vertical-align: middle;
+      transition: background 0.3s, box-shadow 0.3s;
     }
     .signal-indicator.is-stable { background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); }
-    .signal-indicator.is-warning { background: #ffcc00; box-shadow: 0 0 15px #ffcc00; }
     .signal-indicator.is-error { background: #ff3333; box-shadow: 0 0 15px #ff3333; }
+    .signal-indicator.is-warning { background: #ffcc00; box-shadow: 0 0 15px #ffcc00; }
     
     .check-list { list-style: none; padding: 0; margin: 2rem 0; }
     .check-list li {
@@ -88,6 +89,20 @@
     .section__title {
       font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); /* Уменьшаем размер */
     }
+
+    /* Стили для блока с ошибками */
+    #failed-tests-list {
+      display: none; 
+      margin-bottom: 2rem; 
+      padding: 1rem; 
+      background: rgba(255, 51, 51, 0.1); 
+      border-left: 3px solid #ff3333; 
+      font-family: var(--ff-mono); 
+      font-size: 0.85rem; 
+      color: #ffcccc;
+    }
+    #failed-tests-list strong { color: #ff3333; display: block; margin-bottom: 0.5rem; }
+    #failed-tests-ul { margin: 0; padding-left: 1.5rem; }
   </style>
 </head>
 <body>
@@ -149,6 +164,13 @@
           <span style="color: var(--neon-lime);">Пройдено: <b data-testid="stat-passed">36</b></span>
           <span style="color: #ff3333;">Замечаний: <b data-testid="stat-failed">0</b></span>
         </div>
+
+        <!-- НОВЫЙ БЛОК ДЛЯ ВЫВОДА ОШИБОК -->
+        <div id="failed-tests-list">
+          <strong>ОБНАРУЖЕНЫ ПОМЕХИ:</strong>
+          <ul id="failed-tests-ul"></ul>
+        </div>
+
         <button class="btn-primary" data-testid="btn-start-check">Запросить последний отчёт</button>
       </div>
 
@@ -238,7 +260,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       
-            // 1. Кнопка "Запросить последний отчёт" (реальное чтение JSON)
+      // 1. Кнопка "Запросить последний отчёт"
       const btnStartCheck = document.querySelector('[data-testid="btn-start-check"]');
       const signalIndicator = document.querySelector('[data-testid="signal-indicator"]');
       const dateSpan = document.querySelector('[data-testid="last-check-date"]');
@@ -250,7 +272,7 @@
         if (!btnStartCheck) return;
         
         const originalText = btnStartCheck.textContent;
-        btnStartCheck.textContent = 'Requesting...';
+        btnStartCheck.textContent = 'Запрос данных...';
         btnStartCheck.disabled = true;
 
         // Показываем "предупреждение" (желтый), пока грузим
@@ -270,10 +292,32 @@
           if (statPassed) statPassed.textContent = data.passed;
           if (statFailed) statFailed.textContent = data.failed;
 
+          // --- ЛОГИКА ДЛЯ ВЫВОДА ОШИБОК ---
+          const failedListContainer = document.getElementById('failed-tests-list');
+          const failedListUl = document.getElementById('failed-tests-ul');
+          
+          if (failedListContainer && failedListUl) {
+            failedListUl.innerHTML = ''; // Очищаем старый список
+            
+            if (data.failedTests && data.failedTests.length > 0) {
+              // Если есть ошибки — показываем блок и заполняем его
+              failedListContainer.style.display = 'block';
+              data.failedTests.forEach(testName => {
+                const li = document.createElement('li');
+                li.textContent = testName;
+                failedListUl.appendChild(li);
+              });
+            } else {
+              // Если ошибок нет — скрываем блок
+              failedListContainer.style.display = 'none';
+            }
+          }
+          // ----------------------------------------
+
           // Обновляем дату
           if (dateSpan && data.lastCheck) {
             const date = new Date(data.lastCheck);
-            const formatted = date.toLocaleDateString('en-GB') + ' · ' + date.toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'});
+            const formatted = date.toLocaleDateString('ru-RU') + ' · ' + date.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
             dateSpan.textContent = formatted;
           }
 
@@ -289,7 +333,7 @@
             }
           }
 
-          btnStartCheck.textContent = 'Report Received';
+          btnStartCheck.textContent = 'Отчёт получен';
           btnStartCheck.style.backgroundColor = 'var(--neon-lime)';
         } catch (error) {
           console.error('Failed to fetch signal status:', error);
@@ -297,13 +341,13 @@
             signalIndicator.classList.remove('is-stable', 'is-warning');
             signalIndicator.classList.add('is-error');
           }
-          btnStartCheck.textContent = 'Signal Lost';
+          btnStartCheck.textContent = 'Сигнал потерян';
           btnStartCheck.style.backgroundColor = '#ff3333';
         }
 
         // Возвращаем кнопку в исходное состояние
         setTimeout(() => {
-          btnStartCheck.textContent = originalText || 'Request Latest Report';
+          btnStartCheck.textContent = originalText || 'Запросить последний отчёт';
           btnStartCheck.disabled = false;
           btnStartCheck.style.backgroundColor = 'var(--neon-magenta)';
         }, 2500);

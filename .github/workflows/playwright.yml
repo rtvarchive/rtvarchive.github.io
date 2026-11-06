@@ -34,7 +34,7 @@ jobs:
       continue-on-error: true # Не прерываем пайплайн, если тесты упали (нам нужен их результат)
 
     # Генерируем signal-status.json из отчета Playwright
-    - name: Generate Signal Status
+            - name: Generate Signal Status
       if: always()
       run: |
         node -e "
@@ -44,20 +44,37 @@ jobs:
             const report = JSON.parse(raw);
             const stats = report.stats;
             
-            // Считаем общее количество, успешные и упавшие
+            // Собираем имена упавших тестов
+            const failedTests = [];
+            if (report.suites) {
+              const findFailed = (suite) => {
+                if (suite.specs) {
+                  suite.specs.forEach(spec => {
+                    if (spec.ok === false) {
+                      failedTests.push(spec.title);
+                    }
+                  });
+                }
+                if (suite.suites) {
+                  suite.suites.forEach(findFailed);
+                }
+              };
+              report.suites.forEach(findFailed);
+            }
+
             const data = {
               lastCheck: new Date().toISOString(),
               total: stats.expected + stats.unexpected + stats.flaky,
               passed: stats.expected + stats.flaky,
-              failed: stats.unexpected
+              failed: stats.unexpected,
+              failedTests: failedTests // Добавляем массив с названиями
             };
             
             fs.writeFileSync('signal-status.json', JSON.stringify(data, null, 2));
             console.log('Signal status JSON generated:', data);
           } catch (e) {
             console.error('Error parsing report:', e);
-            // Если что-то пошло не так, пишем аварийные данные
-            const data = { lastCheck: new Date().toISOString(), total: 0, passed: 0, failed: 1 };
+            const data = { lastCheck: new Date().toISOString(), total: 0, passed: 0, failed: 1, failedTests: ['Error parsing test results'] };
             fs.writeFileSync('signal-status.json', JSON.stringify(data, null, 2));
           }
         "
