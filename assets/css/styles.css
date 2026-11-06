@@ -2692,7 +2692,7 @@ body::after {
 .toggle-label {
   font-family: var(--ff-mono);
   font-size: 0.85rem;
-  color: var(--txt-soft);
+  color: var(--txt-bright);
   text-transform: uppercase;
 }
 .toggle-switch {
@@ -2741,7 +2741,7 @@ input:checked + .slider:before {
   font-family: var(--ff-mono);
   font-size: 0.85rem;
   text-transform: uppercase;
-  color: var(--txt-soft);
+  color: var(--txt-bright);
 }
 .vu-meter-bar {
   width: 100%;
