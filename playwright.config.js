@@ -25,8 +25,8 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
-  webServer: {
-    command: 'npx serve -p 8000',
+    webServer: {
+    command: 'npx http-server -p 8000 -c-1 --404 404.html',
     url: 'http://localhost:8000',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
