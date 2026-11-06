@@ -1,39 +1,89 @@
 const fs = require('fs');
 
+// Настройки лора: сопоставляем названия тестовых файлов с "каналами"
+const channelMapping = {
+  'navigation.spec.js': 'Route integrity',
+  'language.spec.js': 'Language channel sync',
+  'a11y.spec.js': 'Channel accessibility',
+  'forms.spec.js': 'Outgoing signal quality',
+  'media.spec.js': 'Media integrity',
+  'links.spec.js': 'Relay stability',
+  'signal-room.spec.js': 'Relay stability',
+  'default': 'Media integrity' 
+};
+
 try {
   const raw = fs.readFileSync('test-results.json', 'utf8');
   const report = JSON.parse(raw);
   const stats = report.stats;
-  
+
   const failedTests = [];
-  if (report.suites) {
-    const findFailed = (suite) => {
-      if (suite.specs) {
-        suite.specs.forEach(spec => {
-          if (spec.ok === false) {
-            failedTests.push(spec.title);
-          }
-        });
-      }
-      if (suite.suites) {
-        suite.suites.forEach(findFailed);
-      }
-    };
-    report.suites.forEach(findFailed);
+  const channelStats = {};
+
+  // Инициализируем каналы
+  Object.values(channelMapping).forEach(ch => channelStats[ch] = { passed: 0, failed: 0 });
+
+  // Рекурсивный поиск тестов
+  const findTests = (suite, fileName = '') => {
+    if (suite.file) fileName = suite.file;
+    
+    if (suite.specs) {
+      suite.specs.forEach(spec => {
+        const channelName = channelMapping[fileName.split('/').pop()] || channelMapping['default'];
+        
+        if (spec.ok === false) {
+          failedTests.push(spec.title);
+          channelStats[channelName].failed++;
+        } else {
+          channelStats[channelName].passed++;
+        }
+      });
+    }
+    if (suite.suites) suite.suites.forEach(s => findTests(s, fileName));
+  };
+
+  if (report.suites) report.suites.forEach(s => findTests(s));
+
+  // Формируем массив каналов для фронтенда
+  const channels = Object.keys(channelStats).map(name => ({
+    name: name,
+    status: channelStats[name].failed > 0 ? 'fail' : 'pass'
+  }));
+
+  // --- ЛОГИКА ИСТОРИИ ---
+  let history = [];
+  try {
+    const existingData = JSON.parse(fs.readFileSync('signal-status.json', 'utf8'));
+    if (existingData.history) history = existingData.history;
+  } catch (e) {
+    // Файла еще нет, история пустая
   }
 
+  const newRecord = {
+    record: history.length > 0 ? history[0].record + 1 : 117,
+    date: new Date().toISOString(),
+    status: stats.unexpected > 0 ? 'unstable' : 'stable',
+    total: stats.expected + stats.unexpected + stats.flaky,
+    passed: stats.expected + stats.flaky
+  };
+
+  history.unshift(newRecord); // Добавляем в начало
+  history = history.slice(0, 5); // Оставляем только 5 последних записей
+
+  // --- ФОРМИРУЕМ ИТОГОВЫЙ JSON ---
   const data = {
     lastCheck: new Date().toISOString(),
-    total: stats.expected + stats.unexpected + stats.flaky,
-    passed: stats.expected + stats.flaky,
+    total: newRecord.total,
+    passed: newRecord.passed,
     failed: stats.unexpected,
-    failedTests: failedTests
+    failedTests: failedTests,
+    channels: channels,
+    history: history
   };
-  
+
   fs.writeFileSync('signal-status.json', JSON.stringify(data, null, 2));
-  console.log('Signal status JSON generated successfully:', data);
+  console.log('Signal status updated successfully!');
 } catch (e) {
   console.error('Error parsing report:', e);
-  const data = { lastCheck: new Date().toISOString(), total: 0, passed: 0, failed: 1, failedTests: ['Error parsing test results'] };
-  fs.writeFileSync('signal-status.json', JSON.stringify(data, null, 2));
+  process.exit(1);
 }
