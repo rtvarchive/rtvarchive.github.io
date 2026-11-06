@@ -2813,3 +2813,12 @@ body.day-mode .vu-meter-bar {
   background: #c2b8a5;
   border-color: #b3a894;
 }
+
+.panel-title {
+  font-family: var(--ff-mono);
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  letter-spacing: 0.1em;
+  margin-top: 0;
+  font-size: 1.5rem;
+}
