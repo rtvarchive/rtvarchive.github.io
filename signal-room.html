@@ -238,35 +238,82 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       
-      // 1. Кнопка "Запросить последний отчёт"
+            // 1. Кнопка "Запросить последний отчёт" (реальное чтение JSON)
       const btnStartCheck = document.querySelector('[data-testid="btn-start-check"]');
-      if (btnStartCheck) {
-        btnStartCheck.addEventListener('click', function() {
-          const originalText = this.textContent;
-          this.textContent = 'Запрос данных...';
-          this.disabled = true;
+      const signalIndicator = document.querySelector('[data-testid="signal-indicator"]');
+      const dateSpan = document.querySelector('[data-testid="last-check-date"]');
+      const statTotal = document.querySelector('[data-testid="stat-total"]');
+      const statPassed = document.querySelector('[data-testid="stat-passed"]');
+      const statFailed = document.querySelector('[data-testid="stat-failed"]');
 
-          // Имитация задержки (как будто запрашиваем данные с сервера)
-          setTimeout(() => {
-            this.textContent = 'Отчёт получен';
-            this.style.backgroundColor = 'var(--neon-lime)';
-            
-            // Меняем дату на текущую
-            const dateSpan = document.querySelector('[data-testid="last-check-date"]');
-            if (dateSpan) {
-              const now = new Date();
-              const formatted = now.toLocaleDateString('ru-RU') + ' · ' + now.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
-              dateSpan.textContent = formatted;
+      async function updateDashboard() {
+        if (!btnStartCheck) return;
+        
+        const originalText = btnStartCheck.textContent;
+        btnStartCheck.textContent = 'Requesting...';
+        btnStartCheck.disabled = true;
+
+        // Показываем "предупреждение" (желтый), пока грузим
+        if (signalIndicator) {
+          signalIndicator.classList.remove('is-stable', 'is-error');
+          signalIndicator.classList.add('is-warning');
+        }
+
+        try {
+          // Cache-busting: добавляем timestamp, чтобы браузер не кэшировал
+          const response = await fetch(`signal-status.json?t=${Date.now()}`);
+          if (!response.ok) throw new Error('Network response was not ok');
+          const data = await response.json();
+
+          // Обновляем цифры
+          if (statTotal) statTotal.textContent = data.total;
+          if (statPassed) statPassed.textContent = data.passed;
+          if (statFailed) statFailed.textContent = data.failed;
+
+          // Обновляем дату
+          if (dateSpan && data.lastCheck) {
+            const date = new Date(data.lastCheck);
+            const formatted = date.toLocaleDateString('en-GB') + ' · ' + date.toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'});
+            dateSpan.textContent = formatted;
+          }
+
+          // Меняем индикатор
+          if (signalIndicator) {
+            signalIndicator.classList.remove('is-stable', 'is-warning', 'is-error');
+            if (data.failed > 0) {
+              signalIndicator.classList.add('is-error'); // Красный — есть ошибки
+            } else if (data.total === 0) {
+              signalIndicator.classList.add('is-warning'); // Желтый — нет данных
+            } else {
+              signalIndicator.classList.add('is-stable'); // Зеленый — всё ок
             }
+          }
 
-            // Возвращаем кнопку в исходное состояние через 3 секунды
-            setTimeout(() => {
-              this.textContent = originalText;
-              this.disabled = false;
-              this.style.backgroundColor = 'var(--neon-magenta)';
-            }, 3000);
-          }, 1500);
-        });
+          btnStartCheck.textContent = 'Report Received';
+          btnStartCheck.style.backgroundColor = 'var(--neon-lime)';
+        } catch (error) {
+          console.error('Failed to fetch signal status:', error);
+          if (signalIndicator) {
+            signalIndicator.classList.remove('is-stable', 'is-warning');
+            signalIndicator.classList.add('is-error');
+          }
+          btnStartCheck.textContent = 'Signal Lost';
+          btnStartCheck.style.backgroundColor = '#ff3333';
+        }
+
+        // Возвращаем кнопку в исходное состояние
+        setTimeout(() => {
+          btnStartCheck.textContent = originalText || 'Request Latest Report';
+          btnStartCheck.disabled = false;
+          btnStartCheck.style.backgroundColor = 'var(--neon-magenta)';
+        }, 2500);
+      }
+
+      if (btnStartCheck) {
+        btnStartCheck.addEventListener('click', updateDashboard);
+        
+        // Автоматически запрашиваем статус при загрузке страницы
+        updateDashboard();
       }
 
       // 2. Форма "Сообщить о помехе"
