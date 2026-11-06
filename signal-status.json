@@ -1,7 +1,42 @@
 {
-  "lastCheck": "2026-11-06T08:18:10.910Z",
+  "lastCheck": "2026-11-06T08:26:43.104Z",
   "total": 45,
   "passed": 45,
   "failed": 0,
-  "failedTests": []
+  "failedTests": [],
+  "channels": [
+    {
+      "name": "Route integrity",
+      "status": "pass"
+    },
+    {
+      "name": "Language channel sync",
+      "status": "pass"
+    },
+    {
+      "name": "Channel accessibility",
+      "status": "pass"
+    },
+    {
+      "name": "Outgoing signal quality",
+      "status": "pass"
+    },
+    {
+      "name": "Media integrity",
+      "status": "pass"
+    },
+    {
+      "name": "Relay stability",
+      "status": "pass"
+    }
+  ],
+  "history": [
+    {
+      "record": 117,
+      "date": "2026-11-06T08:26:43.104Z",
+      "status": "stable",
+      "total": 45,
+      "passed": 45
+    }
+  ]
 }
