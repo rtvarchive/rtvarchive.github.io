@@ -27,8 +27,8 @@ test.describe('Signal Room - Functionality & A11y', () => {
     await expect(signalPage.reportForm).toBeHidden();
   });
 
-  // test('TC-SIG-03: A11y scan for Signal Room', async ({ page }) => {
-  //   const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
-  //   expect(accessibilityScanResults.violations).toEqual([]);
-  // });
+	  test('TC-SIG-03: A11y scan for Signal Room', async ({ page }) => {
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
 });

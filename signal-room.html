@@ -494,15 +494,34 @@
           if (statPassed) statPassed.textContent = data.passed;
           if (statFailed) statFailed.textContent = data.failed;
 
-          const failedListContainer = document.getElementById('failed-tests-list');
+                    const failedListContainer = document.getElementById('failed-tests-list');
           const failedListUl = document.getElementById('failed-tests-ul');
           if (failedListContainer && failedListUl) {
             failedListUl.innerHTML = '';
             if (data.failedTests && data.failedTests.length > 0) {
               failedListContainer.style.display = 'block';
-              data.failedTests.forEach(testName => {
+              data.failedTests.forEach(test => {
+                const title = typeof test === 'string' ? test : test.title;
+                const error = typeof test === 'string' ? '' : test.error;
+
                 const li = document.createElement('li');
-                li.textContent = testName;
+                li.style.marginBottom = '1rem';
+                
+                const titleEl = document.createElement('div');
+                titleEl.style.fontWeight = 'bold';
+                titleEl.style.color = '#ff3333';
+                titleEl.textContent = title;
+                li.appendChild(titleEl);
+
+                if (error) {
+                  const errorEl = document.createElement('div');
+                  errorEl.style.fontSize = '0.75rem';
+                  errorEl.style.color = 'var(--txt-soft)';
+                  errorEl.style.marginTop = '0.25rem';
+                  errorEl.textContent = error;
+                  li.appendChild(errorEl);
+                }
+
                 failedListUl.appendChild(li);
               });
             } else {
