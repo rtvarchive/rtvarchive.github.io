@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master", "main" ]
   schedule:
-    - cron: '*/15 * * * *' # Запускать каждые 15 минут
+    - cron: '*/15 * * * *'
 
 jobs:
   test:
@@ -29,7 +29,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-        - name: Run Playwright tests
+    - name: Run Playwright tests
       run: npx playwright test
       continue-on-error: true
 
@@ -44,8 +44,6 @@ jobs:
         git config --local user.name "GitHub Action"
         git add signal-status.json
         git commit -m "Update signal status from CI [skip ci]" || echo "No changes to commit"
-        
-        # Если пуш отклонен, делаем pull --rebase и пробуем снова
         git push || (git pull --rebase origin main && git push)
 
     - uses: actions/upload-artifact@v4
