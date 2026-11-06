@@ -1,9 +1,13 @@
 {
-  "lastCheck": "2026-11-06T15:08:05.989Z",
-  "total": 42,
+  "lastCheck": "2026-11-06T15:22:32.996Z",
+  "total": 45,
   "passed": 42,
-  "failed": 0,
-  "failedTests": [],
+  "failed": 3,
+  "failedTests": [
+    "TC-SIG-03: A11y scan for Signal Room",
+    "TC-SIG-03: A11y scan for Signal Room",
+    "TC-SIG-03: A11y scan for Signal Room"
+  ],
   "channels": [
     {
       "name": "Route integrity",
@@ -15,7 +19,7 @@
     },
     {
       "name": "Channel accessibility",
-      "status": "pass"
+      "status": "fail"
     },
     {
       "name": "Outgoing signal quality",
@@ -31,6 +35,13 @@
     }
   ],
   "history": [
+    {
+      "record": 123,
+      "date": "2026-11-06T15:22:32.996Z",
+      "status": "unstable",
+      "total": 45,
+      "passed": 42
+    },
     {
       "record": 122,
       "date": "2026-11-06T15:08:05.989Z",
@@ -55,13 +66,6 @@
     {
       "record": 119,
       "date": "2026-11-06T11:57:11.634Z",
-      "status": "unstable",
-      "total": 45,
-      "passed": 42
-    },
-    {
-      "record": 118,
-      "date": "2026-11-06T11:28:57.143Z",
       "status": "unstable",
       "total": 45,
       "passed": 42
