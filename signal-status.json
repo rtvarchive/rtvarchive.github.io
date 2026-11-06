@@ -1,13 +1,9 @@
 {
-  "lastCheck": "2026-11-06T12:17:03.792Z",
-  "total": 45,
+  "lastCheck": "2026-11-06T14:22:40.917Z",
+  "total": 42,
   "passed": 42,
-  "failed": 3,
-  "failedTests": [
-    "TC-SIG-03: A11y scan for Signal Room",
-    "TC-SIG-03: A11y scan for Signal Room",
-    "TC-SIG-03: A11y scan for Signal Room"
-  ],
+  "failed": 0,
+  "failedTests": [],
   "channels": [
     {
       "name": "Route integrity",
@@ -31,10 +27,17 @@
     },
     {
       "name": "Relay stability",
-      "status": "fail"
+      "status": "pass"
     }
   ],
   "history": [
+    {
+      "record": 121,
+      "date": "2026-11-06T14:22:40.917Z",
+      "status": "stable",
+      "total": 42,
+      "passed": 42
+    },
     {
       "record": 120,
       "date": "2026-11-06T12:17:03.792Z",
