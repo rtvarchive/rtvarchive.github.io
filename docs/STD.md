@@ -77,9 +77,11 @@ Each test case includes:
 
 | ID | Title | Priority | Preconditions | Steps | Expected Result | Type |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **TC-SIG-01** | Request Latest Report | High | Open `signal-room-en.html` | 1. Click "Request Latest Report" button | Button text changes to "Requesting...", then "Report Received". Date updates to current time. | Functional |
-| **TC-SIG-02** | Report Interference Form | High | Open `signal-room-en.html` | 1. Fill "Frequency" and "Description"<br>2. Click "File Report" | Form submits, button text changes to "Report Filed". Form resets. | Functional |
-| **TC-SIG-03** | A11y Scan (Signal Room) | Medium | Open `signal-room-en.html` | 1. Run `axe` scan | No critical or serious violations. | A11y |
+| **TC-SIG-01** | Dynamic data rendering | High | Open `signal-room-en.html` | 1. Wait for `signal-status.json` to load<br>2. Check values for Checks/Passed/Issues | Values match the JSON file. The indicator is green. | Functional |
+| **TC-SIG-02** | Request Latest Report button | High | Open `signal-room-en.html` | 1. Click "Request Latest Report" button | Button text changes to "Requesting...", then "Report Received". The date updates. | Functional |
+| **TC-SIG-03** | Day/Night theme toggle | High | Open `signal-room-en.html` | 1. Click the toggle switch<br>2. Check `body` class | `body` gets `day-mode` class. The theme switches to light. The choice is saved in `localStorage`. | UI |
+| **TC-SIG-04** | Report Interference Form | High | Open `signal-room-en.html` | 1. Fill "Frequency" and "Description"<br>2. Click "File Report" | Form submits, button text changes to "Report Filed". Form resets. | Functional |
+| **TC-SIG-05** | A11y Scan (Signal Room) | Medium | Open `signal-room-en.html` | 1. Run `axe` scan | No critical or serious violations. | A11y |
 
 ---
 

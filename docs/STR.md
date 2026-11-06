@@ -54,11 +54,20 @@ During the testing cycle, several defects were identified and resolved:
 4. **Functional (Signal Room):**
    - *Issue:* The "Report Interference" form initially only simulated submission.
    - *Fix:* Integrated Web3Forms API and added a success popup, matching the functionality of the About page.   
+5. **CI/CD Integration (Signal Room):**
+   - *Issue:* The "Signal Room" page previously used hardcoded data. The CI bot pushed updates directly to `main`, causing `rejected` errors during local pushes.
+   - *Fix:* Implemented a dynamic `signal-status.json` generation. The GitHub Action now saves the result as an artifact, and the page fetches it via JavaScript. This eliminated push conflicts and made the dashboard display real-time test data.
 
-## 5. CI/CD Integration
+## 5. CI/CD Integration & Dynamic Dashboard
 A GitHub Actions workflow (`.github/workflows/playwright.yml`) was configured to run the entire test suite on every push to the `main` branch. 
-The CI pipeline installs dependencies, installs Playwright browsers, runs tests, and uploads the HTML report as an artifact. 
-The pipeline is currently green (passing).
+
+To avoid push conflicts with the bot, the workflow was updated:
+1. Tests generate a JSON report (`test-results.json`).
+2. A Node.js script (`generate-status.js`) parses it and creates `signal-status.json` with history and channel stats.
+3. The result is saved as an **artifact** (not pushed to the repo).
+4. The "Signal Room" page fetches this JSON dynamically, displaying real-time test results, channel integrity, and verification logs.
+
+This approach ensures a stable CI/CD pipeline and a fully functional, live dashboard on the website.
 
 ## 6. Conclusion and Recommendations
 The RADIUS ARCHIVE web application has successfully passed the QA phase. The core functionality (navigation, language switching, form submission, and modals) works reliably across all tested browsers. 
