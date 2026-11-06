@@ -13,7 +13,6 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     
-    # ВАЖНО: Даем права на запись, чтобы бот мог пушить файл
     permissions:
       contents: write
 
@@ -38,7 +37,6 @@ jobs:
       if: always()
       run: node generate-status.js
 
-    # ВОЗВРАЩАЕМ ШАГ ПУША, чтобы данные обновлялись на сайте
     - name: Commit and Push Signal Status
       if: always()
       run: |
@@ -46,7 +44,9 @@ jobs:
         git config --local user.name "GitHub Action"
         git add signal-status.json
         git commit -m "Update signal status from CI [skip ci]" || echo "No changes to commit"
-        git push
+        
+        # Если пуш отклонен, делаем pull --rebase и пробуем снова
+        git push || (git pull --rebase origin main && git push)
 
     - uses: actions/upload-artifact@v4
       if: always()
