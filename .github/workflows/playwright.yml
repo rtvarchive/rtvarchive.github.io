@@ -37,6 +37,15 @@ jobs:
       if: always()
       run: node generate-status.js
 
+    - name: Commit and Push Signal Status
+      if: always()
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add signal-status.json
+        git commit -m "Update signal status from CI [skip ci]" || echo "No changes to commit"
+        git push || (git pull --rebase origin main && git push)
+
     - uses: actions/upload-artifact@v4
       if: always()
       with:
