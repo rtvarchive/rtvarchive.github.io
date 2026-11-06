@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   
   <style>
-    /* Стили для Аппаратной */
     .signal-dashboard {
       background: rgba(11, 13, 20, 0.8);
       border: 1px solid var(--line-mid);
@@ -84,7 +83,6 @@
     .page-head__title { font-size: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); margin-bottom: 1rem; }
     .section__title { font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); }
 
-    /* Стили для блока с ошибками */
     #failed-tests-list {
       display: none; 
       margin-bottom: 2rem; 
@@ -98,7 +96,6 @@
     #failed-tests-list strong { color: #ff3333; display: block; margin-bottom: 0.5rem; }
     #failed-tests-ul { margin: 0; padding-left: 1.5rem; }
 
-    /* Стили для попапа */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -158,6 +155,122 @@
       transition: all 0.25s;
     }
     .modal-close-btn:hover { background: rgba(108, 143, 163, 0.1); }
+
+    .control-panel {
+      position: relative;
+      background: linear-gradient(145deg, #1a1d27, #0b0d14);
+      border: 2px solid #333;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5);
+    }
+    .panel-screw {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, #555, #222);
+      border-radius: 50%;
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.8);
+    }
+    .top-left { top: 10px; left: 10px; }
+    .top-right { top: 10px; right: 10px; }
+    .bottom-left { bottom: 10px; left: 10px; }
+    .bottom-right { bottom: 10px; right: 10px; }
+
+    .panel-content h3 {
+      font-family: var(--ff-mono);
+      text-transform: uppercase;
+      color: var(--neon-cyan);
+      letter-spacing: 0.1em;
+      margin-top: 0;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .toggle-label {
+      font-family: var(--ff-mono);
+      font-size: 0.85rem;
+      color: var(--txt-soft);
+      text-transform: uppercase;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    .toggle-switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #222;
+      transition: .4s;
+      border-radius: 34px;
+      border: 1px solid #444;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 3px;
+      background-color: #888;
+      transition: .4s;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    input:checked + .slider {
+      background-color: var(--neon-magenta);
+      box-shadow: 0 0 15px var(--neon-magenta);
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+      background-color: #fff;
+    }
+
+    .vu-meter {
+      font-family: var(--ff-mono);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--txt-soft);
+    }
+    .vu-meter-bar {
+      width: 100%;
+      height: 15px;
+      background: #111;
+      border: 1px solid #333;
+      margin-top: 0.5rem;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .vu-meter-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+      box-shadow: 0 0 10px var(--neon-magenta);
+      transition: width 0.5s ease;
+    }
+
+    .panel-content.signal-dashboard {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .control-panel .panel-content {
+      padding: 1rem 1.5rem;
+    }
   </style>
 </head>
 <body>
@@ -205,33 +318,65 @@
 
     <div class="shell" style="padding-top: 3rem; padding-bottom: 3rem;">
       
-      <div class="signal-dashboard" data-testid="signal-dashboard">
-        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-          <span class="signal-indicator is-stable" data-testid="signal-indicator"></span>
-          <h2 style="font-family: var(--ff-display); font-size: 2rem; margin: 0;">Signal Status</h2>
+      <div class="control-panel">
+        <div class="panel-screw top-left"></div>
+        <div class="panel-screw top-right"></div>
+        <div class="panel-screw bottom-left"></div>
+        <div class="panel-screw bottom-right"></div>
+        
+        <div class="panel-content">
+          <h3>Broadcast Mode</h3>
+          
+          <div class="toggle-container">
+            <span class="toggle-label">Day Shift</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="broadcast-mode" checked>
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Night Shift</span>
+          </div>
+          
+          <div class="vu-meter">
+            <div class="vu-meter-label">Signal Level</div>
+            <div class="vu-meter-bar">
+              <div class="vu-meter-fill" style="width: 85%;"></div>
+            </div>
+          </div>
         </div>
-        <p style="font-family: var(--ff-mono); color: var(--txt-soft); margin-bottom: 2rem;">
-          Last check: <span data-testid="last-check-date">04.11.2026 · 14:22</span> · Channel: Stable
-        </p>
-        <div style="display: flex; gap: 2rem; margin-bottom: 2rem; font-family: var(--ff-mono);">
-          <span>Checks: <b data-testid="stat-total">36</b></span>
-          <span style="color: var(--neon-lime);">Passed: <b data-testid="stat-passed">36</b></span>
-          <span style="color: #ff3333;">Issues: <b data-testid="stat-failed">0</b></span>
-        </div>
+      </div>
 
-        <!-- БЛОК ДЛЯ ВЫВОДА ОШИБОК -->
-        <div id="failed-tests-list">
-          <strong>DETECTED INTERFERENCE:</strong>
-          <ul id="failed-tests-ul"></ul>
-        </div>
+      <div class="control-panel">
+        <div class="panel-screw top-left"></div>
+        <div class="panel-screw top-right"></div>
+        <div class="panel-screw bottom-left"></div>
+        <div class="panel-screw bottom-right"></div>
+        
+        <div class="panel-content signal-dashboard" data-testid="signal-dashboard">
+          <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+            <span class="signal-indicator is-stable" data-testid="signal-indicator"></span>
+            <h2 style="font-family: var(--ff-display); font-size: 2rem; margin: 0;">Signal Status</h2>
+          </div>
+          <p style="font-family: var(--ff-mono); color: var(--txt-soft); margin-bottom: 2rem;">
+            Last check: <span data-testid="last-check-date">04.11.2026 · 14:22</span> · Channel: Stable
+          </p>
+          <div style="display: flex; gap: 2rem; margin-bottom: 2rem; font-family: var(--ff-mono);">
+            <span>Checks: <b data-testid="stat-total">36</b></span>
+            <span style="color: var(--neon-lime);">Passed: <b data-testid="stat-passed">36</b></span>
+            <span style="color: #ff3333;">Issues: <b data-testid="stat-failed">0</b></span>
+          </div>
 
-        <button class="btn-primary" data-testid="btn-start-check">Request Latest Report</button>
+          <div id="failed-tests-list">
+            <strong>DETECTED INTERFERENCE:</strong>
+            <ul id="failed-tests-ul"></ul>
+          </div>
+
+          <button class="btn-primary" data-testid="btn-start-check">Request Latest Report</button>
+        </div>
       </div>
 
       <section style="margin-bottom: 4rem;">
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Channel <em>Integrity</em></h2>
         <ul class="check-list" data-testid="check-list" id="channel-list">
-          <!-- Сюда JS будет вставлять элементы -->
           <li><span>Loading...</span> <span class="check-status">...</span></li>
         </ul>
       </section>
@@ -239,7 +384,6 @@
       <section style="margin-bottom: 4rem;">
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Verification <em>Log</em></h2>
         <div data-testid="verification-log" id="verification-log-list">
-          <!-- Сюда JS будет вставлять записи -->
           <div class="log-entry">Loading history...</div>
         </div>
       </section>
@@ -302,7 +446,6 @@
     </div>
   </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО (ПОПАП) -->
   <div id="success-modal" class="modal-overlay" data-testid="submission-popup">
     <div class="modal-box">
       <div class="modal-icon">✓</div>
@@ -319,6 +462,26 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       
+      const broadcastToggle = document.getElementById('broadcast-mode');
+      if (broadcastToggle) {
+        const savedMode = localStorage.getItem('radius-broadcast-mode');
+        if (savedMode === 'day') {
+          broadcastToggle.checked = false;
+          document.body.classList.add('day-mode');
+        } else {
+          broadcastToggle.checked = true;
+        }
+        broadcastToggle.addEventListener('change', function() {
+          if (this.checked) {
+            document.body.classList.remove('day-mode');
+            localStorage.setItem('radius-broadcast-mode', 'night');
+          } else {
+            document.body.classList.add('day-mode');
+            localStorage.setItem('radius-broadcast-mode', 'day');
+          }
+        });
+      }
+
       const btnStartCheck = document.querySelector('[data-testid="btn-start-check"]');
       const signalIndicator = document.querySelector('[data-testid="signal-indicator"]');
       const dateSpan = document.querySelector('[data-testid="last-check-date"]');
@@ -343,12 +506,10 @@
           if (!response.ok) throw new Error('Network response was not ok');
           const data = await response.json();
 
-          // 1. Обновляем цифры
           if (statTotal) statTotal.textContent = data.total;
           if (statPassed) statPassed.textContent = data.passed;
           if (statFailed) statFailed.textContent = data.failed;
 
-          // 2. Вывод ошибок
           const failedListContainer = document.getElementById('failed-tests-list');
           const failedListUl = document.getElementById('failed-tests-ul');
           if (failedListContainer && failedListUl) {
@@ -365,7 +526,6 @@
             }
           }
 
-          // 3. РЕНДЕР ЦЕЛОСТНОСТИ КАНАЛОВ
           const channelList = document.getElementById('channel-list');
           if (channelList && data.channels) {
             channelList.innerHTML = '';
@@ -379,7 +539,6 @@
             });
           }
 
-          // 4. РЕНДЕР ЖУРНАЛА ВЕРИФИКАЦИИ
           const logList = document.getElementById('verification-log-list');
           if (logList && data.history) {
             logList.innerHTML = '';
@@ -400,7 +559,6 @@
             });
           }
 
-          // 5. Обновляем дату и индикатор
           if (dateSpan && data.lastCheck) {
             const date = new Date(data.lastCheck);
             const formatted = date.toLocaleDateString('en-GB') + ' · ' + date.toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'});
@@ -439,10 +597,9 @@
 
       if (btnStartCheck) {
         btnStartCheck.addEventListener('click', updateDashboard);
-        updateDashboard(); // Автозапуск при загрузке
+        updateDashboard();
       }
 
-      // Логика попапа и формы (осталась без изменений)
       const reportForm = document.getElementById('report-form');
       const modal = document.getElementById('success-modal');
       const closeModalBtn = document.getElementById('close-modal');
