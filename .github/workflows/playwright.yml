@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     
     permissions:
-      contents: write
+      contents: read
 
     steps:
     - uses: actions/checkout@v4
@@ -27,27 +27,23 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    # Генерируем JSON-отчет
     - name: Run Playwright tests
       run: npx playwright test --reporter=json > test-results.json
-      continue-on-error: true # Продолжаем, даже если тесты упали
+      continue-on-error: true
 
-    # Запускаем наш отдельный скрипт
     - name: Generate Signal Status
       if: always()
       run: node generate-status.js
 
-    # Пушим результат
-    - name: Commit and Push Signal Status
+    # Бот сохраняет результат как артефакт, а НЕ пушит в репозиторий
+    - name: Upload Signal Status Artifact
       if: always()
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add signal-status.json
-        git commit -m "Update signal status from CI [skip ci]" || echo "No changes to commit"
-        git push
+      uses: actions/upload-artifact@v4
+      with:
+        name: signal-status
+        path: signal-status.json
+        retention-days: 5
 
-    # Оставляем артефакт
     - uses: actions/upload-artifact@v4
       if: always()
       with:
