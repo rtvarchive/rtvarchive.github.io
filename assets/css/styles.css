@@ -2822,3 +2822,31 @@ body.day-mode .vu-meter-bar {
   margin-top: 0;
   font-size: 1.5rem;
 }
+
+/* =============================================================
+   MOBILE FIXES FOR SIGNAL ROOM (RU + EN)
+============================================================= */
+@media (max-width: 600px) {
+  /* 1. Фиксим блок статистики (Проверок/Пройдено/Замечаний) */
+  .signal-dashboard > div[style*="display: flex"] {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  /* 2. Фиксим список каналов (Целостность маршрутов и т.д.) */
+  .check-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  /* 3. Немного уменьшаем заголовок "Состояние сигнала", чтобы он не раздувался */
+  .signal-dashboard h2 {
+    font-size: 1.5rem !important;
+  }
+
+  /* 4. Фикс обрезки заголовка "Дежурная смена" сверху */
+  .page-head {
+    padding-top: 1.5rem !important; /* Чуть больше отступа сверху */
+  }
+}
