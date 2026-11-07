@@ -3,22 +3,23 @@
 <script data-goatcounter="https://rtvarchive.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 <head>
-<script>
-  // Если пользователь попал на 404 из папки /ru/, перенаправляем его на русскую 404
-  if (window.location.pathname.includes('/ru/')) {
-    window.location.replace('/ru/404.html');
-  }
-</script>
+<!doctype html>
+<html lang="en">
+<script data-goatcounter="https://rtvarchive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<head>
+  <!-- ВСТАВЬ СЮДА ЭТОТ БЛОК -->
+  <script>
+    if (window.location.pathname.indexOf('/ru/') !== -1) {
+      window.location.href = 'ru/404.html';
+    }
+  </script>
+  <!-- КОНЕЦ БЛОКА -->
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>404 · Signal Lost · RADIUS ARCHIVE</title>
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
-
-  <style>
+  <!-- ... дальше твой код ... -->
     /* Стили только для страницы 404 */
     body {
       margin: 0;
