@@ -3,6 +3,12 @@
 <script data-goatcounter="https://rtvarchive.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 <head>
+<script>
+  // Если пользователь попал на 404 из папки /ru/, перенаправляем его на русскую 404
+  if (window.location.pathname.includes('/ru/')) {
+    window.location.replace('/ru/404.html');
+  }
+</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>404 · Signal Lost · RADIUS ARCHIVE</title>
