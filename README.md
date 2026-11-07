@@ -48,3 +48,35 @@ Design tokens (colors, fonts, spacing) are defined as CSS custom properties at t
 
 The project is prepared for automated testing (Playwright). 
 Key elements are marked with `data-testid` attributes (e.g., `nav-home`, `artist-card-01`, `listen-button`, `submission-form`, `channel-605`) to ensure stable selectors for QA automation.
+
+-----------------------------------------------------------
+
+
+graph TD
+    %% Styles
+    classDef git fill:#e8d8bb,stroke:#c83d73,stroke-width:2px,color:#0b0d14;
+    classDef action fill:#1c1e2b,stroke:#6c8fa3,stroke-width:2px,color:#e8d8bb;
+    classDef test fill:#76527f,stroke:#c83d73,stroke-width:2px,color:#ffffff;
+    classDef result fill:#0b0d14,stroke:#7b9c91,stroke-width:2px,color:#7b9c91;
+    classDef fail fill:#1c1e2b,stroke:#ff3333,stroke-width:2px,color:#ff3333;
+
+    %% Nodes
+    A[Developer]:::git -->|git push / schedule 4h| B[GitHub Repository]:::git
+    B --> C{Event}:::action
+    C -->|Push / PR| D[GitHub Actions]:::action
+    C -->|Cron: 0 */4 * * *| D
+    
+    D --> E[Install Playwright Browsers]:::action
+    E --> F[Run Playwright Tests]:::test
+    
+    F -->|45 tests| G{All Tests Passed?}:::test
+    
+    G -->|Yes| H[Generate signal-status.json]:::result
+    G -->|No| I[Log Errors to JSON]:::fail
+    
+    H --> J[Commit & Push JSON]:::result
+    I --> J
+    
+    J --> K[GitHub Pages]:::result
+    K --> L[Signal Room Page]:::result
+    L -->|fetch signal-status.json| M[Dynamic Dashboard]:::result
