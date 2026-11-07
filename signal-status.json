@@ -1,8 +1,8 @@
 {
-  "lastCheck": "2026-11-07T16:56:03.386Z",
+  "lastCheck": "2026-11-07T17:31:29.157Z",
   "total": 57,
-  "passed": 57,
-  "failed": 0,
+  "passed": 56,
+  "failed": 1,
   "failedTests": [],
   "channels": [
     {
@@ -32,6 +32,13 @@
   ],
   "history": [
     {
+      "record": 141,
+      "date": "2026-11-07T17:31:29.156Z",
+      "status": "unstable",
+      "total": 57,
+      "passed": 56
+    },
+    {
       "record": 140,
       "date": "2026-11-07T16:56:03.386Z",
       "status": "stable",
@@ -55,13 +62,6 @@
     {
       "record": 137,
       "date": "2026-11-07T13:38:13.596Z",
-      "status": "stable",
-      "total": 57,
-      "passed": 57
-    },
-    {
-      "record": 136,
-      "date": "2026-11-07T13:30:27.952Z",
       "status": "stable",
       "total": 57,
       "passed": 57
