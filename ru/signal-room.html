@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Аппаратная · RADIUS ARCHIVE</title>
   <meta name="description" content="Дежурная смена RADIUS ARCHIVE. Проверка целостности сигнала, журнал верификации и рапорты о помехах." />
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
   
   <style>
     .signal-dashboard {
@@ -297,7 +297,7 @@
       </ul>
     </nav>
     <div class="topbar__languages">
-      <a href="signal-room-en.html" class="language-link" lang="en" data-testid="lang-en">EN</a>
+      <a href="../signal-room-en.html" class="language-link" lang="en" data-testid="lang-en">EN</a>
       <span aria-hidden="true"> | </span>
       <a href="signal-room.html" class="language-link is-active" lang="ru" aria-current="page" data-testid="lang-ru">RU</a>
     </div>
@@ -325,12 +325,12 @@
         <div class="panel-screw bottom-right"></div>
         
         <div class="panel-content">
-                    <h2 class="panel-title">Режим вещания</h2>
+          <h2 class="panel-title">Режим вещания</h2>
           
           <div class="toggle-container">
             <span class="toggle-label">Дневной эфир</span>
             <label class="toggle-switch">
-                        <input type="checkbox" id="broadcast-mode" checked aria-label="Переключатель режима вещания">
+              <input type="checkbox" id="broadcast-mode" checked aria-label="Переключатель режима вещания">
               <span class="slider round"></span>
             </label>
             <span class="toggle-label">Ночной эфир</span>
@@ -419,7 +419,7 @@
     </div>
   </main>
 
-    <footer class="foot" data-testid="footer">
+  <footer class="foot" data-testid="footer">
     <div class="foot__grid">
       <div class="foot__col">
         <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
@@ -438,7 +438,7 @@
       <div class="foot__col">
         <h2 class="foot__heading">Архив в сети</h2>
         <ul>
-          <li><a href="index.html">English Version</a></li>
+          <li><a href="../index.html">English Version</a></li>
           <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
           <li><a href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">Audius</a></li>
         </ul>
@@ -451,7 +451,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="../assets/js/main.js"></script>
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -496,7 +496,7 @@
         }
 
         try {
-          const response = await fetch(`signal-status.json?t=${Date.now()}`);
+          const response = await fetch(`../signal-status.json?t=${Date.now()}`);
           if (!response.ok) throw new Error('Network response was not ok');
           const data = await response.json();
 
@@ -504,7 +504,7 @@
           if (statPassed) statPassed.textContent = data.passed;
           if (statFailed) statFailed.textContent = data.failed;
 
-                    const failedListContainer = document.getElementById('failed-tests-list');
+          const failedListContainer = document.getElementById('failed-tests-list');
           const failedListUl = document.getElementById('failed-tests-ul');
           if (failedListContainer && failedListUl) {
             failedListUl.innerHTML = '';
@@ -539,11 +539,10 @@
             }
           }
 
-                    const channelList = document.getElementById('channel-list');
+          const channelList = document.getElementById('channel-list');
           if (channelList && data.channels) {
             channelList.innerHTML = '';
             
-            // Словарь для перевода названий каналов на русский
             const channelNamesRu = {
               'Route integrity': 'Целостность маршрутов',
               'Language channel sync': 'Синхронизация языков',
@@ -558,10 +557,7 @@
               const statusClass = ch.status === 'pass' ? 'pass' : 'fail';
               const statusText = ch.status === 'pass' ? '✓ Пройдено' : '✗ Ошибка';
               const style = ch.status === 'fail' ? 'color: #ff3333;' : '';
-              
-              // Берем русское название из словаря, если есть, иначе оставляем английское
               const displayName = channelNamesRu[ch.name] || ch.name; 
-              
               li.innerHTML = `<span>${displayName}</span> <span class="check-status ${statusClass}" style="${style}">${statusText}</span>`;
               channelList.appendChild(li);
             });

@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Room · RADIUS ARCHIVE</title>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  
+  <style>
+    .archive-room-layout {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 2rem;
+      padding: 3rem var(--gutter);
+      max-width: var(--max);
+      margin-inline: auto;
+      min-height: 80vh;
+    }
+
+    .card-catalog {
+      background: #3b2a1a;
+      background-image: linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(0deg, rgba(0,0,0,0.2) 2px, transparent 2px);
+      background-size: 100% 100%, 100% 25%;
+      border: 8px solid #2a1e12;
+      border-radius: 4px;
+      padding: 1.5rem 1rem;
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 10px 10px 30px rgba(0,0,0,0.6);
+      position: relative;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .search-box { margin-bottom: 1rem; }
+    .search-box input {
+      width: 100%; padding: 0.8rem; background: #1a1e24; border: 2px solid #111;
+      color: var(--txt-bright); font-family: var(--ff-mono); border-radius: 2px;
+    }
+    .search-box input:focus { outline: none; border-color: var(--neon-cyan); }
+
+    .card-list {
+      list-style: none; padding: 0 0.5rem 0 0; margin: 0; 
+      overflow-y: auto; overflow-x: hidden; flex-grow: 1;
+      scrollbar-width: thin; scrollbar-color: #555 #1a1e24;
+    }
+    .card-list::-webkit-scrollbar { width: 6px; }
+    .card-list::-webkit-scrollbar-track { background: #1a1e24; }
+    .card-list::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
+
+    .card-folder { margin-bottom: 0.5rem; border: 1px solid #2a1e12; background: #4a3520; }
+    .folder-header {
+      padding: 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      color: var(--txt-bright); font-family: var(--ff-body); font-weight: 700;
+    }
+    .folder-header:hover { background: #5a4028; }
+    .folder-header .arrow { font-size: 0.8rem; transition: transform 0.3s; }
+    .card-folder.is-open .folder-header .arrow { transform: rotate(180deg); }
+    
+    .folder-title { display: flex; align-items: center; gap: 0.8rem; }
+    .project-num { font-family: var(--ff-mono); font-size: 0.7rem; color: var(--neon-magenta); opacity: 0.8; }
+    .project-name { font-size: 1.1rem; }
+
+    .folder-content { display: none; list-style: none; padding: 0 0 0.5rem 1rem; margin: 0; }
+    .card-folder.is-open .folder-content { display: block; }
+
+    .card-item {
+      background: #e8d8bb; color: #1c1e2b; padding: 0.8rem; margin: 0.5rem 0.5rem 0.5rem 0;
+      border-radius: 2px; cursor: pointer; box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+      transition: transform 0.2s; position: relative; border-left: 4px solid #c83d73;
+      width: 100%; box-sizing: border-box;
+    }
+    .card-item:hover { transform: translateX(5px); background: #fff; }
+    .card-item.active { background: #fff; border-left-color: var(--neon-cyan); transform: translateX(10px); }
+    .card-item h4 { font-family: var(--ff-body); font-size: 0.95rem; margin: 0 0 0.2rem 0; font-weight: 700; }
+    .card-item p { font-family: var(--ff-mono); font-size: 0.7rem; margin: 0; opacity: 0.7; }
+
+    /* Маркер типа (Трек/Плейлист) */
+    .card-item::before {
+      content: 'TRACK';
+      font-family: var(--ff-mono);
+      font-size: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--neon-cyan);
+      display: block;
+      margin-bottom: 0.2rem;
+      opacity: 0.7;
+    }
+    .card-item[data-playlist-id]::before { content: 'PLAYLIST'; color: var(--neon-magenta); }
+
+    /* Штамп на карточке */
+    .card-item::after {
+      content: 'ARCHIVE COPY';
+      position: absolute; top: 5px; right: 5px;
+      font-family: var(--ff-mono); font-size: 0.45rem;
+      color: rgba(200, 61, 115, 0.4); border: 1px solid rgba(200, 61, 115, 0.4);
+      padding: 1px 4px; transform: rotate(15deg); pointer-events: none;
+    }
+
+    .tv-station { display: flex; flex-direction: column; gap: 2rem; }
+    .crt-tv-container { width: 100%; max-width: 800px; margin: 0 auto; }
+    .crt-tv-body {
+      background: #2a2a2a; border-radius: 20px; padding: 1.5rem;
+      box-shadow: inset -10px -10px 20px rgba(0,0,0,0.8), inset 5px 5px 15px rgba(255,255,255,0.1), 0 20px 50px rgba(0,0,0,0.9);
+      border: 2px solid #111;
+    }
+    .crt-tv-header {
+      display: flex; justify-content: space-between; font-family: var(--ff-mono);
+      color: #888; font-size: 0.75rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .crt-screen-wrapper {
+      position: relative; width: 100%; aspect-ratio: 4 / 3; background: #000;
+      border-radius: 30px; overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(0,0,0,1), inset 0 0 10px rgba(108, 143, 163, 0.3);
+      border: 8px solid #111;
+    }
+    .crt-screen {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 100%; height: 56.25%;
+    }
+    .crt-glass-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%);
+      box-shadow: inset 0 0 100px rgba(0,0,0,0.6); z-index: 10;
+    }
+    .crt-scanlines {
+      position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px);
+      z-index: 11;
+    }
+
+    .crt-screen-wrapper.is-loading .crt-screen {
+      background: #000 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.4"/></svg>') repeat;
+      background-size: 200px 200px;
+      animation: noise 0.2s infinite;
+    }
+    @keyframes noise {
+      0% { transform: translate(0,0); }
+      20% { transform: translate(-5%,5%); }
+      40% { transform: translate(-5%,-5%); }
+      60% { transform: translate(5%,0); }
+      80% { transform: translate(5%,-5%); }
+      100% { transform: translate(0,0); }
+    }
+
+    .crt-tv-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+    .crt-knobs { display: flex; gap: 1rem; }
+    .knob {
+      width: 45px; height: 45px; border-radius: 50%;
+      background: radial-gradient(circle, #444, #111); border: 2px solid #000;
+      color: var(--txt-bright); font-size: 1.2rem; cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.5); transition: transform 0.1s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .knob:active { transform: scale(0.95); }
+    .knob:disabled { opacity: 0.3; cursor: not-allowed; }
+    .crt-speaker-grill {
+      width: 100px; height: 30px; background: repeating-linear-gradient(90deg, #111 0px, #111 2px, #333 2px, #333 4px);
+      border-radius: 4px; opacity: 0.5;
+    }
+
+    .archive-log {
+      background: #0b0d14; border: 1px solid var(--line-mid); padding: 1rem;
+      font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-lime);
+      min-height: 100px; border-left: 4px solid var(--neon-cyan);
+    }
+
+    @media (max-width: 900px) {
+      .archive-room-layout { grid-template-columns: 1fr; }
+      .card-catalog { height: 400px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <aside class="side-rail" aria-label="RADIUS ARCHIVE">
+    <div class="side-rail__mark">RADIUS · ARCHIVE</div>
+    <span class="side-rail__pulse" aria-hidden="true"></span>
+    <div class="side-rail__year">EST. 1976 · RADINSK</div>
+  </aside>
+
+  <header class="topbar">
+    <div class="topbar__signal">
+      <span class="dot" aria-hidden="true"></span>
+      <span>RADIUS ARCHIVE</span>
+    </div>
+    <nav id="primary-nav" aria-label="Primary">
+      <ul class="nav__list" data-nav-list>
+        <li><a class="nav__link" href="index.html">Home</a></li>
+        <li><a class="nav__link" href="projects.html">Projects</a></li>
+        <li><a class="nav__link is-active" href="archive-room-en.html">Archive Room</a></li>
+        <li><a class="nav__link" href="about.html">About</a></li>
+        <li><a class="nav__link" href="signal-room-en.html">Signal Room</a></li>
+      </ul>
+    </nav>
+    <div class="topbar__languages">
+      <a href="archive-room-en.html" class="language-link is-active" lang="en">EN</a>
+      <span aria-hidden="true"> | </span>
+      <a href="ru/archive-room.html" class="language-link" lang="ru">RU</a>
+    </div>
+    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-nav">Menu</button>
+  </header>
+
+  <main class="page" id="main">
+    
+    <section class="page-head">
+      <p class="page-head__crumb">
+        <a href="index.html">RADIUS ARCHIVE</a> / Archive Room
+      </p>
+      <h1 class="page-head__title">Archive <em>Room</em></h1>
+      <div class="page-head__sub">
+        <p>This cabinet holds digitized tapes and cassettes recovered from the archives of Radinsk. Find the project you need, open the folder, and play the recording on the CRT.</p>
+      </div>
+    </section>
+
+    <div class="archive-room-layout">
+      
+      <aside class="card-catalog">
+        <div class="search-box">
+          <input type="text" id="archive-search" placeholder="Search fragments...">
+        </div>
+        
+        <ul class="card-list" id="card-list">
+          
+          <!-- PROJECT 1 -->
+          <li class="card-folder">
+            <div class="folder-header">
+              <div class="folder-title">
+                <span class="project-num">P · 01</span>
+                <span class="project-name">605 Mikrorayon</span>
+              </div>
+              <span class="arrow">▼</span>
+            </div>
+            <ul class="folder-content">
+              <li class="card-item" data-id="605-1" data-video-id="4K5mEcrHPzQ">
+                <h4>I Saw a Dream (1988)</h4>
+                <p>Cassette</p>
+              </li>
+            </ul>
+          </li>
+
+          <!-- PROJECT 2 -->
+          <li class="card-folder">
+            <div class="folder-header">
+              <div class="folder-title">
+                <span class="project-num">P · 02</span>
+                <span class="project-name">PHASE/ZERO</span>
+              </div>
+              <span class="arrow">▼</span>
+            </div>
+            <ul class="folder-content">
+              <li class="card-item" data-id="pz-1" data-video-id="4K5mEcrHPzQ">
+                <h4>Institute of Silence (1989)</h4>
+                <p>Tape</p>
+              </li>
+            </ul>
+          </li>
+
+          <!-- PROJECT 3 -->
+          <li class="card-folder">
+            <div class="folder-header">
+              <div class="folder-title">
+                <span class="project-num">P · 03</span>
+                <span class="project-name">Ritual-84</span>
+              </div>
+              <span class="arrow">▼</span>
+            </div>
+            <ul class="folder-content">
+              <li class="card-item" data-id="ritual-1" data-video-id="4K5mEcrHPzQ">
+                <h4>Summer Expedition (1984)</h4>
+                <p>Field recording</p>
+              </li>
+            </ul>
+          </li>
+
+          <!-- PROJECT 4 -->
+          <li class="card-folder">
+            <div class="folder-header">
+              <div class="folder-title">
+                <span class="project-num">P · 11</span>
+                <span class="project-name">Oriental Bazaar</span>
+              </div>
+              <span class="arrow">▼</span>
+            </div>
+            <ul class="folder-content">
+              <li class="card-item" data-id="ob-1" data-video-id="4K5mEcrHPzQ">
+                <h4>Star Road (1984)</h4>
+                <p>Magnetic tape</p>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </aside>
+
+      <main class="tv-station">
+        <div class="crt-tv-container">
+          <div class="crt-tv-body">
+            <div class="crt-tv-header">
+              <span class="crt-brand">RADIUS TV</span>
+              <span class="crt-channel" id="current-channel">CHANNEL: --</span>
+            </div>
+            
+            <div class="crt-screen-wrapper" id="screen-wrapper">
+              <div id="youtube-player" class="crt-screen"></div>
+              <div class="crt-glass-overlay"></div>
+              <div class="crt-scanlines"></div>
+            </div>
+
+            <div class="crt-tv-controls">
+              <div class="crt-knobs">
+                <button class="knob" id="prev-btn" title="Previous">◀</button>
+                <button class="knob" id="play-btn" title="Play">▶</button>
+                <button class="knob" id="next-btn" title="Next">▶|</button>
+              </div>
+              <div class="crt-speaker-grill"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="archive-log" id="archive-log">
+          <p>> Waiting for fragment selection...</p>
+        </div>
+      </main>
+      
+    </div>
+  </main>
+
+  <footer class="foot" data-testid="footer">
+    <div class="foot__grid">
+      <div class="foot__col">
+        <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
+        <p class="foot__about">An independent label grown from the archives of the RADIUS Television Center (Radinsk, 1976–1998).</p>
+      </div>
+      <div class="foot__col">
+        <h2 class="foot__heading">Explore</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="archive-room-en.html">Archive Room</a></li>
+          <li><a href="signal-room-en.html">Signal Room</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h2 class="foot__heading">Follow the Archive</h2>
+        <ul>
+          <li><a href="ru/archive-room.html">Русская Версия</a></li>
+          <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><a href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">Audius</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__btm">
+      <span>© <span data-year>2026</span> RADIUS ARCHIVE · RADINSK</span>
+      <span><strong>● ARCHIVE ACTIVE</strong> · EST. 1976</span>
+      <span>LOST · FOUND · RECONSTRUCTED</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  
+  <script>
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    var currentIndex = -1;
+    var cards = document.querySelectorAll('.card-item');
+    var playBtn = document.getElementById('play-btn');
+    var screenWrapper = document.getElementById('screen-wrapper');
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtube-player', {
+        height: '100%',
+        width: '100%',
+        videoId: '', 
+        playerVars: { 'enablejsapi': 1, 'origin': window.location.origin, 'rel': 0 },
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING) {
+        playBtn.innerHTML = '❚❚';
+        playBtn.title = 'Pause';
+        screenWrapper.classList.remove('is-loading');
+      } else if (event.data == YT.PlayerState.BUFFERING) {
+        screenWrapper.classList.add('is-loading');
+      } else {
+        playBtn.innerHTML = '▶';
+        playBtn.title = 'Play';
+        screenWrapper.classList.remove('is-loading');
+      }
+    }
+
+    // Лорные фразы
+    const lorePhrases = [
+      ">> Fragment loaded. Signal integrity: 87%.",
+      ">> Warning: magnetic tape degradation detected in sector 3.",
+      ">> Archival reconstruction complete. Original artifacts preserved.",
+      ">> Signal stable. Transmission from Radinsk confirmed.",
+      ">> Unknown interference detected. Source: unknown.",
+      ">> Restoration process initiated. Quality: 78%."
+    ];
+
+    // ИСПРАВЛЕННЫЙ ПОИСК (открывает папки с результатами)
+    document.getElementById('archive-search').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const folders = document.querySelectorAll('.card-folder');
+
+      folders.forEach(folder => {
+        let hasVisibleCards = false;
+        const items = folder.querySelectorAll('.card-item');
+        
+        items.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          if (text.includes(query)) {
+            item.style.display = 'block';
+            hasVisibleCards = true;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        if (hasVisibleCards || query === '') {
+          folder.style.display = 'block';
+          folder.classList.add('is-open');
+        } else {
+          folder.style.display = 'none';
+          folder.classList.remove('is-open');
+        }
+      });
+    });
+
+    cards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        cards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        currentIndex = index;
+        screenWrapper.classList.add('is-loading');
+        
+        const videoId = card.getAttribute('data-video-id');
+        const playlistId = card.getAttribute('data-playlist-id');
+        const title = card.querySelector('h4').textContent;
+        const desc = card.querySelector('p') ? card.querySelector('p').textContent : '';
+        
+        if (player) {
+          if (playlistId) {
+            player.loadPlaylist({ list: playlistId });
+            player.playVideo();
+          } else if (videoId) {
+            player.loadVideoById(videoId);
+            player.playVideo();
+          }
+        }
+        
+        const randomPhrase = lorePhrases[Math.floor(Math.random() * lorePhrases.length)];
+        
+        document.getElementById('archive-log').innerHTML = `
+          <p>> Loaded fragment: ${title} — ${desc}</p>
+          <p style="opacity: 0.7; margin-top: 0.5rem;">${randomPhrase}</p>
+        `;
+        document.getElementById('current-channel').textContent = `CHANNEL: ${card.getAttribute('data-id')}`;
+      });
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (player && player.getPlayerState() === 1) {
+        player.pauseVideo();
+      } else if (player) {
+        player.playVideo();
+      }
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      if (currentIndex < cards.length - 1) cards[currentIndex + 1].click();
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if (currentIndex > 0) cards[currentIndex - 1].click();
+    });
+
+    // Аккордеон
+    document.querySelectorAll('.folder-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const folder = header.closest('.card-folder');
+        folder.classList.toggle('is-open');
+      });
+    });
+  </script>
+</body>
+</html>

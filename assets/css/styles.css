@@ -2850,3 +2850,82 @@ body.day-mode .vu-meter-bar {
     padding-top: 1.5rem !important; /* Чуть больше отступа сверху */
   }
 }
+
+    .card-folder {
+      margin-bottom: 0.5rem;
+      border: 1px solid #2a1e12;
+      background: #4a3520; /* Чуть светлее шкафа */
+    }
+    .folder-header {
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--txt-bright);
+      font-family: var(--ff-body);
+      font-weight: 700;
+    }
+    .folder-header:hover { background: #5a4028; }
+    .folder-content {
+      display: none;
+      list-style: none;
+      padding: 0 0 0.5rem 1rem;
+      margin: 0;
+    }
+    .card-folder.is-open .folder-content { display: block; }
+    .card-folder.is-open .arrow { transform: rotate(180deg); }
+    .folder-content .card-item {
+      background: #e8d8bb;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+      padding: 0.8rem;
+    }
+    .folder-content .card-item h4 {
+      font-size: 0.9rem;
+      margin: 0 0 0.2rem 0;
+    }
+	
+	    /* Штамп на карточке */
+    .card-item::after {
+      content: 'ARCHIVE COPY';
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-family: var(--ff-mono);
+      font-size: 0.5rem;
+      color: rgba(200, 61, 115, 0.4);
+      border: 1px solid rgba(200, 61, 115, 0.4);
+      padding: 1px 4px;
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+	
+	    /* Стили для заголовков проектов */
+    .folder-title {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .project-num {
+      font-family: var(--ff-mono);
+      font-size: 0.7rem;
+      color: var(--neon-magenta);
+      opacity: 0.8;
+    }
+    .project-name {
+      font-size: 1.1rem;
+    }
+
+    /* Стили для маркеров типа (Трек/Плейлист) */
+    .item-type {
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--neon-cyan);
+      margin-bottom: 0.3rem;
+      opacity: 0.8;
+    }
+    .card-item[data-playlist-id] .item-type {
+      color: var(--neon-magenta);
+    }
