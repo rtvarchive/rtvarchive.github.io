@@ -4,8 +4,9 @@
         async src="//gc.zgo.at/count.js"></script>
 <head>
   <script>
-    if (window.location.pathname.indexOf('/ru/') !== -1) {
-      window.location.href = 'ru/404.html';
+    // Если мы в папке /ru/ и это не сама страница 404, перенаправляем
+    if (window.location.pathname.includes('/ru/') && !window.location.pathname.endsWith('/ru/404.html')) {
+      window.location.replace('/ru/404.html');
     }
   </script>
   <meta charset="utf-8" />
