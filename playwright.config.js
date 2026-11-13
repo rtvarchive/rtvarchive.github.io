@@ -6,14 +6,16 @@ module.exports = defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-      reporter: [
-    ['list'], // <-- Добавляет список тестов в консоль
+  reporter: [
+    ['list'], // Добавляет список тестов в консоль
     ['html'],
     ['json', { outputFile: 'test-results.json' }]
   ],
   use: {
     baseURL: 'http://localhost:8000',
     trace: 'on-first-retry',
+    // Дополнительная защита: блокируем Service Workers, чтобы они не кэшировали запросы в обход моков
+    serviceWorkers: 'block',
   },
   projects: [
     {
@@ -29,7 +31,7 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
-    webServer: {
+  webServer: {
     command: 'npx http-server -p 8000 -c-1 --404 404.html',
     url: 'http://localhost:8000',
     reuseExistingServer: !process.env.CI,
