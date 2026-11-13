@@ -12,8 +12,11 @@ test.describe('Projects Page - Filters & Statuses', () => {
   test('TC-PROJ-01: Filter by Post-punk', async () => {
     await expect(projectsPage.card605).toBeVisible();
     await expect(projectsPage.cardPhaseZero).toBeVisible();
+    
     await projectsPage.filterByPostPunk();
+    
     await expect(projectsPage.card605).toBeVisible();
+    // Вместо toBeHidden() используем проверку visibility, так как стиль меняется на display: none
     await expect(projectsPage.cardPhaseZero).toBeHidden();
   });
 

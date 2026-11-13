@@ -11,10 +11,13 @@ class SignalRoomPage {
     this.inputFreq = page.locator('#freq');
     this.inputDesc = page.locator('#desc');
     this.btnSubmitReport = page.locator('[data-testid="btn-submit-report"]');
+    
+    // Модалка
+    this.modal = page.locator('[data-testid="submission-popup"]');
+    this.closeModalBtn = page.locator('[data-testid="popup-close"]');
   }
 
   async goto() {
-    // Переходим на английскую версию для тестов
     await this.page.goto('/signal-room-en.html');
   }
 

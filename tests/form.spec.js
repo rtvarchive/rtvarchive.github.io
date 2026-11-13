@@ -17,16 +17,21 @@ test.describe('About Page - Form & Popup', () => {
   });
 
   test('TC-ABT-03, TC-ABT-05: Successful submission and close popup via Escape', async ({ page }) => {
-    await page.route('https://api.web3forms.com/submit', route => {
+    // Мокаем Formspark
+    await page.route('https://submit-form.com/**', route => {
       route.fulfill({
         status: 200,
-        body: JSON.stringify({ success: true, message: "Success" }),
+        body: JSON.stringify({ success: true }),
       });
     });
 
     await aboutPage.fillForm('https://test.com', 'Test description');
     await aboutPage.submitForm();
+    
+    // Проверяем модалку
     await expect(aboutPage.popup).toHaveClass(/is-active/);
+    
+    // Проверяем закрытие через Escape
     await page.keyboard.press('Escape');
     await expect(aboutPage.popup).not.toHaveClass(/is-active/);
   });
