@@ -92,10 +92,15 @@
       font-family: var(--ff-mono); 
       font-size: 0.85rem; 
       color: #ffcccc;
+      word-break: break-all;
+      overflow-wrap: anywhere;
+      max-width: 100%; 
+      box-sizing: border-box;
     }
     #failed-tests-list strong { color: #ff3333; display: block; margin-bottom: 0.5rem; }
     #failed-tests-ul { margin: 0; padding-left: 1.5rem; }
-
+    #failed-tests-ul li { word-break: break-word; }
+	
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -292,10 +297,12 @@
       <ul class="nav__list" data-nav-list>
         <li><a class="nav__link" href="index.html" data-testid="nav-home">Главная</a></li>
         <li><a class="nav__link" href="projects.html" data-testid="nav-projects">Проекты</a></li>
-        <li><a class="nav__link" href="about.html" data-testid="nav-about">Об архиве</a></li>
+        <li><a class="nav__link" href="archive-room.html" data-testid="nav-archive">Архивная</a></li>
         <li><a class="nav__link is-active" href="signal-room.html" data-testid="nav-signal-room" aria-current="page">Аппаратная</a></li>
+        <li><a class="nav__link" href="about.html" data-testid="nav-about">Об архиве</a></li>
       </ul>
     </nav>
+	
     <div class="topbar__languages">
       <a href="../signal-room-en.html" class="language-link" lang="en" data-testid="lang-en">EN</a>
       <span aria-hidden="true"> | </span>
@@ -371,6 +378,10 @@
           </div>
 
           <button class="btn-primary" data-testid="btn-start-check">Запросить последний отчёт</button>
+		            <!-- ПАСХАЛКА: Ссылка на досье инженера -->
+          <div style="margin-top: 2rem; font-family: var(--ff-mono); font-size: 0.65rem; color: var(--txt-faint); text-align: right; letter-spacing: 0.05em;">
+            > ID СИСТЕМНОГО ОПЕРАТОРА: 7749 // <a href="../resume/" style="color: inherit; text-decoration: underline; transition: color 0.2s;" onmouseover="this.style.color='var(--neon-cyan)'" onmouseout="this.style.color='var(--txt-faint)'">ОТКРЫТЬ ЛИЧНОЕ ДЕЛО</a>
+          </div>
         </div>
       </div>
 
@@ -392,14 +403,16 @@
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Сообщить о <em>помехе</em></h2>
         <p style="margin-bottom: 2rem; color: var(--txt-soft); max-width: 60ch;">Если вы обнаружили искажение сигнала, нарушение маршрутов или утрату фрагмента, передайте рапорт в аппаратную.</p>
         
-        <form class="form-grid" style="max-width: 600px;" id="report-form">
+        <form class="form-grid" style="max-width: 600px;" id="report-form" action="https://submit-form.com/hiLPOJzWg" method="POST">
+          <input type="hidden" name="_email.subject" value="RADIUS ARCHIVE: Новый отчет о помехах">
+          
           <div class="field">
             <label for="freq">Частота / Страница</label>
-            <input type="text" id="freq" placeholder="Например: projects.html" required>
+            <input type="text" id="freq" name="freq" placeholder="Например: projects.html" required>
           </div>
           <div class="field">
             <label for="type">Характер помехи</label>
-            <select id="type">
+            <select id="type" name="type">
               <option>Не открывается страница</option>
               <option>Не переключается язык</option>
               <option>Не открывается окно прослушивания</option>
@@ -410,7 +423,7 @@
           </div>
           <div class="field">
             <label for="desc">Описание</label>
-            <textarea id="desc" rows="4" placeholder="Опишите, что произошло..." required></textarea>
+            <textarea id="desc" name="desc" rows="4" placeholder="Опишите, что произошло..." required></textarea>
           </div>
           <button type="submit" class="btn-primary" style="width: max-content; margin-top: 1rem;" data-testid="btn-submit-report">Передать в аппаратную</button>
         </form>
@@ -430,9 +443,9 @@
           <ul>
           <li><a href="index.html" data-testid="footer-nav-home">Главная</a></li>
           <li><a href="projects.html" data-testid="footer-nav-projects">Проекты</a></li>
-          <li><a href="about.html" data-testid="footer-nav-about">Об архиве</a></li>
           <li><a href="archive-room.html" data-testid="footer-nav-archive">Архивная</a></li>
           <li><a href="signal-room.html" data-testid="footer-nav-signal">Аппаратная</a></li>
+          <li><a href="about.html" data-testid="footer-nav-about">Об архиве</a></li>
         </ul>
       </div>
       <div class="foot__col">
@@ -450,6 +463,19 @@
       <span>УТРАЧЕНО · НАЙДЕНО · ВОССТАНОВЛЕНО</span>
     </div>
   </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО -->
+  <div id="success-modal" class="modal-overlay" data-testid="submission-popup">
+    <div class="modal-box">
+      <div class="modal-icon">✓</div>
+      <h2 class="modal-title">РАПОРТ ПРИНЯТ</h2>
+      <p class="modal-text">
+        Ваш рапорт о помехах зарегистрирован.<br>
+        Дежурный оператор вскоре рассмотрит его.
+      </p>
+      <button id="close-modal" class="modal-close-btn" data-testid="popup-close">Вернуться в аппаратную</button>
+    </div>
+  </div>
 
   <script src="../assets/js/main.js"></script>
   
@@ -623,50 +649,6 @@
         btnStartCheck.addEventListener('click', updateDashboard);
         updateDashboard();
       }
-
-      const reportForm = document.getElementById('report-form');
-      const modal = document.getElementById('success-modal');
-      const closeModalBtn = document.getElementById('close-modal');
-
-      if (reportForm) {
-        reportForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          const submitBtn = this.querySelector('button[type="submit"]');
-          const originalText = submitBtn.textContent;
-          submitBtn.textContent = 'Передача в аппаратную...';
-          submitBtn.disabled = true;
-
-          setTimeout(() => {
-            submitBtn.textContent = 'Рапорт принят';
-            submitBtn.style.backgroundColor = 'var(--neon-cyan)';
-            reportForm.reset();
-
-            setTimeout(() => {
-              submitBtn.textContent = originalText;
-              submitBtn.disabled = false;
-              submitBtn.style.backgroundColor = 'var(--neon-magenta)';
-            }, 4000);
-          }, 1000);
-        });
-      }
-
-      if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', function() {
-          modal.classList.remove('is-active');
-        });
-      }
-      if (modal) {
-        modal.addEventListener('click', function(e) {
-          if (e.target === modal) {
-            modal.classList.remove('is-active');
-          }
-        });
-      }
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-          modal.classList.remove('is-active');
-        }
-      });
 
     });
   </script>

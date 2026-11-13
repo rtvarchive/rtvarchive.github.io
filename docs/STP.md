@@ -1,97 +1,95 @@
-# Software Test Plan (STP)
-**Project:** RADIUS ARCHIVE Web Application
-**Version:** 1.0
-**Date:** November 2026
-**Author:** QA Lead / Test Automation Engineer
+# Software Test Plan (STP) - RADIUS ARCHIVE
+
+**Document Version:** 2.0  
+**Date:** November 13, 2026  
+**Status:** Active  
+**Reference Document:** STD v2.0  
+
+---
 
 ## 1. Introduction
-This document outlines the test plan for the RADIUS ARCHIVE web project. It defines the scope, approach, resources, and schedule of intended testing activities. The project is a static multi-page website built with HTML, CSS, and Vanilla JS, hosted on GitHub Pages.
 
-## 2. Scope of Testing
-### 2.1. In Scope
-The following areas and features will be tested:
-*   **Navigation & Routing:** Primary navigation (Home, Projects, About, Signal Room), language switching (EN ↔ RU), skip-links, and 404 page routing.
-*   **Interactive Elements (JS):**
-    *   Mobile menu toggle.
-    *   Filtering system on the Projects page (genre tags, "+ More" toggle).
-    *   "Channels" section toggle on the Index page ("+ More channels").
-    *   Audio streaming modals on Project pages (open/close via button, deep-link `?listen=1`, close via Esc/backdrop).
-    *   **Signal Room (Аппаратная):**
-        *   "Request Latest Report" button interaction and date update.
-        *   "Report Interference" form validation and submission (simulated).
-        *   Verification log rendering.
-*   **Forms & User Input:**
-    *   "Archive Submissions" form validation (required fields).
-    *   Form submission flow via Web3Forms API (mocked for automation).
-    *   Custom Success Popup (appearance, closing via button, backdrop, and Esc key).
-*   **Content & Assets:**
-    *   Correct titles and meta descriptions (SEO baseline).
-    *   External links (YouTube, Audius, streaming platforms) open in new tabs (`target="_blank"`).
-*   **UI/UX & Responsiveness:** Display across Desktop (1440px), Tablet (768px), and Mobile (375px).
-*   **Accessibility (A11y):** Semantic HTML, ARIA attributes, contrast, and keyboard navigation.
+### 1.1. Purpose
+This Test Plan defines the strategy, approach, and specific test cases required to validate the RADIUS ARCHIVE website. It details how we will verify the newly implemented mobile video functionality, the Formspark integration, and the layout fixes.
 
-### 2.2. Out of Scope
-*   Backend API testing (Web3Forms is a third-party service, we only test the frontend integration).
-*   Load/Performance testing (Static site, low traffic expected).
-*   Visual regression testing (for this phase, will be considered in the future).
+### 1.2. Scope
+The testing covers both EN (root) and RU (`/ru/`) language versions of the site. The primary focus areas are:
+*   Archive Room (CRT Monitor & Tape Monitor players).
+*   Form submission and modal interactions (About & Signal Room).
+*   Global responsive navigation (Mobile menu).
+*   Layout stability (long text strings).
 
-## 3. Testing Types & Levels
-### 3.1. Testing Types
-*   **Smoke Testing:** Initial verification that critical paths (navigation, page loading) work.
-*   **Functional Testing:** Verification of specific features (filters, modals, forms) against requirements.
-*   **UI/UX Testing:** Checking layout, fonts, colors, and responsive behavior.
-*   **Accessibility Testing:** Using `@axe-core/playwright` to scan for critical a11y violations.
-*   **Cross-Browser Testing:** Execution of tests across Chromium, Firefox, and WebKit (Safari).
-*   **Regression Testing:** Ensuring new changes (like adding the Signal Room) do not break existing functionality.
+---
 
-### 3.2. Testing Levels
-*   **System Testing:** Testing the complete application as a whole.
-*   **Integration Testing:** Testing the interaction between HTML, CSS, JS, and third-party APIs (Web3Forms).
+## 2. Test Items
 
-## 4. Test Environment
-### 4.1. Environments
-*   **Local Environment:** Static HTTP server (e.g., `python -m http.server 8000`).
-*   **Production Environment:** GitHub Pages (`https://rtvarchive.github.io`).
+*   **HTML Files:** `index.html`, `projects.html`, `archive-room-en.html`, `signal-room-en.html`, `about.html` (and their `/ru/` counterparts).
+*   **JavaScript:** `assets/js/main.js` (Global logic, forms, modal handling).
+*   **Data:** `archive-data.json`, `archive-data-ru.json`, `signal-status.json`.
+*   **External Services:** YouTube IFrame API, Formspark API.
 
-### 4.2. Tools & Tech Stack
-*   **Test Automation Framework:** Playwright (Node.js).
-*   **Design Pattern:** Page Object Model (POM).
-*   **A11y Scanner:** `@axe-core/playwright`.
-*   **CI/CD:** GitHub Actions.
-*   **Browsers:** Chromium, Firefox, WebKit.
+---
 
-## 5. Test Strategy & Approach
-*   **Manual Testing:** Exploratory testing for visual bugs, layout shifts, and specific edge cases (e.g., checking the 404 TV test card on mobile).
-*   **Automated Testing:** Implementation of a smoke suite covering navigation, forms, and modals. Tests will run on every push to the `main` branch via GitHub Actions.
+## 3. Features to be Tested
 
-## 6. Entry & Exit Criteria
-### 6.1. Entry Criteria (When we can start)
-*   All HTML/CSS/JS files are prepared and stable.
-*   `data-testid` attributes are implemented on all key interactive elements.
-*   Local server is running, and the site is accessible.
+### 3.1. Global Navigation & Layout
+*   **TC-NAV-MOB-01:** Verify that clicking the "MENU" button on mobile screens (< 720px) toggles the navigation list (`is-open` class).
+*   **TC-NAV-LAYOUT-01:** Verify that long error strings in the Signal Room do not cause horizontal scrolling or push the "MENU" button off-screen.
 
-### 6.2. Exit Criteria (When we consider testing done)
-*   All planned automated smoke tests are passing (Green build in CI).
-*   No open critical (Blocker) or high-severity bugs.
-*   A11y scan shows no critical violations.
-*   The "Signal Room" page is implemented and tested.
-*   STR (Software Test Report) is signed off.
+### 3.2. Archive Room (Media Players)
+*   **TC-ARC-CRT-01:** Verify that clicking a track plays the video in the CRT Monitor on desktop.
+*   **TC-ARC-MOB-01:** Verify that the `playsinline` attribute is present in the YouTube player configuration to prevent full-screen takeover on iOS.
+*   **TC-ARC-MOB-02:** Verify that clicking a track immediately hides the standby image overlay to expose the YouTube Play button (simulating mobile behavior).
+*   **TC-ARC-REEL-01:** Verify that the Tape Monitor (`#streaming-youtube-player`) is visible and square on mobile view.
+*   **TC-ARC-REEL-02:** Verify that clicking an album starts the playlist (synchronously binding to user gesture).
 
-## 7. Deliverables
-1.  **STP** (This document).
-2.  **STD** (Test Design: Test Cases & Checklists).
-3.  **Automation Code** (Playwright scripts).
-4.  **Bug Reports** (Logged via the "Signal Room" form or GitHub Issues).
-5.  **STR** (Final Test Report).
+### 3.3. Form Submissions (Optimistic UI)
+*   **TC-FORM-01 (EN/RU):** Verify that submitting a form (About / Signal Room) changes the submit button text to "Transmitting..." and disables it.
+*   **TC-FORM-02 (EN/RU):** Verify that the form **always** resets and opens the `#success-modal` (`is-active` class), regardless of whether the Formspark API request succeeds or fails (mocking network error/rate limits).
+*   **TC-FORM-03:** Verify that the browser console logs the actual API response (success or failure) without showing an `alert()` to the user.
 
-## 8. Roles & Responsibilities
-*   **Product Owner:** Defines requirements (e.g., "No modern glossy pop production", "All modals must have data-testid").
-*   **QA Engineer:** Writes test cases, executes manual tests, creates automation scripts (Playwright), reports bugs, and writes the STR.
+### 3.4. Modal Accessibility & Interactions
+*   **TC-MODAL-01:** Verify the modal closes when clicking the "Close" button.
+*   **TC-MODAL-02:** Verify the modal closes when clicking the background overlay (`.modal-overlay`).
+*   **TC-MODAL-03:** Verify the modal closes when pressing the `Escape` key.
 
-## 9. Risks & Mitigations
-*   **Risk:** Web3Forms API spam during automated tests.
-    *   *Mitigation:* Mock the network request in Playwright using `page.route()`.
-*   **Risk:** Fonts or images not loading in CI environment.
-    *   *Mitigation:* Ensure all assets are statically hosted in the repo; wait for `networkidle` in tests.
-*   **Risk:** Flaky tests due to animations (modals fading in).
-    *   *Mitigation:* Use `waitForSelector` with `state: 'visible'` or add `--disable-animations` flags.
+---
+
+## 4. Test Approach & Strategy
+
+### 4.1. Automated Testing (Playwright)
+*   Tests will be executed against a local server (`http://localhost:8000`) using Playwright.
+*   **Mocking:** Because free form services (Formspark) have rate limits, API calls will be intercepted and mocked in Playwright to simulate both success (`200 OK`) and failure (`429 Too Many Requests`). The tests will assert that the UI behaves identically in both scenarios (Optimistic UI).
+*   Viewport sizes will be simulated in Playwright to test mobile layouts (e.g., iPhone 12, Pixel 5).
+
+### 4.2. Manual Testing
+*   **Real Device Testing:** Mobile video playback (Archive Room) and layout rendering must be verified on actual iOS and Android devices, as Playwright cannot accurately simulate mobile media playback policies (User Gesture).
+*   **Cache Busting:** All manual testing on GitHub Pages will be conducted in Incognito mode to avoid outdated cached files.
+
+---
+
+## 5. Pass/Fail Criteria
+
+*   **PASS:** The observed behavior matches the STD requirements. UI interactions (clicks, modals, page loads) work without throwing unhandled JavaScript exceptions.
+*   **FAIL:** The UI breaks, the modal fails to open after form submission, the mobile layout suffers horizontal scrolling, or media players fail to initialize.
+
+---
+
+## 6. Test Environment
+
+*   **OS:** Windows 10/11
+*   **Local Server:** Node.js `http-server` (port 8000)
+*   **Browsers:** Chromium, Firefox, WebKit (via Playwright)
+*   **Live Environment:** GitHub Pages (`https://rtvarchive.github.io`)
+*   **Devices:** Desktop, Android (Chrome), iOS (Safari)
+
+---
+
+## 7. Risks and Mitigations
+
+*   **Risk:** GitHub Pages deployment delays cause tests to run against old code.
+    *   *Mitigation:* Wait 2-3 minutes post-push and always use Incognito mode.
+*   **Risk:** Formspark API limits block real submissions.
+    *   *Mitigation:* Implemented "Optimistic UI" so the frontend always acts as if it succeeded. Automated tests will mock the API response.
+*   **Risk:** YouTube API changes break the player.
+    *   *Mitigation:* Use official IFrame API methods and monitor console errors during test execution.

@@ -1,0 +1,296 @@
+{
+  "youtubeOnly": [
+    {
+      "id": "P-01",
+      "name": "605 Mikrorayon",
+      "playlists": [
+        {
+          "title": "Archival Recordings (1986-1993)",
+          "tracks": [
+            { "title": "Empty Courtyards", "videoId": "lrx5R4gjSBY" },
+            { "title": "There Was a City Here", "videoId": "t83xI-9kaQw" },
+            { "title": "I Saw a Dream", "videoId": "4K5mEcrHPzQ" },
+            { "title": "Shake Me", "videoId": "niCztsLQaZs" },
+            { "title": "Dancing with Myself", "videoId": "AqdG6RZrQiI" },
+            { "title": "Lost Broadcast", "videoId": "yDAdFJYb4vM" },
+            { "title": "Near the Fifth Entrance", "videoId": "fGrpC0738SY" },
+            { "title": "Don't Turn Off the Tape", "videoId": "892vMGZlDJA" },
+            { "title": "Empty Courtyards (Acoustic)", "videoId": "m2vrbmgs1bg" },
+            { "title": "There Was a City Here (Cold District Remix)", "videoId": "LmKsVUY2VwQ" }
+          ]
+        },
+        {
+          "title": "This Is Our Summer (EP, 1998)",
+          "tracks": [
+            { "title": "Our Summer", "videoId": "3hp7zzI6R_s" },
+            { "title": "Evening News", "videoId": "DKH1OZs52QQ" },
+            { "title": "It's Gonna Be Hot", "videoId": "se2-jSBMkcU" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-02",
+      "name": "PHASE/ZERO",
+      "playlists": [
+        {
+          "title": "Archives of the Institute of Silence (1989-1991)",
+          "tracks": [
+            { "title": "Research Institute of Silence", "videoId": "15-0Qtrwc6M" },
+            { "title": "Between Phase and Zero", "videoId": "O8xooEFKJwM" },
+            { "title": "Non-Existent Sector", "videoId": "6OMlkPJxePg" },
+            { "title": "Archive No. 17", "videoId": "prKmlSnsQUI" },
+            { "title": "After the Disconnection", "videoId": "FqUeN9ONeSY" },
+            { "title": "Non-Existent Sector (Data Ghost Remix)", "videoId": "Y06DYPgIC1w" }
+          ]
+        },
+        {
+          "title": "Exclusion Zone (1999)",
+          "tracks": [
+            { "title": "The Exclusion Zone", "videoId": "FqUeN9ONeSY" },
+            { "title": "Empty Research Institute", "videoId": "ywSUh8h_zZc" },
+            { "title": "The Last Operator", "videoId": "SU0IIqSV5qM" },
+            { "title": "The Formula of Choice", "videoId": "3zILEiQunsc" },
+            { "title": "Empty Research Institute (Closed Circuit Remix)", "videoId": "yXF2iAG1tyY" }
+          ]
+        },
+        {
+          "title": "Archives of the Institute of Silence (EN)",
+          "tracks": [
+            { "title": "Research Institute of Silence", "videoId": "Fo4A2Vjr6Ys" },
+            { "title": "Between Phase and Zero", "videoId": "vZEjPiNCJBo" },
+            { "title": "Non-Existent Sector (Data Ghost Remix)", "videoId": "BADrxVM-Jgo" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-03",
+      "name": "Ritual-84",
+      "playlists": [
+        {
+          "title": "Summer Expedition, 84",
+          "tracks": [
+            { "title": "Circle", "videoId": "-Slb7424o0w" },
+            { "title": "Before Dawn", "videoId": "XjctE0JWTrk" },
+            { "title": "Kupala Fragment", "videoId": "bTspUGrG834" },
+            { "title": "Solstice", "videoId": "JOEeRmBmjvA" },
+            { "title": "Wind", "videoId": "SZtZdRDHUcY" },
+            { "title": "Ash", "videoId": "ch6gHoSYqUQ" },
+            { "title": "Shadows", "videoId": "xEr2tKid_vA" },
+            { "title": "Kupala Fragment (2026 Reconstruction)", "videoId": "E9Xs-CxVYbE" }
+          ]
+        },
+        {
+          "title": "Polar Circle, 86",
+          "tracks": [
+            { "title": "Frost", "videoId": "EnO6gVp7Ikw" },
+            { "title": "Crust", "videoId": "2AZaMtUzRSw" },
+            { "title": "Traces", "videoId": "cH3Jm60dmdQ" },
+            { "title": "Breath", "videoId": "WhKP27tSoCk" },
+            { "title": "Polynya", "videoId": "0IuWxI3lOB4" },
+            { "title": "Pressure Ridges", "videoId": "lXWs2iCnvoM" },
+            { "title": "Aurora", "videoId": "AuQSEiHqquU" },
+            { "title": "The Catch", "videoId": "Yf-vBrlB0Cg" },
+            { "title": "Silence", "videoId": "LWn7AP482HI" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-04",
+      "name": "Radius-78",
+      "playlists": [
+        {
+          "title": "Archive Broadcasts",
+          "tracks": [
+            { "title": "Test Signal / Morning Intro", "videoId": "K6RR6vs4CYY" },
+            { "title": "Evening Program / Quiet Weather", "videoId": "ZtpxAScoVYw" },
+            { "title": "Letters from Viewers", "videoId": "1qypTCKdtVc" },
+            { "title": "Musical Pause", "videoId": "O6CHZmzoirY" },
+            { "title": "Weekend Melodies", "videoId": "5oNoDayHbEw" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-05",
+      "name": "Crystal Orchestra",
+      "playlists": [
+        {
+          "title": "Selected Recordings",
+          "tracks": [
+            { "title": "Summer Park", "videoId": "Op84-j5lgGM" },
+            { "title": "After the Rain", "videoId": "-yV-N_zpJn4" },
+            { "title": "Along the Main Street", "videoId": "ZUpFZUBjChA" },
+            { "title": "Evening Lights", "videoId": "NGEGPfyEOXo" },
+            { "title": "To the Last Stop", "videoId": "mE8PkJHb24U" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-06",
+      "name": "Sanatorium of Dreams",
+      "playlists": [
+        {
+          "title": "City of Lost Time",
+          "tracks": [
+            { "title": "Paper Kite", "videoId": "2YSsmFcUJRI" },
+            { "title": "Moonlight Market", "videoId": "mRirJUnnkA0" },
+            { "title": "Close Your Eyes", "videoId": "_0_qxLx2uW4" },
+            { "title": "City Upside Down", "videoId": "e000_zsanD4" },
+            { "title": "Moonlight Market (Chamber Version)", "videoId": "1auKix8vb3o" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-07",
+      "name": "Wild Honey",
+      "playlists": [
+        {
+          "title": "Folk Noir Archive",
+          "tracks": [
+            { "title": "Do Not Wake Evil", "videoId": "P0MvQCLFeDc" },
+            { "title": "On the Pass", "videoId": "vvbNMzz1nWU" },
+            { "title": "In the Grass Where No One Remembers Words", "videoId": "2it92wtj5Gc" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-08",
+      "name": "Heather Wanderers",
+      "playlists": [
+        {
+          "title": "The Song of Neris",
+          "tracks": [
+            { "title": "Threshold of Worlds", "videoId": "ajN8SC670BY" },
+            { "title": "Garden by the Sea (Song of Neris)", "videoId": "WqZYdJTi41o" },
+            { "title": "The Envoys of King Alder", "videoId": "m0NQzatfWuk" },
+            { "title": "The Will of the Crown (Song of Alder)", "videoId": "Zo-VkIUigfU" },
+            { "title": "Whisper of the Heather Walls", "videoId": "x2EEvDPwVOk" },
+            { "title": "The Shore Where Blood Holds No Power (Song of Kael)", "videoId": "3Xmu1So9Nto" },
+            { "title": "Night Beneath the White Walls of Veremor", "videoId": "ITy7NV3Whic" },
+            { "title": "Silence of the Garden by the Sea", "videoId": "mEeHj0HFOpQ" },
+            { "title": "Beyond the Sea Horizon (Song of Neris)", "videoId": "mPFRvhvvnr4" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-09",
+      "name": "VIA Vanity Fair",
+      "playlists": [
+        {
+          "title": "Vanity Fair (1976-1979)",
+          "tracks": [
+            { "title": "Warm Wind", "videoId": "3di5st2nWoo" },
+            { "title": "Ball at the King's", "videoId": "xbPjX16Y0xM" },
+            { "title": "The Clockwork Will Never Stop", "videoId": "lxolHH39bWQ" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-010",
+      "name": "Kolosvit Ensemble",
+      "playlists": [
+        {
+          "title": "Kolosvit (1970-1974)",
+          "tracks": [
+            { "title": "Oh Beyond the River", "videoId": "5dl_pQBySi8" },
+            { "title": "Green Rye", "videoId": "HT7XpUt3VuM" },
+            { "title": "Chornobrova", "videoId": "Rso2k7toyFk" },
+            { "title": "Wedding", "videoId": "bp3eU9jQhA8" },
+            { "title": "Lullaby", "videoId": "4FhFCqJZjNg" },
+            { "title": "Old Path", "videoId": "uRXZ2wLbdGM" },
+            { "title": "Wind", "videoId": "Iiju5GBxA_w" },
+            { "title": "Kupala Night", "videoId": "pTYtbrmdyg4" },
+            { "title": "One Grain of Sand", "videoId": "Sr3YhDeb9Fc" },
+            { "title": "Oh Beyond the River (Psychedelic Version)", "videoId": "PWNAfPRjcRM" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-011",
+      "name": "VIA Oriental Bazaar",
+      "playlists": [
+        {
+          "title": "Star Road (1984)",
+          "tracks": [
+            { "title": "Wind Over the Steppe", "videoId": "Ljy91x0DG08" },
+            { "title": "Chaykhana", "videoId": "nmvcYjTtmW0" },
+            { "title": "The Storyteller", "videoId": "QS8PbWgCSQ4" },
+            { "title": "Ali Baba", "videoId": "f68GfbCgyuk" },
+            { "title": "The Mirror", "videoId": "QBK24gHKc5A" },
+            { "title": "Caravan", "videoId": "WFs4fXtIGzU" },
+            { "title": "The Dervish", "videoId": "ru7Y_DNo1MM" },
+            { "title": "Eastern Love", "videoId": "ZzoMTZXpQ9A" },
+            { "title": "In the Garden Where Moonlight Falls", "videoId": "v-nnthaU5Jc" },
+            { "title": "Star Road", "videoId": "1v9WUodOYRM" },
+            { "title": "Lights of the Night Bazaar", "videoId": "9iFvY_YZjRE" }
+          ]
+        }
+      ]
+    }
+  ],
+  "distributed": [
+    {
+      "id": "P-03",
+      "name": "Ritual-84",
+      "albums": [
+        {
+          "title": "Summer Expedition, 84",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_lxERQ6_F6wZtlKBzyy7oK7qjkMtusCK7E"
+        },
+        {
+          "title": "Polar Circle, 86",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_mECUWxxmVvLg5gU0qimz4kC5vlJ8977Xs"
+        }
+      ]
+    },
+    {
+      "id": "P-010",
+      "name": "Kolosvit Ensemble",
+      "albums": [
+        {
+          "title": "Пісні рідного краю",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_m-5Utw0IoMDzAU4xdODoaeSVWezT9uR6s"
+        }
+      ]
+    },
+    {
+      "id": "P-011",
+      "name": "VIA Oriental Bazaar",
+      "albums": [
+        {
+          "title": "Star Road",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_lCUY--0-ssoCXVA3NpQMFl0lWL9JZeFJ0"
+        }
+      ]
+    },
+    {
+      "id": "P-014",
+      "name": "Gurt Groove",
+      "albums": [
+        {
+          "title": "City Rhythm",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_mUMArLgzZUnpUXLd9M2RP32t4c15vfFWk"
+        }
+      ]
+    },
+    {
+      "id": "P-015",
+      "name": "Final Psalm",
+      "albums": [
+        {
+          "title": "While the Fire Still Burns",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_kF3w8Uqdjv6wAJ3XmefiojbL_OvMonfdg"
+        }
+      ]
+    }
+  ]
+}

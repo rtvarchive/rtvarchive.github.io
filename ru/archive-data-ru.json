@@ -1,0 +1,296 @@
+{
+  "youtubeOnly": [
+    {
+      "id": "P-01",
+      "name": "605 Микрорайон",
+      "playlists": [
+        {
+          "title": "Архивные записи (1986-1993)",
+          "tracks": [
+            { "title": "Пустые дворы", "videoId": "lrx5R4gjSBY" },
+            { "title": "Здесь был город", "videoId": "t83xI-9kaQw" },
+            { "title": "Я увидел сон", "videoId": "4K5mEcrHPzQ" },
+            { "title": "Встряхни меня", "videoId": "niCztsLQaZs" },
+            { "title": "Танцую сам с собой", "videoId": "AqdG6RZrQiI" },
+            { "title": "Потерянный эфир", "videoId": "yDAdFJYb4vM" },
+            { "title": "Возле пятого подъезда", "videoId": "fGrpC0738SY" },
+            { "title": "Не выключай магнитофон", "videoId": "892vMGZlDJA" },
+            { "title": "Пустые дворы (Акустика)", "videoId": "m2vrbmgs1bg" },
+            { "title": "Здесь был город (Cold District Remix)", "videoId": "LmKsVUY2VwQ" }
+          ]
+        },
+        {
+          "title": "Это наше лето (EP, 1998)",
+          "tracks": [
+            { "title": "Наше лето", "videoId": "3hp7zzI6R_s" },
+            { "title": "Вечерние новости", "videoId": "DKH1OZs52QQ" },
+            { "title": "Здесь будет жарко", "videoId": "se2-jSBMkcU" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-02",
+      "name": "ФАЗА/НОЛЬ",
+      "playlists": [
+        {
+          "title": "Архивы НИИ Тишины (1989-1991)",
+          "tracks": [
+            { "title": "НИИ Тишины", "videoId": "15-0Qtrwc6M" },
+            { "title": "Между фазой и нулём", "videoId": "O8xooEFKJwM" },
+            { "title": "Несуществующий сектор", "videoId": "6OMlkPJxePg" },
+            { "title": "Архив №17", "videoId": "prKmlSnsQUI" },
+            { "title": "После отключения", "videoId": "FqUeN9ONeSY" },
+            { "title": "Несуществующий сектор (Data Ghost Remix)", "videoId": "Y06DYPgIC1w" }
+          ]
+        },
+        {
+          "title": "Зона отчуждения (1999)",
+          "tracks": [
+            { "title": "Зона отчуждения", "videoId": "FqUeN9ONeSY" },
+            { "title": "Пустой НИИ", "videoId": "ywSUh8h_zZc" },
+            { "title": "Последний оператор", "videoId": "SU0IIqSV5qM" },
+            { "title": "Формула выбора", "videoId": "3zILEiQunsc" },
+            { "title": "Пустой НИИ (Closed Circuit Remix)", "videoId": "yXF2iAG1tyY" }
+          ]
+        },
+        {
+          "title": "Архивы НИИ Тишины (EN)",
+          "tracks": [
+            { "title": "Research Institute of Silence", "videoId": "Fo4A2Vjr6Ys" },
+            { "title": "Between Phase and Zero", "videoId": "vZEjPiNCJBo" },
+            { "title": "Non-Existent Sector (Data Ghost Remix)", "videoId": "BADrxVM-Jgo" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-03",
+      "name": "Ритуал-84",
+      "playlists": [
+        {
+          "title": "Летняя экспедиция, 84",
+          "tracks": [
+            { "title": "Круг", "videoId": "-Slb7424o0w" },
+            { "title": "До рассвета", "videoId": "XjctE0JWTrk" },
+            { "title": "Купальский фрагмент", "videoId": "bTspUGrG834" },
+            { "title": "Солнцестояние", "videoId": "JOEeRmBmjvA" },
+            { "title": "Ветер", "videoId": "SZtZdRDHUcY" },
+            { "title": "Пепел", "videoId": "ch6gHoSYqUQ" },
+            { "title": "Тени", "videoId": "xEr2tKid_vA" },
+            { "title": "Купальский фрагмент (2026 Реконструкция)", "videoId": "E9Xs-CxVYbE" }
+          ]
+        },
+        {
+          "title": "Заполярный Круг, 86",
+          "tracks": [
+            { "title": "Мороз", "videoId": "EnO6gVp7Ikw" },
+            { "title": "Наст", "videoId": "2AZaMtUzRSw" },
+            { "title": "Следы", "videoId": "cH3Jm60dmdQ" },
+            { "title": "Дыхание", "videoId": "WhKP27tSoCk" },
+            { "title": "Полынья", "videoId": "0IuWxI3lOB4" },
+            { "title": "Торосы", "videoId": "lXWs2iCnvoM" },
+            { "title": "Сияние", "videoId": "AuQSEiHqquU" },
+            { "title": "Улов", "videoId": "Yf-vBrlB0Cg" },
+            { "title": "Тишина", "videoId": "LWn7AP482HI" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-04",
+      "name": "Радиус-78",
+      "playlists": [
+        {
+          "title": "Архивные трансляции",
+          "tracks": [
+            { "title": "Тестовый сигнал / Утренняя заставка", "videoId": "K6RR6vs4CYY" },
+            { "title": "Вечерняя программа / Тихая погода", "videoId": "ZtpxAScoVYw" },
+            { "title": "Письма телезрителей", "videoId": "1qypTCKdtVc" },
+            { "title": "Музыкальная пауза", "videoId": "O6CHZmzoirY" },
+            { "title": "Мелодии выходного дня", "videoId": "5oNoDayHbEw" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-05",
+      "name": "Оркестр Кристалл",
+      "playlists": [
+        {
+          "title": "Избранные записи",
+          "tracks": [
+            { "title": "Летний парк", "videoId": "Op84-j5lgGM" },
+            { "title": "После дождя", "videoId": "-yV-N_zpJn4" },
+            { "title": "По главной улице", "videoId": "ZUpFZUBjChA" },
+            { "title": "Вечерние огни", "videoId": "NGEGPfyEOXo" },
+            { "title": "До конечной", "videoId": "mE8PkJHb24U" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-06",
+      "name": "Санаторий Снов",
+      "playlists": [
+        {
+          "title": "Город потерянного времени",
+          "tracks": [
+            { "title": "Бумажный змей", "videoId": "2YSsmFcUJRI" },
+            { "title": "Лунный рынок", "videoId": "mRirJUnnkA0" },
+            { "title": "Закрывай глаза", "videoId": "_0_qxLx2uW4" },
+            { "title": "Город вверх ногами", "videoId": "e000_zsanD4" },
+            { "title": "Лунный рынок (Камерная версия)", "videoId": "1auKix8vb3o" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-07",
+      "name": "Дикий Мёд",
+      "playlists": [
+        {
+          "title": "Архив фолк-нуара",
+          "tracks": [
+            { "title": "Не буди лихо", "videoId": "P0MvQCLFeDc" },
+            { "title": "На Перевале", "videoId": "vvbNMzz1nWU" },
+            { "title": "В траве, где никто не помнит слов", "videoId": "2it92wtj5Gc" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-08",
+      "name": "Скитальцы Вереска",
+      "playlists": [
+        {
+          "title": "Песнь Нэрис",
+          "tracks": [
+            { "title": "Порог Миров", "videoId": "ajN8SC670BY" },
+            { "title": "Сад у морской воды (Песнь Нэрис)", "videoId": "WqZYdJTi41o" },
+            { "title": "Послы Короля Олдэра", "videoId": "m0NQzatfWuk" },
+            { "title": "Воля Короны (Песнь Олдэра)", "videoId": "Zo-VkIUigfU" },
+            { "title": "Шорох Вересковых Стен", "videoId": "x2EEvDPwVOk" },
+            { "title": "Берег, где не властен род (Песнь Каэля)", "videoId": "3Xmu1So9Nto" },
+            { "title": "Ночь у Белых Стен Веремора", "videoId": "ITy7NV3Whic" },
+            { "title": "Молчание Сада у Морской Воды", "videoId": "mEeHj0HFOpQ" },
+            { "title": "За Морским Пределом (Песнь Нэрис)", "videoId": "mPFRvhvvnr4" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-09",
+      "name": "ВИА «Ярмарка Тщеславия»",
+      "playlists": [
+        {
+          "title": "Ярмарка Тщеславия (1976-1979)",
+          "tracks": [
+            { "title": "Тёплый ветер", "videoId": "3di5st2nWoo" },
+            { "title": "Бал у Короля", "videoId": "xbPjX16Y0xM" },
+            { "title": "Ход не смолкнет никогда", "videoId": "lxolHH39bWQ" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-010",
+      "name": "Ансамбль «Колосвіт»",
+      "playlists": [
+        {
+          "title": "Колосвіт (1970-1974)",
+          "tracks": [
+            { "title": "Ой за річкою", "videoId": "5dl_pQBySi8" },
+            { "title": "Зелене жито", "videoId": "HT7XpUt3VuM" },
+            { "title": "Чорноброва", "videoId": "Rso2k7toyFk" },
+            { "title": "Весілля", "videoId": "bp3eU9jQhA8" },
+            { "title": "Колискова", "videoId": "4FhFCqJZjNg" },
+            { "title": "Стара стежина", "videoId": "uRXZ2wLbdGM" },
+            { "title": "Вітре", "videoId": "Iiju5GBxA_w" },
+            { "title": "Купальська ніч", "videoId": "pTYtbrmdyg4" },
+            { "title": "Одна піщинка", "videoId": "Sr3YhDeb9Fc" },
+            { "title": "Ой за річкою (Психоделічна версія)", "videoId": "PWNAfPRjcRM" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-011",
+      "name": "ВИА «Восточный Базар»",
+      "playlists": [
+        {
+          "title": "Звёздная дорога (1984)",
+          "tracks": [
+            { "title": "Ветер над степью", "videoId": "Ljy91x0DG08" },
+            { "title": "Чайхана", "videoId": "nmvcYjTtmW0" },
+            { "title": "Сказитель", "videoId": "QS8PbWgCSQ4" },
+            { "title": "Али-Баба", "videoId": "f68GfbCgyuk" },
+            { "title": "Зеркало", "videoId": "QBK24gHKc5A" },
+            { "title": "Караван", "videoId": "WFs4fXtIGzU" },
+            { "title": "Дервиш", "videoId": "ru7Y_DNo1MM" },
+            { "title": "Восточная любовь", "videoId": "ZzoMTZXpQ9A" },
+            { "title": "В саду, где лунный свет", "videoId": "v-nnthaU5Jc" },
+            { "title": "Звёздная дорога", "videoId": "1v9WUodOYRM" },
+            { "title": "Огни ночного базара", "videoId": "9iFvY_YZjRE" }
+          ]
+        }
+      ]
+    }
+  ],
+  "distributed": [
+    {
+      "id": "P-03",
+      "name": "Ритуал-84",
+      "albums": [
+        {
+          "title": "Летняя экспедиция, 84 (Visual Remaster)",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_lxERQ6_F6wZtlKBzyy7oK7qjkMtusCK7E"
+        },
+        {
+          "title": "Заполярный Круг, 86 (Visual Remaster)",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_mECUWxxmVvLg5gU0qimz4kC5vlJ8977Xs"
+        }
+      ]
+    },
+    {
+      "id": "P-010",
+      "name": "Ансамбль «Колосвіт»",
+      "albums": [
+        {
+          "title": "Пісні рідного краю (1970–1974)",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_m-5Utw0IoMDzAU4xdODoaeSVWezT9uR6s"
+        }
+      ]
+    },
+    {
+      "id": "P-011",
+      "name": "ВИА «Восточный Базар»",
+      "albums": [
+        {
+          "title": "Звёздная дорога (1984)",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_lCUY--0-ssoCXVA3NpQMFl0lWL9JZeFJ0"
+        }
+      ]
+    },
+    {
+      "id": "P-014",
+      "name": "Гурт Грув",
+      "albums": [
+        {
+          "title": "Ритм міста (2001)",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_mUMArLgzZUnpUXLd9M2RP32t4c15vfFWk"
+        }
+      ]
+    },
+    {
+      "id": "P-015",
+      "name": "Останній Псалом",
+      "albums": [
+        {
+          "title": "Поки горить вогонь (2013)",
+          "youtubeMusicUrl": "https://music.youtube.com/playlist?list=OLAK5uy_kF3w8Uqdjv6wAJ3XmefiojbL_OvMonfdg"
+        }
+      ]
+    }
+  ]
+}

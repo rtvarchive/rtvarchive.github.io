@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<script data-goatcounter="https://rtvarchive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Engineering Dossier · RADIUS ARCHIVE</title>
+  <meta name="description" content="Professional portfolio and resume of the engineer behind RADIUS ARCHIVE." />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  
+  <style>
+    .resume-layout {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem var(--gutter);
+    }
+
+    /* Hero Section */
+    .hero-resume {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+      border-bottom: 1px solid var(--line-mid);
+      padding-bottom: 3rem;
+    }
+
+    .profile-photo {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 4px solid var(--line-mid);
+      filter: sepia(40%) contrast(1.1) grayscale(30%);
+      box-shadow: 10px 10px 0 rgba(200, 61, 115, 0.2);
+    }
+
+    .photo-caption {
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--txt-dim);
+      margin-top: 1rem;
+      text-align: right;
+    }
+
+    .hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 1;
+      color: var(--txt-bright);
+      margin-bottom: 0.5rem;
+    }
+    
+    .hero-title em {
+      font-style: normal;
+      color: var(--neon-magenta);
+    }
+
+    .hero-subtitle {
+      font-family: var(--ff-mono);
+      font-size: 1.2rem;
+      color: var(--neon-cyan);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-summary {
+      font-family: var(--ff-body);
+      font-size: 1.05rem;
+      color: var(--txt-soft);
+      line-height: 1.6;
+    }
+
+    /* Section Blocks */
+    .resume-section {
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-family: var(--ff-mono);
+      font-size: 1.2rem;
+      color: var(--neon-magenta);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--line-soft);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Case Study Block */
+    .case-study {
+      background: rgba(28, 30, 43, 0.5);
+      border-left: 4px solid var(--neon-cyan);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .case-title {
+      font-family: var(--ff-display);
+      font-size: 2rem;
+      color: var(--txt-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .case-role {
+      font-family: var(--ff-mono);
+      font-size: 0.85rem;
+      color: var(--txt-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-list li {
+      font-family: var(--ff-body);
+      color: var(--txt-soft);
+      line-height: 1.6;
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .case-list li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--neon-magenta);
+      font-family: var(--ff-mono);
+      font-weight: bold;
+    }
+
+    /* Experience & Skills */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .job-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .job-title {
+      font-family: var(--ff-body);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--txt-bright);
+      margin: 0 0 0.2rem 0;
+    }
+
+    .job-meta {
+      font-family: var(--ff-mono);
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+      margin-bottom: 0.5rem;
+    }
+
+    .job-desc {
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
+      color: var(--txt-soft);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      font-family: var(--ff-mono);
+      font-size: 0.75rem;
+      color: var(--txt-bright);
+      background: rgba(108, 143, 163, 0.1);
+      border: 1px solid var(--line-mid);
+      padding: 0.4rem 0.8rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-resume {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+      }
+      .profile-photo {
+        margin: 0 auto;
+      }
+      .photo-caption {
+        text-align: center;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="side-rail" aria-label="RADIUS ARCHIVE">
+    <div class="side-rail__mark">RADIUS · ARCHIVE</div>
+    <span class="side-rail__pulse" aria-hidden="true"></span>
+    <div class="side-rail__year">ENGINEER DOSSIER</div>
+  </aside>
+
+  <header class="topbar">
+    <div class="topbar__signal">
+      <span class="dot" aria-hidden="true"></span>
+      <span>PERSONNEL FILE</span>
+    </div>
+    <nav id="primary-nav" aria-label="Primary">
+      <ul class="nav__list" data-nav-list>
+        <li><a class="nav__link" href="../index.html">← Back to Archive</a></li>
+      </ul>
+    </nav>
+    <div class="topbar__languages">
+      <span class="language-link is-active">EN</span>
+    </div>
+  </header>
+
+  <main class="page" id="main">
+    <div class="resume-layout">
+
+      <!-- HERO SECTION -->
+      <section class="hero-resume">
+        <div>
+          <img src="../assets/img/profile.jpg" alt="Dimitri Davidoff - Profile" class="profile-photo">
+          <div class="photo-caption">
+            ID: 7749<br>
+            STATUS: ACTIVE
+          </div>
+        </div>
+        <div>
+          <h1 class="hero-title">Dimitri <em>Davidoff</em></h1>
+          <div class="hero-subtitle">QA Engineer | AI Orchestrator | Frontend Developer</div>
+          <p class="hero-summary">
+            IT professional with 20+ years of experience in hardware-software integration, ERP systems (SAP, Priority), and technical support. Recently graduated from QA Automation College, shifting focus to modern testing and frontend development. Expert in utilizing advanced AI models (LLMs) and AI orchestration to accelerate development cycles, solve complex tasks, and architect digital products.
+          </p>
+        </div>
+      </section>
+
+      <!-- FEATURED CASE STUDY -->
+      <section class="resume-section">
+        <h2 class="section-title">Featured Case Study</h2>
+        <div class="case-study">
+          <h3 class="case-title">RADIUS ARCHIVE</h3>
+          <div class="case-role">Creator, Product Owner & QA Lead</div>
+          
+          <ul class="case-list">
+            <li><strong>Architecture & Design:</strong> Designed the UI/UX for an interactive web platform (retro TV and reel-to-reel players) using pure HTML/CSS/JS.</li>
+            <li><strong>AI Orchestration:</strong> Orchestrated multiple AI models (LLMs, Suno for music, image generators) to create content, write frontend logic, and construct scalable JSON data structures.</li>
+            <li><strong>QA & Automation:</strong> Authored E2E test strategies using Playwright. Set up CI/CD pipelines via GitHub Actions for automated regression testing.</li>
+            <li><strong>Impact & Metrics:</strong> Achieved 100K+ organic plays on YouTube Music and grew an audience of 400+ subscribers within 5 months.</li>
+          </ul>
+
+          <!-- НОВЫЕ КНОПКИ-ССЫЛКИ -->
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+            <a href="../index.html" target="_blank" class="stream-pill" style="background: var(--neon-magenta); border-color: var(--neon-magenta); color: #fff;">Explore Full Platform ↗</a>
+            <a href="../archive-room-en.html" target="_blank" class="stream-pill">Archive Room (UI/UX & JS) ↗</a>
+            <a href="../signal-room-en.html" target="_blank" class="stream-pill">Signal Room (QA Dashboard) ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE & SKILLS GRID -->
+      <section class="resume-section">
+        <div class="grid-2">
+          
+          <!-- Professional Experience -->
+          <div>
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="job-item">
+              <h4 class="job-title">IT Integration & Service Team Lead</h4>
+              <div class="job-meta">OMNIQ Corp. / Dangot Computers | 2011 – Present</div>
+              <p class="job-desc">Leading technical support and hardware/software integration with ERP systems (SAP, Priority). Managing driver configurations and troubleshooting complex edge cases.</p>
+            </div>
+
+            <div class="job-item">
+              <h4 class="job-title">Technical Support Specialist</h4>
+              <div class="job-meta">Netcode / EWAYE Mobile | 2009 – 2011</div>
+              <p class="job-desc">Provided Tier 2 technical support for hardware and software, including BarTender and label printing solutions.</p>
+            </div>
+
+            <div class="job-item">
+              <h4 class="job-title">Technical Support</h4>
+              <div class="job-meta">CCL Design / Nortec AMI | 2003 – 2009</div>
+              <p class="job-desc">Maintained internal computer systems, provided user support, and managed hardware drivers and network configurations.</p>
+            </div>
+
+            <div class="job-item" style="margin-top: 2rem;">
+              <h4 class="job-title">QA Automation Education</h4>
+              <div class="job-meta">Gal Matalon's Automation College | 2023 – 2024</div>
+              <p class="job-desc">Studied Java, Selenium, TestNG, POM, SQL, and Agile methodologies. Practical experience in STP/STD/STR documentation and bug reporting.</p>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div>
+            <h2 class="section-title">Technical Arsenal</h2>
+            
+            <div style="margin-bottom: 2rem;">
+              <div class="job-title" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--txt-dim); margin-bottom: 1rem;">QA & AUTOMATION</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Playwright</span>
+                <span class="skill-tag">Selenium</span>
+                <span class="skill-tag">TestNG</span>
+                <span class="skill-tag">Postman</span>
+                <span class="skill-tag">TestRail</span>
+                <span class="skill-tag">Jira</span>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+              <div class="job-title" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--txt-dim); margin-bottom: 1rem;">FRONTEND & WEB</div>
+              <div class="skill-tags">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">JSON</span>
+                <span class="skill-tag">GitHub Pages</span>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+              <div class="job-title" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--txt-dim); margin-bottom: 1rem;">AI & INTEGRATION</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Prompt Engineering</span>
+                <span class="skill-tag">LLM Orchestration (Claude, ChatGPT)</span>
+                <span class="skill-tag">CI/CD (GitHub Actions)</span>
+                <span class="skill-tag">ERP (SAP, Priority)</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+              <h2 class="section-title">Languages</h2>
+              <div class="skill-tags">
+                <span class="skill-tag">Hebrew (Native)</span>
+                <span class="skill-tag">Russian (Native)</span>
+                <span class="skill-tag">Ukrainian (Native)</span>
+                <span class="skill-tag">English (Very Good)</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT & FOOTER -->
+      <section class="resume-section" style="text-align: center; border-top: 1px solid var(--line-mid); padding-top: 3rem;">
+        <h2 class="section-title">Initiate Contact</h2>
+        <p class="hero-summary" style="margin-bottom: 2rem;">
+          Available for new opportunities in QA Automation, Frontend Development, and AI Product Management.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="mailto:dima.davidoff@gmail.com" class="stream-pill" style="padding: 1rem 2rem;">Email Me</a>
+          <a href="https://www.linkedin.com/in/dimitridavidoff/" target="_blank" class="stream-pill" style="padding: 1rem 2rem;">LinkedIn</a>
+          <a href="https://github.com/rtvarchive" target="_blank" class="stream-pill" style="padding: 1rem 2rem;">GitHub</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="foot__btm">
+      <span>© <span data-year>2026</span> RADIUS ARCHIVE ENGINEERING DOSSIER</span>
+      <span><strong>◉ SYSTEM ACTIVE</strong></span>
+      <span><a href="../index.html" style="color: var(--neon-cyan); text-decoration: none;">RETURN TO ARCHIVE</a></span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

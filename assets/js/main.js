@@ -1,6 +1,14 @@
-/* Sonomir — minimal vanilla JS */
+/* RADIUS ARCHIVE */
 (function () {
   'use strict';
+  
+  // ==========================================
+  // RADIUS ARCHIVE: Console Easter Egg
+  // ==========================================
+  console.log("%c> RADIUS ARCHIVE SYSTEM INITIALIZED", "color: #c83d73; font-size: 16px; font-weight: bold; font-family: monospace;");
+  console.log("%c> OPERATOR ID: 7749", "color: #e8d8bb; font-size: 12px; font-family: monospace;");
+  console.log("%c> PERSONNEL DOSSIER LOCATED AT: https://rtvarchive.github.io/resume/", "color: #6c8fa3; font-size: 14px; font-weight: bold; font-family: monospace;");
+  console.log("%c> Welcome to the Engineering Dept.", "color: #7b9c91; font-size: 12px; font-family: monospace;");
 
   // Mobile nav toggle
   const toggle = document.querySelector('[data-menu-toggle]');
@@ -75,7 +83,6 @@
   });
 
   // Универсальный обработчик для кнопок "показать еще" (More / Less)
-  // Работает и для фильтров на странице проектов, и для каналов на главной
   const moreButtons = document.querySelectorAll('[data-filter-more], [data-channels-more]');
   
   moreButtons.forEach(btn => {
@@ -101,44 +108,164 @@
     });
   });
 
-  // Обработчик формы отправки материалов (Web3Forms) - ОДИН РАЗ!
-  const submissionForm = document.querySelector('[data-testid="submission-form"]');
-  
-  if (submissionForm) {
-    submissionForm.addEventListener('submit', function(e) {
-      e.preventDefault(); // Отменяем перезагрузку страницы
-      
-      const submitBtn = this.querySelector('button[type="submit"]');
-      const statusMsg = this.querySelector('[data-testid="submission-status"]');
-      const formData = new FormData(this);
-      
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Transmitting...';
-      submitBtn.disabled = true;
-      
-      fetch(this.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          submissionForm.reset();
-          submissionForm.style.display = 'none';
-          if (statusMsg) statusMsg.removeAttribute('hidden');
-        } else {
-          alert('Transmission failed. Please try again later.');
+  // Универсальный обработчик для всех форм на сайте
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- ОТПРАВКА ФОРМ ---
+    const forms = document.querySelectorAll('[data-testid="submission-form"], #report-form');
+    
+    forms.forEach(form => {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const formData = new FormData(this);
+        
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Transmitting...';
+        submitBtn.disabled = true;
+        
+        fetch(this.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+          if (response.ok) {
+            console.log('Formspark: Submission successful.');
+          } else {
+            console.warn('Formspark: Limit reached or error. Status:', response.status);
+          }
+          
+          // В ЛЮБОМ СЛУЧАЕ: очищаем форму и открываем модалку
+          form.reset();
+          const modal = document.getElementById('success-modal');
+          if (modal) modal.classList.add('is-active');
+          
           submitBtn.textContent = originalText;
           submitBtn.disabled = false;
-        }
-      })
-      .catch(error => {
-        alert('Network error. Please check your connection.');
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
+        })
+        .catch(error => {
+          console.error('Network error:', error);
+          
+          // Даже если упал интернет, показываем успех пользователю
+          form.reset();
+          const modal = document.getElementById('success-modal');
+          if (modal) modal.classList.add('is-active');
+          
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        });
       });
     });
-  }
+
+    // --- ЗАКРЫТИЕ МОДАЛКИ (КРЕСТИК, КЛИК ПО ФОНУ, ESCAPE) ---
+    const modal = document.getElementById('success-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+
+    if (modal && closeModalBtn) {
+      closeModalBtn.addEventListener('click', function() {
+        modal.classList.remove('is-active');
+      });
+
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.classList.remove('is-active');
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+          modal.classList.remove('is-active');
+        }
+      });
+    }
+  });
 
 })(); // Закрываем основную функцию
+
+
+// =========================================================
+// ЛОГИКА КНОПКИ "ПОКАЗАТЬ ВСЕ ПРОЕКТЫ" (АККОРДЕОН)
+// =========================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const projectGrid = document.getElementById('artist-list');
+  if (!projectGrid) return;
+
+  const cards = Array.from(projectGrid.querySelectorAll('.artist-card'));
+  const itemsToShow = 6; // Показываем первые 6 карточек
+
+  if (cards.length > itemsToShow) {
+    // 1. Скрываем лишние карточки
+    cards.forEach((card, index) => {
+      if (index >= itemsToShow) {
+        card.classList.add('is-hidden');
+        card.style.display = 'none';
+      }
+    });
+
+    // 2. Создаем контейнер для кнопки
+    const btnContainer = document.createElement('div');
+    btnContainer.style.textAlign = 'center';
+    btnContainer.style.marginTop = '4rem'; // Чуть больше отступ
+    btnContainer.style.width = '100%';
+
+    // 3. Создаем саму кнопку
+    const btn = document.createElement('button');
+    // Задаем жесткие стили, чтобы никакой CSS сайта не мог испортить кнопку
+    btn.style.setProperty('background', 'transparent', 'important');
+    btn.style.setProperty('border', '1px solid var(--neon-cyan)', 'important');
+    btn.style.setProperty('color', 'var(--neon-cyan)', 'important');
+    btn.style.setProperty('padding', '1rem 2.5rem', 'important');
+    btn.style.setProperty('font-size', '1.1rem', 'important');
+    btn.style.setProperty('font-family', 'var(--ff-mono)', 'important');
+    btn.style.setProperty('text-transform', 'uppercase', 'important');
+    btn.style.setProperty('letter-spacing', '0.1em', 'important');
+    btn.style.setProperty('cursor', 'pointer', 'important');
+    btn.style.setProperty('border-radius', '4px', 'important');
+    btn.style.setProperty('transition', 'all 0.3s', 'important');
+    btn.style.setProperty('display', 'inline-block', 'important');
+    
+    // Эффект при наведении
+    btn.addEventListener('mouseover', () => {
+      btn.style.setProperty('background', 'rgba(108, 143, 163, 0.1)', 'important');
+      btn.style.setProperty('box-shadow', '0 0 15px rgba(108, 143, 163, 0.3)', 'important');
+    });
+    btn.addEventListener('mouseout', () => {
+      btn.style.setProperty('background', 'transparent', 'important');
+      btn.style.setProperty('box-shadow', 'none', 'important');
+    });
+
+    const isRu = document.documentElement.lang === 'ru';
+    btn.textContent = isRu ? 'Показать все проекты' : 'Show all projects';
+    btn.dataset.testid = 'btn-show-all-projects';
+
+    // 4. Логика клика
+    btn.addEventListener('click', () => {
+      const hiddenCards = projectGrid.querySelectorAll('.is-hidden');
+      
+      if (hiddenCards.length > 0) {
+        // Показываем
+        hiddenCards.forEach(card => {
+          card.classList.remove('is-hidden');
+          card.style.display = '';
+        });
+        btn.textContent = isRu ? 'Свернуть проекты' : 'Show less';
+      } else {
+        // Скрываем
+        cards.forEach((card, index) => {
+          if (index >= itemsToShow) {
+            card.classList.add('is-hidden');
+            card.style.display = 'none';
+          }
+        });
+        btn.textContent = isRu ? 'Показать все проекты' : 'Show all projects';
+        projectGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    // 5. Вставляем кнопку на страницу
+    btnContainer.appendChild(btn);
+    projectGrid.parentNode.insertBefore(btnContainer, projectGrid.nextSibling);
+  }
+});

@@ -13,7 +13,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <!-- Стили для модального окна (Попапа) -->
   <style>
     .modal-overlay {
       position: fixed;
@@ -108,8 +107,9 @@
       <ul class="nav__list" data-nav-list>
         <li><a class="nav__link" href="index.html" data-testid="nav-home">Home</a></li>
         <li><a class="nav__link" href="projects.html" data-testid="nav-projects">Projects</a></li>
-        <li><a class="nav__link is-active" href="about.html" aria-current="page" data-testid="nav-about">About</a></li>
-		<li><a class="nav__link" href="signal-room-en.html" data-testid="nav-signal-room">Signal Room</a></li>
+        <li><a class="nav__link" href="archive-room-en.html" data-testid="nav-archive">Archive Room</a></li>
+        <li><a class="nav__link" href="signal-room-en.html" data-testid="nav-signal-room">Signal Room</a></li>
+        <li><a class="nav__link is-active" href="about.html" data-testid="nav-about" aria-current="page">About</a></li>
       </ul>
     </nav>
 
@@ -124,7 +124,6 @@
 
   <main class="page" id="main">
 
-    <!-- 2-КОЛОНОЧНАЯ СЕТКА -->
     <div style="display: grid; grid-template-columns: 1fr; gap: 4rem; margin-bottom: 5rem; align-items: start;" class="about-layout">
       <style>
         @media (min-width: 992px) {
@@ -137,7 +136,7 @@
           <a href="index.html">RADIUS ARCHIVE</a> / About
         </p>
         <h1 class="page-head__title">
-          Inside <em>RADIUS ARCHIVE</em>
+          Inside <em>Archive</em>
         </h1>
 
         <div class="page-head__sub">
@@ -180,7 +179,6 @@
         </div>
       </section>
 
-      <!-- КАРТИНКА -->
       <div style="display: flex; justify-content: center; width: 100%;">
         <div style="
           background: #f4ebd9; 
@@ -225,7 +223,6 @@
       </div>
     </div>
 
-    <!-- ТАЙМЛАЙН -->
     <section class="section" aria-labelledby="timeline-heading">
       <div class="section__head">
         <span class="section__num">Archive Log</span>
@@ -284,7 +281,6 @@
       </div>
     </section>
 
-    <!-- НИЖНИЙ БЛОК -->
     <div class="two-col">
       <aside>
         <h3>RADIUS ARCHIVE</h3>
@@ -334,23 +330,11 @@
           Send a private link or a short description of the material.
         </p>
 
-        <!-- РАБОЧАЯ ФОРМА -->
-        <form class="submission-form" id="submission-form" data-testid="submission-form" action="https://api.web3forms.com/submit" method="POST" style="
-          display: flex; 
-          flex-direction: column; 
-          gap: 1.5rem; 
-          width: 100%; 
-          max-width: 600px; 
-          background: rgba(255, 255, 255, 0.02); 
-          padding: 2rem; 
-          border-radius: 4px; 
-          border: 1px solid var(--line-mid); 
-          box-sizing: border-box;
-        ">
+        <form class="submission-form" id="submission-form" data-testid="submission-form" action="https://submit-form.com/hiLPOJzWg" method="POST" style="...">
           
-          <input type="hidden" name="access_key" value="170f64f4-4ec9-4f4f-97ec-4144bf06bce0">
-          <input type="hidden" name="redirect" value="false">
-          <input type="hidden" name="subject" value="RADIUS ARCHIVE: New Fragment Submitted">
+          <input type="hidden" name="_subject" value="RADIUS ARCHIVE: New Fragment Submitted">
+          <input type="hidden" name="_captcha" value="false">
+		  
           
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="sub-email" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Your Email (optional)</label>
@@ -410,12 +394,12 @@
         </div>
         <div class="foot__col">
           <h2 class="foot__heading">Explore</h2>
-         <ul>
+<ul>
           <li><a href="index.html" data-testid="footer-nav-home">Home</a></li>
           <li><a href="projects.html" data-testid="footer-nav-projects">Projects</a></li>
-          <li><a href="about.html" data-testid="footer-nav-about">About</a></li>
           <li><a href="archive-room-en.html" data-testid="footer-nav-archive">Archive Room</a></li>
           <li><a href="signal-room-en.html" data-testid="footer-nav-signal">Signal Room</a></li>
+          <li><a href="about.html" data-testid="footer-nav-about">About</a></li>
         </ul>
         </div>
         <div class="foot__col">
@@ -436,7 +420,6 @@
 
   </main>
 
-  <!-- МОДАЛЬНОЕ ОКНО (ПОПАП) -->
   <div id="success-modal" class="modal-overlay" data-testid="submission-popup">
     <div class="modal-box">
       <div class="modal-icon">✓</div>
@@ -451,69 +434,5 @@
 
   <script src="assets/js/main.js"></script>
 
-  <!-- СКРИПТ ОТПРАВКИ И ПОПАПА -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const submissionForm = document.getElementById('submission-form');
-      const modal = document.getElementById('success-modal');
-      const closeModalBtn = document.getElementById('close-modal');
-      
-      if (submissionForm) {
-        submissionForm.addEventListener('submit', function(e) {
-          e.preventDefault(); 
-          
-          const submitBtn = this.querySelector('button[type="submit"]');
-          const formData = new FormData(this);
-          
-          const originalText = submitBtn.textContent;
-          submitBtn.textContent = 'Transmitting...';
-          submitBtn.disabled = true;
-          
-          fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              submissionForm.reset();
-              submissionForm.style.display = 'none';
-              modal.classList.add('is-active');
-            } else {
-              alert('Transmission failed. Please try again later.');
-              submitBtn.textContent = originalText;
-              submitBtn.disabled = false;
-            }
-          })
-          .catch(error => {
-            alert('Network error. Please check your connection.');
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-          });
-        });
-      }
-
-      if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', function() {
-          modal.classList.remove('is-active');
-        });
-      }
-      
-      if (modal) {
-        modal.addEventListener('click', function(e) {
-          if (e.target === modal) {
-            modal.classList.remove('is-active');
-          }
-        });
-      }
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-          modal.classList.remove('is-active');
-        }
-      });
-    });
-  </script>
 </body>
 </html>

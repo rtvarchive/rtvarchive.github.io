@@ -92,9 +92,15 @@
       font-family: var(--ff-mono); 
       font-size: 0.85rem; 
       color: #ffcccc;
+      word-break: break-all; /* Ломаем длинные строки с ошибками */
+      overflow-wrap: anywhere;
+      max-width: 100%; /* Не даем вылезти за экран */
+      box-sizing: border-box;
     }
     #failed-tests-list strong { color: #ff3333; display: block; margin-bottom: 0.5rem; }
     #failed-tests-ul { margin: 0; padding-left: 1.5rem; }
+    #failed-tests-ul li { word-break: break-word; }
+	
 
     .modal-overlay {
       position: fixed;
@@ -292,10 +298,12 @@
       <ul class="nav__list" data-nav-list>
         <li><a class="nav__link" href="index.html" data-testid="nav-home">Home</a></li>
         <li><a class="nav__link" href="projects.html" data-testid="nav-projects">Projects</a></li>
-        <li><a class="nav__link" href="about.html" data-testid="nav-about">About</a></li>
+        <li><a class="nav__link" href="archive-room-en.html" data-testid="nav-archive">Archive Room</a></li>
         <li><a class="nav__link is-active" href="signal-room-en.html" data-testid="nav-signal-room" aria-current="page">Signal Room</a></li>
+        <li><a class="nav__link" href="about.html" data-testid="nav-about">About</a></li>
       </ul>
     </nav>
+	
     <div class="topbar__languages">
       <a href="signal-room-en.html" class="language-link is-active" lang="en" aria-current="page" data-testid="lang-en">EN</a>
       <span aria-hidden="true"> | </span>
@@ -371,6 +379,11 @@
           </div>
 
           <button class="btn-primary" data-testid="btn-start-check">Request Latest Report</button>
+		  
+		            <!-- ПАСХАЛКА: Ссылка на досье инженера -->
+          <div style="margin-top: 2rem; font-family: var(--ff-mono); font-size: 0.65rem; color: var(--txt-faint); text-align: right; letter-spacing: 0.05em;">
+            > SYSTEM OPERATOR ID: 7749 // <a href="../resume/" style="color: inherit; text-decoration: underline; transition: color 0.2s;" onmouseover="this.style.color='var(--neon-cyan)'" onmouseout="this.style.color='var(--txt-faint)'">ACCESS PERSONNEL DOSSIER</a>
+          </div>
         </div>
       </div>
 
@@ -392,11 +405,9 @@
         <h2 class="section__title" style="margin-bottom: 1.5rem;">Report <em>Interference</em></h2>
         <p style="margin-bottom: 2rem; color: var(--txt-soft); max-width: 60ch;">If you've detected signal distortion, routing issues, or a lost fragment, file a report with the control room.</p>
         
-        <form class="form-grid" style="max-width: 600px;" id="report-form" action="https://api.web3forms.com/submit" method="POST">
+		  <form class="form-grid" style="max-width: 600px;" id="report-form" action="https://submit-form.com/hiLPOJzWg" method="POST">
           
-          <input type="hidden" name="access_key" value="170f64f4-4ec9-4f4f-97ec-4144bf06bce0">
-          <input type="hidden" name="redirect" value="false">
-          <input type="hidden" name="subject" value="RADIUS ARCHIVE: New Interference Report">
+          <input type="hidden" name="_email.subject" value="RADIUS ARCHIVE: New Interference Report">
 
           <div class="field">
             <label for="freq">Frequency / Page</label>
@@ -432,12 +443,12 @@
       </div>
       <div class="foot__col">
         <h2 class="foot__heading">Explore</h2>
-         <ul>
+   <ul>
           <li><a href="index.html" data-testid="footer-nav-home">Home</a></li>
           <li><a href="projects.html" data-testid="footer-nav-projects">Projects</a></li>
-          <li><a href="about.html" data-testid="footer-nav-about">About</a></li>
           <li><a href="archive-room-en.html" data-testid="footer-nav-archive">Archive Room</a></li>
           <li><a href="signal-room-en.html" data-testid="footer-nav-signal">Signal Room</a></li>
+          <li><a href="about.html" data-testid="footer-nav-about">About</a></li>
         </ul>
       </div>
       <div class="foot__col">
@@ -469,6 +480,7 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       
@@ -520,7 +532,7 @@
           if (statPassed) statPassed.textContent = data.passed;
           if (statFailed) statFailed.textContent = data.failed;
 
-                    const failedListContainer = document.getElementById('failed-tests-list');
+          const failedListContainer = document.getElementById('failed-tests-list');
           const failedListUl = document.getElementById('failed-tests-ul');
           if (failedListContainer && failedListUl) {
             failedListUl.innerHTML = '';
@@ -629,63 +641,8 @@
         updateDashboard();
       }
 
-      const reportForm = document.getElementById('report-form');
-      const modal = document.getElementById('success-modal');
-      const closeModalBtn = document.getElementById('close-modal');
-
-      if (reportForm) {
-        reportForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          const submitBtn = this.querySelector('button[type="submit"]');
-          const formData = new FormData(this);
-          const originalText = submitBtn.textContent;
-          submitBtn.textContent = 'Filing...';
-          submitBtn.disabled = true;
-          
-          fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              reportForm.reset();
-              reportForm.style.display = 'none';
-              modal.classList.add('is-active');
-            } else {
-              alert('Filing failed. Please try again later.');
-              submitBtn.textContent = originalText;
-              submitBtn.disabled = false;
-            }
-          })
-          .catch(error => {
-            alert('Network error. Please check your connection.');
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-          });
-        });
-      }
-
-      if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', function() {
-          modal.classList.remove('is-active');
-        });
-      }
-      if (modal) {
-        modal.addEventListener('click', function(e) {
-          if (e.target === modal) {
-            modal.classList.remove('is-active');
-          }
-        });
-      }
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-          modal.classList.remove('is-active');
-        }
-      });
-
     });
   </script>
+
 </body>
 </html>

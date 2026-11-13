@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Архивная комната · RADIUS ARCHIVE</title>
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  
+  <style>
+    /* === СТИЛИ АРХИВНОЙ КОМНАТЫ === */
+    .archive-room-layout {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 2rem;
+      max-width: var(--max);
+      margin-inline: auto;
+      align-items: start;
+    }
+
+    /* --- КАТАЛОГ --- */
+    .card-catalog {
+      background: #3b2a1a;
+      background-image: linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(0deg, rgba(0,0,0,0.2) 2px, transparent 2px);
+      background-size: 100% 100%, 100% 25%;
+      border: 8px solid #2a1e12;
+      border-radius: 4px;
+      padding: 1.5rem 1rem;
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 10px 10px 30px rgba(0,0,0,0.6);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ВЫСОТА ВЕРХНЕЙ КАРТОТЕКИ (КИНЕСКОП) */
+    #catalog-top {
+      height: 690px; 
+      max-height: 690px;
+    }
+
+    /* ВЫСОТА НИЖНЕЙ КАТОРТЕКИ (БОБИНЫ) */
+    #catalog-bottom {
+      height: 660px; 
+      max-height: 660px;
+    }
+
+    .search-box { margin-bottom: 1rem; }
+    .search-box input {
+      width: 100%; padding: 0.8rem; background: #1a1e24; border: 2px solid #111;
+      color: var(--txt-bright); font-family: var(--ff-mono); border-radius: 2px;
+    }
+    .search-box input:focus { outline: none; border-color: var(--neon-cyan); }
+
+    .card-list {
+      list-style: none; padding: 0 0.5rem 0 0; margin: 0; 
+      overflow-y: auto; overflow-x: hidden; flex-grow: 1;
+      scrollbar-width: thin; scrollbar-color: var(--neon-magenta) #1a1e24;
+    }
+    
+    .card-list::-webkit-scrollbar { width: 8px; }
+    .card-list::-webkit-scrollbar-track { 
+      background: #1a1e24; 
+      border-left: 1px solid #111;
+    }
+    .card-list::-webkit-scrollbar-thumb { 
+      background: #c83d73;
+      border-radius: 4px; 
+      box-shadow: 0 0 5px #c83d73;
+    }
+    .card-list::-webkit-scrollbar-thumb:hover { background: #ff4d8d; }
+
+    .card-folder { margin-bottom: 0.5rem; border: 1px solid #2a1e12; background: #4a3520; }
+    .folder-header {
+      padding: 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      color: var(--txt-bright); font-family: var(--ff-body); font-weight: 700;
+    }
+    .folder-header:hover { background: #5a4028; }
+    .folder-header .arrow { font-size: 0.8rem; transition: transform 0.3s; }
+    .card-folder.is-open .folder-header .arrow { transform: rotate(180deg); }
+    
+    .folder-title { display: flex; align-items: center; gap: 0.8rem; }
+    .project-num { font-family: var(--ff-mono); font-size: 0.7rem; color: var(--neon-magenta); opacity: 0.8; }
+    .project-name { font-size: 1.1rem; }
+
+    .folder-content { display: none; list-style: none; padding: 0 0 0.5rem 1rem; margin: 0; }
+    .card-folder.is-open .folder-content { display: block; }
+
+    .card-item {
+      background: #e8d8bb; color: #1c1e2b; padding: 0.8rem; margin: 0.5rem 0.5rem 0.5rem 0;
+      border-radius: 2px; cursor: pointer; box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+      transition: transform 0.2s; position: relative; border-left: 4px solid #c83d73;
+      width: 100%; box-sizing: border-box;
+    }
+    .card-item:hover { transform: translateX(5px); background: #fff; }
+    .card-item.active { background: #fff; border-left-color: var(--neon-cyan); transform: translateX(10px); }
+    .card-item h4 { font-family: var(--ff-body); font-size: 0.95rem; margin: 0 0 0.2rem 0; font-weight: 700; }
+    .card-item p { font-family: var(--ff-mono); font-size: 0.7rem; margin: 0; opacity: 0.7; }
+
+    .card-item::before {
+      content: 'ТРЕК';
+      font-family: var(--ff-mono); font-size: 0.5rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--neon-cyan); display: block; margin-bottom: 0.2rem; opacity: 0.7;
+    }
+    .card-item[data-playlist-id]::before { content: 'ПЛЕЙЛИСТ'; color: var(--neon-magenta); }
+    
+    /* Стили для альбомов в нижней картотеке */
+    .card-item.album-item::before { content: 'АЛЬБОМ'; color: var(--neon-magenta); }
+
+    .card-item::after {
+      content: 'АРХИВНАЯ КОПИЯ'; position: absolute; top: 5px; right: 5px;
+      font-family: var(--ff-mono); font-size: 0.45rem;
+      color: rgba(200, 61, 115, 0.4); border: 1px solid rgba(200, 61, 115, 0.4);
+      padding: 1px 4px; transform: rotate(15deg); pointer-events: none;
+    }
+
+    /* --- ПЛЕЕРЫ --- */
+    .tv-station { display: flex; flex-direction: column; gap: 1rem; justify-content: space-between; }
+    
+    .crt-tv-body {
+      background: #2a2a2a; border-radius: 20px; padding: 1.5rem;
+      box-shadow: inset -10px -10px 20px rgba(0,0,0,0.8), inset 5px 5px 15px rgba(255,255,255,0.1), 0 20px 50px rgba(0,0,0,0.9);
+      border: 2px solid #111; display: flex; flex-direction: column;
+    }
+    .crt-tv-header {
+      display: flex; justify-content: space-between; font-family: var(--ff-mono);
+      color: #888; font-size: 0.75rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .crt-screen-wrapper {
+      position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000;
+      border-radius: 30px; overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(0,0,0,1), inset 0 0 10px rgba(108, 143, 163, 0.3);
+      border: 8px solid #111;
+    }
+    .crt-screen {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 100%; height: 100%;
+    }
+    .crt-glass-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%);
+      box-shadow: inset 0 0 100px rgba(0,0,0,0.6); z-index: 10;
+    }
+    .crt-scanlines {
+      position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px);
+      z-index: 11;
+    }
+
+    .crt-screen-wrapper.is-loading .crt-screen {
+      background: #000 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.4"/></svg>') repeat;
+      background-size: 200px 200px;
+      animation: noise 0.2s infinite;
+    }
+    @keyframes noise {
+      0% { transform: translate(0,0); }
+      20% { transform: translate(-5%,5%); }
+      40% { transform: translate(-5%,-5%); }
+      60% { transform: translate(5%,0); }
+      80% { transform: translate(5%,-5%); }
+      100% { transform: translate(0,0); }
+    }
+
+    .crt-screen-wrapper.is-playing #crt-standby-image { opacity: 0 !important; pointer-events: none; }
+
+    .crt-tv-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+    .crt-knobs { display: flex; gap: 1rem; }
+    .knob {
+      width: 45px; height: 45px; border-radius: 50%;
+      background: radial-gradient(circle, #444, #111); border: 2px solid #000;
+      color: var(--txt-bright); font-size: 1.2rem; cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.5); transition: transform 0.1s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .knob:active { transform: scale(0.95); }
+    .knob:disabled { opacity: 0.3; cursor: not-allowed; }
+    .crt-speaker-grill {
+      width: 100px; height: 30px; background: repeating-linear-gradient(90deg, #111 0px, #111 2px, #333 2px, #333 4px);
+      border-radius: 4px; opacity: 0.5;
+    }
+
+    .archive-log {
+      background: #0b0d14; border: 1px solid var(--line-mid); padding: 1rem;
+      font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-lime);
+      min-height: 100px; border-left: 4px solid var(--neon-cyan); width: 100%;
+    }
+
+    /* --- МАГНИТОФОН (БОБИНЫ) --- */
+    .reel-station {
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      background: linear-gradient(180deg, #333 0%, #1a1a1a 100%);
+      border: 2px solid #111; border-radius: 8px;
+      padding: 1.5rem 2rem 1.5rem 2rem;
+      position: relative;
+      box-shadow: inset 0 2px 5px rgba(255,255,255,0.1), inset 0 -2px 5px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.8);
+      min-height: 300px; overflow: hidden;
+    }
+	
+    .reel-station::before, .reel-station::after {
+      content: ''; position: absolute; width: 12px; height: 12px;
+      background: radial-gradient(circle, #666, #222); border-radius: 50%;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+    }
+    .reel-station::before { top: 10px; left: 10px; }
+    .reel-station::after { bottom: 10px; right: 10px; }
+
+    .reel-container {
+      display: flex; 
+      gap: 1rem; /* Маленький зазор между катушкой и монитором */
+      align-items: center;
+      position: relative; 
+      margin-bottom: 2rem; 
+      z-index: 2;
+      justify-content: center; /* Центрируем всю композицию */
+    }
+	
+
+    .reel-wheel {
+      width: 220px; height: 220px; border-radius: 50%;
+      background: #222 !important; border: 4px solid #444;
+      position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+      animation: spin 4s linear infinite; animation-play-state: paused;
+      display: flex; align-items: center; justify-content: center; z-index: 2;
+    }
+    .reel-wheel.is-spinning { animation-play-state: running; }
+
+    .reel-spokes {
+      position: absolute; 
+      inset: 15px; 
+      border-radius: 50%;
+      background: repeating-conic-gradient(
+        #222 0deg 30deg,       /* Спицы (темно-серые) */
+        #3b2a1a 30deg 90deg    /* Прорези (теперь коричневые, вместо transparent) */
+      ) !important;
+      mask-image: radial-gradient(circle, transparent 30%, black 31%);
+      -webkit-mask-image: radial-gradient(circle, transparent 30%, black 31%);
+      z-index: 1;
+    }
+
+    .reel-hub {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #555 0%, #222 100%);
+      border: 3px solid #000 !important;
+      z-index: 3; display: flex; align-items: center; justify-content: center; position: relative;
+    }
+	
+    .reel-hub::after {
+      content: ''; 
+      width: 15px; height: 15px; background: #000 !important; border: none !important;
+      border-radius: 50%; box-shadow: inset 0 2px 5px rgba(0,0,0,1);
+      z-index: 4;
+    }
+	
+    .reel-marker {
+      position: absolute; 
+      width: 6px; height: 25px; background: var(--neon-magenta); 
+      border-radius: 2px; top: 15px; left: 50%; transform: translateX(-50%);
+      z-index: 4; box-shadow: 0 0 8px var(--neon-magenta);
+    }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    .vu-meters { display: flex; gap: 2rem; margin-top: 1rem; margin-bottom: 1rem; z-index: 2; }
+    .vu-meter {
+      width: 140px; height: 70px; background: #111; border: 3px solid #333; border-radius: 4px;
+      position: relative; overflow: hidden; box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+    }
+    .vu-meter::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(255, 200, 50, 0.15) 0%, transparent 70%);
+    }
+    .vu-meter::after {
+      content: ''; position: absolute; bottom: 5px; left: 50%; width: 2px; height: 55px;
+      background: #ff3333; transform-origin: bottom center;
+      transform: translateX(-50%) rotate(var(--vu-rotate, -45deg)); 
+      box-shadow: 0 0 5px #ff3333; transition: transform 0.1s ease-out; 
+    }
+
+    .reel-controls {
+      display: flex; gap: 0.5rem; margin-top: 1rem; z-index: 2;
+      background: #1a1a1a; padding: 1rem 2rem; border-radius: 4px;
+      border-top: 1px solid #444; border-bottom: 1px solid #000;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    }
+    
+    .reel-knob {
+      width: 60px; height: 40px; border-radius: 2px;
+      background: linear-gradient(180deg, #333 0%, #111 100%);
+      border: 1px solid #000; border-top: 1px solid #555;
+      color: #888; font-size: 1rem; cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.8); transition: all 0.1s;
+      display: flex; align-items: center; justify-content: center;
+      text-transform: uppercase; font-family: var(--ff-mono);
+    }
+    .reel-knob:hover { color: var(--neon-cyan); border-color: var(--neon-cyan); box-shadow: 0 0 10px rgba(108, 143, 163, 0.3); }
+    .reel-knob:active { transform: translateY(2px); box-shadow: inset 0 2px 5px rgba(0,0,0,0.9); background: #0b0d14; }
+
+    /* НОВОЕ: Окошко для плеера между катушками */
+    .reel-player-window {
+      width: 260px;
+      height: 260px; /* Квадрат под обложку */
+      background: #0b0d14;
+      border: 4px solid #333;
+      border-radius: 8px;
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(0,0,0,1), 0 4px 10px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+    }
+
+    .reel-player-header {
+      position: absolute;
+      top: -20px;
+      left: 0;
+      font-family: var(--ff-mono);
+      font-size: 0.6rem;
+      color: #666;
+      letter-spacing: 0.1em;
+    }
+
+    #streaming-youtube-player {
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      pointer-events: auto;
+      opacity: 0; 
+      transition: opacity 0.3s;
+    }
+
+    #streaming-youtube-player.is-active {
+      opacity: 1; 
+    }
+
+    .reel-info-bar {
+      margin-top: 1.5rem; padding: 1rem; background: #0b0d14;
+      border: 1px solid var(--line-mid); border-left: 4px solid var(--neon-cyan);
+      font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-lime);
+      width: 100%; max-width: 600px; text-align: center; z-index: 2;
+    }
+
+    .section-wrapper { padding: 0 var(--gutter) !important; max-width: var(--max); margin-inline: auto; }
+    .section-head { margin-bottom: 1.5rem; border-bottom: 1px solid var(--line-mid); padding-bottom: 1rem; }
+
+    @media (max-width: 900px) {
+      .archive-room-layout { grid-template-columns: 1fr; }
+      #catalog-top, #catalog-bottom { height: 400px; min-height: 400px; }
+      .tv-station { height: auto; }
+      .crt-tv-body { height: auto; }
+      .reel-station { height: auto; padding: 1.5rem 1rem; }
+
+      /* Уменьшаем контейнер и сами катушки */
+      .reel-container { 
+        gap: 0.5rem !important; 
+        justify-content: center; 
+      }
+      .reel-wheel { 
+        width: 110px !important; 
+        height: 110px !important; 
+      }
+      
+      /* УМЕНЬШАЕМ ВНУТРЕННОСТИ КАТУШЕК ДЛЯ МОБИЛЬНЫХ */
+      .reel-spokes {
+        inset: 8px !important; /* Уменьшаем отступ спиц */
+      }
+      .reel-hub {
+        width: 30px !important; /* Уменьшаем центральную втулку */
+        height: 30px !important;
+      }
+      .reel-hub::after {
+        width: 8px !important; /* Уменьшаем точку в центре */
+        height: 8px !important;
+      }
+      .reel-marker {
+        width: 4px !important; /* Уменьшаем розовый маркер */
+        height: 12px !important;
+        top: 6px !important;
+      }
+      .reel-tape {
+        width: 80px !important; /* Уменьшаем ленту между катушками */
+        height: 6px !important;
+      }
+
+      /* Монитор остается квадратным */
+      .reel-player-window { 
+        width: 160px !important; 
+        height: 160px !important; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <aside class="side-rail" aria-label="RADIUS ARCHIVE">
+    <div class="side-rail__mark">RADIUS · ARCHIVE</div>
+    <span class="side-rail__pulse" aria-hidden="true"></span>
+    <div class="side-rail__year">EST. 1976 · RADINSK</div>
+  </aside>
+
+  <header class="topbar">
+    <div class="topbar__signal">
+      <span class="dot" aria-hidden="true"></span>
+      <span>RADIUS ARCHIVE</span>
+    </div>
+    <nav id="primary-nav" aria-label="Основная навигация">
+      <ul class="nav__list" data-nav-list>
+        <li><a class="nav__link" href="index.html" data-testid="nav-home">Главная</a></li>
+        <li><a class="nav__link" href="projects.html" data-testid="nav-projects">Проекты</a></li>
+        <li><a class="nav__link is-active" href="archive-room.html" data-testid="nav-archive" aria-current="page">Архивная</a></li>
+        <li><a class="nav__link" href="signal-room.html" data-testid="nav-signal-room">Аппаратная</a></li>
+        <li><a class="nav__link" href="about.html" data-testid="nav-about">Об архиве</a></li>
+      </ul>
+    </nav>
+	
+    <div class="topbar__languages">
+      <a href="../archive-room-en.html" class="language-link" lang="en">EN</a>
+      <span aria-hidden="true"> | </span>
+      <a href="archive-room.html" class="language-link is-active" lang="ru">RU</a>
+    </div>
+    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="primary-nav">Меню</button>
+  </header>
+
+  <main class="page" id="main">
+    
+    <section class="page-head" style="margin-bottom: 1rem;">
+      <p class="page-head__crumb">
+        <a href="index.html">RADIUS ARCHIVE</a> / Архивная комната
+      </p>
+      <h1 class="page-head__title">Архивная <em>Комната</em></h1>
+      <div class="page-head__sub">
+        <p>Добро пожаловать в Архивную комнату. Это интерактивное пространство хранит оцифрованные записи, найденные в архивах Радинска. Комната разделена на две секции: монитор с кинескопом для проигрывания фрагментов с YouTube и катушечный магнитофон для непрерывного прослушивания альбомов.</p>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ 1: КАТАЛОГ -->
+    <div class="section-wrapper">
+      <div class="section-head">
+        <span class="section__num">/ Секция 01 · Архивный каталог</span>
+      </div>
+      <p style="margin-bottom: 2rem; color: var(--txt-soft); max-width: 60ch;">
+        Выберите трек или фрагмент из каталога, чтобы воспроизвести его на кинескопе. Открывайте папки для просмотра архива. Используйте ручки управления для воспроизведения, паузы или переключения на следующий трек.
+      </p>
+
+      <div class="archive-room-layout">
+        <aside class="card-catalog" id="catalog-top">
+          <div class="search-box">
+            <input type="text" id="archive-search" placeholder="Поиск фрагментов...">
+          </div>
+          
+          <ul class="card-list" id="card-list">
+            <!-- Данные будут сгенерированы скриптом -->
+          </ul>
+        </aside>
+
+        <main class="tv-station">
+          <div class="crt-tv-body">
+            <div class="crt-tv-header">
+              <span class="crt-brand">RADIUS TV</span>
+              <span class="crt-channel" id="current-channel">КАНАЛ: --</span>
+            </div>
+            
+            <div class="crt-screen-wrapper" id="screen-wrapper">
+              <div id="youtube-player" class="crt-screen" style="z-index: 1; position: relative;"></div>
+              <div class="crt-glass-overlay" style="z-index: 10;"></div>
+              <div class="crt-scanlines" style="z-index: 11;"></div>
+            </div>
+
+            <div class="crt-tv-controls">
+              <div class="crt-knobs">
+                <button class="knob" id="prev-btn" title="Предыдущий">◀</button>
+                <button class="knob" id="play-btn" title="Играть">▶</button>
+                <button class="knob" id="next-btn" title="Следующий">▶|</button>
+              </div>
+              <div class="crt-speaker-grill"></div>
+            </div>
+          </div>
+          
+          <div class="archive-log" id="archive-log">
+            <p>> Ожидание выбора фрагмента...</p>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- СЕКЦИЯ 2: РЕЛИЗЫ -->
+    <div class="section-wrapper" style="margin-top: 1rem;">
+      <div class="section-head">
+        <span class="section__num">/ Секция 02 · Дистрибуция</span>
+      </div>
+      <p style="margin-bottom: 2rem; color: var(--txt-soft); max-width: 60ch;">
+        Непрерывное воспроизведение. Выберите альбом, чтобы запустить его как непрерывный плейлист на катушечном магнитофоне.
+        <br><span style="font-size: 0.85em; opacity: 0.7;">Примечание: Рекламные вставки являются частью эфира и не контролируются архивом.</span>
+      </p>
+
+      <div class="archive-room-layout">
+        <aside class="card-catalog" id="catalog-bottom">
+          <div class="search-box">
+            <input type="text" id="releases-search" placeholder="Поиск альбомов...">
+          </div>
+          
+          <ul class="card-list" id="reel-list">
+            <!-- Данные будут сгенерированы скриптом -->
+          </ul>
+        </aside>
+
+        <main class="reel-station">
+          <!-- НОВАЯ СТРУКТУРА КАТУШЕК + ЭКРАН -->
+          <div class="reel-container">
+            <div class="reel-wheel" id="reel-wheel-1">
+              <div class="reel-spokes"></div>
+              <div class="reel-marker"></div>
+              <div class="reel-hub"></div>
+            </div>
+            
+            <!-- ЦЕНТРАЛЬНЫЙ БЛОК С ПЛЕЕРОМ -->
+            <div class="reel-player-window">
+              <div class="reel-player-header">TAPE MONITOR</div>
+              <div id="streaming-youtube-player"></div>
+            </div>
+            
+            <div class="reel-wheel" id="reel-wheel-2">
+              <div class="reel-spokes"></div>
+              <div class="reel-marker"></div>
+              <div class="reel-hub"></div>
+            </div>
+          </div>
+
+          <!-- ЛОРНЫЕ НАДПИСИ -->
+          <div class="reel-lore-text" style="margin-top: 1rem; display: flex; justify-content: space-between; width: 100%; max-width: 500px; font-family: var(--ff-mono); font-size: 0.65rem; color: #777; text-transform: uppercase; letter-spacing: 0.1em;">
+            <div>
+              <div>MAGNETIC TAPE / MASTER COPY</div>
+              <div>SPEED: 15 IPS / STEREO</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="color: #ff3333; opacity: 0.7;">WARNING: DO NOT ERASE</div>
+              <div>RADIUS ARCHIVE // RADINSK 1976</div>
+            </div>
+          </div>
+
+          <!-- VU-МЕТРЫ -->
+          <div class="vu-meters">
+            <div class="vu-meter" id="vu-left"></div>
+            <div class="vu-meter" id="vu-right"></div>
+          </div>
+
+          <div class="reel-controls">
+            <button class="reel-knob" id="reel-play-btn" title="Play">▶</button>
+            <button class="reel-knob" id="reel-pause-btn" title="Pause">❚❚</button>
+            <button class="reel-knob" id="reel-stop-btn" title="Stop">■</button>
+          </div>
+
+          <div class="reel-info-bar" id="reel-info">
+            > ОЖИДАНИЕ
+          </div>
+        </main>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot" data-testid="footer">
+    <div class="foot__grid">
+      <div class="foot__col">
+        <p class="foot__brand">RADIUS<b>ARCHIVE</b></p>
+        <p class="foot__about">Независимый лейбл, выросший из архивов Телецентра «РАДИУС» (Радинск, 1976–1998).</p>
+      </div>
+      <div class="foot__col">
+        <h2 class="foot__heading">Навигация</h2>
+        <ul>
+          <li><a href="index.html" data-testid="footer-nav-home">Главная</a></li>
+          <li><a href="projects.html" data-testid="footer-nav-projects">Проекты</a></li>
+          <li><a href="archive-room.html" data-testid="footer-nav-archive">Архивная</a></li>
+          <li><a href="signal-room.html" data-testid="footer-nav-signal">Аппаратная</a></li>
+          <li><a href="about.html" data-testid="footer-nav-about">Об архиве</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h2 class="foot__heading">Следить за Архивом</h2>
+        <ul>
+          <li><a href="../index.html">English Version</a></li>
+          <li><a href="https://www.youtube.com/@rtv.archive" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><a href="https://audius.co/rtv.archive" target="_blank" rel="noopener noreferrer">Audius</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__btm">
+      <span>© <span data-year>2026</span> RADIUS ARCHIVE · RADINSK</span>
+      <span><strong>◉ ARCHIVE ACTIVE</strong> · EST. 1976</span>
+      <span>LOST · FOUND · RECONSTRUCTED</span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  
+  <script>
+    // --- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ---
+    var player;
+    var streamingPlayer;
+    var streamingPlayerReady = false;
+    var allCards = []; 
+    var currentCardIndex = -1;
+
+    // Данные для плеера (чтобы Next знал, что играть)
+    var currentPlaylistTracks = [];
+    var currentTrackIndexInPlaylist = 0;
+
+    // --- ЗАГРУЗКА YOUTUBE API ---
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtube-player', {
+        height: '100%',
+        width: '100%',
+        videoId: '',
+        playerVars: { 'enablejsapi': 1, 'origin': window.location.origin, 'rel': 0, 'playsinline': 1 },
+        events: { 'onStateChange': onPlayerStateChange }
+      });
+
+      streamingPlayer = new YT.Player('streaming-youtube-player', {
+        height: '100%',
+        width: '100%',
+        videoId: '',
+        playerVars: { 'enablejsapi': 1, 'origin': window.location.origin, 'rel': 0, 'playsinline': 1, 'controls': 1 },
+        events: {
+          'onReady': () => { streamingPlayerReady = true; },
+          'onStateChange': onStreamingPlayerStateChange
+        }
+      });
+    }
+	
+    // --- СОСТОЯНИЕ ВЕРХНЕГО ПЛЕЕРА (КИНЕСКОП) ---
+    function onPlayerStateChange(event) {
+      const playBtn = document.getElementById('play-btn');
+      const screenWrapper = document.getElementById('screen-wrapper');
+
+      if (event.data == YT.PlayerState.PLAYING) {
+        playBtn.innerHTML = '❚❚';
+        screenWrapper.classList.remove('is-loading');
+        screenWrapper.classList.add('is-playing');
+      } else if (event.data == YT.PlayerState.BUFFERING) {
+        screenWrapper.classList.add('is-loading');
+      } else if (event.data == YT.PlayerState.ENDED) {
+        // ЛОГИКА АВТОПЕРЕХОДА
+        if (currentPlaylistTracks.length > 0 && currentTrackIndexInPlaylist < currentPlaylistTracks.length - 1) {
+            currentTrackIndexInPlaylist++;
+            const nextTrack = currentPlaylistTracks[currentTrackIndexInPlaylist];
+            const nextCard = document.querySelector(`.card-item[data-video-id="${nextTrack.videoId}"]`);
+            if (nextCard) nextCard.click();
+        } else {
+            playBtn.innerHTML = '▶';
+            screenWrapper.classList.remove('is-playing');
+        }
+      } else {
+        playBtn.innerHTML = '▶';
+        screenWrapper.classList.remove('is-loading');
+        screenWrapper.classList.remove('is-playing');
+      }
+    }
+
+    // --- СОСТОЯНИЕ НИЖНЕГО ПЛЕЕРА (БОБИНЫ) ---
+    var vuAnimationId;
+
+    function animateVUMeters() {
+        const vuLeft = document.getElementById('vu-left');
+        const vuRight = document.getElementById('vu-right');
+        const randAngle = Math.floor(Math.random() * 70) - 35;
+        if (vuLeft) vuLeft.style.setProperty('--vu-rotate', `${randAngle}deg`);
+        if (vuRight) vuRight.style.setProperty('--vu-rotate', `${randAngle}deg`);
+        vuAnimationId = setTimeout(animateVUMeters, 150 + Math.random() * 200);
+    }
+	
+    function stopVUMeters() {
+        clearTimeout(vuAnimationId);
+        const vuLeft = document.getElementById('vu-left');
+        const vuRight = document.getElementById('vu-right');
+        if (vuLeft) vuLeft.style.setProperty('--vu-rotate', '-45deg');
+        if (vuRight) vuRight.style.setProperty('--vu-rotate', '-45deg');
+    }
+
+    function onStreamingPlayerStateChange(event) {
+      const wheel1 = document.getElementById('reel-wheel-1');
+      const wheel2 = document.getElementById('reel-wheel-2');
+      const infoBar = document.getElementById('reel-info');
+      
+      if (event.data == YT.PlayerState.PLAYING) {
+        if (wheel1) wheel1.classList.add('is-spinning');
+        if (wheel2) wheel2.classList.add('is-spinning');
+        
+        const activeCard = document.querySelector('#reel-list .card-item.active');
+        if (activeCard) {
+            infoBar.innerHTML = `> ИГРАЕТ: ${activeCard.getAttribute('data-title')}`;
+        } else {
+            infoBar.innerHTML = '> ИГРАЕТ';
+        }
+        
+        animateVUMeters(); 
+        
+      } else if (event.data == YT.PlayerState.BUFFERING) {
+        const activeCard = document.querySelector('#reel-list .card-item.active');
+        if (activeCard) {
+            infoBar.innerHTML = `> ЗАГРУЗКА: ${activeCard.getAttribute('data-title')}`;
+        }
+      } else {
+        if (wheel1) wheel1.classList.remove('is-spinning');
+        if (wheel2) wheel2.classList.remove('is-spinning');
+        infoBar.innerHTML = '> ОЖИДАНИЕ';
+        
+        stopVUMeters(); 
+      }
+    }
+	
+    // --- ЗАГРУЗКА ДАННЫХ И РЕНДЕР ---
+    async function loadArchive() {
+      try {
+        const response = await fetch('archive-data-ru.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        
+        renderCardCatalog(data);
+        renderReelCatalog(data);
+        attachListeners();
+        
+      } catch (error) {
+        console.error("Failed to load archive data:", error);
+        document.getElementById('archive-log').innerHTML = `<p style="color:red;">> ОШИБКА: ${error.message}</p>`;
+      }
+    }
+
+    function renderCardCatalog(data) {
+      const cardList = document.getElementById('card-list');
+      cardList.innerHTML = ''; 
+
+      if (data.youtubeOnly) {
+          data.youtubeOnly.forEach(project => {
+              const hasTracks = project.playlists && project.playlists.some(p => p.tracks && p.tracks.length > 0);
+              
+              const folder = document.createElement('li');
+              folder.className = 'card-folder';
+              
+              let contentHtml = '';
+              if (project.playlists) {
+                  project.playlists.forEach(playlist => {
+                      if (playlist.title) {
+                        contentHtml += `<li style="padding: 0.5rem 0; font-weight: bold; color: var(--txt-dim); font-size: 0.85rem;">${playlist.title}</li>`;
+                      }
+                      
+                      if (playlist.tracks && playlist.tracks.length > 0) {
+                          playlist.tracks.forEach((track, idx) => {
+                              const playlistJson = JSON.stringify(playlist.tracks).replace(/'/g, "&#39;");
+                              contentHtml += `
+                                <li class="card-item track-item" data-id="${project.id}" data-video-id="${track.videoId}" data-playlist='${playlistJson}' data-index="${idx}">
+                                  <h4>${track.title}</h4>
+                                  <p>Трек</p>
+                                </li>
+                              `;
+                          });
+                      }
+                  });
+              }
+
+              if (hasTracks) {
+                  folder.innerHTML = `
+                    <div class="folder-header">
+                      <div class="folder-title">
+                        <span class="project-num">${project.id}</span>
+                        <span class="project-name">${project.name}</span>
+                      </div>
+                      <span class="arrow">▶</span>
+                    </div>
+                    <ul class="folder-content">${contentHtml}</ul>
+                  `;
+              } else {
+                  folder.innerHTML = `
+                    <div class="folder-header" style="cursor: default; opacity: 0.5;">
+                      <div class="folder-title">
+                        <span class="project-num">${project.id}</span>
+                        <span class="project-name">${project.name}</span>
+                      </div>
+                      <span style="font-size: 0.7rem; color: var(--neon-magenta); border: 1px solid var(--neon-magenta); padding: 2px 4px; border-radius: 2px;">СКОРО</span>
+                    </div>
+                  `;
+              }
+              
+              cardList.appendChild(folder);
+          });
+      }
+
+      allCards = Array.from(document.querySelectorAll('.card-item[data-video-id]'));
+    }
+
+    function renderReelCatalog(data) {
+      const reelList = document.getElementById('reel-list');
+      reelList.innerHTML = ''; 
+
+      if (!data.distributed) return;
+
+      data.distributed.forEach(project => {
+        const folder = document.createElement('li');
+        folder.className = 'card-folder';
+        
+        let contentHtml = '';
+        project.albums.forEach(album => {
+          if (!album.youtubeMusicUrl) return;
+
+          let playlistId = '';
+          try {
+              const url = new URL(album.youtubeMusicUrl);
+              playlistId = url.searchParams.get('list');
+          } catch(e) {
+              const match = album.youtubeMusicUrl.match(/[?&]list=([^&]+)/);
+              if (match) playlistId = match[1];
+          }
+
+          contentHtml += `
+            <li class="card-item album-item" data-playlist-id="${playlistId}" data-title="${project.name} — ${album.title}">
+              <h4>${album.title}</h4>
+              <p>Альбом</p>
+            </li>
+          `;
+        });
+
+        folder.innerHTML = `
+          <div class="folder-header">
+            <div class="folder-title">
+              <span class="project-num">${project.id}</span>
+              <span class="project-name">${project.name}</span>
+            </div>
+            <span class="arrow">▶</span>
+          </div>
+          <ul class="folder-content">${contentHtml}</ul>
+        `;
+        reelList.appendChild(folder);
+      });
+    }
+
+    // --- ОБРАБОТЧИКИ СОБЫТИЙ ---
+    function attachListeners() {
+      document.querySelectorAll('.folder-header').forEach(header => {
+        header.addEventListener('click', (e) => {
+          if (e.currentTarget.style.cursor !== 'default') {
+             e.currentTarget.closest('.card-folder').classList.toggle('is-open');
+          }
+        });
+      });
+
+      // Клики по трекам в КИНЕСКОПЕ
+      document.querySelectorAll('.card-item[data-video-id]').forEach((card) => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.card-item').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          currentCardIndex = allCards.indexOf(card);
+          
+          const videoId = card.getAttribute('data-video-id');
+          const title = card.querySelector('h4').textContent;
+          
+          if (card.classList.contains('track-item')) {
+             const playlistTracks = JSON.parse(card.getAttribute('data-playlist').replace(/&#39;/g, "'"));
+             currentPlaylistTracks = playlistTracks;
+             currentTrackIndexInPlaylist = parseInt(card.getAttribute('data-index'));
+             
+             const screenWrapper = document.getElementById('screen-wrapper');
+             if (screenWrapper) screenWrapper.classList.add('is-playing');
+
+             if (player && videoId) {
+                 player.loadVideoById(videoId);
+                 player.playVideo(); 
+             }
+             document.getElementById('archive-log').innerHTML = `<p>> Играет трек: ${title}</p>`;
+          }   
+          
+          document.getElementById('current-channel').textContent = `КАНАЛ: ${card.getAttribute('data-id')}`;
+        });
+      });
+
+      // Клики по альбомам в БОБИНАХ
+      document.querySelectorAll('#reel-list .card-item').forEach(card => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('#reel-list .card-item').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          
+          const playlistId = card.getAttribute('data-playlist-id'); 
+          const title = card.getAttribute('data-title');
+          
+          if (playlistId && streamingPlayerReady) {
+            if (streamingPlayer && streamingPlayer.stopVideo) {
+                streamingPlayer.stopVideo();
+            }
+
+            const playerWindow = document.getElementById('streaming-youtube-player');
+            if (playerWindow) playerWindow.classList.add('is-active');
+
+            streamingPlayer.loadPlaylist({
+                list: playlistId,
+                listType: 'playlist',
+                index: 0,
+                startSeconds: 0
+            });
+            
+            setTimeout(() => {
+                streamingPlayer.playVideo(); 
+            }, 100);
+
+          } else {
+            console.warn("Playlist ID is empty or player not ready", playlistId);
+          }
+        });
+      });
+
+      document.getElementById('reel-play-btn').addEventListener('click', () => streamingPlayer?.playVideo());
+      document.getElementById('reel-pause-btn').addEventListener('click', () => streamingPlayer?.pauseVideo());
+      document.getElementById('reel-stop-btn').addEventListener('click', () => {
+          streamingPlayer?.stopVideo();
+          document.getElementById('reel-wheel-1').classList.remove('is-spinning');
+          document.getElementById('reel-wheel-2').classList.remove('is-spinning');
+          document.getElementById('reel-info').innerHTML = '> ОЖИДАНИЕ';
+      });
+
+      document.getElementById('play-btn').addEventListener('click', () => {
+        if (player?.getPlayerState() === 1) player.pauseVideo();
+        else player?.playVideo();
+      });
+      
+      document.getElementById('next-btn').addEventListener('click', () => {
+        if (currentPlaylistTracks.length > 0 && currentTrackIndexInPlaylist < currentPlaylistTracks.length - 1) {
+            currentTrackIndexInPlaylist++;
+            const nextTrack = currentPlaylistTracks[currentTrackIndexInPlaylist];
+            const nextCard = document.querySelector(`.card-item[data-video-id="${nextTrack.videoId}"]`);
+            if (nextCard) nextCard.click();
+        } else if (currentCardIndex < allCards.length - 1) {
+            allCards[currentCardIndex + 1].click();
+        }
+      });
+
+      document.getElementById('prev-btn').addEventListener('click', () => {
+        if (currentCardIndex > 0) allCards[currentCardIndex - 1].click();
+      });
+
+      // Поиск
+      document.getElementById('archive-search').addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          document.querySelectorAll('#card-list .card-folder').forEach(folder => {
+              let hasVisibleItems = false;
+              const folderTitle = folder.querySelector('.project-name').textContent.toLowerCase();
+              const isFolderMatch = folderTitle.includes(query);
+              folder.querySelectorAll('.card-item').forEach(item => {
+                  const itemText = item.textContent.toLowerCase();
+                  if (itemText.includes(query) || isFolderMatch) {
+                      item.style.display = 'block';
+                      hasVisibleItems = true;
+                  } else {
+                      item.style.display = 'none';
+                  }
+              });
+              if (query === '' || isFolderMatch || hasVisibleItems) {
+                  folder.style.display = 'block';
+                  if (query !== '') {
+                      folder.classList.add('is-open'); 
+                  } else {
+                      folder.classList.remove('is-open'); 
+                  }
+              } else {
+                  folder.style.display = 'none';
+                  folder.classList.remove('is-open');
+              }
+          });
+      });
+      
+      document.getElementById('releases-search').addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          document.querySelectorAll('#reel-list .card-folder').forEach(folder => {
+              let hasVisibleItems = false;
+              const folderTitle = folder.querySelector('.project-name').textContent.toLowerCase();
+              const isFolderMatch = folderTitle.includes(query);
+              folder.querySelectorAll('.card-item').forEach(item => {
+                  const itemText = item.textContent.toLowerCase();
+                  if (itemText.includes(query) || isFolderMatch) {
+                      item.style.display = 'block';
+                      hasVisibleItems = true;
+                  } else {
+                      item.style.display = 'none';
+                  }
+              });
+              if (query === '' || isFolderMatch || hasVisibleItems) {
+                  folder.style.display = 'block';
+                  if (query !== '') folder.classList.add('is-open'); 
+              } else {
+                  folder.style.display = 'none';
+                  folder.classList.remove('is-open');
+              }
+          });
+      });
+    }
+
+    // --- ИНИЦИАЛИЗАЦИЯ ---
+    document.addEventListener('DOMContentLoaded', loadArchive);
+  </script>
+</body>
+</html>
