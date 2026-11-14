@@ -26,6 +26,7 @@ Automated tests are built with Playwright and run via GitHub Actions.
 - `assets/css/styles.css` — Global design system (colors, typography, layout)
 - `assets/js/main.js` — Core interactive logic (filters, modals, mobile menu, form submission, Easter Eggs)
 - `assets/img/` — Cover art, banners, and the 404 TV test card.
+- `tests/` — Playwright test suite (spec files and Page Objects).
 
 ## Tech Stack
 
@@ -53,7 +54,22 @@ Design tokens (colors, fonts, spacing) are defined as CSS custom properties at t
 ## Testing & QA
 
 The project is prepared for automated testing (Playwright). 
-Key elements are marked with `data-testid` attributes (e.g., `nav-home`, `artist-card-01`, `listen-button`, `submission-form`, `channel-605`) to ensure stable selectors for QA automation.
+Key elements are marked with `data-testid` attributes to ensure stable selectors for QA automation.
+
+**Test Coverage:**
+- **Navigation:** Header links, language switcher, mobile menu.
+- **Projects:** Filtering, statuses, and detail page modals.
+- **Archive Room:** 10 test cases covering catalog loading, search, accordions, track/album clicks, and playback controls.
+- **Forms:** Optimistic UI logic, modal closures (Escape, background, button).
+
+**Cross-Browser:** All tests are configured to run on Chromium, Firefox, and WebKit.
+
+**Note on API Limits:** Automated tests use Playwright's `page.route()` to mock Formspark and YouTube API responses. This prevents the test suite from consuming real monthly limits and ensures stable, fast execution.
+
+## Easter Eggs
+
+- **Console:** Open DevTools (F12) to see the RADIUS ARCHIVE system initialization log and the personnel dossier path.
+- **Signal Room:** A hidden link (`SYSTEM OPERATOR ID: 7749`) in the dashboard leads to the developer's resume page.
 
 **Note on Form Limits:** Automated tests must use Playwright's `page.route()` to mock Formspark API responses. This prevents the test suite from consuming the real monthly submission limit.
 
@@ -82,7 +98,11 @@ graph TD
     D --> E[Install Playwright Browsers]:::action
     E --> F[Run Playwright Tests]:::test
     
+
     F -->|57 tests| G{All Tests Passed?}:::test
+
+    F -->|67 tests| G{All Tests Passed?}:::test
+
     
     G -->|Yes| H[Generate signal-status.json]:::result
     G -->|No| I[Log Errors to JSON]:::fail

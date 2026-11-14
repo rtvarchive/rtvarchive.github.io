@@ -1,3 +1,4 @@
+
 name: Playwright Tests
 
 on:
@@ -51,4 +52,57 @@ jobs:
       with:
         name: playwright-report
         path: playwright-report/
-        retention-days: 30
+
+name: Playwright Tests
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+  schedule:
+    - cron: '0 0,12 * * *' 
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+
+    - name: Run Playwright tests
+      run: npx playwright test
+      continue-on-error: true
+
+    - name: Generate Signal Status
+      if: always()
+      run: node generate-status.js
+
+    - name: Commit and Push Signal Status
+      if: always()
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add signal-status.json
+        git commit -m "Update signal status from CI [skip ci]" || echo "No changes to commit"
+        git push || (git pull --rebase origin main && git push)
+
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
