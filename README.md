@@ -41,7 +41,7 @@ Automated tests are built with Playwright and run via GitHub Actions.
 
 - **Archive Room:** 
   - **CRT Monitor:** Plays YouTube fragments with custom knobs. Optimized for mobile with `playsinline`.
-  - **Tape Monitor:** Plays YouTube Music playlists on a reel-to-reel UI. Hidden on desktop, exposed as a 1:1 window on mobile.
+  - **Tape Monitor:** Plays YouTube Music playlists on a reel-to-reel UI. A visible square player window (260x260px on desktop, 1:1 on mobile) centered between the reels.
 - **Playlists & Modals:** Each project page features a streaming modal triggered by the "Listen on all platforms" button or the `?listen=1` deep link.
 - **Filters:** The Projects page includes genre filtering with a "Show More" toggle.
 - **Submissions (Optimistic UI):** Forms on About and Signal Room pages always show a success modal and reset, regardless of the API response. Real API status is logged to the console.
@@ -81,6 +81,7 @@ Key elements are marked with `data-testid` attributes to ensure stable selectors
 -----------------------------------------------------------
 
 
+```mermaid
 graph TD
     %% Styles
     classDef git fill:#e8d8bb,stroke:#c83d73,stroke-width:2px,color:#0b0d14;
@@ -90,7 +91,7 @@ graph TD
     classDef fail fill:#1c1e2b,stroke:#ff3333,stroke-width:2px,color:#ff3333;
 
     %% Nodes
-    A[Developer]:::git -->|git push / schedule 12h| B[GitHub Repository]:::git
+    A[Developer]:::git -->|git push| B[GitHub Repository]:::git
     B --> C{Event}:::action
     C -->|Push / PR| D[GitHub Actions]:::action
     C -->|Cron: 0 0,12 * * *| D
@@ -98,11 +99,7 @@ graph TD
     D --> E[Install Playwright Browsers]:::action
     E --> F[Run Playwright Tests]:::test
     
-
-    F -->|57 tests| G{All Tests Passed?}:::test
-
-    F -->|67 tests| G{All Tests Passed?}:::test
-
+    F -->|87 tests| G{All Tests Passed?}:::test
     
     G -->|Yes| H[Generate signal-status.json]:::result
     G -->|No| I[Log Errors to JSON]:::fail
@@ -113,3 +110,4 @@ graph TD
     J --> K[GitHub Pages]:::result
     K --> L[Signal Room Page]:::result
     L -->|fetch signal-status.json| M[Dynamic Dashboard]:::result
+```
