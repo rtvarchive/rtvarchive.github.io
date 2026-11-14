@@ -330,7 +330,19 @@
           Send a private link or a short description of the material.
         </p>
 
-        <form class="submission-form" id="submission-form" data-testid="submission-form" action="https://submit-form.com/hiLPOJzWg" method="POST" style="...">
+        <!-- ИСПРАВЛЕННАЯ ФОРМА С ОТСТУПОМ -->
+        <form class="submission-form" id="submission-form" data-testid="submission-form" action="https://submit-form.com/hiLPOJzWg" method="POST" style="
+          display: flex; 
+          flex-direction: column; 
+          gap: 1.5rem; 
+          width: 100%; 
+          max-width: 600px; 
+          background: rgba(255, 255, 255, 0.02); 
+          padding: 2rem; 
+          border-radius: 4px; 
+          border: 1px solid var(--line-mid); 
+          box-sizing: border-box;
+        ">
           
           <input type="hidden" name="_subject" value="RADIUS ARCHIVE: New Fragment Submitted">
           <input type="hidden" name="_captcha" value="false">
@@ -366,6 +378,7 @@
 			color: #ffffff;
 			width: max-content;
             transition: all 0.25s;
+            margin-top: 1.5rem;
           " data-testid="submission-submit">Submit Fragment</button>
         </form>
 
