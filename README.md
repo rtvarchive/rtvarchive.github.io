@@ -17,12 +17,14 @@ Automated tests are built with Playwright and run via GitHub Actions.
 ## Project Structure
 
 - `index.html` / `ru/index.html` — Home page (hero, catalog, channels, manifesto)
-- `projects.html` / `ru/projects.html` — Full catalog of 15 musical projects with filters
-- `about.html` / `ru/about.html` — Archive lore, timeline, and Web3Forms submission
+- `projects.html` / `ru/projects.html` — Full catalog of musical projects with filters
+- `archive-room-en.html` / `ru/archive-room.html` — Interactive Archive Room (CRT Monitor & Tape Monitor players)
+- `signal-room-en.html` / `ru/signal-room.html` — Duty Shift dashboard, signal integrity log, and interference reports
+- `about.html` / `ru/about.html` — Archive lore, timeline, and Formspark submission
 - `404.html` / `ru/404.html` — Custom "Signal Lost" error page with CRT test card
 - `[project-name].html` — Individual project pages (e.g., `605.html`, `phasezero.html`) with tracklists and streaming modals.
 - `assets/css/styles.css` — Global design system (colors, typography, layout)
-- `assets/js/main.js` — Core interactive logic (filters, modals, mobile menu, form submission)
+- `assets/js/main.js` — Core interactive logic (filters, modals, mobile menu, form submission, Easter Eggs)
 - `assets/img/` — Cover art, banners, and the 404 TV test card.
 
 ## Tech Stack
@@ -31,13 +33,17 @@ Automated tests are built with Playwright and run via GitHub Actions.
 - **Typography:** Google Fonts (`Bebas Neue`, `Syne`, `JetBrains Mono`).
 - **Responsive:** Mobile-first, fluid typography, adaptive grids.
 - **Accessibility:** Semantic landmarks, `aria` attributes, focus states, skip-links.
-- **Forms:** Integrated with [Web3Forms](https://web3forms.com/) for archive submissions and bug reports.
+- **Forms:** Integrated with [Formspark](https://formspark.io/) for archive submissions and bug reports.
+- **Media:** YouTube IFrame Player API (CRT & Tape Monitor playback).
 
 ## Core Interactions
 
+- **Archive Room:** 
+  - **CRT Monitor:** Plays YouTube fragments with custom knobs. Optimized for mobile with `playsinline`.
+  - **Tape Monitor:** Plays YouTube Music playlists on a reel-to-reel UI. Hidden on desktop, exposed as a 1:1 window on mobile.
 - **Playlists & Modals:** Each project page features a streaming modal triggered by the "Listen on all platforms" button or the `?listen=1` deep link.
 - **Filters:** The Projects page includes genre filtering with a "Show More" toggle.
-- **Submissions:** The About page features a working submission form that sends entries directly to the archive's email.
+- **Submissions (Optimistic UI):** Forms on About and Signal Room pages always show a success modal and reset, regardless of the API response. Real API status is logged to the console.
 - **404 Error:** A custom 404 page styled as a malfunctioning Soviet television test card, complete with static noise and a return button.
 
 ## Customising
@@ -48,6 +54,13 @@ Design tokens (colors, fonts, spacing) are defined as CSS custom properties at t
 
 The project is prepared for automated testing (Playwright). 
 Key elements are marked with `data-testid` attributes (e.g., `nav-home`, `artist-card-01`, `listen-button`, `submission-form`, `channel-605`) to ensure stable selectors for QA automation.
+
+**Note on Form Limits:** Automated tests must use Playwright's `page.route()` to mock Formspark API responses. This prevents the test suite from consuming the real monthly submission limit.
+
+## Easter Eggs
+
+- **Console:** Open DevTools (F12) to see the RADIUS ARCHIVE system initialization log and the personnel dossier path.
+- **Signal Room:** A hidden link (`SYSTEM OPERATOR ID: 7749`) in the dashboard leads to the developer's resume page.
 
 -----------------------------------------------------------
 
@@ -61,15 +74,15 @@ graph TD
     classDef fail fill:#1c1e2b,stroke:#ff3333,stroke-width:2px,color:#ff3333;
 
     %% Nodes
-    A[Developer]:::git -->|git push / schedule 4h| B[GitHub Repository]:::git
+    A[Developer]:::git -->|git push / schedule 12h| B[GitHub Repository]:::git
     B --> C{Event}:::action
     C -->|Push / PR| D[GitHub Actions]:::action
-    C -->|Cron: 0 */4 * * *| D
+    C -->|Cron: 0 0,12 * * *| D
     
     D --> E[Install Playwright Browsers]:::action
     E --> F[Run Playwright Tests]:::test
     
-    F -->|45 tests| G{All Tests Passed?}:::test
+    F -->|57 tests| G{All Tests Passed?}:::test
     
     G -->|Yes| H[Generate signal-status.json]:::result
     G -->|No| I[Log Errors to JSON]:::fail
