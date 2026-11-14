@@ -350,7 +350,7 @@
           box-sizing: border-box;
         ">
           
-          <input type="hidden" name="_email.subject" value="RADIUS ARCHIVE: Новый фрагмент (RU)">
+          <input type="hidden" name="_subject" value="RADIUS ARCHIVE: Новый фрагмент (RU)">
           
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="sub-email" style="font-family: var(--ff-mono); font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em;">Ваш Email (опционально)</label>
@@ -367,7 +367,7 @@
             <textarea id="sub-desc" name="message" rows="4" required placeholder="Что это за фрагмент?" style="background: rgba(11, 13, 20, 0.7); border: 1px solid var(--line-mid); color: var(--txt-bright); padding: 1rem; border-radius: 2px; font-family: var(--ff-mono); font-size: 0.95rem; width: 100%; box-sizing: border-box; outline: none; resize: vertical; min-height: 120px;" data-testid="submission-desc"></textarea>
           </div>
           
-          <button type="submit" style="
+                    <button type="submit" style="
             display: inline-block;
             padding: 0.9rem 1.8rem;
             font-family: var(--ff-mono);
@@ -382,7 +382,9 @@
 			color: #ffffff;
 			width: max-content;
             transition: all 0.25s;
+            margin-top: 1.5rem; /* <--- ДОБАВИЛИ ОТСТУП */
           " data-testid="submission-submit">Отправить фрагмент</button>
+		  
         </form>
 
         <h3 style="margin-top: 3rem;">О материалах</h3>
