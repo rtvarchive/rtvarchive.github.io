@@ -640,17 +640,17 @@
         screenWrapper.classList.add('is-playing');
       } else if (event.data == YT.PlayerState.BUFFERING) {
         screenWrapper.classList.add('is-loading');
-      } else if (event.data == YT.PlayerState.ENDED) {
-        // ЛОГИКА АВТОПЕРЕХОДА
-        if (currentPlaylistTracks.length > 0 && currentTrackIndexInPlaylist < currentPlaylistTracks.length - 1) {
-            currentTrackIndexInPlaylist++;
-            const nextTrack = currentPlaylistTracks[currentTrackIndexInPlaylist];
-            const nextCard = document.querySelector(`.card-item[data-video-id="${nextTrack.videoId}"]`);
-            if (nextCard) nextCard.click();
+            } else if (event.data == YT.PlayerState.ENDED) {
+        // ЛОГИКА АВТОПЕРЕХОДА ПО ВСЕМУ КАТАЛОГУ
+        if (currentCardIndex < allCards.length - 1) {
+            // Переходим к следующему треку в общем списке (даже если он в другом плейлисте)
+            allCards[currentCardIndex + 1].click();
         } else {
+            // Если это был самый последний трек в каталоге - останавливаемся
             playBtn.innerHTML = '▶';
             screenWrapper.classList.remove('is-playing');
         }
+		
       } else {
         playBtn.innerHTML = '▶';
         screenWrapper.classList.remove('is-loading');
