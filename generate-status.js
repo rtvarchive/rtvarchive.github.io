@@ -9,6 +9,9 @@ const channelMapping = {
   'media.spec.js': 'Media integrity',
   'links.spec.js': 'Relay stability',
   'signal-room.spec.js': 'Relay stability',
+  'easter-eggs.spec.js': 'Easter eggs', // на всякий случай добавил
+  'archive-room.spec.js': 'Archive room', // на всякий случай добавил
+  'project-pages.spec.js': 'Project pages', // на всякий случай добавил
   'default': 'Media integrity' 
 };
 
@@ -45,10 +48,10 @@ try {
             const status = test.results[0]?.status || 'unknown';
             if (status === 'passed' || status === 'expected') {
               passedTests++;
-              channelStats[channelName].passed++;
+              if (channelStats[channelName]) channelStats[channelName].passed++;
             } else if (status === 'failed' || status === 'unexpected') {
               failedTestsCount++;
-              channelStats[channelName].failed++;
+              if (channelStats[channelName]) channelStats[channelName].failed++;
               failedTests.push({
                 title: spec.title,
                 error: test.results[0]?.error?.message || 'Unknown error'

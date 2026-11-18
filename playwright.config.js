@@ -6,7 +6,12 @@ module.exports = defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [['list'], ['html']],
+  // ДОБАВЛЕН репортер json с записью в test-results.json
+  reporter: [
+    ['list'],
+    ['json', { outputFile: 'test-results.json' }], 
+    ['html']
+  ],
   use: {
     baseURL: 'http://localhost:8000',
     trace: 'on-first-retry',
