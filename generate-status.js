@@ -15,10 +15,12 @@ const channelMapping = {
 try {
   const raw = fs.readFileSync('test-results.json', 'utf8');
   const report = JSON.parse(raw);
-  const stats = report.stats;
 
   const failedTests = [];
   const channelStats = {};
+  let totalTests = 0;
+  let passedTests = 0;
+  let failedTestsCount = 0;
 
   // Инициализируем каналы
   Object.values(channelMapping).forEach(ch => channelStats[ch] = { passed: 0, failed: 0 });
@@ -29,22 +31,32 @@ try {
     
     if (suite.specs) {
       suite.specs.forEach(spec => {
+        // Определяем канал
         let channelName = channelMapping[fileName.split('/').pop()] || channelMapping['default'];
-	// Если в названии теста есть A11y или Accessibility, принудительно кидаем в Channel accessibility
-	if (spec.title.includes('A11y') || spec.title.includes('Accessibility')) {
-	channelName = 'Channel accessibility';
-	}
-        
-        if (spec.ok === false) {
-        failedTests.push({
-		title: spec.title,
-		error: spec.tests && spec.tests[0] && spec.tests[0].results && spec.tests[0].results[0] && spec.tests[0].results[0].error 
-		? spec.tests[0].results[0].error.message 
-		: 'Unknown error'
-		});
-          channelStats[channelName].failed++;
-        } else {
-          channelStats[channelName].passed++;
+        if (spec.title.includes('A11y') || spec.title.includes('Accessibility')) {
+          channelName = 'Channel accessibility';
+        }
+
+        // Считаем тесты
+        if (spec.tests && spec.tests.length > 0) {
+          spec.tests.forEach(test => {
+            totalTests++;
+            // В Playwright статус теста может быть 'expected', 'unexpected', 'flaky', 'skipped'
+            const status = test.results[0]?.status || 'unknown';
+            if (status === 'passed' || status === 'expected') {
+              passedTests++;
+              channelStats[channelName].passed++;
+            } else if (status === 'failed' || status === 'unexpected') {
+              failedTestsCount++;
+              channelStats[channelName].failed++;
+              failedTests.push({
+                title: spec.title,
+                error: test.results[0]?.error?.message || 'Unknown error'
+              });
+            } else if (status === 'skipped') {
+              // Пропущенные тоже считаем в total, но не в passed/failed
+            }
+          });
         }
       });
     }
@@ -71,9 +83,9 @@ try {
   const newRecord = {
     record: history.length > 0 ? history[0].record + 1 : 117,
     date: new Date().toISOString(),
-    status: stats.unexpected > 0 ? 'unstable' : 'stable',
-    total: stats.expected + stats.unexpected + stats.flaky,
-    passed: stats.expected + stats.flaky
+    status: failedTestsCount > 0 ? 'unstable' : 'stable',
+    total: totalTests,
+    passed: passedTests
   };
 
   history.unshift(newRecord); // Добавляем в начало
@@ -82,16 +94,16 @@ try {
   // --- ФОРМИРУЕМ ИТОГОВЫЙ JSON ---
   const data = {
     lastCheck: new Date().toISOString(),
-    total: newRecord.total,
-    passed: newRecord.passed,
-    failed: stats.unexpected,
+    total: totalTests,
+    passed: passedTests,
+    failed: failedTestsCount,
     failedTests: failedTests,
     channels: channels,
     history: history
   };
 
   fs.writeFileSync('signal-status.json', JSON.stringify(data, null, 2));
-  console.log('Signal status updated successfully!');
+  console.log(`Signal status updated successfully! Total: ${totalTests}, Passed: ${passedTests}, Failed: ${failedTestsCount}`);
 } catch (e) {
   console.error('Error parsing report:', e);
   process.exit(1);
