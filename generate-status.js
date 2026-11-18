@@ -1,18 +1,18 @@
 const fs = require('fs');
 
-// Настройки лора: сопоставляем названия тестовых файлов с "каналами"
+// Настройки лора: сопоставляем файлы с двуязычными названиями каналов
 const channelMapping = {
-  'navigation.spec.js': 'Route integrity',
-  'language.spec.js': 'Language channel sync',
-  'a11y.spec.js': 'Channel accessibility',
-  'forms.spec.js': 'Outgoing signal quality',
-  'media.spec.js': 'Media integrity',
-  'links.spec.js': 'Relay stability',
-  'signal-room.spec.js': 'Relay stability',
-  'easter-eggs.spec.js': 'Easter eggs', // на всякий случай добавил
-  'archive-room.spec.js': 'Archive room', // на всякий случай добавил
-  'project-pages.spec.js': 'Project pages', // на всякий случай добавил
-  'default': 'Media integrity' 
+  'navigation.spec.js': { en: 'Route integrity', ru: 'Целостность маршрутов' },
+  'language.spec.js': { en: 'Language channel sync', ru: 'Синхронизация языков' },
+  'a11y.spec.js': { en: 'Channel accessibility', ru: 'Доступность канала' },
+  'forms.spec.js': { en: 'Outgoing signal quality', ru: 'Качество сигнала' },
+  'media.spec.js': { en: 'Media integrity', ru: 'Целостность носителя' },
+  'links.spec.js': { en: 'Relay stability', ru: 'Стабильность ретрансляции' },
+  'signal-room.spec.js': { en: 'Relay stability', ru: 'Стабильность ретрансляции' },
+  'easter-eggs.spec.js': { en: 'Hidden protocols', ru: 'Скрытые протоколы' },
+  'archive-room.spec.js': { en: 'Archive integrity', ru: 'Целостность архива' },
+  'project-pages.spec.js': { en: 'Project database sync', ru: 'Синхронизация базы проектов' },
+  'default': { en: 'Media integrity', ru: 'Целостность носителя' }
 };
 
 try {
@@ -25,39 +25,39 @@ try {
   let passedTests = 0;
   let failedTestsCount = 0;
 
-  // Инициализируем каналы
-  Object.values(channelMapping).forEach(ch => channelStats[ch] = { passed: 0, failed: 0 });
+  // Инициализируем каналы (используем английское название как ключ)
+  Object.values(channelMapping).forEach(ch => {
+    if (!channelStats[ch.en]) {
+      channelStats[ch.en] = { passed: 0, failed: 0, ruName: ch.ru };
+    }
+  });
 
-  // Рекурсивный поиск тестов
   const findTests = (suite, fileName = '') => {
     if (suite.file) fileName = suite.file;
     
     if (suite.specs) {
       suite.specs.forEach(spec => {
-        // Определяем канал
-        let channelName = channelMapping[fileName.split('/').pop()] || channelMapping['default'];
+        let channelInfo = channelMapping[fileName.split('/').pop()] || channelMapping['default'];
+        
+        // Если в названии теста есть A11y, кидаем в Accessibility
         if (spec.title.includes('A11y') || spec.title.includes('Accessibility')) {
-          channelName = 'Channel accessibility';
+          channelInfo = channelMapping['a11y.spec.js'];
         }
 
-        // Считаем тесты
         if (spec.tests && spec.tests.length > 0) {
           spec.tests.forEach(test => {
             totalTests++;
-            // В Playwright статус теста может быть 'expected', 'unexpected', 'flaky', 'skipped'
             const status = test.results[0]?.status || 'unknown';
             if (status === 'passed' || status === 'expected') {
               passedTests++;
-              if (channelStats[channelName]) channelStats[channelName].passed++;
+              channelStats[channelInfo.en].passed++;
             } else if (status === 'failed' || status === 'unexpected') {
               failedTestsCount++;
-              if (channelStats[channelName]) channelStats[channelName].failed++;
+              channelStats[channelInfo.en].failed++;
               failedTests.push({
                 title: spec.title,
                 error: test.results[0]?.error?.message || 'Unknown error'
               });
-            } else if (status === 'skipped') {
-              // Пропущенные тоже считаем в total, но не в passed/failed
             }
           });
         }
@@ -68,10 +68,11 @@ try {
 
   if (report.suites) report.suites.forEach(s => findTests(s));
 
-  // Формируем массив каналов для фронтенда
-  const channels = Object.keys(channelStats).map(name => ({
-    name: name,
-    status: channelStats[name].failed > 0 ? 'fail' : 'pass'
+  // Формируем массив каналов для фронтенда (с двуязычными названиями)
+  const channels = Object.keys(channelStats).map(key => ({
+    name: key,
+    name_ru: channelStats[key].ruName,
+    status: channelStats[key].failed > 0 ? 'fail' : 'pass'
   }));
 
   // --- ЛОГИКА ИСТОРИИ ---
@@ -79,9 +80,7 @@ try {
   try {
     const existingData = JSON.parse(fs.readFileSync('signal-status.json', 'utf8'));
     if (existingData.history) history = existingData.history;
-  } catch (e) {
-    // Файла еще нет, история пустая
-  }
+  } catch (e) {}
 
   const newRecord = {
     record: history.length > 0 ? history[0].record + 1 : 117,
@@ -91,10 +90,9 @@ try {
     passed: passedTests
   };
 
-  history.unshift(newRecord); // Добавляем в начало
-  history = history.slice(0, 5); // Оставляем только 5 последних записей
+  history.unshift(newRecord);
+  history = history.slice(0, 5);
 
-  // --- ФОРМИРУЕМ ИТОГОВЫЙ JSON ---
   const data = {
     lastCheck: new Date().toISOString(),
     total: totalTests,
