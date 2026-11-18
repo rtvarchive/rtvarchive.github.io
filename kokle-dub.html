@@ -6,12 +6,50 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kokle Dub · RADIUS ARCHIVE</title>
-  <meta name="description" content="Kokle Dub — Silva Electronica (2006). Baltic ethno-electronic, downtempo, dub. Coming soon to RADIUS ARCHIVE." />
+  <meta name="description" content="Kokle Dub — archival reconstruction of a Baltic ethno-electronic project. Diptych: Silva Electronica and Jūra Electronica. Coming soon to RADIUS ARCHIVE." />
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  
+  <style>
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(11, 13, 20, 0.85);
+      backdrop-filter: blur(5px);
+    }
+    .modal-content {
+      background-color: #0b0d14;
+      margin: 5% auto; 
+      padding: 2rem;
+      border: 1px solid #333;
+      width: 90%;
+      max-width: 600px;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .close-btn {
+      color: #fff;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .close-btn:hover {
+      color: #ff00ff;
+    }
+  </style>
 </head>
 <body>
 
@@ -57,33 +95,34 @@
       <h1 class="page-head__title">KOKLE <em>DUB</em></h1>
       
       <div class="page-head__sub">
-        <p>Kokle Dub — Silva Electronica (2006). Digitized archive of a Baltic ethno-electronic project, believed to have existed in Riga at the turn of the millennium. Six compositions recorded at the intersection of folk minimalism, downtempo, and dub. The sound is built around traditional instruments, the footsteps rhythm of a frame drum, field recordings, and deep analog bass. The original chamber intimacy, analog roughness, and the complete absence of philharmonic gloss have been preserved. It is music about rituals and silence, where space itself becomes a participant in the ritual.</p>
+        <p>Kokle Dub is an archival reconstruction of a Baltic ethno-electronic project that existed in Riga at the turn of the millennium, leaving behind a diptych. Two cycles recorded at the intersection of folk minimalism, downtempo, and dub. The sound is based on traditional instruments, the footsteps rhythm of a frame drum, field recordings, and deep analog bass. The original chamber intimacy, analog roughness, and absence of philharmonic gloss are preserved. This is music about two elements — forest and sea, where space itself becomes a participant in the ritual.</p>
       </div>
     </section>
 
+    <!-- SILVA ELECTRONICA -->
     <div class="artist-grid" id="artist-list">
-      <article class="artist-card project-detail-card" id="kokle-dub" data-tag="Ambient" data-reveal data-testid="project-detail">
+      <article class="artist-card project-detail-card" id="kokle-dub-silva" data-tag="Ambient" data-reveal data-testid="project-detail-silva">
         <div class="project-detail-layout">
           <!-- COVER -->
-          <div class="artist-card__portrait" data-testid="project-cover">
+          <div class="artist-card__portrait" data-testid="project-cover-silva">
             <span class="artist-card__num">P · 18</span>
-            <img src="assets/img/18-kokle-dub.jpg" alt="Kokle Dub — Silva Electronica" />
+            <img src="assets/img/18-kokle-dub-1.jpg" alt="Kokle Dub — Silva Electronica" />
           </div>
 
           <!-- PROJECT INFO -->
           <div class="project-detail-info">
-            <h2 class="artist-card__name">Kokle Dub</h2>
+            <h2 class="artist-card__name">Silva Electronica</h2>
             <p class="artist-card__genre">Ethno-Electronic · Downtempo</p>
-            <p class="artist-card__status" data-status="soon" data-testid="project-status">SOON</p>
+            <p class="artist-card__status" data-status="soon" data-testid="project-status-silva">SOON</p>
             <div class="artist-card__bio">
-              <p>Kokle Dub — Silva Electronica (2006). Digitized archive of a Baltic ethno-electronic project, believed to have existed in Riga at the turn of the millennium. Folk minimalism, downtempo and dub with original chamber intimacy and analog roughness. It is music about rituals and silence, about the night river and ancient stone circles.</p>
+              <p>Kokle Dub — Silva Electronica. Digitized archive of a Baltic ethno-electronic project, believed to have existed in Riga at the turn of the millennium. Folk minimalism, downtempo and dub with original chamber intimacy and analog roughness. It is music about rituals and silence, about the night river and ancient stone circles.</p>
             </div>
 
             <!-- STREAMING / LISTEN -->
             <div class="project-streaming">
               <p class="project-streaming__label">SOON</p>
               <div class="project-streaming__links">
-                <button type="button" class="stream-pill is-disabled" data-testid="listen-button" disabled>Listen on all platforms →</button>
+                <button type="button" class="stream-pill is-disabled" data-testid="listen-button-silva" disabled>Listen on all platforms →</button>
               </div>
               <p class="project-streaming__availability">
                 Streaming links will be added closer to release.
@@ -94,10 +133,10 @@
           <div class="project-detail-spacer"></div>
 
           <!-- TRACKLIST — RIGHT COLUMN -->
-          <div class="project-tracklist" data-testid="project-tracklist">
+          <div class="project-tracklist" data-testid="project-tracklist-silva">
             <div class="project-tracklist__header">
               <span>TRACKLIST</span>
-              <span>1 ALBUM</span>
+              <span>6 Tracks</span>
             </div>
             <ol class="project-tracks">
               <li><span class="track-number">01</span> <span class="track-title">Kokle Dub</span></li>
@@ -113,7 +152,65 @@
         <!-- PROJECT FOOTER -->
         <div class="artist-card__foot">
           <span>2006 · Ambient · Ethnic electronica</span>
-          <span>1 Album</span>
+          <span>6 Tracks</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- JŪRA ELECTRONICA -->
+    <div class="artist-grid">
+      <article class="artist-card project-detail-card" id="kokle-dub-jura" data-tag="Ambient" data-reveal data-testid="project-detail-jura">
+        <div class="project-detail-layout">
+          <!-- COVER -->
+          <div class="artist-card__portrait" data-testid="project-cover-jura">
+            <span class="artist-card__num">P · 18</span>
+            <img src="assets/img/18-kokle-dub-2.jpg" alt="Kokle Dub — Jūra Electronica" />
+          </div>
+
+          <!-- PROJECT INFO -->
+          <div class="project-detail-info">
+            <h2 class="artist-card__name">Jūra Electronica</h2>
+            <p class="artist-card__genre">Ethno-Electronic · Downtempo</p>
+            <p class="artist-card__status" data-status="soon" data-testid="project-status-jura">SOON</p>
+            <div class="artist-card__bio">
+              <p>Kokle Dub — Jūra Electronica. The second part of the archival diptych of a Baltic ethno-electronic project. Folk minimalism, downtempo, and dub with original chamber intimacy and analog roughness. This is music about sea wind, seagulls, and lighthouses, where space itself becomes a participant in the ritual.</p>
+            </div>
+
+            <!-- STREAMING / LISTEN -->
+            <div class="project-streaming">
+              <p class="project-streaming__label">SOON</p>
+              <div class="project-streaming__links">
+                <button type="button" class="stream-pill is-disabled" data-testid="listen-button-jura" disabled>Listen on all platforms →</button>
+              </div>
+              <p class="project-streaming__availability">
+                Streaming links will be added closer to release.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-detail-spacer"></div>
+
+          <!-- TRACKLIST — RIGHT COLUMN -->
+          <div class="project-tracklist" data-testid="project-tracklist-jura">
+            <div class="project-tracklist__header">
+              <span>TRACKLIST</span>
+              <span>6 Tracks</span>
+            </div>
+            <ol class="project-tracks">
+              <li><span class="track-number">01</span> <span class="track-title">Krasts</span></li>
+              <li><span class="track-number">02</span> <span class="track-title">Dzintars</span></li>
+              <li><span class="track-number">03</span> <span class="track-title">Vējš</span></li>
+              <li><span class="track-number">04</span> <span class="track-title">Nāra</span></li>
+              <li><span class="track-number">05</span> <span class="track-title">Bāka</span></li>
+              <li><span class="track-number">06</span> <span class="track-title">Jūra Electronica</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- PROJECT FOOTER -->
+        <div class="artist-card__foot">
+          <span>2010 · Ambient · Ethnic electronica</span>
+          <span>6 Tracks</span>
         </div>
       </article>
     </div>
@@ -127,7 +224,7 @@
       </div>
       <div class="foot__col">
         <h4>Explore</h4>
-   <ul>
+        <ul>
           <li><a href="index.html" data-testid="footer-nav-home">Home</a></li>
           <li><a href="projects.html" data-testid="footer-nav-projects">Projects</a></li>
           <li><a href="archive-room-en.html" data-testid="footer-nav-archive">Archive Room</a></li>
@@ -151,6 +248,103 @@
     </div>
   </footer>
 
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ SILVA ELECTRONICA (ЗАГЛУШКА) -->
+  <div id="listen-modal-silva" class="modal" data-testid="listen-modal-silva">
+    <div class="modal-content" style="text-align: center;">
+      <span class="close-btn" onclick="closeListenModal('silva')" data-testid="modal-close-silva">&times;</span>
+      
+      <img src="assets/img/18-kokle-dub.jpg" alt="Silva Electronica" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+      
+      <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">Silva Electronica</h2>
+      <p style="color: var(--text-300); margin-bottom: 2rem;">Kokle Dub (2006)</p>
+
+      <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;" data-testid="platform-links-silva">
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">TIDAL</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Audiomack</a>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;" data-testid="copy-link-silva">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy Link
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ JŪRA ELECTRONICA (ЗАГЛУШКА) -->
+  <div id="listen-modal-jura" class="modal" data-testid="listen-modal-jura">
+    <div class="modal-content" style="text-align: center;">
+      <span class="close-btn" onclick="closeListenModal('jura')" data-testid="modal-close-jura">&times;</span>
+      
+      <img src="assets/img/18-kokle-dub-2.jpg" alt="Jūra Electronica" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+      
+      <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">Jūra Electronica</h2>
+      <p style="color: var(--text-300); margin-bottom: 2rem;">Kokle Dub (2010)</p>
+
+      <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;" data-testid="platform-links-jura">
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">TIDAL</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+        <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Audiomack</a>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;" data-testid="copy-link-jura">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy Link
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- УВЕДОМЛЕНИЕ О КОПИРОВАНИИ -->
+  <div id="copy-toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a1d27; color: #fff; padding: 0.75rem 1.5rem; border-radius: 4px; border: 1px solid #333; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 10000;">
+    Link copied!
+  </div>
+
   <script src="assets/js/main.js"></script>
+  <script>
+    function openListenModal(id) {
+      document.getElementById('listen-modal-' + id).style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeListenModal(id) {
+      document.getElementById('listen-modal-' + id).style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    window.addEventListener('click', function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+
+    function copyLink() {
+      const urlToCopy = window.location.href.split('?')[0];
+      navigator.clipboard.writeText(urlToCopy).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const listenParam = urlParams.get('listen');
+      if (listenParam === 'silva' || listenParam === 'jura') {
+        openListenModal(listenParam);
+      }
+    });
+  </script>
 </body>
 </html>
