@@ -1,5 +1,5 @@
 {
-  "lastCheck": "2026-11-18T19:18:20.368Z",
+  "lastCheck": "2026-11-18T19:30:37.755Z",
   "total": 186,
   "passed": 186,
   "failed": 0,
@@ -7,42 +7,58 @@
   "channels": [
     {
       "name": "Route integrity",
+      "name_ru": "Целостность маршрутов",
       "status": "pass"
     },
     {
       "name": "Language channel sync",
+      "name_ru": "Синхронизация языков",
       "status": "pass"
     },
     {
       "name": "Channel accessibility",
+      "name_ru": "Доступность канала",
       "status": "pass"
     },
     {
       "name": "Outgoing signal quality",
+      "name_ru": "Качество сигнала",
       "status": "pass"
     },
     {
       "name": "Media integrity",
+      "name_ru": "Целостность носителя",
       "status": "pass"
     },
     {
       "name": "Relay stability",
+      "name_ru": "Стабильность ретрансляции",
       "status": "pass"
     },
     {
-      "name": "Easter eggs",
+      "name": "Hidden protocols",
+      "name_ru": "Скрытые протоколы",
       "status": "pass"
     },
     {
-      "name": "Archive room",
+      "name": "Archive integrity",
+      "name_ru": "Целостность архива",
       "status": "pass"
     },
     {
-      "name": "Project pages",
+      "name": "Project database sync",
+      "name_ru": "Синхронизация базы проектов",
       "status": "pass"
     }
   ],
   "history": [
+    {
+      "record": 181,
+      "date": "2026-11-18T19:30:37.755Z",
+      "status": "stable",
+      "total": 186,
+      "passed": 186
+    },
     {
       "record": 180,
       "date": "2026-11-18T19:18:20.368Z",
@@ -67,13 +83,6 @@
     {
       "record": 177,
       "date": "2026-11-18T18:18:34.072Z",
-      "status": "stable",
-      "total": 57,
-      "passed": 57
-    },
-    {
-      "record": 176,
-      "date": "2026-11-18T18:04:49.970Z",
       "status": "stable",
       "total": 57,
       "passed": 57
