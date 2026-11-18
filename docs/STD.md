@@ -1,7 +1,7 @@
 # Software Test Documentation (STD) - RADIUS ARCHIVE
 
-**Document Version:** 2.1  
-**Date:** November 14, 2026  
+**Document Version:** 3.0  
+**Date:** November 18, 2026  
 **Status:** Active  
 **Project:** RADIUS ARCHIVE (Static Website)  
 **Repository:** GitHub Pages (`rtvarchive.github.io`)
@@ -14,7 +14,7 @@
 This document defines the testing requirements, environment, and architectural constraints for the RADIUS ARCHIVE website. It serves as the foundation for the Test Plan (STP) and Test Report (STR).
 
 ### 1.2. Scope
-The testing scope includes the EN and RU versions of the website, focusing on global navigation, the Archive Room (CRT & Tape Monitor players), Signal Room (interactive dashboard and forms), and About page (submission forms).
+The testing scope includes the EN and RU versions of the website, focusing on global navigation, the Archive Room (CRT & Tape Monitor players), Signal Room (interactive dashboard and forms), About page (submission forms), Project Pages (Ritual-84, Kokle Dub, and single-album projects), and Easter Eggs (console logs and hidden links).
 
 ---
 
@@ -68,6 +68,20 @@ The testing scope includes the EN and RU versions of the website, focusing on gl
     *   The modal (`#success-modal`) must receive the `.is-active` class upon form submission.
     *   The modal must be closable via three methods: Click "Close", Click background overlay, Press `Escape`.
 
+### 3.5. Project Pages (Ritual-84, Kokle Dub, Single Albums)
+*   **Multi-Album Projects (Ritual-84, Kokle Dub):** Must display multiple album cards on a single page. Each album must have its own status (`available` / `soon`), tracklist, and Listen button.
+*   **Single-Album Projects (605, Oriental Bazaar, Phase/Zero, Final Psalm, Gurt Groove):** Must display one card with a tracklist and a functional Listen button.
+*   **Listen Modal (`.modal`):**
+    *   Must open when clicking the Listen button or via deep-link (`?listen=...`).
+    *   Must be closable via close button, clicking the background overlay, or pressing `Escape`.
+    *   Must display platform links (Apple Music, Spotify, etc.) if available.
+    *   Must include a "Copy Link" button that triggers a toast notification (`#copy-toast`) with `opacity` changing from 0 to 1 (and back to 0 after 2 seconds).
+*   **Deep-linking:** Opening a page with `?listen=summer` or `?listen=1` must automatically open the corresponding modal.
+
+### 3.6. Easter Eggs
+*   **Console Logs:** `main.js` must output specific styled messages to the browser console upon initialization (`OPERATOR ID: 7749`, dossier URL, etc.).
+*   **Hidden Link:** Signal Room (EN & RU) must contain a small, visible link (`SYSTEM OPERATOR ID: 7749`) that leads to the `resume/index.html` page.
+
 ---
 
 ## 4. Non-Functional Requirements
@@ -78,7 +92,7 @@ The testing scope includes the EN and RU versions of the website, focusing on gl
 *   **Automated Testing:** All automated tests must pass in Chromium, Firefox, and WebKit environments.
 
 ### 4.2. Localization (i18n)
-*   The EN (root) and RU (`/ru/`) versions must have 1:1 functional parity. 
+*   The EN (root) and RU (`/ru/`) versions must have 1:1 functional parity.
 
 ---
 
@@ -88,3 +102,4 @@ The testing scope includes the EN and RU versions of the website, focusing on gl
 *   **GitHub Pages Cache:** After pushing updates, there is a 1–3 minute delay for GitHub Actions to deploy. Testing must be done in Incognito mode.
 *   **Video Autoplay Policies:** Mobile browsers strictly enforce autoplay policies. The system relies on user interaction with the YouTube player directly.
 *   **Headless Browser Rendering:** Playwright's headless browsers may not trigger CSS animations instantly. Tests must use `scrollIntoViewIfNeeded()` and class assertions (`toHaveClass(/is-open/)`) instead of relying on pure visibility timeouts.
+*   **Clipboard API:** Tests checking the "Copy Link" toast must mock `window.copyLink` via `page.evaluate` because headless Firefox/WebKit block `navigator.clipboard` access.
