@@ -575,7 +575,10 @@
               'Channel accessibility': 'Доступность канала',
               'Outgoing signal quality': 'Качество сигнала',
               'Media integrity': 'Целостность носителя',
-              'Relay stability': 'Стабильность ретрансляции'
+              'Relay stability': 'Стабильность ретрансляции',
+              'Hidden protocols': 'Скрытые протоколы',
+              'Archive integrity': 'Целостность архива',
+              'Project database sync': 'Синхронизация базы проектов'
             };
 
             data.channels.forEach(ch => {
@@ -583,7 +586,8 @@
               const statusClass = ch.status === 'pass' ? 'pass' : 'fail';
               const statusText = ch.status === 'pass' ? '✓ Пройдено' : '✗ Ошибка';
               const style = ch.status === 'fail' ? 'color: #ff3333;' : '';
-              const displayName = channelNamesRu[ch.name] || ch.name; 
+              // Используем name_ru из JSON, если есть. Иначе - словарь, иначе - английское имя.
+              const displayName = ch.name_ru || channelNamesRu[ch.name] || ch.name; 
               li.innerHTML = `<span>${displayName}</span> <span class="check-status ${statusClass}" style="${style}">${statusText}</span>`;
               channelList.appendChild(li);
             });
