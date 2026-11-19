@@ -3126,3 +3126,8 @@ body.day-mode .vu-meter-bar {
     text-align: center;
   }
 }
+
+/* Отступ между блоками треклиста */
+.tracklist-group:not(:first-child) {
+  margin-top: 2.5rem;
+}
