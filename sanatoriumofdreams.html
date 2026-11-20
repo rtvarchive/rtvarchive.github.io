@@ -152,6 +152,87 @@
           <span>1994 · Recovered Dreams</span>
           <span>5 Singles</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Sanatorium of Dreams -->
+        <button class="open-dossier-btn" onclick="toggleDossier('sanatorium', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-sanatorium" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">PHOTOGRAPHS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (5 штук) -->
+            <div class="tab-pane is-active" id="photos-sanatorium">
+              <p class="archive-note">> FOUND IN ARCHIVE: City snapshots from 1994.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="assets/img/sanatorium-photo1.jpg" alt="Paper Kite" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Paper Kite, 1994</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/sanatorium-photo2.jpg" alt="Moonlight Market" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — Moonlight Market</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/sanatorium-photo3.jpg" alt="Close Your Eyes" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Close Your Eyes</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/sanatorium-photo4.jpg" alt="City Upside Down" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — City Upside Down</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/sanatorium-photo5.jpg" alt="Let This Year Fade Away" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — Let This Year Fade Away</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-sanatorium">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Fragments of the archive.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1994</div>
+                  <h4>CITY OF LOST TIME (EP)</h4>
+                  <p>«They say every city has places that appear only when you are not looking for them. A courtyard that is not on any map. A window where the light is always on. A street you don’t remember walking down. “Sanatorium of Dreams” is one of those stories. In the summer of 1994, a small cycle of songs appeared about a city where time sometimes slows down, memories live their own lives, and ordinary things quietly become more important than they seem.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the project's introductory notes, 1994.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>PAPER KITE</h4>
+                  <p>«Sometimes it seems that the city has forever forgotten its childhood. But if you look up on the right day, a paper kite appears again above the roofs, tangled between clouds and memories. This song is about those rare moments when the past does not return, but simply finds itself nearby for a short while.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Track notes, 1994.</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>MOONLIGHT MARKET</h4>
+                  <p>«They say some markets open only after sunset. There, forgotten conversations, chance encounters, and things no one remembers losing are sold. “Moonlight Market” is a walk through a place that exists somewhere between an urban legend and a dream seen too long ago.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Track notes, 1994.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>CITY UPSIDE DOWN</h4>
+                  <p>«After the rain, the familiar city becomes different for a few minutes. Houses, windows, and streetlights are reflected in puddles, streets turn upside down, and the road home suddenly seems completely new. Everything around remains the same — only the view changes.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Track notes, 1994.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
