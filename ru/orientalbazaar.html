@@ -158,6 +158,108 @@
           <span>1984 · Психоделический рок</span>
           <span>1 Альбом</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Восточного Базара -->
+        <button class="open-dossier-btn" onclick="toggleDossier('orientalbazaar', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-orientalbazaar" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ИЛЛЮСТРАЦИИ</button>
+            <button class="tab" data-tab="docs">АРХИВНЫЙ ЖУРНАЛ</button>
+          </div>
+          <div class="folder-content">
+            
+            <div class="tab-pane is-active" id="photos-orientalbazaar">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Сохранившиеся визуальные материалы, 1984.</p>
+              <div class="photo-grid bento-grid">
+                
+                <!-- 1-5 (Видны сразу) -->
+                <div class="photo-item">
+                  <img src="../assets/img/orientalbazaar-photo1.jpg" alt="Ветер над степью" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Ветер над степью</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/orientalbazaar-photo2.jpg" alt="Чайхана" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Чайхана</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/orientalbazaar-photo3.jpg" alt="Сказитель" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Сказитель</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/orientalbazaar-photo4.jpg" alt="Али-Баба" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Али-Баба</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/orientalbazaar-photo5.jpg" alt="Зеркало" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — Зеркало</span>
+                </div>
+
+                <!-- 6-11 (Скрыты) -->
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/orientalbazaar-photo6.jpg" alt="Караван" loading="lazy">
+                  <span class="photo-caption">РИС. 06 — Караван</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/orientalbazaar-photo7.jpg" alt="Дервиш" loading="lazy">
+                  <span class="photo-caption">РИС. 07 — Дервиш</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/orientalbazaar-photo8.jpg" alt="Восточная любовь" loading="lazy">
+                  <span class="photo-caption">РИС. 08 — Восточная любовь</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/orientalbazaar-photo9.jpg" alt="В саду, где лунный свет" loading="lazy">
+                  <span class="photo-caption">РИС. 09 — В саду, где лунный свет</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/orientalbazaar-photo10.jpg" alt="Звёздная дорога" loading="lazy">
+                  <span class="photo-caption">РИС. 10 — Звёздная дорога</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/orientalbazaar-photo11.jpg" alt="Огни ночного базара" loading="lazy">
+                  <span class="photo-caption">РИС. 11 — Огни ночного базара</span>
+                </div>
+
+              </div>
+              
+              <div style="text-align: center; margin-top: 2rem;">
+                <button class="chip" data-more-btn style="cursor: pointer; padding: 0.6rem 1.2rem;">+ Показать все иллюстрации</button>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="docs-orientalbazaar">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты архива.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1984</div>
+                  <h4>ВИА «ВОСТОЧНЫЙ БАЗАР» (АРХИВНАЯ ЗАМЕТКА)</h4>
+                  <p>«ВИА «Восточный Базар» — советский вокально-инструментальный ансамбль, работавший в концертном составе в первой половине 1980-х. В 1984 году коллектив подготовил программу «Звёздная дорога», в которой эстрадные песни сочетались с восточными и фольклорными мотивами».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ОБНАРУЖЕНИЕ</h4>
+                  <p>«В 2026 году в частном архиве была обнаружена магнитная запись программы, подготовленной ансамблем в 1984 году. Официально эта запись никогда не выпускалась и не поступала в музыкальную продажу».</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>РЕСТАВРАЦИЯ</h4>
+                  <p>«Перед публикацией архивный материал прошёл реставрацию и современный мастеринг. При этом была сохранена исходная структура записи и её характерное звучание».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ВИЗУАЛЬНАЯ ЧАСТЬ</h4>
+                  <p>«Визуальная часть проекта вдохновлена книгами и мирами Ойкумены Джека Вэнса — их экзотическими цивилизациями, космическими путешествиями, восточными мотивами».</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
