@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   
   <style>
+    /* ... (стили модалок, как были) ... */
     .modal {
       display: none; 
       position: fixed; 
@@ -48,6 +49,108 @@
     }
     .close-btn:hover {
       color: #ff00ff;
+    }
+
+    /* ==========================================
+       АРХИВНОЕ ДОСЬЕ (внутри карточки)
+       ========================================== */
+    .open-dossier-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      background: transparent;
+      border: 1px solid var(--neon-magenta);
+      color: var(--neon-magenta);
+      padding: 0.8rem 1.5rem;
+      font-family: var(--ff-mono);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .open-dossier-btn:hover {
+      background: var(--neon-magenta);
+      color: #000;
+    }
+
+    .dossier-content {
+      display: none;
+      margin-top: 1rem;
+      background: #2a1e12;
+      border: 1px solid #3b2a1a;
+      padding: 1.5rem;
+      border-radius: 4px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    }
+    .folder-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid #4a3520;
+      margin-bottom: 1.5rem;
+    }
+    .tab {
+      background: none;
+      border: none;
+      color: var(--txt-soft);
+      font-family: var(--ff-mono);
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .tab:hover { color: var(--neon-cyan); }
+    .tab.is-active {
+      color: var(--neon-magenta);
+      border-bottom-color: var(--neon-magenta);
+    }
+    .tab-pane { display: none; }
+    .tab-pane.is-active { display: block; }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .photo-item {
+      background: #0b0d14;
+      border: 1px solid #3b2a1a;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    .photo-item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.2) contrast(1.1);
+    }
+    .photo-caption {
+      display: block;
+      font-family: var(--ff-mono);
+      font-size: 0.6rem;
+      color: var(--txt-dim);
+      margin-top: 0.3rem;
+    }
+
+    .doc-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+    .doc-item {
+      background: #e8d8bb;
+      color: #1c140c;
+      padding: 1rem;
+      font-family: var(--ff-mono);
+      border-left: 3px solid var(--neon-magenta);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .doc-item h4 {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      margin: 0 0 0.5rem 0;
+      text-transform: uppercase;
     }
   </style>
 </head>
@@ -154,6 +257,91 @@
           <span>1984 · Archival Field Recordings</span>
           <span>8 Tracks</span>
         </div>
+
+                <!-- ВСТАВКА: Кнопка и панель досье для Summer -->
+        <button class="open-dossier-btn" onclick="toggleDossier('summer', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-summer" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">PHOTOGRAPHS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+                        <!-- Вкладка 1: Фотографии -->
+            <div class="tab-pane is-active" id="photos-summer">
+              <p class="archive-note">> FOUND IN ARCHIVE: Expedition photographs, 1984.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-summer-1.jpg" alt="Field notes, 1984" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Field Notes, 1984</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-summer-2.jpg" alt="The group, 1984" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — The Group, 1984</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-summer-3.jpg" alt="Ritual circle" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Ritual Circle</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-summer-4.jpg" alt="Field recording" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — Field Recording Setup</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-summer-5.jpg" alt="Nature fragments" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — Nature Fragments</span>
+                </div>
+
+              </div>
+            </div>
+
+                        <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-summer">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Field notes.</p>
+              <div class="doc-list">
+                
+                <!-- Документ 1 -->
+                <div class="doc-item">
+                  <div class="doc-secret">TOP SECRET</div>
+                  <h4>EXPEDITION No. 1: SUMMER EXPEDITION, 1984 (FIELD NOTES)</h4>
+                  <p>«The first recordings were made in the abandoned village of Verkhnyaya Zarechka. The locals spoke of a ritual that had not been performed for decades — something about calling the rain. We set up the tape recorder near the old well. The reels turned slowly, capturing the wind, the creaking of the gate, and a distant choir that seemed to come from the forest itself.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the diary of expedition member A. Morozov, July 1984.</p>
+                </div>
+
+                <!-- Документ 2 -->
+                <div class="doc-item doc-telegram">
+                  <h4>INTERNAL MEMO // RADIUS TV ARCHIVE</h4>
+                  <p>DATE: 1984-08-02</p>
+                  <p>TO: Director of the Scientific Dept.<br>FROM: Head of the 1st Expedition</p>
+                  <p>«Comrade Director, the material brought from the Summer Expedition cannot be processed by our studio equipment. The tapes contain frequencies that our oscillators cannot replicate. Furthermore, when we attempted to digitize the recording, the studio's magnetic tape erasers spontaneously demagnetized. We request permission to seal the reels until further instructions.»</p>
+                </div>
+
+                <!-- Документ 3 -->
+                <div class="doc-item">
+                  <h4>KUPALA FRAGMENT</h4>
+                  <p>«The title survived on a loose sheet inserted into a field notebook. Notes suggest that this recording is only a fragment of a much longer piece, most of which has not survived. Expedition documents contain references to a body of water at night, reflections of light, and collective activities whose purpose remains unclear.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the field notebook, July 1984.</p>
+                </div>
+
+                <!-- Документ 4 -->
+                <div class="doc-item doc-telegram">
+                  <h4>SOLSTICE</h4>
+                  <p>«One of the best-preserved pieces in the collection. Accompanying documents repeatedly reference the longest day of the year, though no direct explanation of the event itself has been found. Several notebook pages contain sketches of an open field and observations recorded around midday.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the archive log, 1984.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
       </article>
     </div>
 
@@ -212,6 +400,83 @@
         <div class="artist-card__foot">
           <span>1986 · Archival Field Recordings</span>
           <span>9 Tracks</span>
+        </div>
+
+                <!-- ВСТАВКА: Кнопка и панель досье для Polar -->
+        <button class="open-dossier-btn" onclick="toggleDossier('polar', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-polar" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">PHOTOGRAPHS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии -->
+            <div class="tab-pane is-active" id="photos-polar">
+              <p class="archive-note">> FOUND IN ARCHIVE: Arctic expedition photographs, 1986.</p>
+              <div class="photo-grid bento-grid">
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-polar-1.jpg" alt="Winter notes, 1986" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Winter Ritual Notes, 1986</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-polar-2.jpg" alt="Expedition group" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — Expedition Group</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-polar-3.jpg" alt="Field recording" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Preparing Firewood</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-polar-4.jpg" alt="Polar camp" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — Polar Camp</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-polar-5.jpg" alt="Arctic landscape" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — Arctic Landscape</span>
+                </div>
+              </div>
+            </div>
+
+                        <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-polar">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Field notes.</p>
+              <div class="doc-list">
+                
+                <!-- Документ 1 -->
+                <div class="doc-item">
+                  <h4>EXPEDITION No. 2: POLAR CIRCLE, 1986 (FIELD NOTES)</h4>
+                  <p>«The North does not accept outsiders. We spent three weeks in the tundra, waiting for the weather to clear. The recordings from the polar station were unlike anything we had heard before. The wind, the ice, the cracking of the frozen ground — it all sounded like a single, continuous ritual. The local guide told us that the landscape itself was the performer.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the report of the expedition leader, September 1986.</p>
+                </div>
+
+                <!-- Документ 2 -->
+                <div class="doc-item doc-telegram">
+                  <div class="doc-secret">URGENT</div>
+                  <h4>RADIOGRAM TO BASE</h4>
+                  <p>«BASE, THIS IS STATION "SIRIUS-7". WE HAVE COMPLETED THE RECORDING OF THE GLACIER. THE ACOUSTIC SIGNAL WE DETECTED IS REPEATING IN LOOPS OF 14 MINUTES. WE ALSO FOUND OLD SLEIGH TRACKS LEADING DIRECTLY INTO THE ICE WALL. THEY ARE FRESH. WE ARE STOPPING THE EXPEDITION AND RETURNING TO BASE. OVER.»</p>
+                </div>
+
+                <!-- Документ 3 -->
+                <div class="doc-item">
+                  <h4>TRACES</h4>
+                  <p>«The title appears on a separate archival catalog sheet. Accompanying notes describe a series of unidentified tracks discovered during travel between temporary camps. No further explanation was found, although the subject reappears repeatedly throughout documents from the same period.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the expedition catalog, 1986.</p>
+                </div>
+
+                <!-- Документ 4 -->
+                <div class="doc-item doc-telegram">
+                  <h4>AURORA</h4>
+                  <p>«Several surviving materials reference an unusual luminous phenomenon observed during a stay beyond the Arctic Circle. The title “Aurora” appears on a separate archive catalog card, though no detailed description of the event has been preserved. Documents note only the duration of the observation and favorable weather conditions.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the field journal, 1986.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
         </div>
       </article>
     </div>
@@ -272,6 +537,82 @@
           <span>1988 · Archival Field Recordings</span>
           <span>9 Tracks</span>
         </div>
+
+                <!-- ВСТАВКА: Кнопка и панель досье для Caucasus -->
+        <button class="open-dossier-btn" onclick="toggleDossier('caucasus', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-caucasus" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">PHOTOGRAPHS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии -->
+            <div class="tab-pane is-active" id="photos-caucasus">
+              <p class="archive-note">> FOUND IN ARCHIVE: Caucasus expedition photographs, 1988.</p>
+              <div class="photo-grid bento-grid">
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-caucasus-1.jpg" alt="Foothills notes, 1988" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Foothills Notes, 1988</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-caucasus-2.jpg" alt="Group in mountains" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — The Group in Mountains</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-caucasus-3.jpg" alt="Tuning instrument" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Tuning the Panduri</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-caucasus-4.jpg" alt="Field camp" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — Mountain Camp</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/ritual84-caucasus-5.jpg" alt="Mountain landscape" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — Mountain Pass</span>
+                </div>
+              </div>
+            </div>
+
+                        <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-caucasus">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Field notes.</p>
+              <div class="doc-list">
+                
+                <!-- Документ 1 -->
+                <div class="doc-item">
+                  <h4>EXPEDITION No. 3: CAUCASUS RIDGE, 1988 (FIELD NOTES)</h4>
+                  <p>«The Caucasus met us with rain and fog. We worked in mountain villages, recording male polyphonic singing, shepherd songs, and the sound of wind in the gorges. The locals were suspicious at first, but then they began to bring us their instruments — old panduri, chonguri, zurna, and drums.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the field journal, August 1988.</p>
+                </div>
+
+                <!-- Документ 2 -->
+                <div class="doc-item doc-telegram">
+                  <h4>TRANSCRIPT OF AUDIO REEL #84-C</h4>
+                  <p>«[Static] ...the mountain answers only when you sing the old songs. [Crackling] ...we recorded a voice in the gorge, but the tape shows no signal peaks. It is as if the voice exists only in the memory of the stone. We are leaving the equipment there. Do not send anyone to look for us.»</p>
+                </div>
+
+                <!-- Документ 3 -->
+                <div class="doc-item">
+                  <h4>GORGE</h4>
+                  <p>«A recording that places particular emphasis on the acoustics of its surroundings. The male voices are sustained and distant, individual instruments appear only in brief passages, while the long echo becomes part of the composition itself.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the expedition notes, August 1988.</p>
+                </div>
+
+                <!-- Документ 4 -->
+                <div class="doc-item doc-telegram">
+                  <h4>PASTURES (საძოვრები)</h4>
+                  <p>«In this recording, the electronic elements remain particularly understated, almost blending into the acoustic instruments. The vocal line stays simple, while the male polyphony gradually enters without sharp transitions. The title refers to mountain pastures and is one of the few Georgian designations preserved among the cycle’s materials.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the field journal, August 1988.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
       </article>
     </div>
   </main>
@@ -308,16 +649,13 @@
     </div>
   </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ SUMMER EXPEDITION -->
+  <!-- МОДАЛЬНЫЕ ОКНА (SUMMER, POLAR, CAUCASUS) -->
   <div id="listen-modal-summer" class="modal" data-testid="listen-modal-summer">
     <div class="modal-content" style="text-align: center;">
       <span class="close-btn" onclick="closeListenModal('summer')" data-testid="modal-close-summer">&times;</span>
-      
       <img src="assets/img/03-ritual-84-summer-expedition-84.jpg" alt="Summer Expedition, 84" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
-      
       <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">Summer Expedition, 84</h2>
       <p style="color: var(--text-300); margin-bottom: 2rem;">Ritual-84 (1984)</p>
-
       <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;" data-testid="platform-links-summer">
         <a class="stream-pill" href="https://music.apple.com/us/artist/ritual-84/6794672047" target="_blank" rel="noopener noreferrer">Apple Music</a>
         <a class="stream-pill" href="https://open.spotify.com/artist/3icoYtUHq0kzWDguRfYdyH?si=9ZLOaw-_S3GzTqX-D9m-9g" target="_blank" rel="noopener noreferrer">Spotify</a>
@@ -326,7 +664,6 @@
         <a class="stream-pill" href="https://music.amazon.com/artists/B0HBLHHPVB/ritual-84?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_u5uR8Duc3Rqt0T37WvGj3AevV" target="_blank" rel="noopener noreferrer">Amazon Music</a>
         <a class="stream-pill" href="https://audiomack.com/ritual-84" target="_blank" rel="noopener noreferrer">Audiomack</a>
       </div>
-
       <div style="margin-top: 2rem;">
         <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;" data-testid="copy-link-summer">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
@@ -336,16 +673,12 @@
     </div>
   </div>
 
-  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ POLAR CIRCLE -->
   <div id="listen-modal-polar" class="modal" data-testid="listen-modal-polar">
     <div class="modal-content" style="text-align: center;">
       <span class="close-btn" onclick="closeListenModal('polar')" data-testid="modal-close-polar">&times;</span>
-      
       <img src="assets/img/03-ritual-84-polar-circle-86.jpg" alt="Polar Circle, 86" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
-      
       <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">Polar Circle, 86</h2>
       <p style="color: var(--text-300); margin-bottom: 2rem;">Ritual-84 (1986)</p>
-
       <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;" data-testid="platform-links-polar">
         <a class="stream-pill" href="https://music.apple.com/us/album/polar-circle-86/6800247255" target="_blank" rel="noopener noreferrer">Apple Music</a>
         <a class="stream-pill" href="https://open.spotify.com/album/1c3J3cfX72p8sF3euWfBin?si=b5Yw-Q5jSDKYyVEpMT6OcA" target="_blank" rel="noopener noreferrer">Spotify</a>
@@ -354,7 +687,6 @@
         <a class="stream-pill" href="https://music.amazon.com/albums/B0HDT1V25B?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_IygeijkKk5TfmS9h7W2yTB4Um" target="_blank" rel="noopener noreferrer">Amazon Music</a>
         <a class="stream-pill" href="https://audiomack.com/ritual-84" target="_blank" rel="noopener noreferrer">Audiomack</a>
       </div>
-
       <div style="margin-top: 2rem;">
         <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;" data-testid="copy-link-polar">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
@@ -364,16 +696,12 @@
     </div>
   </div>
 
-  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ CAUCASUS RIDGE (ГОТОВО К БУДУЩЕМУ РЕЛИЗУ) -->
   <div id="listen-modal-caucasus" class="modal" data-testid="listen-modal-caucasus">
     <div class="modal-content" style="text-align: center;">
       <span class="close-btn" onclick="closeListenModal('caucasus')" data-testid="modal-close-caucasus">&times;</span>
-      
       <img src="assets/img/03-ritual-84-caucasian-ridge-88.jpg" alt="Caucasus Ridge, 88" style="display: block; margin: 0 auto 1.5rem auto; width: 100%; max-width: 250px; height: auto; border: 1px solid var(--line-mid); border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
-      
       <h2 class="artist-card__name" style="margin-bottom: 0.5rem;">Caucasus Ridge, 88</h2>
       <p style="color: var(--text-300); margin-bottom: 2rem;">Ritual-84 (1988)</p>
-
       <div class="project-streaming__links" style="justify-content: center; gap: 1rem; display: flex; flex-wrap: wrap;" data-testid="platform-links-caucasus">
         <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Apple Music</a>
         <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Spotify</a>
@@ -382,7 +710,6 @@
         <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Amazon Music</a>
         <a class="stream-pill" href="#" target="_blank" rel="noopener noreferrer">Audiomack</a>
       </div>
-
       <div style="margin-top: 2rem;">
         <button type="button" class="stream-pill" onclick="copyLink()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;" data-testid="copy-link-caucasus">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
@@ -396,9 +723,16 @@
   <div id="copy-toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a1d27; color: #fff; padding: 0.75rem 1.5rem; border-radius: 4px; border: 1px solid #333; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 10000;">
     Link copied!
   </div>
+  
+  <!-- МОДАЛКА ДЛЯ ФОТО (ЛАЙТБОКС) -->
+<div id="photo-lightbox" class="photo-lightbox">
+  <span class="photo-lightbox-close">&times;</span>
+  <img class="photo-lightbox-img" src="" alt="Archive Photo">
+</div>
 
   <script src="assets/js/main.js"></script>
   <script>
+    // Модалки для прослушивания
     function openListenModal(id) {
       document.getElementById('listen-modal-' + id).style.display = 'block';
       document.body.style.overflow = 'hidden';
@@ -425,7 +759,10 @@
         setTimeout(() => { toast.style.opacity = '0'; }, 2000);
       });
     }
+	
 
+
+    // URL-параметр ?listen=
     window.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const listenParam = urlParams.get('listen');
@@ -434,5 +771,6 @@
       }
     });
   </script>
+  
 </body>
 </html>
