@@ -157,6 +157,83 @@
           <span>1970–1974 · Ukrainian Folk</span>
           <span>1 Album</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Kolosvit -->
+        <button class="open-dossier-btn" onclick="toggleDossier('kolosvit', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-kolosvit" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">PHOTOGRAPHS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (5 штук) -->
+            <div class="tab-pane is-active" id="photos-kolosvit">
+              <p class="archive-note">> FOUND IN ARCHIVE: Village photographs, 1970–1974.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="assets/img/kolosvit-photo1.jpg" alt="Rehearsal in the village house" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Rehearsal in the Village House</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/kolosvit-photo2.jpg" alt="Field of wheat" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — Field of Wheat</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/kolosvit-photo3.jpg" alt="Traditional embroidered towels and shirt" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Embroidered Towels and Shirt</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/kolosvit-photo4.jpg" alt="Wildflowers on the table" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — Wildflowers on the Table</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/kolosvit-photo5.jpg" alt="Reel-to-reel tape" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — Magnetic Tape Reel</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-kolosvit">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Fragments of the archive.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1970–1974</div>
+                  <h4>KOLOSVIT ENSEMBLE (ARCHIVAL NOTE)</h4>
+                  <p>«In the early 1970s, the Ukrainian music scene saw the emergence of an ensemble called “Kolosvit”. Very little reliable information about its members or exact place of origin has survived, but the recordings suggest a clear evolution in the group’s musical direction.»</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>EARLY PERIOD</h4>
+                  <p>«The early compositions were close to traditional folk song: simple melodies, acoustic instruments, vocal harmonies and familiar folkloric phrasing. The repertoire drew on Ukrainian folk motifs and themes — roads, nature, love, the changing seasons and human fate.»</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>MID-1970S</h4>
+                  <p>«By the middle of the 1970s, “Kolosvit” gradually began moving beyond the traditional folk arrangement. Extended guitar passages, flute, soft psychedelic transitions and more unusual harmonic ideas appeared in the music. The folk melodies remained at its core, but became a starting point for a more exploratory sound.»</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>LATER RECORDINGS</h4>
+                  <p>«The later recordings occupy a space somewhere between Ukrainian folk music, acoustic folk-rock and early psychedelia. The directness of traditional song is still present, but alongside it comes the open, spacious character associated with the musical experimentation of the late 1970s.»</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
