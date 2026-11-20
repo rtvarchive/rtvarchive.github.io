@@ -157,6 +157,83 @@
           <span>1970–1974 · Украинский фолк</span>
           <span>1 Альбом</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Колосвіта -->
+        <button class="open-dossier-btn" onclick="toggleDossier('kolosvit', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-kolosvit" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (5 штук) -->
+            <div class="tab-pane is-active" id="photos-kolosvit">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Деревенские фотографии, 1970–1974.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="../assets/img/kolosvit-photo1.jpg" alt="Репетиция в деревенской хате" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Репетиция в деревенской хате</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/kolosvit-photo2.jpg" alt="Поле пшеницы" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Поле пшеницы</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/kolosvit-photo3.jpg" alt="Рушники и вышиванка" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Рушники и вышиванка</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/kolosvit-photo4.jpg" alt="Полевые цветы на столе" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Полевые цветы на столе</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/kolosvit-photo5.jpg" alt="Катушка с магнитной лентой" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — Катушка с магнитной лентой</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-kolosvit">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты архива.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1970–1974</div>
+                  <h4>АНСАМБЛЬ «КОЛОСВІТ» (АРХИВНАЯ ЗАМЕТКА)</h4>
+                  <p>«В начале 1970-х в украинской музыкальной среде появился ансамбль «Колосвіт». Точных сведений о его составе и месте происхождения сохранилось немного, однако по характеру записей можно проследить, как за несколько лет менялось его музыкальное направление».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>РАННИЙ ПЕРИОД</h4>
+                  <p>«Ранние композиции «Колосвіта» были близки к народной песне: простые мелодии, акустические инструменты, многоголосие и знакомые фольклорные интонации. В основе репертуара лежали украинские народные мотивы и образы — песни о дороге, природе, любви, временах года и человеческой судьбе».</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>СЕРЕДИНА 1970-Х</h4>
+                  <p>«К середине 1970-х ансамбль начал постепенно отходить от традиционной фолковой формы. В аранжировках появились более протяжённые гитарные партии, флейта, мягкие психоделические переходы и необычные для фольклорного материала гармонические решения».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ПОЗДНИЕ ЗАПИСИ</h4>
+                  <p>«Поздние записи «Колосвіта» находятся где-то между украинским фольклором, акустическим фолк-роком и ранней психоделией. В них ещё слышна непосредственность народной песни, но уже появляется ощущение свободного музыкального пространства, характерное для второй половины 1970-х».</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
