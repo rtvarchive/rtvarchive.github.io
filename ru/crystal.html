@@ -152,6 +152,87 @@
           <span>1976–1980 · Избранные записи</span>
           <span>5 Синглов</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Оркестра Кристалл -->
+        <button class="open-dossier-btn" onclick="toggleDossier('crystal', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-crystal" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (5 штук) -->
+            <div class="tab-pane is-active" id="photos-crystal">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Виды города из «Золотой коллекции», 1976.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="../assets/img/crystal-photo1.jpg" alt="Кафе Кристалл" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Кафе «Кристалл», 1976</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/crystal-photo2.jpg" alt="Пешеходная улица" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Пешеходная улица</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/crystal-photo3.jpg" alt="Троллейбус на площади" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Троллейбус на площади</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/crystal-photo4.jpg" alt="Городская площадь" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Городская площадь</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/crystal-photo5.jpg" alt="Голуби на площади" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — Голуби на площади</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-crystal">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты из «Золотой коллекции».</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1976</div>
+                  <h4>ЛЕТНИЙ ПАРК</h4>
+                  <p>«Инструментальная запись 1976 года в стиле телевизионной оркестровой музыки: мягкие духовые, тёплые струнные и спокойный ритм, передающий атмосферу летнего вечера в городском парке — скамейки под деревьями, терраса кафе неподалёку, вечерний свет сквозь листву».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из архивных заметок, 1976.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ПОСЛЕ ДОЖДЯ</h4>
+                  <p>«Мягкие струнные, прозрачные духовые и неторопливое развитие мелодии, передающее ощущение свежего воздуха после летнего дождя — мокрый асфальт, отражающий вечерний свет, лужи на тротуарах, тихо проходящий троллейбус».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из архивных заметок, 1976.</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>ПО ГЛАВНОЙ УЛИЦЕ</h4>
+                  <p>«Ритмичная лёгкая оркестровая тема с яркими духовыми, мягкими струнными и плавным движением, создающая образ прогулки по центральной улице летнего города».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из архивных заметок, 1976.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ВЕЧЕРНИЕ ОГНИ</h4>
+                  <p>«Мягкие струнные, деликатные духовые и неторопливое развитие мелодии, передающие атмосферу вечернего города, где один за другим загораются огни, а улицы постепенно погружаются в тишину».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из архивных заметок, 1976.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
