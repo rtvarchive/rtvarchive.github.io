@@ -88,6 +88,82 @@
           </div>
         </div>
         <div class="artist-card__foot"><span>Саундтрек · Телеспектакль</span><span>9 Треков</span></div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Скитальцев Вереска -->
+        <button class="open-dossier-btn" onclick="toggleDossier('wanderers', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-wanderers" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ИЛЛЮМИНАЦИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Иллюминации (4 штуки) -->
+            <div class="tab-pane is-active" id="photos-wanderers">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Страницы иллюминированной рукописи, 1983.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="../assets/img/heatherwanderers-photo1.jpg" alt="Сад у Морской Воды" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Сад у Морской Воды</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/heatherwanderers-photo2.jpg" alt="Воля Короны" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Воля Короны</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/heatherwanderers-photo3.jpg" alt="Берег, где не властен род" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Берег, где не властен род</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/heatherwanderers-photo4.jpg" alt="За Морским Пределом" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — За Морским Пределом</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-wanderers">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты хроники.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1983</div>
+                  <h4>ПЕСНЬ НЭРИС (АРХИВНАЯ АУДИОЗАПИСЬ)</h4>
+                  <p>«Это архивная аудиозапись условного телеспектакля, датированная 1983 годом. До наших дней сохранилась только звуковая дорожка. Изображение, видеоряд и постановочная часть были утрачены или никогда не фиксировались».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из вступления к архиву.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>САД У МОРСКОЙ ВОДЫ (ПЕСНЬ НЭРИС)</h4>
+                  <p>«Нэрис живёт вдали от дворцовой суеты, в уединённом Саду у Морской Воды, где шум прибоя и цветущий вереск заменили ей придворную жизнь. Для неё этот сад — не просто убежище, а целый мир, существующий по собственным законам».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Заметки к треку, 1983.</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>ВОЛЯ КОРОНЫ (ПЕСНЬ ОЛДЭРА)</h4>
+                  <p>«Эта песнь звучит от лица короля Олдэра. Он не жестокий тиран и не безжалостный правитель — он человек, которому досталась тяжесть короны. Ради будущего Веремора он принимает решение, которое разрушает судьбу собственной дочери».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Заметки к треку, 1983.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>БЕРЕГ, ГДЕ НЕ ВЛАСТЕН РОД (ПЕСНЬ КАЭЛЯ)</h4>
+                  <p>«После предательства собственного брата Каэль получает смертельную рану и оказывается сброшен за борт корабля. Море, которое должно было стать его могилой, приносит его к берегу рядом с Садом у Морской Воды. Нэрис спасает незнакомца, не зная, что перед ней наследный принц другого королевства».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Заметки к треку, 1983.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
