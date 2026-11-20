@@ -150,6 +150,73 @@
           <span>1976–1979 · Барокко-поп</span>
           <span>3 Сингла</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Ярмарки Тщеславия -->
+        <button class="open-dossier-btn" onclick="toggleDossier('vanityfair', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-vanityfair" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (3 штуки) -->
+            <div class="tab-pane is-active" id="photos-vanityfair">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Архивные фотографии, 1976–1979.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="../assets/img/vanityfair-photo1.jpg" alt="Репетиционная база" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Репетиционная база</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/vanityfair-photo2.jpg" alt="Запись в студии" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Запись в студии</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/vanityfair-photo3.jpg" alt="Утраченные мастер-ленты" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Утраченные мастер-ленты</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-vanityfair">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты архива.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1976–1979</div>
+                  <h4>ВИА «ЯРМАРКА ТЩЕСЛАВИЯ» (АРХИВНАЯ ЗАМЕТКА)</h4>
+                  <p>«По сохранившимся сведениям, ВИА «Ярмарка Тщеславия» существовал при одной из областных филармоний с 1976 по 1979 год. Ансамбль искал необычное для своего времени звучание, соединяя камерный оркестр, акустический рок, авторскую песню и элементы барокко-попа. В центре внимания были не эстрадные сюжеты, а небольшие истории о людях, времени, памяти и выборе».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>О НАЗВАНИИ</h4>
+                  <p>«Название ансамбля понималось не буквально. «Ярмарка тщеславия» — это метафора мира, где каждый играет свою роль, стремится к чему-то, теряет, находит и проходит мимо чужих судеб. Музыка коллектива словно наблюдает за этой бесконечной ярмаркой со стороны — спокойно, с лёгкой иронией и грустью».</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>ПРЕКРАЩЕНИЕ ДЕЯТЕЛЬНОСТИ</h4>
+                  <p>«После выхода единственного мини-альбома проект был закрыт из-за «отсутствия массового интереса». Мастер-ленты считались утраченными, а имя ансамбля постепенно исчезло из памяти».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>РЕКОНСТРУКЦИЯ</h4>
+                  <p>«Перед вами — художественная реконструкция того, каким мог быть этот забытый коллектив и каким могло быть его звучание. Радиус Архив — истории музыки, которой, возможно, никогда не существовало».</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
