@@ -154,7 +154,7 @@
           <span>6 Синглов</span>
         </div>
 		
-		                                <!-- ВСТАВКА: Кнопка и панель досье для Dima Milan -->
+		                <!-- ВСТАВКА: Кнопка и панель досье для Dima Milan -->
         <button class="open-dossier-btn" onclick="toggleDossier('dimamilan', this)">
           <span class="dossier-btn-text">▶ Открыть архивное досье</span>
         </button>
@@ -169,7 +169,6 @@
               <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Промо-фотографии, 1998–1999.</p>
               <div class="photo-grid bento-grid">
                 
-                <!-- 1-4 (Видны сразу) -->
                 <div class="photo-item">
                   <img src="../assets/img/dima-milan-photo1.jpg" alt="Вечерние огни" loading="lazy">
                   <span class="photo-caption">РИС. 01 — Вечерние огни</span>
@@ -187,7 +186,6 @@
                   <span class="photo-caption">РИС. 04 — Ночной город</span>
                 </div>
 
-                <!-- 5-6 (Скрыты) -->
                 <div class="photo-item" data-more hidden>
                   <img src="../assets/img/dima-milan-photo5.jpg" alt="Студийный портрет" loading="lazy">
                   <span class="photo-caption">РИС. 05 — Студийный портрет</span>
@@ -199,9 +197,20 @@
 
               </div>
               
-              <!-- Кнопка показать все -->
               <div style="text-align: center; margin-top: 2rem;">
-                <button class="chip" data-more-btn style="cursor: pointer; padding: 0.6rem 1.2rem;">+ ПОКАЗАТЬ ВСЕ ФОТОГРАФИИ</button>
+                <button class="chip" style="cursor: pointer; padding: 0.6rem 1.2rem;" onclick="
+                  const pane = this.closest('.tab-pane');
+                  const hiddenItems = pane.querySelectorAll('[data-more][hidden]');
+                  
+                  if (hiddenItems.length > 0) {
+                    hiddenItems.forEach(el => el.removeAttribute('hidden'));
+                    this.textContent = 'Свернуть';
+                  } else {
+                    const allItems = pane.querySelectorAll('[data-more]');
+                    allItems.forEach(el => el.setAttribute('hidden', ''));
+                    this.textContent = '+ Показать все фотографии';
+                  }
+                ">+ Показать все фотографии</button>
               </div>
             </div>
 
