@@ -158,6 +158,108 @@
           <span>1984 · Psychedelic Rock</span>
           <span>1 Album</span>
         </div>
+		
+		                <!-- ВСТАВКА: Кнопка и панель досье для Oriental Bazaar -->
+        <button class="open-dossier-btn" onclick="toggleDossier('orientalbazaar', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-orientalbazaar" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ILLUSTRATIONS</button>
+            <button class="tab" data-tab="docs">ARCHIVE LOG</button>
+          </div>
+          <div class="folder-content">
+            
+            <div class="tab-pane is-active" id="photos-orientalbazaar">
+              <p class="archive-note">> FOUND IN ARCHIVE: Surviving visual materials, 1984.</p>
+              <div class="photo-grid bento-grid">
+                
+                <!-- 1-5 -->
+                <div class="photo-item">
+                  <img src="assets/img/orientalbazaar-photo1.jpg" alt="Wind over the Steppe" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Wind over the Steppe</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/orientalbazaar-photo2.jpg" alt="Teahouse" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — Teahouse</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/orientalbazaar-photo3.jpg" alt="Storyteller" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Storyteller</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/orientalbazaar-photo4.jpg" alt="Ali Baba" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — Ali Baba</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/orientalbazaar-photo5.jpg" alt="Mirror" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — Mirror</span>
+                </div>
+
+                <!-- 6-11 (Скрыты) -->
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/orientalbazaar-photo6.jpg" alt="Caravan" loading="lazy">
+                  <span class="photo-caption">FIG. 06 — Caravan</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/orientalbazaar-photo7.jpg" alt="Dervish" loading="lazy">
+                  <span class="photo-caption">FIG. 07 — Dervish</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/orientalbazaar-photo8.jpg" alt="Eastern Love" loading="lazy">
+                  <span class="photo-caption">FIG. 08 — Eastern Love</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/orientalbazaar-photo9.jpg" alt="In the Garden Where Moonlight Falls" loading="lazy">
+                  <span class="photo-caption">FIG. 09 — In the Garden Where Moonlight Falls</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/orientalbazaar-photo10.jpg" alt="Star Road" loading="lazy">
+                  <span class="photo-caption">FIG. 10 — Star Road</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/orientalbazaar-photo11.jpg" alt="Lights of the Night Bazaar" loading="lazy">
+                  <span class="photo-caption">FIG. 11 — Lights of the Night Bazaar</span>
+                </div>
+
+              </div>
+              
+              <div style="text-align: center; margin-top: 2rem;">
+                <button class="chip" data-more-btn style="cursor: pointer; padding: 0.6rem 1.2rem;">+ Show all illustrations</button>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="docs-orientalbazaar">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Fragments of the archive.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1984</div>
+                  <h4>VIA "ORIENTAL BAZAAR" (ARCHIVAL NOTE)</h4>
+                  <p>«VIA "Oriental Bazaar" was a Soviet vocal-instrumental ensemble active on the concert circuit during the first half of the 1980s. In 1984, the group prepared the program "Star Road", combining Soviet estrada songs with Eastern and folk-inspired motifs.»</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>THE DISCOVERY</h4>
+                  <p>«In 2026, a magnetic recording of the program, originally prepared by the ensemble in 1984, was discovered in a private archive. The recording had never been officially released or commercially distributed.»</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>RESTORATION</h4>
+                  <p>«Before publication, the archival material underwent restoration and modern mastering. The original structure and character of the recording have been preserved, while the restored version is considerably cleaner than the surviving magnetic source.»</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>VISUAL IDENTITY</h4>
+                  <p>«The visual identity of the project is inspired by the books and worlds of Jack Vance’s Oikumene — its exotic civilizations, cosmic journeys, Eastern motifs, and the feeling of a distant, unfamiliar world beyond Earth.»</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
