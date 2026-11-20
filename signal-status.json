@@ -1,5 +1,5 @@
 {
-  "lastCheck": "2026-11-20T14:55:12.102Z",
+  "lastCheck": "2026-11-20T15:08:49.528Z",
   "total": 186,
   "passed": 180,
   "failed": 6,
@@ -78,6 +78,13 @@
   ],
   "history": [
     {
+      "record": 195,
+      "date": "2026-11-20T15:08:49.528Z",
+      "status": "unstable",
+      "total": 186,
+      "passed": 180
+    },
+    {
       "record": 194,
       "date": "2026-11-20T14:55:12.102Z",
       "status": "unstable",
@@ -101,13 +108,6 @@
     {
       "record": 191,
       "date": "2026-11-20T12:18:42.297Z",
-      "status": "unstable",
-      "total": 186,
-      "passed": 180
-    },
-    {
-      "record": 190,
-      "date": "2026-11-20T12:07:33.878Z",
       "status": "unstable",
       "total": 186,
       "passed": 180
