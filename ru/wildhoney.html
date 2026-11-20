@@ -150,6 +150,77 @@
           <span>1990-е · Сельский архив</span>
           <span>3 Сингла</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Дикого Мёда -->
+        <button class="open-dossier-btn" onclick="toggleDossier('wildhoney', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-wildhoney" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (3 штуки) -->
+            <div class="tab-pane is-active" id="photos-wildhoney">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Деревенские фотографии, 1990-е.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="../assets/img/wildhoney_photo1.jpg" alt="Заброшенный дом" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Не буди лихо</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/wildhoney_photo2.jpg" alt="Горный перевал" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — На перевале</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/wildhoney_photo3.jpg" alt="Высокая трава и амбар" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — В траве, где никто не помнит слов</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-wildhoney">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Полевые заметки.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1990-е?</div>
+                  <h4>НЕ БУДИ ЛИХО</h4>
+                  <p>«Говорили, что в этих местах лучше не тревожить то, что уже затихло. Не из-за страха, а потому что после этого всё становится немного другим — дорога, люди, даже воздух. В деревнях это знали без объяснений: если ночь слишком тихая — не стоит звать её словами».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из регионального сборника устных историй.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>НА ПЕРЕВАЛЕ</h4>
+                  <p>«Через перевал всегда ходили молча — не из страха, а чтобы слышать ветер. Зимой там терялись ориентиры: снег, камни и небо становились одинаковыми, и дорога переставала быть дорогой. Иногда впереди появлялось свечение — ровное и спокойное, будто снег отражал чей-то далёкий огонь».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из регионального сборника устных историй.</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>В ТРАВЕ, ГДЕ НИКТО НЕ ПОМНИТ СЛОВ</h4>
+                  <p>«На холме стоял старый амбар — его уже не использовали, но он почему-то не исчезал. Каждое лето кто-то говорил, что видел женщину среди высокой травы. Она не спешила, просто проходила через поле так, будто знала его лучше всех. После неё в воздухе оставался запах мёда и тонкая золотая пыль на руках».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из регионального сборника устных историй.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>АРХИВНАЯ ЗАМЕТКА: ДИКИЙ МЁД</h4>
+                  <p>«В некоторых региональных сборниках устных историй встречается упоминание о так называемом цикле «Дикий Мёд». Записи фрагментарны, происхождение их не установлено. В материалах данного типа «Дикий Мёд» определяется не как единое произведение, а как цикл записанных версий событий из одного условного мира».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Исследовательские заметки, без даты.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
