@@ -154,7 +154,7 @@
           <span>6 Singles</span>
         </div>
 		
-		                        <!-- ВСТАВКА: Кнопка и панель досье для Dima Milan -->
+		         <!-- ВСТАВКА: Кнопка и панель досье для Dima Milan -->
         <button class="open-dossier-btn" onclick="toggleDossier('dimamilan', this)">
           <span class="dossier-btn-text">▶ Open Archive Dossier</span>
         </button>
@@ -169,39 +169,48 @@
               <p class="archive-note">> FOUND IN ARCHIVE: Promo photographs, 1998–1999.</p>
               <div class="photo-grid bento-grid">
                 
-                <!-- 1-4 (Visible by default) -->
                 <div class="photo-item">
-                  <img src="assets/img/dima-milan-photo1.jpg" alt="Promo photo 1" loading="lazy">
-                  <span class="photo-caption">FIG. 01 — Promo photo, 1998</span>
+                  <img src="assets/img/dima-milan-photo1.jpg" alt="Evening lights" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Evening Lights</span>
                 </div>
                 <div class="photo-item">
-                  <img src="assets/img/dima-milan-photo2.jpg" alt="Promo photo 2" loading="lazy">
-                  <span class="photo-caption">FIG. 02 — Promo photo, 1998</span>
+                  <img src="assets/img/dima-milan-photo2.jpg" alt="Summer breeze" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — Summer Breeze</span>
                 </div>
                 <div class="photo-item">
-                  <img src="assets/img/dima-milan-photo3.jpg" alt="Promo photo 3" loading="lazy">
-                  <span class="photo-caption">FIG. 03 — Promo photo, 1999</span>
+                  <img src="assets/img/dima-milan-photo3.jpg" alt="Dark jacket" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Dark Jacket</span>
                 </div>
                 <div class="photo-item">
-                  <img src="assets/img/dima-milan-photo4.jpg" alt="Promo photo 4" loading="lazy">
-                  <span class="photo-caption">FIG. 04 — Promo photo, 1999</span>
+                  <img src="assets/img/dima-milan-photo4.jpg" alt="Night city" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — Night City</span>
                 </div>
 
-                <!-- 5-6 (Hidden by default) -->
                 <div class="photo-item" data-more hidden>
-                  <img src="assets/img/dima-milan-photo5.jpg" alt="Promo photo 5" loading="lazy">
-                  <span class="photo-caption">FIG. 05 — Promo photo, 1999</span>
+                  <img src="assets/img/dima-milan-photo5.jpg" alt="Studio portrait" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — Studio Portrait</span>
                 </div>
                 <div class="photo-item" data-more hidden>
-                  <img src="assets/img/dima-milan-photo6.jpg" alt="Promo photo 6" loading="lazy">
-                  <span class="photo-caption">FIG. 06 — Promo photo, 1999</span>
+                  <img src="assets/img/dima-milan-photo6.jpg" alt="Winter mood" loading="lazy">
+                  <span class="photo-caption">FIG. 06 — Winter Mood</span>
                 </div>
 
               </div>
               
-              <!-- Show All Button -->
               <div style="text-align: center; margin-top: 2rem;">
-                <button class="chip" data-more-btn style="cursor: pointer; padding: 0.6rem 1.2rem;">+ Show all photographs</button>
+                <button class="chip" style="cursor: pointer; padding: 0.6rem 1.2rem;" onclick="
+                  const pane = this.closest('.tab-pane');
+                  const hiddenItems = pane.querySelectorAll('[data-more][hidden]');
+                  
+                  if (hiddenItems.length > 0) {
+                    hiddenItems.forEach(el => el.removeAttribute('hidden'));
+                    this.textContent = 'Show less';
+                  } else {
+                    const allItems = pane.querySelectorAll('[data-more]');
+                    allItems.forEach(el => el.setAttribute('hidden', ''));
+                    this.textContent = '+ Show all photographs';
+                  }
+                ">+ Show all photographs</button>
               </div>
             </div>
 
