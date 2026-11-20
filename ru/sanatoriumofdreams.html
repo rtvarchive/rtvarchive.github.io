@@ -152,6 +152,87 @@
           <span>1994 · Восстановленные сны</span>
           <span>5 Синглов</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Санатория Снов -->
+        <button class="open-dossier-btn" onclick="toggleDossier('sanatorium', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-sanatorium" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (5 штук) -->
+            <div class="tab-pane is-active" id="photos-sanatorium">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Городские снимки 1994 года.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="../assets/img/sanatorium-photo1.jpg" alt="Бумажный змей" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Бумажный змей, 1994</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/sanatorium-photo2.jpg" alt="Лунный рынок" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Лунный рынок</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/sanatorium-photo3.jpg" alt="Закрывай глаза" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Закрывай глаза</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/sanatorium-photo4.jpg" alt="Город вверх ногами" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Город вверх ногами</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/sanatorium-photo5.jpg" alt="Пусть этот год уходит" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — Пусть этот год уходит</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-sanatorium">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты архива.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1994</div>
+                  <h4>ГОРОД ПОТЕРЯННОГО ВРЕМЕНИ (EP)</h4>
+                  <p>«Говорят, в каждом городе есть места, которые появляются только тогда, когда их не ищут. Двор, которого нет на карте. Окно, в котором всегда горит свет. Улица, по которой никто не помнит, как оказался. «Санаторий Снов» — одна из таких историй. Летом 1994 года появился небольшой цикл песен о городе, где время иногда замедляется, воспоминания живут собственной жизнью, а самые обычные вещи оказываются немного важнее, чем кажутся».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из вступительных заметок к проекту, 1994.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>БУМАЖНЫЙ ЗМЕЙ</h4>
+                  <p>«Иногда кажется, что город навсегда забыл своё детство. Но стоит поднять голову в правильный день — и над крышами снова появляется бумажный змей, запутавшийся между облаками и воспоминаниями. Эта песня — о тех редких мгновениях, когда прошлое не возвращается, а просто ненадолго оказывается рядом».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Заметки к треку, 1994.</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>ЛУННЫЙ РЫНОК</h4>
+                  <p>«Говорят, некоторые рынки открываются только после заката. Там продаются забытые разговоры, случайные встречи и вещи, которые никто не помнит потерянными. «Лунный рынок» — прогулка по месту, которое существует где-то между городской легендой и сном, увиденным слишком давно».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Заметки к треку, 1994.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ГОРОД ВВЕРХ НОГАМИ</h4>
+                  <p>«После дождя знакомый город на несколько минут становится другим. В лужах отражаются дома, окна и фонари, улицы переворачиваются вверх ногами, а дорога домой вдруг кажется совсем новой. Всё вокруг остаётся прежним — меняется только взгляд».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Заметки к треку, 1994.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
