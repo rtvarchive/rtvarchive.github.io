@@ -3413,3 +3413,9 @@ body.day-mode .vu-meter-bar {
     grid-column: span 1;
   }
 }
+
+/* Принудительное скрытие элементов с атрибутом hidden */
+[hidden] {
+  display: none !important;
+}
+
