@@ -153,6 +153,89 @@
           <span>1998–1999 · Поп</span>
           <span>6 Синглов</span>
         </div>
+		
+		                        <!-- ВСТАВКА: Кнопка и панель досье для Dima Milan -->
+        <button class="open-dossier-btn" onclick="toggleDossier('dimamilan', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-dimamilan" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <div class="tab-pane is-active" id="photos-dimamilan">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Промо-фотографии, 1998–1999.</p>
+              <div class="photo-grid bento-grid">
+                
+                <!-- 1-4 (Видны сразу) -->
+                <div class="photo-item">
+                  <img src="../assets/img/dima-milan-photo1.jpg" alt="Промо-фото 1" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Промо-фото, 1998</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/dima-milan-photo2.jpg" alt="Промо-фото 2" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Промо-фото, 1998</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/dima-milan-photo3.jpg" alt="Промо-фото 3" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Промо-фото, 1999</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/dima-milan-photo4.jpg" alt="Промо-фото 4" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Промо-фото, 1999</span>
+                </div>
+
+                <!-- 5-6 (Скрыты) -->
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/dima-milan-photo5.jpg" alt="Промо-фото 5" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — Промо-фото, 1999</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/dima-milan-photo6.jpg" alt="Промо-фото 6" loading="lazy">
+                  <span class="photo-caption">РИС. 06 — Промо-фото, 1999</span>
+                </div>
+
+              </div>
+              
+              <!-- Кнопка показать все -->
+              <div style="text-align: center; margin-top: 2rem;">
+                <button class="chip" data-more-btn style="cursor: pointer; padding: 0.6rem 1.2rem;">+ Показать все иллюстрации</button>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="docs-dimamilan">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты архива.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1998–1999</div>
+                  <h4>ДИМА МИЛАН (АРХИВНАЯ ЗАМЕТКА)</h4>
+                  <p>«Дима Милан — российский певец, получивший известность в конце 1990-х годов. Его песни были рассчитаны прежде всего на радио, кассетные сборники, телевизионные музыкальные программы и недорогие промо-CD».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ЗАПИСИ</h4>
+                  <p>«В 1998–1999 годах Дима Милан получает возможность записать несколько собственных песен для небольшого регионального музыкального лейбла. Песни простые, романтические и легко запоминающиеся: любовь, расставание, ожидание, случайная встреча, одиночество, Новый год».</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>МУЗЫКАЛЬНЫЙ СТИЛЬ</h4>
+                  <p>«Музыка тёплая и мелодичная: акустическая и электрическая гитара, пиано, мелодичный бас, драм-машина, мягкая перкуссия и ненавязчивые аналоговые синтезаторы. Медленные песни звучат романтично и слегка меланхолично, более быстрые — легко и танцевально».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ТВОРЧЕСКИЙ ПОЧЕРК</h4>
+                  <p>«Его стиль — простая российская радиопоп-музыка рубежа 1990-х и 2000-х: искренняя, немного «липкая», мелодичная и без стремления казаться сложнее, чем она есть».</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
