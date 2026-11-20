@@ -150,6 +150,77 @@
           <span>1990s · Folk Noir Archive</span>
           <span>3 Singles</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Wild Honey -->
+        <button class="open-dossier-btn" onclick="toggleDossier('wildhoney', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-wildhoney" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">PHOTOGRAPHS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (3 штуки) -->
+            <div class="tab-pane is-active" id="photos-wildhoney">
+              <p class="archive-note">> FOUND IN ARCHIVE: Village photographs, 1990s.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="assets/img/wildhoney_photo1.jpg" alt="Abandoned house" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Do Not Wake Evil</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/wildhoney_photo2.jpg" alt="Mountain pass" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — On the Pass</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/wildhoney_photo3.jpg" alt="Tall grass and barn" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — In the Grass</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-wildhoney">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Field notes.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1990s?</div>
+                  <h4>DO NOT WAKE EVIL</h4>
+                  <p>«They said that in these places it is better not to disturb what has already fallen silent. Not out of fear, but because after that everything becomes a little different — the road, the people, even the air. In the villages, they knew this without explanation: if the night is too quiet — you shouldn't call it with words.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the regional collection of oral narratives.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ON THE PASS</h4>
+                  <p>«Through the pass, they always walked in silence — not out of fear, but to hear the wind. In winter, landmarks were lost there: snow, stones and sky became identical, and the road ceased to be a road. Sometimes a light appeared ahead — even and calm, as if the snow was reflecting someone's distant fire.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the regional collection of oral narratives.</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>IN THE GRASS, WHERE NO ONE REMEMBERS WORDS</h4>
+                  <p>«On the hill stood an old barn — it was no longer used, but for some reason it did not disappear. Every summer, someone said they saw a woman among the tall grass. She was in no hurry, just walking through the field as if she knew it better than anyone. After her, the smell of honey remained in the air and fine golden dust on the hands.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the regional collection of oral narratives.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ARCHIVE NOTE: WILD HONEY</h4>
+                  <p>«In several regional collections of oral narratives, there are references to a cycle known as “Wild Honey.” The records are fragmentary, and their origin remains unverified. The internal structure of the cycle consists of three recorded entries... It is suggested that these records preserve traces of an oral tradition in which the event is more important than interpretation.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Research notes, undated.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
