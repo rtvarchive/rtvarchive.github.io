@@ -152,6 +152,87 @@
           <span>1976–1980 · Selected Recordings</span>
           <span>5 Singles</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Crystal -->
+        <button class="open-dossier-btn" onclick="toggleDossier('crystal', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-crystal" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">PHOTOGRAPHS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (5 штук) -->
+            <div class="tab-pane is-active" id="photos-crystal">
+              <p class="archive-note">> FOUND IN ARCHIVE: City views from the Golden Collection, 1976.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="assets/img/crystal-photo1.jpg" alt="Crystal Cafe" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Crystal Café, 1976</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/crystal-photo2.jpg" alt="Pedestrian street" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — Pedestrian Street</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/crystal-photo3.jpg" alt="Trolleybus on the square" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Trolleybus on the Square</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/crystal-photo4.jpg" alt="City square" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — City Square</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/crystal-photo5.jpg" alt="Pigeons on the square" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — Pigeons on the Square</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-crystal">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Fragments from the Golden Collection.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1976</div>
+                  <h4>SUMMER PARK (LETNIY PARK)</h4>
+                  <p>«An instrumental piece in the style of late-1970s television orchestral music. Soft brass, warm strings and a calm rhythm convey the atmosphere of a summer evening in a city park — benches under trees, a café terrace nearby, evening sunlight through the leaves.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the archive notes, 1976.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>AFTER THE RAIN (POSLE DOZHDYA)</h4>
+                  <p>«Soft strings, transparent brass and a leisurely melodic development evoke the feeling of fresh air after a summer rain — wet asphalt reflecting evening light, puddles on the sidewalks, a trolleybus passing quietly.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the archive notes, 1976.</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>ALONG THE MAIN STREET (PO GLAVNOY ULITSE)</h4>
+                  <p>«A rhythmic, light orchestral theme with bright brass, soft strings and a smooth forward motion, creating the image of a stroll along the central street of a summer city.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the archive notes, 1976.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>EVENING LIGHTS (VECHERNIE OGNI)</h4>
+                  <p>«Soft strings, delicate brass and a leisurely melodic development convey the atmosphere of an evening city — one by one the lights come on, and the streets gradually sink into silence.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the archive notes, 1976.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
