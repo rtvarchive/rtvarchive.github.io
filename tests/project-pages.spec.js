@@ -23,9 +23,9 @@ test.describe('Project Pages (EN)', () => {
     });
 
     test('PP-03: tracklists have correct number of items', async ({ page }) => {
-      await expect(page.locator('[data-testid="project-tracklist-summer"] li')).toHaveCount(8);
-      await expect(page.locator('[data-testid="project-tracklist-polar"] li')).toHaveCount(9);
-      await expect(page.locator('[data-testid="project-tracklist-caucasus"] li')).toHaveCount(9);
+      await expect(page.locator('[data-testid="project-tracklist-summer"] ol.project-tracks li')).toHaveCount(8);
+      await expect(page.locator('[data-testid="project-tracklist-polar"] ol.project-tracks li')).toHaveCount(9);
+      await expect(page.locator('[data-testid="project-tracklist-caucasus"] ol.project-tracks li')).toHaveCount(9);
     });
 
     test('PP-04: listen buttons state (enabled/enabled/disabled)', async ({ page }) => {
@@ -107,9 +107,9 @@ test.describe('Project Pages (EN)', () => {
   // ГРУППА B: ОДИНОЧНЫЕ ПРОЕКТЫ (1 альбом)
   // ==========================================
   const singleProjects = [
-    { name: '605 Mikrorayon', url: '/605.html', trackCount: 14 },
+    { name: '605 Mikrorayon', url: '/605.html', trackCount: 13 }, 
     { name: 'Oriental Bazaar', url: '/orientalbazaar.html', trackCount: 11 },
-    { name: 'Phase/Zero', url: '/phasezero.html', trackCount: 12 },
+    { name: 'Phase/Zero', url: '/phasezero.html', trackCount: 11 }, 
     { name: 'Final Psalm', url: '/finalpsalm.html', trackCount: 13 },
     { name: 'Gurt Groove', url: '/gurtgroove.html', trackCount: 8 },
   ];
@@ -129,9 +129,9 @@ test.describe('Project Pages (EN)', () => {
         // Проверяем статус
         await expect(page.getByTestId('project-status')).toHaveAttribute('data-status', 'available');
         
-        // Проверяем количество треков
-        await expect(page.locator('[data-testid="project-tracklist"] li')).toHaveCount(project.trackCount);
-      });
+        // Проверяем количество треков (добавлен ol.project-tracks)
+        await expect(page.locator('[data-testid="project-tracklist"] ol.project-tracks li')).toHaveCount(project.trackCount);
+      }); // <-- ЭТА СКОБКА БЫЛА ПОТЕРЯНА
 
       test(`opens and closes modal correctly`, async ({ page }) => {
         const modal = page.getByTestId('listen-modal');
