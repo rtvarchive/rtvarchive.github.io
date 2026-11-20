@@ -152,6 +152,74 @@
           <span>1978–1998 · Файлы вещания</span>
           <span>5 Синглов</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Радиус-78 -->
+        <button class="open-dossier-btn" onclick="toggleDossier('radius78', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-radius78" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (3 штуки) -->
+            <div class="tab-pane is-active" id="photos-radius78">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Фотографии из фонда вещания, 1978.</p>
+              <div class="photo-grid bento-grid three-cols">
+                
+                <div class="photo-item">
+                  <img src="../assets/img/radius-photo1.jpg" alt="Вход в Телецентр, 1978" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Вход в Телецентр</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/radius-photo2.jpg" alt="Коридор студии" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Коридор студии</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="../assets/img/radius-photo3.jpg" alt="Студия вещания" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Студия вещания</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-radius78">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты архива.</p>
+              <div class="doc-list">
+                
+                <!-- Документ 1 -->
+                <div class="doc-item">
+                  <div class="doc-secret">R78-01</div>
+                  <h4>ТЕСТОВЫЙ СИГНАЛ / УТРЕННЯЯ ЗАСТАВКА (1978)</h4>
+                  <p>«Согласно сохранившейся документации, данная запись использовалась для открытия ежедневного вещания Телецентра «РАДИУС» в конце 1970-х годов. В эфир выходили служебные объявления, контрольные сигналы и музыкальное сопровождение, предназначенное для проверки качества приёма».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Архивная запись R78-01, Студия №3.</p>
+                </div>
+
+                <!-- Документ 2 -->
+                <div class="doc-item doc-telegram">
+                  <h4>ТИХАЯ ПОГОДА (1978)</h4>
+                  <p>«Музыкально-информационная передача вечернего эфира, посвящённая обзору атмосферных условий. Передача сочетает дикторские объявления, инструментальные музыкальные фрагменты и служебные информационные блоки».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Архивная запись R78-02, Архив вещательных программ.</p>
+                </div>
+
+                <!-- Документ 3 -->
+                <div class="doc-item">
+                  <h4>ПИСЬМА ТЕЛЕЗРИТЕЛЕЙ (1978)</h4>
+                  <p>«Восстановленная запись одной из вечерних передач Телецентра «РАДИУС», посвящённой обращениям зрителей из Радинска и близлежащих населённых пунктов. Согласно архивным документам, программа выходила несколько раз в месяц и включала чтение писем, ответы редакции и музыкальные фрагменты между выпусками».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Архивная запись R78-03, Фонд общественных передач.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
