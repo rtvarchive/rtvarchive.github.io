@@ -361,5 +361,35 @@
       }
     });
   });
+  
+// =========================================================
+// КНОПКА "ПОКАЗАТЬ ВСЕ" ДЛЯ ДОСЬЕ (ИСПРАВЛЕННЫЙ)
+// =========================================================
+document.addEventListener('click', function(e) {
+  // Ищем кнопку
+  const btn = e.target.closest('[data-more-btn]');
+  if (!btn) return;
+  
+  // Предотвращаем стандартное поведение
+  e.preventDefault();
+  
+  // Находим контейнер (вкладку), в которой находится кнопка
+  const container = btn.closest('.tab-pane');
+  if (!container) return;
+  
+  // Ищем все картинки, которые должны быть скрыты
+  const hiddenItems = container.querySelectorAll('[data-more][hidden]');
+  
+  if (hiddenItems.length > 0) {
+    // Если есть скрытые, показываем их
+    hiddenItems.forEach(item => item.removeAttribute('hidden'));
+    btn.textContent = btn.textContent.includes('Show') ? '− Show less' : '− Свернуть';
+  } else {
+    // Если все показаны, скрываем обратно
+    const allItems = container.querySelectorAll('[data-more]');
+    allItems.forEach(item => item.setAttribute('hidden', ''));
+    btn.textContent = btn.textContent.includes('less') ? '+ Show all illustrations' : '+ Показать все иллюстрации';
+  }
+});
 
 })(); // Закрываем основную функцию
