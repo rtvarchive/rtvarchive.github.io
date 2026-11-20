@@ -137,7 +137,6 @@
             console.warn('Formspark: Limit reached or error. Status:', response.status);
           }
           
-          // В ЛЮБОМ СЛУЧАЕ: очищаем форму и открываем модалку
           form.reset();
           const modal = document.getElementById('success-modal');
           if (modal) modal.classList.add('is-active');
@@ -148,7 +147,6 @@
         .catch(error => {
           console.error('Network error:', error);
           
-          // Даже если упал интернет, показываем успех пользователю
           form.reset();
           const modal = document.getElementById('success-modal');
           if (modal) modal.classList.add('is-active');
@@ -182,90 +180,186 @@
     }
   });
 
-})(); // Закрываем основную функцию
+  // =========================================================
+  // ЛОГИКА КНОПКИ "ПОКАЗАТЬ ВСЕ ПРОЕКТЫ" (АККОРДЕОН)
+  // =========================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    const projectGrid = document.getElementById('artist-list');
+    if (!projectGrid) return;
 
+    const cards = Array.from(projectGrid.querySelectorAll('.artist-card'));
+    const itemsToShow = 6;
 
-// =========================================================
-// ЛОГИКА КНОПКИ "ПОКАЗАТЬ ВСЕ ПРОЕКТЫ" (АККОРДЕОН)
-// =========================================================
-document.addEventListener('DOMContentLoaded', () => {
-  const projectGrid = document.getElementById('artist-list');
-  if (!projectGrid) return;
+    if (cards.length > itemsToShow) {
+      cards.forEach((card, index) => {
+        if (index >= itemsToShow) {
+          card.classList.add('is-hidden');
+          card.style.display = 'none';
+        }
+      });
 
-  const cards = Array.from(projectGrid.querySelectorAll('.artist-card'));
-  const itemsToShow = 6; // Показываем первые 6 карточек
+      const btnContainer = document.createElement('div');
+      btnContainer.style.textAlign = 'center';
+      btnContainer.style.marginTop = '4rem';
+      btnContainer.style.width = '100%';
 
-  if (cards.length > itemsToShow) {
-    // 1. Скрываем лишние карточки
-    cards.forEach((card, index) => {
-      if (index >= itemsToShow) {
-        card.classList.add('is-hidden');
-        card.style.display = 'none';
-      }
-    });
-
-    // 2. Создаем контейнер для кнопки
-    const btnContainer = document.createElement('div');
-    btnContainer.style.textAlign = 'center';
-    btnContainer.style.marginTop = '4rem'; // Чуть больше отступ
-    btnContainer.style.width = '100%';
-
-    // 3. Создаем саму кнопку
-    const btn = document.createElement('button');
-    // Задаем жесткие стили, чтобы никакой CSS сайта не мог испортить кнопку
-    btn.style.setProperty('background', 'transparent', 'important');
-    btn.style.setProperty('border', '1px solid var(--neon-cyan)', 'important');
-    btn.style.setProperty('color', 'var(--neon-cyan)', 'important');
-    btn.style.setProperty('padding', '1rem 2.5rem', 'important');
-    btn.style.setProperty('font-size', '1.1rem', 'important');
-    btn.style.setProperty('font-family', 'var(--ff-mono)', 'important');
-    btn.style.setProperty('text-transform', 'uppercase', 'important');
-    btn.style.setProperty('letter-spacing', '0.1em', 'important');
-    btn.style.setProperty('cursor', 'pointer', 'important');
-    btn.style.setProperty('border-radius', '4px', 'important');
-    btn.style.setProperty('transition', 'all 0.3s', 'important');
-    btn.style.setProperty('display', 'inline-block', 'important');
-    
-    // Эффект при наведении
-    btn.addEventListener('mouseover', () => {
-      btn.style.setProperty('background', 'rgba(108, 143, 163, 0.1)', 'important');
-      btn.style.setProperty('box-shadow', '0 0 15px rgba(108, 143, 163, 0.3)', 'important');
-    });
-    btn.addEventListener('mouseout', () => {
+      const btn = document.createElement('button');
       btn.style.setProperty('background', 'transparent', 'important');
-      btn.style.setProperty('box-shadow', 'none', 'important');
-    });
-
-    const isRu = document.documentElement.lang === 'ru';
-    btn.textContent = isRu ? 'Показать все проекты' : 'Show all projects';
-    btn.dataset.testid = 'btn-show-all-projects';
-
-    // 4. Логика клика
-    btn.addEventListener('click', () => {
-      const hiddenCards = projectGrid.querySelectorAll('.is-hidden');
+      btn.style.setProperty('border', '1px solid var(--neon-cyan)', 'important');
+      btn.style.setProperty('color', 'var(--neon-cyan)', 'important');
+      btn.style.setProperty('padding', '1rem 2.5rem', 'important');
+      btn.style.setProperty('font-size', '1.1rem', 'important');
+      btn.style.setProperty('font-family', 'var(--ff-mono)', 'important');
+      btn.style.setProperty('text-transform', 'uppercase', 'important');
+      btn.style.setProperty('letter-spacing', '0.1em', 'important');
+      btn.style.setProperty('cursor', 'pointer', 'important');
+      btn.style.setProperty('border-radius', '4px', 'important');
+      btn.style.setProperty('transition', 'all 0.3s', 'important');
+      btn.style.setProperty('display', 'inline-block', 'important');
       
-      if (hiddenCards.length > 0) {
-        // Показываем
-        hiddenCards.forEach(card => {
-          card.classList.remove('is-hidden');
-          card.style.display = '';
-        });
-        btn.textContent = isRu ? 'Свернуть проекты' : 'Show less';
-      } else {
-        // Скрываем
-        cards.forEach((card, index) => {
-          if (index >= itemsToShow) {
-            card.classList.add('is-hidden');
-            card.style.display = 'none';
-          }
-        });
-        btn.textContent = isRu ? 'Показать все проекты' : 'Show all projects';
-        projectGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      btn.addEventListener('mouseover', () => {
+        btn.style.setProperty('background', 'rgba(108, 143, 163, 0.1)', 'important');
+        btn.style.setProperty('box-shadow', '0 0 15px rgba(108, 143, 163, 0.3)', 'important');
+      });
+      btn.addEventListener('mouseout', () => {
+        btn.style.setProperty('background', 'transparent', 'important');
+        btn.style.setProperty('box-shadow', 'none', 'important');
+      });
+
+      const isRu = document.documentElement.lang === 'ru';
+      btn.textContent = isRu ? 'Показать все проекты' : 'Show all projects';
+      btn.dataset.testid = 'btn-show-all-projects';
+
+      btn.addEventListener('click', () => {
+        const hiddenCards = projectGrid.querySelectorAll('.is-hidden');
+        
+        if (hiddenCards.length > 0) {
+          hiddenCards.forEach(card => {
+            card.classList.remove('is-hidden');
+            card.style.display = '';
+          });
+          btn.textContent = isRu ? 'Свернуть проекты' : 'Show less';
+        } else {
+          cards.forEach((card, index) => {
+            if (index >= itemsToShow) {
+              card.classList.add('is-hidden');
+              card.style.display = 'none';
+            }
+          });
+          btn.textContent = isRu ? 'Показать все проекты' : 'Show all projects';
+          projectGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+
+      btnContainer.appendChild(btn);
+      projectGrid.parentNode.insertBefore(btnContainer, projectGrid.nextSibling);
+    }
+  });
+
+  // 1. Функция открытия/закрытия досье
+  window.toggleDossier = function(id, btn) {
+    const dossier = document.getElementById('dossier-' + id);
+    if (!dossier) return;
+
+    const isOpening = dossier.style.display === 'none' || dossier.style.display === '';
+
+    if (isOpening) {
+      dossier.style.display = 'block';
+      
+      if (btn) {
+        const span = btn.querySelector('.dossier-btn-text') || btn;
+        const isRu = document.documentElement.lang === 'ru' || window.location.pathname.includes('/ru/');
+        span.textContent = isRu ? '▼ Закрыть архивное досье' : '▼ Close Archive Dossier';
+      }
+
+      const tabs = dossier.querySelectorAll('.folder-tabs .tab');
+      const panes = dossier.querySelectorAll('.folder-content .tab-pane');
+      tabs.forEach((t, i) => t.classList.toggle('is-active', i === 0));
+      panes.forEach((p, i) => p.classList.toggle('is-active', i === 0));
+
+    } else {
+      dossier.style.display = 'none';
+      
+      if (btn) {
+        const span = btn.querySelector('.dossier-btn-text') || btn;
+        const isRu = document.documentElement.lang === 'ru' || window.location.pathname.includes('/ru/');
+        span.textContent = isRu ? '▶ Открыть архивное досье' : '▶ Open Archive Dossier';
+      }
+    }
+  };
+
+  // 2. Делегирование кликов для вкладок
+  document.addEventListener('click', function(e) {
+    const tab = e.target.closest('.dossier-content .tab');
+    if (!tab) return;
+
+    e.preventDefault();
+
+    const container = tab.closest('.dossier-content');
+    const tabId = tab.getAttribute('data-tab');
+    if (!container || !tabId) return;
+
+    container.querySelectorAll('.tab').forEach(t => t.classList.remove('is-active'));
+    container.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('is-active'));
+
+    tab.classList.add('is-active');
+
+    const dossierId = container.id.replace('dossier-', '');
+    const pane = container.querySelector('#' + tabId + '-' + dossierId);
+    
+    if (pane) {
+      pane.classList.add('is-active');
+    }
+  });
+
+  // ==========================================
+  // ЛАЙТБОКС ДЛЯ ФОТОГРАФИЙ
+  // ==========================================
+  document.addEventListener('DOMContentLoaded', () => {
+    let lightbox = document.getElementById('photo-lightbox');
+    if (!lightbox) {
+      lightbox = document.createElement('div');
+      lightbox.id = 'photo-lightbox';
+      lightbox.className = 'photo-lightbox';
+      lightbox.innerHTML = `
+        <span class="photo-lightbox-close">&times;</span>
+        <img class="photo-lightbox-img" src="" alt="Archive Photo">
+      `;
+      document.body.appendChild(lightbox);
+    }
+
+    const lightboxImg = lightbox.querySelector('.photo-lightbox-img');
+    const closeBtn = lightbox.querySelector('.photo-lightbox-close');
+
+    document.addEventListener('click', function(e) {
+      if (e.target.tagName === 'IMG' && e.target.closest('.photo-item')) {
+        lightboxImg.src = e.target.src;
+        lightboxImg.alt = e.target.alt;
+        lightbox.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
       }
     });
 
-    // 5. Вставляем кнопку на страницу
-    btnContainer.appendChild(btn);
-    projectGrid.parentNode.insertBefore(btnContainer, projectGrid.nextSibling);
-  }
-});
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        lightbox.classList.remove('is-active');
+        document.body.style.overflow = '';
+      });
+    }
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-active')) {
+        lightbox.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+})(); // Закрываем основную функцию
