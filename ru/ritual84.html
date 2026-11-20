@@ -154,6 +154,82 @@
           <span>1984 · Архивные записи</span>
           <span>8 Треков</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Summer -->
+        <button class="open-dossier-btn" onclick="toggleDossier('summer', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-summer" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии -->
+            <div class="tab-pane is-active" id="photos-summer">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Фотографии экспедиции, 1984.</p>
+              <div class="photo-grid bento-grid">
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-summer-1.jpg" alt="Полевые заметки, 1984" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Полевые заметки, 1984</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-summer-2.jpg" alt="Группа, 1984" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Группа, 1984</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-summer-3.jpg" alt="Ритуальный круг" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Ритуальный круг</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-summer-4.jpg" alt="Полевая запись" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Полевая запись</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-summer-5.jpg" alt="Природные фрагменты" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — Природные фрагменты</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-summer">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Полевые заметки.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">СОВЕРШЕННО СЕКРЕТНО</div>
+                  <h4>ЭКСПЕДИЦИЯ № 1: ЛЕТНЯЯ ЭКСПЕДИЦИЯ, 1984 (ПОЛЕВЫЕ ЗАМЕТКИ)</h4>
+                  <p>«Первые записи были сделаны в заброшенной деревне Верхняя Заречка. Местные жители рассказывали о ритуале, который не проводился десятилетиями — что-то о вызывании дождя. Мы установили магнитофон возле старого колодца. Бобины медленно вращались, записывая ветер, скрип калитки и далекий хор, который, казалось, доносился из самого леса».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из дневника участника экспедиции А. Морозова, июль 1984.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ВНУТРЕННЯЯ ЗАПИСКА // АРХИВ РАДИУС ТВ</h4>
+                  <p>ДАТА: 1984-08-02</p>
+                  <p>КОМУ: Директору научного отдела.<br>ОТ: Начальника 1-й экспедиции</p>
+                  <p>«Товарищ директор, материал, привезенный из Летней экспедиции, не может быть обработан нашим студийным оборудованием. Ленты содержат частоты, которые наши генераторы не могут воспроизвести. Более того, когда мы попытались оцифровать запись, студийные стиратели магнитной ленты самопроизвольно размагнитились. Просим разрешения опечатать бобины до дальнейших указаний».</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>КУПАЛЬСКИЙ ФРАГМЕНТ</h4>
+                  <p>«Название сохранилось на отдельном листе, вложенном между страницами полевого журнала. Судя по пометкам, запись представляет собой лишь часть более продолжительного материала, большая часть которого не сохранилась. В документах экспедиции встречаются упоминания ночного водоёма, отражений света и групповых действий, содержание которых остаётся неизвестным».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из полевого журнала, июль 1984.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>СОЛНЦЕСТОЯНИЕ</h4>
+                  <p>«Наиболее хорошо сохранившаяся композиция цикла. В сопроводительных материалах неоднократно упоминается день максимальной продолжительности светового времени, однако прямых указаний на характер мероприятия обнаружить не удалось. Отдельные страницы журнала содержат зарисовки открытого поля и отметки, сделанные в полуденные часы».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из архивного журнала, 1984.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
 
@@ -213,6 +289,80 @@
           <span>1986 · Архивные записи</span>
           <span>9 Треков</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Polar -->
+        <button class="open-dossier-btn" onclick="toggleDossier('polar', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-polar" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии -->
+            <div class="tab-pane is-active" id="photos-polar">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Фотографии арктической экспедиции, 1986.</p>
+              <div class="photo-grid bento-grid">
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-polar-1.jpg" alt="Зимние заметки, 1986" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Зимние заметки, 1986</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-polar-2.jpg" alt="Группа экспедиции" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Группа экспедиции</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-polar-3.jpg" alt="Заготовка дров" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Заготовка дров</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-polar-4.jpg" alt="Полярный лагерь" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Полярный лагерь</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-polar-5.jpg" alt="Арктический пейзаж" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — Арктический пейзаж</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-polar">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Полевые заметки.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <h4>ЭКСПЕДИЦИЯ № 2: ЗАПОЛЯРНЫЙ КРУГ, 1986 (ПОЛЕВЫЕ ЗАМЕТКИ)</h4>
+                  <p>«Север не принимает чужаков. Мы провели три недели в тундре, ожидая прояснения погоды. Записи с полярной станции были не похожи ни на что, слышанное нами ранее. Ветер, лед, треск замерзшей земли — все это звучало как единый, непрерывный ритуал. Местный проводник сказал нам, что исполнителем является сам ландшафт».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из отчета руководителя экспедиции, сентябрь 1986.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <div class="doc-secret">СРОЧНО</div>
+                  <h4>РАДИОГРАММА НА БАЗУ</h4>
+                  <p>«БАЗА, ЭТО СТАНЦИЯ "СИРИУС-7". МЫ ЗАВЕРШИЛИ ЗАПИСЬ ЛЕДНИКА. ОБНАРУЖЕННЫЙ НАМИ АКУСТИЧЕСКИЙ СИГНАЛ ПОВТОРЯЕТСЯ ЦИКЛАМИ ПО 14 МИНУТ. МЫ ТАКЖЕ НАШЛИ СТАРЫЕ СЛЕДЫ САНОК, ВЕДУЩИЕ ПРЯМО В ЛЕДЯНУЮ СТЕНУ. ОНИ СВЕЖИЕ. МЫ ПРЕКРАЩАЕМ ЭКСПЕДИЦИЮ И ВОЗВРАЩАЕМСЯ НА БАЗУ. ПРИЕМ.»</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>СЛЕДЫ</h4>
+                  <p>«Название композиции встречается на отдельном листе каталога архивных материалов. В сопроводительных заметках описываются следы неизвестного происхождения, обнаруженные во время перехода между временными стоянками. Дальнейших пояснений найдено не было, однако данная тема неоднократно повторяется в документах того периода».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из каталога экспедиции, 1986.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>СИЯНИЕ</h4>
+                  <p>«Среди сохранившихся материалов встречается несколько упоминаний необычного светового явления, наблюдавшегося во время стоянки за Полярным кругом. Название «Сияние» присутствует на отдельной карточке каталога, однако подробное описание события отсутствует. В ряде документов отмечается лишь продолжительность наблюдения и благоприятные погодные условия».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из полевого журнала, 1986.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
 
@@ -272,6 +422,79 @@
           <span>1988 · Архивные записи</span>
           <span>9 Треков</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Caucasus -->
+        <button class="open-dossier-btn" onclick="toggleDossier('caucasus', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-caucasus" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ФОТОГРАФИИ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии -->
+            <div class="tab-pane is-active" id="photos-caucasus">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Фотографии кавказской экспедиции, 1988.</p>
+              <div class="photo-grid bento-grid">
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-caucasus-1.jpg" alt="Заметки о предгорьях, 1988" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Заметки о предгорьях, 1988</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-caucasus-2.jpg" alt="Группа в горах" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Группа в горах</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-caucasus-3.jpg" alt="Настройка пандури" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Настройка пандури</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-caucasus-4.jpg" alt="Горный лагерь" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Горный лагерь</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/ritual84-caucasus-5.jpg" alt="Горный перевал" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — Горный перевал</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-caucasus">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Полевые заметки.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <h4>ЭКСПЕДИЦИЯ № 3: КАВКАЗСКИЙ ХРЕБЕТ, 1988 (ПОЛЕВЫЕ ЗАМЕТКИ)</h4>
+                  <p>«Кавказ встретил нас дождем и туманом. Мы работали в горных селах, записывая мужское многоголосное пение, пастушьи песни и звук ветра в ущельях. Местные жители сначала отнеслись с подозрением, но затем начали приносить нам свои инструменты — старые пандури, чонгури, зурну и барабаны».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из полевого журнала, август 1988.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ТРАНСКРИПТ АУДИОПЛЕНКИ #84-C</h4>
+                  <p>«[Помехи] ...гора отвечает только тогда, когда поешь старые песни. [Треск] ...мы записали голос в ущелье, но на ленте нет пиков сигнала. Как будто голос существует только в памяти камня. Мы оставляем оборудование там. Не присылайте никого на наши поиски».</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>УЩЕЛЬЕ</h4>
+                  <p>«Материал, в котором особенно заметно внимание к акустике окружающего пространства. Мужские голоса звучат протяжённо и отстранённо, отдельные инструменты появляются короткими фрагментами, а длинное эхо становится частью самой композиции. Запись относится к середине экспедиционного материала 1988 года».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из заметок к экспедиции, август 1988.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ПАСТБИЩА (საძოვრები)</h4>
+                  <p>«В этой записи электронная часть звучит особенно ненавязчиво и почти сливается с акустическими инструментами. Вокальная линия остаётся простой, а мужское многоголосие появляется постепенно, без резких переходов. Название связано с горными пастбищами и является одним из немногих грузинских обозначений, сохранившихся в материалах цикла».</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Из полевого журнала, август 1988.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
