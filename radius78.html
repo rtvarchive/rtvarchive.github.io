@@ -152,6 +152,74 @@
           <span>1978–1998 · Broadcast Files</span>
           <span>5 Singles</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Radius-78 -->
+        <button class="open-dossier-btn" onclick="toggleDossier('radius78', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-radius78" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">PHOTOGRAPHS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Фотографии (3 штуки) -->
+            <div class="tab-pane is-active" id="photos-radius78">
+              <p class="archive-note">> FOUND IN ARCHIVE: Broadcast files photographs, 1978.</p>
+              <div class="photo-grid bento-grid three-cols">
+                
+                <div class="photo-item">
+                  <img src="assets/img/radius-photo1.jpg" alt="Television Center entrance, 1978" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Television Center Entrance</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/radius-photo2.jpg" alt="Studio corridor" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — Studio Corridor</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/radius-photo3.jpg" alt="Broadcast studio" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Broadcast Studio</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-radius78">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Fragments of the archive.</p>
+              <div class="doc-list">
+                
+                <!-- Документ 1 -->
+                <div class="doc-item">
+                  <div class="doc-secret">R78-01</div>
+                  <h4>TEST SIGNAL / MORNING OPENING (1978)</h4>
+                  <p>«According to surviving documentation, this recording was used to open the daily broadcasts of the RADIUS Television Center in the late 1970s. Service announcements, control signals and musical accompaniment intended to test reception quality were broadcast.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Archive Record R78-01, Studio No. 3.</p>
+                </div>
+
+                <!-- Документ 2 -->
+                <div class="doc-item doc-telegram">
+                  <h4>QUIET WEATHER (1978)</h4>
+                  <p>«A musical-informational program of the evening broadcast dedicated to an overview of atmospheric conditions. The program combines announcer announcements, instrumental musical fragments and service information blocks.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Archive Record R78-02, Broadcast Programs Fund.</p>
+                </div>
+
+                <!-- Документ 3 -->
+                <div class="doc-item">
+                  <h4>VIEWER LETTERS (1978)</h4>
+                  <p>«A restored recording of one of the evening programs of the RADIUS Television Center, dedicated to letters from viewers from Radinsk and nearby settlements. According to archival documents, the program was broadcast several times a month.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Archive Record R78-03, Public Programs Fund.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
