@@ -1,34 +1,9 @@
 {
-  "lastCheck": "2026-11-20T17:23:34.821Z",
+  "lastCheck": "2026-11-20T17:45:04.698Z",
   "total": 186,
-  "passed": 180,
-  "failed": 6,
-  "failedTests": [
-    {
-      "title": "renders card and tracklist correctly",
-      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-testid=\"project-tracklist\"] li')\nExpected: \u001b[32m14\u001b[39m\nReceived: \u001b[31m13\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('[data-testid=\"project-tracklist\"] li') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"project-tracklist\"] li')\u001b[22m\n\u001b[2m    14 × locator resolved to 13 elements\u001b[22m\n\u001b[2m       - unexpected value \"13\"\u001b[22m\n"
-    },
-    {
-      "title": "renders card and tracklist correctly",
-      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-testid=\"project-tracklist\"] li')\nExpected: \u001b[32m14\u001b[39m\nReceived: \u001b[31m13\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('[data-testid=\"project-tracklist\"] li') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"project-tracklist\"] li')\u001b[22m\n\u001b[2m    14 × locator resolved to 13 elements\u001b[22m\n\u001b[2m       - unexpected value \"13\"\u001b[22m\n"
-    },
-    {
-      "title": "renders card and tracklist correctly",
-      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-testid=\"project-tracklist\"] li')\nExpected: \u001b[32m14\u001b[39m\nReceived: \u001b[31m13\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('[data-testid=\"project-tracklist\"] li') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"project-tracklist\"] li')\u001b[22m\n\u001b[2m    14 × locator resolved to 13 elements\u001b[22m\n\u001b[2m       - unexpected value \"13\"\u001b[22m\n"
-    },
-    {
-      "title": "renders card and tracklist correctly",
-      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-testid=\"project-tracklist\"] li')\nExpected: \u001b[32m12\u001b[39m\nReceived: \u001b[31m11\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('[data-testid=\"project-tracklist\"] li') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"project-tracklist\"] li')\u001b[22m\n\u001b[2m    14 × locator resolved to 11 elements\u001b[22m\n\u001b[2m       - unexpected value \"11\"\u001b[22m\n"
-    },
-    {
-      "title": "renders card and tracklist correctly",
-      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-testid=\"project-tracklist\"] li')\nExpected: \u001b[32m12\u001b[39m\nReceived: \u001b[31m11\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('[data-testid=\"project-tracklist\"] li') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"project-tracklist\"] li')\u001b[22m\n\u001b[2m    14 × locator resolved to 11 elements\u001b[22m\n\u001b[2m       - unexpected value \"11\"\u001b[22m\n"
-    },
-    {
-      "title": "renders card and tracklist correctly",
-      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-testid=\"project-tracklist\"] li')\nExpected: \u001b[32m12\u001b[39m\nReceived: \u001b[31m11\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('[data-testid=\"project-tracklist\"] li') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"project-tracklist\"] li')\u001b[22m\n\u001b[2m    14 × locator resolved to 11 elements\u001b[22m\n\u001b[2m       - unexpected value \"11\"\u001b[22m\n"
-    }
-  ],
+  "passed": 186,
+  "failed": 0,
+  "failedTests": [],
   "channels": [
     {
       "name": "Route integrity",
@@ -73,10 +48,17 @@
     {
       "name": "Project database sync",
       "name_ru": "Синхронизация базы проектов",
-      "status": "fail"
+      "status": "pass"
     }
   ],
   "history": [
+    {
+      "record": 203,
+      "date": "2026-11-20T17:45:04.698Z",
+      "status": "stable",
+      "total": 186,
+      "passed": 186
+    },
     {
       "record": 202,
       "date": "2026-11-20T17:23:34.821Z",
@@ -101,13 +83,6 @@
     {
       "record": 199,
       "date": "2026-11-20T16:44:06.849Z",
-      "status": "unstable",
-      "total": 186,
-      "passed": 180
-    },
-    {
-      "record": 198,
-      "date": "2026-11-20T16:17:28.649Z",
       "status": "unstable",
       "total": 186,
       "passed": 180
