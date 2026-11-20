@@ -88,6 +88,82 @@
           </div>
         </div>
         <div class="artist-card__foot"><span>Soundtrack · Television Theatre</span><span>9 Tracks</span></div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Heather Wanderers -->
+        <button class="open-dossier-btn" onclick="toggleDossier('wanderers', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-wanderers" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ILLUMINATIONS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+            <!-- Вкладка 1: Иллюминации (4 штуки) -->
+            <div class="tab-pane is-active" id="photos-wanderers">
+              <p class="archive-note">> FOUND IN ARCHIVE: Illuminated manuscript pages, 1983.</p>
+              <div class="photo-grid bento-grid">
+                
+                <div class="photo-item">
+                  <img src="assets/img/heatherwanderers-photo1.jpg" alt="Garden by the Sea" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Garden by the Sea</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/heatherwanderers-photo2.jpg" alt="The Will of the Crown" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — The Will of the Crown</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/heatherwanderers-photo3.jpg" alt="The Shore Where Blood Holds No Power" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — The Shore Where Blood Holds No Power</span>
+                </div>
+                
+                <div class="photo-item">
+                  <img src="assets/img/heatherwanderers-photo4.jpg" alt="Beyond the Sea Horizon" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — Beyond the Sea Horizon</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Вкладка 2: Документы -->
+            <div class="tab-pane" id="docs-wanderers">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Fragments of the chronicle.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1983</div>
+                  <h4>THE SONG OF NERIS (ARCHIVAL RECORDING)</h4>
+                  <p>«This recording is presented as the surviving audio of a television play, supposedly dated 1983. Only the soundtrack has survived. The stage production, visuals and filmed performance were either lost or were never preserved.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— From the archive introduction.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>GARDEN BY THE SEA (SONG OF NERIS)</h4>
+                  <p>«Neris lives far from the palace bustle, in a secluded Garden by the Sea, where the sound of the surf and blooming heather have replaced court life. For her, this garden is not just a refuge — it is a whole world existing by its own laws.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Track notes, 1983.</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>THE WILL OF THE CROWN (SONG OF ALDER)</h4>
+                  <p>«This song is sung from the perspective of King Alder. He is not a cruel tyrant or a merciless ruler — he is a man who has been given the burden of the crown. For the future of Veremor, he makes a decision that destroys the fate of his own daughter.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Track notes, 1983.</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>THE SHORE WHERE BLOOD HOLDS NO POWER (SONG OF KAEL)</h4>
+                  <p>«After being betrayed by his own brother, Kael receives a mortal wound and is thrown overboard. The sea, which should have become his grave, carries him to a shore near the Garden by the Sea. Neris saves the stranger, unaware that before her is the rightful prince of another kingdom.»</p>
+                  <p style="font-size: 0.75rem; margin-top: 1rem;">— Track notes, 1983.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
