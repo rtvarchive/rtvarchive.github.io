@@ -119,6 +119,117 @@
           <span>2001 · Эмбиент · Саундтрек</span>
           <span>1 Альбом</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Embelion -->
+        <button class="open-dossier-btn" onclick="toggleDossier('embelion', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-embelion" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">КАДРЫ</button>
+            <button class="tab" data-tab="docs">ДОКУМЕНТЫ</button>
+          </div>
+          <div class="folder-content">
+            
+            <div class="tab-pane is-active" id="photos-embelion">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Кадры из фильма "The Forgotten Empire", 2001.</p>
+              <div class="photo-grid bento-grid">
+                
+                <!-- 1-5 (Видны сразу) -->
+                <div class="photo-item">
+                  <img src="../assets/img/embelion-photo1.jpg" alt="The First Light" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — The First Light</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/embelion-photo2.jpg" alt="Before the Dawn" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Before the Dawn</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/embelion-photo3.jpg" alt="The Hidden Road" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — The Hidden Road</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/embelion-photo4.jpg" alt="Beyond the Horizon" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Beyond the Horizon</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/embelion-photo5.jpg" alt="The Silent Kingdom" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — The Silent Kingdom</span>
+                </div>
+
+                <!-- 6-10 (Скрыты) -->
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/embelion-photo6.jpg" alt="The Stone Gate" loading="lazy">
+                  <span class="photo-caption">РИС. 06 — The Stone Gate</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/embelion-photo7.jpg" alt="The Sacred City" loading="lazy">
+                  <span class="photo-caption">РИС. 07 — The Sacred City</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/embelion-photo8.jpg" alt="The Last Temple" loading="lazy">
+                  <span class="photo-caption">РИС. 08 — The Last Temple</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/embelion-photo9.jpg" alt="The Return" loading="lazy">
+                  <span class="photo-caption">РИС. 09 — The Return</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/embelion-photo10.jpg" alt="Afterlight" loading="lazy">
+                  <span class="photo-caption">РИС. 10 — Afterlight (Remix)</span>
+                </div>
+
+              </div>
+              
+              <!-- Кнопка показать все -->
+              <div style="text-align: center; margin-top: 2rem;">
+                <button class="chip" style="cursor: pointer; padding: 0.6rem 1.2rem;" onclick="
+                  const pane = this.closest('.tab-pane');
+                  const hiddenItems = pane.querySelectorAll('[data-more][hidden]');
+                  
+                  if (hiddenItems.length > 0) {
+                    hiddenItems.forEach(el => el.removeAttribute('hidden'));
+                    this.textContent = 'Свернуть';
+                  } else {
+                    const allItems = pane.querySelectorAll('[data-more]');
+                    allItems.forEach(el => el.setAttribute('hidden', ''));
+                    this.textContent = '+ Показать все кадры';
+                  }
+                ">+ Показать все кадры</button>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="docs-embelion">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты архива.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">2001</div>
+                  <h4>EMBELION (АРХИВНАЯ ЗАМЕТКА)</h4>
+                  <p>«В 2001 году в Восточной Европе вышел независимый фильм The Forgotten Empire ("Забытая империя"). Его создала небольшая студия, которой удалось снять необычную историю о поисках древней цивилизации, исчезнувшей задолго до начала известных нам исторических эпох».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>ПУТЬ К РАЗГАДКЕ</h4>
+                  <p>«Экспедиция отправлялась в труднодоступные горные районы, следуя обрывочным записям и загадочным картам. За непроходимыми перевалами и безлюдными долинами исследователей ждали руины неизвестного мира: гигантские каменные террасы, монументальные стены, скрытые проходы».</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>МУЗЫКАЛЬНОЕ НАСЛЕДИЕ</h4>
+                  <p>«EMBELION — The Forgotten Empire: Echoes of the Ancient World — это музыкальное путешествие в тот же загадочный мир. Альбом переносит слушателя в пространство, где древние дороги ведут к затерянным городам, каменные врата скрывают неизвестные тайны, а величественные храмы хранят следы исчезнувшей культуры».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>THE SACRED CITY</h4>
+                  <p>«Особое место занимает The Sacred City — композиция с вокалом на вымышленном языке, напоминающем отголоски древнего ритуала. Это художественный элемент мира EMBELION, позволяющий представить духовную жизнь культуры, от которой остались лишь камни и следы утраченных традиций».</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
