@@ -17,14 +17,14 @@ Automated tests are built with Playwright and run via GitHub Actions.
 ## Project Structure
 
 - `index.html` / `ru/index.html` — Home page (hero, catalog, channels, manifesto)
-- `projects.html` / `ru/projects.html` — Full catalog of musical projects with filters
+- `projects.html` / `ru/projects.html` — Full catalog of musical projects with filters (18 projects)
 - `archive-room-en.html` / `ru/archive-room.html` — Interactive Archive Room (CRT Monitor & Tape Monitor players)
 - `signal-room-en.html` / `ru/signal-room.html` — Duty Shift dashboard, signal integrity log, and interference reports
 - `about.html` / `ru/about.html` — Archive lore, timeline, and Formspark submission
 - `404.html` / `ru/404.html` — Custom "Signal Lost" error page with CRT test card
-- `[project-name].html` — Individual project pages (e.g., `605.html`, `phasezero.html`) with tracklists and streaming modals.
+- `[project-name].html` — Individual project pages (e.g., `605.html`, `phasezero.html`, `ritual84.html`, `orientalbazaar.html`, `dimamilan.html`, `stormfront.html`, `gurtgroove.html`, `finalpsalm.html`, `embelion.html`, `dumbravadisko.html`, `kokle-dub.html`, etc.). Each page features an interactive "Archive Dossier" with tabs for photos and documents.
 - `assets/css/styles.css` — Global design system (colors, typography, layout)
-- `assets/js/main.js` — Core interactive logic (filters, modals, mobile menu, form submission, Easter Eggs)
+- `assets/js/main.js` — Core interactive logic (filters, modals, mobile menu, form submission, dossier toggles, Easter Eggs)
 - `assets/img/` — Cover art, banners, and the 404 TV test card.
 - `tests/` — Playwright test suite (spec files and Page Objects).
 
@@ -43,6 +43,7 @@ Automated tests are built with Playwright and run via GitHub Actions.
   - **CRT Monitor:** Plays YouTube fragments with custom knobs. Optimized for mobile with `playsinline`.
   - **Tape Monitor:** Plays YouTube Music playlists on a reel-to-reel UI. A visible square player window (260x260px on desktop, 1:1 on mobile) centered between the reels.
 - **Playlists & Modals:** Each project page features a streaming modal triggered by the "Listen on all platforms" button or the `?listen=1` deep link.
+- **Archive Dossier:** Each project page features a collapsible dossier with unique tabs (Photos/Documents, Stills/Notes, etc.) and an optional "Show all" button for hiding extra images.
 - **Filters:** The Projects page includes genre filtering with a "Show More" toggle.
 - **Submissions (Optimistic UI):** Forms on About and Signal Room pages always show a success modal and reset, regardless of the API response. Real API status is logged to the console.
 - **404 Error:** A custom 404 page styled as a malfunctioning Soviet television test card, complete with static noise and a return button.
@@ -59,19 +60,13 @@ Key elements are marked with `data-testid` attributes to ensure stable selectors
 **Test Coverage:**
 - **Navigation:** Header links, language switcher, mobile menu.
 - **Projects:** Filtering, statuses, and detail page modals.
+- **Project Pages:** 18 pages (EN & RU) with tracklist validation, dossier toggles, and dynamic photo/video tabs.
 - **Archive Room:** 10 test cases covering catalog loading, search, accordions, track/album clicks, and playback controls.
 - **Forms:** Optimistic UI logic, modal closures (Escape, background, button).
 
 **Cross-Browser:** All tests are configured to run on Chromium, Firefox, and WebKit.
 
 **Note on API Limits:** Automated tests use Playwright's `page.route()` to mock Formspark and YouTube API responses. This prevents the test suite from consuming real monthly limits and ensures stable, fast execution.
-
-## Easter Eggs
-
-- **Console:** Open DevTools (F12) to see the RADIUS ARCHIVE system initialization log and the personnel dossier path.
-- **Signal Room:** A hidden link (`SYSTEM OPERATOR ID: 7749`) in the dashboard leads to the developer's resume page.
-
-**Note on Form Limits:** Automated tests must use Playwright's `page.route()` to mock Formspark API responses. This prevents the test suite from consuming the real monthly submission limit.
 
 ## Easter Eggs
 
@@ -99,7 +94,7 @@ graph TD
     D --> E[Install Playwright Browsers]:::action
     E --> F[Run Playwright Tests]:::test
     
-    F -->|87 tests| G{All Tests Passed?}:::test
+    F -->|186 tests| G{All Tests Passed?}:::test
     
     G -->|Yes| H[Generate signal-status.json]:::result
     G -->|No| I[Log Errors to JSON]:::fail
@@ -110,4 +105,3 @@ graph TD
     J --> K[GitHub Pages]:::result
     K --> L[Signal Room Page]:::result
     L -->|fetch signal-status.json| M[Dynamic Dashboard]:::result
-```
