@@ -119,6 +119,117 @@
           <span><span>1993 · Фолк · Балканский клаб</span></span>
           <span>1 Альбом</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Dumbrava Disko -->
+        <button class="open-dossier-btn" onclick="toggleDossier('dumbravadisko', this)">
+          <span class="dossier-btn-text">▶ Открыть архивное досье</span>
+        </button>
+        <div id="dossier-dumbravadisko" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">ПЛЁНКИ</button>
+            <button class="tab" data-tab="docs">АРХИВНЫЕ ЗАПИСИ</button>
+          </div>
+          <div class="folder-content">
+            
+            <div class="tab-pane is-active" id="photos-dumbravadisko">
+              <p class="archive-note">> НАЙДЕНО В АРХИВЕ: Оцифрованные кадры с кассеты, 1993.</p>
+              <div class="photo-grid bento-grid">
+                
+                <!-- 1-5 (Видны сразу) -->
+                <div class="photo-item">
+                  <img src="../assets/img/dumbrava-photo1.jpg" alt="Seara" loading="lazy">
+                  <span class="photo-caption">РИС. 01 — Seara</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/dumbrava-photo2.jpg" alt="Trandafir Electric" loading="lazy">
+                  <span class="photo-caption">РИС. 02 — Trandafir Electric</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/dumbrava-photo3.jpg" alt="Străin în Orașul Meu" loading="lazy">
+                  <span class="photo-caption">РИС. 03 — Străin în Orașul Meu</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/dumbrava-photo4.jpg" alt="Cartierul Care Nu Doarme" loading="lazy">
+                  <span class="photo-caption">РИС. 04 — Cartierul Care Nu Doarme</span>
+                </div>
+                <div class="photo-item">
+                  <img src="../assets/img/dumbrava-photo5.jpg" alt="Hora de Noapte" loading="lazy">
+                  <span class="photo-caption">РИС. 05 — Hora de Noapte</span>
+                </div>
+
+                <!-- 6-10 (Скрыты) -->
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/dumbrava-photo6.jpg" alt="An Venit pe Jos" loading="lazy">
+                  <span class="photo-caption">РИС. 06 — An Venit pe Jos</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/dumbrava-photo7.jpg" alt="Inimă de Tablă" loading="lazy">
+                  <span class="photo-caption">РИС. 07 — Inimă de Tablă</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/dumbrava-photo8.jpg" alt="Localnic Temporar" loading="lazy">
+                  <span class="photo-caption">РИС. 08 — Localnic Temporar</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/dumbrava-photo9.jpg" alt="Zurgălău de Disko" loading="lazy">
+                  <span class="photo-caption">РИС. 09 — Zurgălău de Disko</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="../assets/img/dumbrava-photo10.jpg" alt="Răsărit de Dub" loading="lazy">
+                  <span class="photo-caption">РИС. 10 — Răsărit de Dub</span>
+                </div>
+
+              </div>
+              
+              <!-- Кнопка показать все -->
+              <div style="text-align: center; margin-top: 2rem;">
+                <button class="chip" style="cursor: pointer; padding: 0.6rem 1.2rem;" onclick="
+                  const pane = this.closest('.tab-pane');
+                  const hiddenItems = pane.querySelectorAll('[data-more][hidden]');
+                  
+                  if (hiddenItems.length > 0) {
+                    hiddenItems.forEach(el => el.removeAttribute('hidden'));
+                    this.textContent = 'Свернуть';
+                  } else {
+                    const allItems = pane.querySelectorAll('[data-more]');
+                    allItems.forEach(el => el.setAttribute('hidden', ''));
+                    this.textContent = '+ Показать все плёнки';
+                  }
+                ">+ Показать все плёнки</button>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="docs-dumbravadisko">
+              <p class="archive-note">> РАССЕКРЕЧЕННЫЕ ДОКУМЕНТЫ: Фрагменты архива.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1993</div>
+                  <h4>DUMBRAVA DISKO (АРХИВНАЯ ЗАМЕТКА)</h4>
+                  <p>«Иногда архив начинается не с института и не с телецентра. Иногда он начинается с коробки на блошином рынке. Кишинёв, конец девяностых. На развале, между школьными тетрадями, сломанным магнитофоном и чьей-то старой курткой, лежала кассета».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>НОЧНАЯ СЕССИЯ</h4>
+                  <p>«Судя по записи, это была концертная программа вокально-инструментального ансамбля при одном из кишинёвских домов культуры. На плёнке сохранилось десять треков, записанных за одну ночь. Начинается всё с генеральной репетиции... Заканчивается — рассветом, когда медь растворяется в эхе».</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>ПАРАЛЛЕЛЬНАЯ РЕАЛЬНОСТЬ</h4>
+                  <p>«Музыка не вписывается в привычные рамки 1993 года. Балканская медь, кларнет, аккордеон и цыганская скрипка здесь соединены с диско-битом, дабом и электроникой. Вокал — румынский, с выкриками и хоровыми вставками. Всё звучит так, будто записано в параллельной реальности, где балканский клаббинг существовал уже в начале девяностых».</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>СОХРАНЕНИЕ АРТЕФАКТОВ</h4>
+                  <p>«Материал оцифрован с оригинальной кассеты. Сохранены артефакты носителя: шипение ленты, лёгкий wow/flutter, потеря высоких частот и характерная сатурация. Ничего не реставрировалось сверх необходимого — только базовая цифровая очистка и мастеринг».</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
