@@ -119,6 +119,117 @@
           <span>2001 · Ambient · Soundtrack</span>
           <span>1 Album</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Embelion -->
+        <button class="open-dossier-btn" onclick="toggleDossier('embelion', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-embelion" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">FILM STILLS</button>
+            <button class="tab" data-tab="docs">DOCUMENTS</button>
+          </div>
+          <div class="folder-content">
+            
+            <div class="tab-pane is-active" id="photos-embelion">
+              <p class="archive-note">> FOUND IN ARCHIVE: Stills from "The Forgotten Empire", 2001.</p>
+              <div class="photo-grid bento-grid">
+                
+                <!-- 1-5 (Visible by default) -->
+                <div class="photo-item">
+                  <img src="assets/img/embelion-photo1.jpg" alt="The First Light" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — The First Light</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/embelion-photo2.jpg" alt="Before the Dawn" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — Before the Dawn</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/embelion-photo3.jpg" alt="The Hidden Road" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — The Hidden Road</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/embelion-photo4.jpg" alt="Beyond the Horizon" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — Beyond the Horizon</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/embelion-photo5.jpg" alt="The Silent Kingdom" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — The Silent Kingdom</span>
+                </div>
+
+                <!-- 6-10 (Hidden by default) -->
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/embelion-photo6.jpg" alt="The Stone Gate" loading="lazy">
+                  <span class="photo-caption">FIG. 06 — The Stone Gate</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/embelion-photo7.jpg" alt="The Sacred City" loading="lazy">
+                  <span class="photo-caption">FIG. 07 — The Sacred City</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/embelion-photo8.jpg" alt="The Last Temple" loading="lazy">
+                  <span class="photo-caption">FIG. 08 — The Last Temple</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/embelion-photo9.jpg" alt="The Return" loading="lazy">
+                  <span class="photo-caption">FIG. 09 — The Return</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/embelion-photo10.jpg" alt="Afterlight" loading="lazy">
+                  <span class="photo-caption">FIG. 10 — Afterlight (Remix)</span>
+                </div>
+
+              </div>
+              
+              <!-- Show All Button -->
+              <div style="text-align: center; margin-top: 2rem;">
+                <button class="chip" style="cursor: pointer; padding: 0.6rem 1.2rem;" onclick="
+                  const pane = this.closest('.tab-pane');
+                  const hiddenItems = pane.querySelectorAll('[data-more][hidden]');
+                  
+                  if (hiddenItems.length > 0) {
+                    hiddenItems.forEach(el => el.removeAttribute('hidden'));
+                    this.textContent = 'Show less';
+                  } else {
+                    const allItems = pane.querySelectorAll('[data-more]');
+                    allItems.forEach(el => el.setAttribute('hidden', ''));
+                    this.textContent = '+ Show all film stills';
+                  }
+                ">+ Show all film stills</button>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="docs-embelion">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Archive fragments.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">2001</div>
+                  <h4>EMBELION (ARCHIVE NOTE)</h4>
+                  <p>«In 2001, an independent film titled The Forgotten Empire emerged from Eastern Europe. Created by a small studio, it told the story of an expedition searching for an ancient civilization that had vanished long before the beginning of recorded history.»</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>THE JOURNEY</h4>
+                  <p>«Following fragments of old records and mysterious maps, the explorers ventured into remote mountain ranges and forgotten valleys. Beyond the passes lay the remains of an extraordinary world: colossal stone terraces, monumental walls, hidden passages, and ancient structures.»</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>MUSICAL LEGACY</h4>
+                  <p>«EMBELION — The Forgotten Empire: Echoes of the Ancient World brings this mysterious civilization back to life through music. The album invites listeners on an expedition into a world where forgotten roads lead to lost cities, monumental stone gates guard the unknown, and ancient temples preserve the traces of a vanished culture.»</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>THE SACRED CITY</h4>
+                  <p>«A special moment arrives with The Sacred City, featuring vocals in an invented language inspired by the imagined ritual traditions of the ancient empire. Rather than recreating any real historical language, the vocals evoke the atmosphere of a forgotten ceremony.»</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
