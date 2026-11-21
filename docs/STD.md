@@ -1,7 +1,7 @@
 # Software Test Documentation (STD) - RADIUS ARCHIVE
 
-**Document Version:** 3.0  
-**Date:** November 18, 2026  
+**Document Version:** 4.0  
+**Date:** November 21, 2026  
 **Status:** Active  
 **Project:** RADIUS ARCHIVE (Static Website)  
 **Repository:** GitHub Pages (`rtvarchive.github.io`)
@@ -14,7 +14,7 @@
 This document defines the testing requirements, environment, and architectural constraints for the RADIUS ARCHIVE website. It serves as the foundation for the Test Plan (STP) and Test Report (STR).
 
 ### 1.2. Scope
-The testing scope includes the EN and RU versions of the website, focusing on global navigation, the Archive Room (CRT & Tape Monitor players), Signal Room (interactive dashboard and forms), About page (submission forms), Project Pages (Ritual-84, Kokle Dub, and single-album projects), and Easter Eggs (console logs and hidden links).
+The testing scope includes the EN and RU versions of the website, focusing on global navigation, the Archive Room (CRT & Tape Monitor players), Signal Room (interactive dashboard and forms), About page (submission forms), Project Pages (all 18 projects), Archive Dossiers, and Easter Eggs.
 
 ---
 
@@ -25,62 +25,41 @@ The testing scope includes the EN and RU versions of the website, focusing on gl
 *   **External APIs:** YouTube IFrame Player API (Archive Room), Formspark (Form Submission).
 *   **Testing Framework:** Playwright.
 *   **Supported Browsers:** Chromium, Firefox, WebKit (Safari).
-*   **Local Environment Constraint:** Testing must be performed via a local HTTP server (e.g., `npx http-server -p 8000`). Opening files directly via `file:///` protocol will block `fetch` requests and JSON loading due to CORS policies, leading to false negatives.
+*   **Local Environment Constraint:** Testing must be performed via a local HTTP server (e.g., `npx http-server -p 8000`). Opening files directly via `file:///` protocol will block `fetch` requests and JSON loading due to CORS policies.
 
 ---
 
-## 3. Functional Requirements (Updated)
+## 3. Functional Requirements
 
 ### 3.1. Global Navigation & Layout
 *   **Desktop/Mobile Split:** The full horizontal navigation menu must be visible on desktops. On mobile (screens < 720px), it must be hidden behind a "MENU" toggle button.
-*   **Mobile Menu Behavior:** The "MENU" button must always remain visible and clickable (`z-index` > overlays). Clicking it must toggle the `.is-open` class on the navigation list.
-*   **Layout Integrity:** Long, unbroken strings (e.g., error logs in Signal Room) must not break the layout. The CSS must enforce `word-break: break-all` and `overflow-wrap: anywhere`.
+*   **Layout Integrity:** Long, unbroken strings must not break the layout. The CSS must enforce `word-break: break-all` and `overflow-wrap: anywhere`.
 
-### 3.2. Archive Room (Section 01 - CRT Monitor / Кинескоп)
+### 3.2. Archive Room (Section 01 - CRT Monitor)
 *   **Desktop:** Clicking a track must hide the standby image and load the YouTube video.
-*   **Mobile (iOS/Android):**
-    *   The YouTube player must include the `'playsinline': 1` parameter.
-    *   No image overlays are allowed to cover the player.
-    *   Clicking a track must immediately trigger the visual change and attempt playback synchronously.
-*   **Testing Requirements:**
-    *   Verify folder accordion expansion (adding `.is-open` class).
-    *   Verify that clicking a track updates the UI (`#archive-log` and `#current-channel`).
-    *   Verify catalog search functionality by project name and track name.
-    *   Verify Next/Prev controls.
+*   **Mobile (iOS/Android):** The YouTube player must include the `'playsinline': 1` parameter. No image overlays are allowed to cover the player.
+*   **Testing Requirements:** Verify folder accordion, track click UI updates, search by project/track, and Next/Prev controls.
 
-### 3.3. Archive Room (Section 02 - Reel-to-Reel / Бобины)
-*   **Desktop:** Uses a visually hidden YouTube player (opacity: 0.01), controlled via custom UI knobs.
-*   **Mobile:** Hidden players are blocked. The player must be visually exposed via the "Tape Monitor" UI window (`1:1` aspect ratio on mobile).
-*   **Testing Requirements:**
-    *   Verify release catalog loading and album accordion expansion.
-    *   Verify clicking an album highlights the card and triggers the player window (`#streaming-youtube-player` receives `.is-active`).
-    *   Verify release search functionality.
-    *   Verify the Stop button resets the UI and stops reel animations.
-    *   **Mocking:** Automated tests must intercept YouTube API requests (`https://www.youtube.com/iframe_api` and `embed/**`) to prevent real video loading and flakiness.
+### 3.3. Archive Room (Section 02 - Reel-to-Reel)
+*   **Desktop:** Uses a visually hidden YouTube player, controlled via custom UI knobs.
+*   **Mobile:** The player must be visually exposed via the "Tape Monitor" UI window (`1:1` aspect ratio).
+*   **Testing Requirements:** Verify release catalog loading, album click, search, and Stop button reset.
 
 ### 3.4. Forms (About Page & Signal Room)
-*   **Service Provider:** Formspark (Endpoint: `https://submit-form.com/hiLPOJzWg`).
-*   **Optimistic UI Logic:**
-    *   Upon submission, the button text changes to "Transmitting..." and is disabled.
-    *   **Crucial:** Regardless of the HTTP response (success, rate limit error, network failure), the form MUST reset, and the success modal MUST open. This guarantees a stable UI for the user.
-    *   Actual API status (success/failure) must be logged to the browser console.
-*   **Modal (Popup) Behavior:**
-    *   The modal (`#success-modal`) must receive the `.is-active` class upon form submission.
-    *   The modal must be closable via three methods: Click "Close", Click background overlay, Press `Escape`.
+*   **Service Provider:** Formspark.
+*   **Optimistic UI Logic:** Regardless of the HTTP response, the form MUST reset, and the success modal MUST open. Actual API status is logged to the browser console.
+*   **Modal Behavior:** Closable via "Close", background overlay, and `Escape`.
 
-### 3.5. Project Pages (Ritual-84, Kokle Dub, Single Albums)
-*   **Multi-Album Projects (Ritual-84, Kokle Dub):** Must display multiple album cards on a single page. Each album must have its own status (`available` / `soon`), tracklist, and Listen button.
-*   **Single-Album Projects (605, Oriental Bazaar, Phase/Zero, Final Psalm, Gurt Groove):** Must display one card with a tracklist and a functional Listen button.
-*   **Listen Modal (`.modal`):**
-    *   Must open when clicking the Listen button or via deep-link (`?listen=...`).
-    *   Must be closable via close button, clicking the background overlay, or pressing `Escape`.
-    *   Must display platform links (Apple Music, Spotify, etc.) if available.
-    *   Must include a "Copy Link" button that triggers a toast notification (`#copy-toast`) with `opacity` changing from 0 to 1 (and back to 0 after 2 seconds).
-*   **Deep-linking:** Opening a page with `?listen=summer` or `?listen=1` must automatically open the corresponding modal.
+### 3.5. Project Pages (All 18 Projects)
+*   **Album Cards:** Must display the correct number of album cards (1 for single-album projects, 3 for Ritual-84, 2 for Kokle Dub, etc.).
+*   **Statuses:** Must correctly show `available` or `soon`.
+*   **Tracklists:** Must correctly render tracks in groups (using `.tracklist-group`) and the total count must match the header.
+*   **Listen Modal:** Opens via button or deep-link (`?listen=...`). Closes via button, backdrop, or `Escape`.
+*   **Archive Dossier:** A collapsible section on each project page with dynamic tabs (e.g., Photos/Documents, Stills/Notes). Must toggle open/close correctly. For projects with >5 images, a "Show all" button must reveal hidden images and change its text (e.g., to "Show less" / "Свернуть").
 
 ### 3.6. Easter Eggs
-*   **Console Logs:** `main.js` must output specific styled messages to the browser console upon initialization (`OPERATOR ID: 7749`, dossier URL, etc.).
-*   **Hidden Link:** Signal Room (EN & RU) must contain a small, visible link (`SYSTEM OPERATOR ID: 7749`) that leads to the `resume/index.html` page.
+*   **Console Logs:** `main.js` must output specific styled messages (`OPERATOR ID: 7749`).
+*   **Hidden Link:** Signal Room (EN & RU) must contain a small, visible link leading to `/resume/`.
 
 ---
 
@@ -88,7 +67,7 @@ The testing scope includes the EN and RU versions of the website, focusing on gl
 
 ### 4.1. Cross-Browser & Responsiveness
 *   The site must be fully functional on Chrome, Firefox, Safari, and Edge.
-*   Layout must adapt correctly from 320px (mobile) to 4K resolutions without horizontal scrollbars.
+*   Layout must adapt correctly from 320px (mobile) to 4K resolutions.
 *   **Automated Testing:** All automated tests must pass in Chromium, Firefox, and WebKit environments.
 
 ### 4.2. Localization (i18n)
@@ -98,8 +77,8 @@ The testing scope includes the EN and RU versions of the website, focusing on gl
 
 ## 5. Defect Management & Known Constraints
 
-*   **Formspark Free Tier:** The free tier has a monthly submission limit. The "Optimistic UI" implementation ensures the UI does not break for the user.
-*   **GitHub Pages Cache:** After pushing updates, there is a 1–3 minute delay for GitHub Actions to deploy. Testing must be done in Incognito mode.
-*   **Video Autoplay Policies:** Mobile browsers strictly enforce autoplay policies. The system relies on user interaction with the YouTube player directly.
-*   **Headless Browser Rendering:** Playwright's headless browsers may not trigger CSS animations instantly. Tests must use `scrollIntoViewIfNeeded()` and class assertions (`toHaveClass(/is-open/)`) instead of relying on pure visibility timeouts.
-*   **Clipboard API:** Tests checking the "Copy Link" toast must mock `window.copyLink` via `page.evaluate` because headless Firefox/WebKit block `navigator.clipboard` access.
+*   **Formspark Free Tier:** Has a monthly submission limit. "Optimistic UI" ensures the UI does not break.
+*   **GitHub Pages Cache:** 1–3 minute delay for deployment.
+*   **Video Autoplay Policies:** Mobile browsers strictly enforce autoplay policies.
+*   **Headless Browser Rendering:** Playwright's headless browsers may not trigger CSS animations instantly. Tests must use `scrollIntoViewIfNeeded()` and class assertions.
+*   **Clipboard API:** Tests checking the "Copy Link" toast must mock `window.copyLink` via `page.evaluate`.
