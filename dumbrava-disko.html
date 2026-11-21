@@ -119,6 +119,117 @@
           <span>1993 · Folk · Balkan Clubbing</span>
           <span>1 Album</span>
         </div>
+		
+		        <!-- ВСТАВКА: Кнопка и панель досье для Dumbrava Disko -->
+        <button class="open-dossier-btn" onclick="toggleDossier('dumbravadisko', this)">
+          <span class="dossier-btn-text">▶ Open Archive Dossier</span>
+        </button>
+        <div id="dossier-dumbravadisko" class="dossier-content">
+          <div class="folder-tabs">
+            <button class="tab is-active" data-tab="photos">TAPES</button>
+            <button class="tab" data-tab="docs">ARCHIVE NOTES</button>
+          </div>
+          <div class="folder-content">
+            
+            <div class="tab-pane is-active" id="photos-dumbravadisko">
+              <p class="archive-note">> FOUND IN ARCHIVE: Digitized frames from the cassette, 1993.</p>
+              <div class="photo-grid bento-grid">
+                
+                <!-- 1-5 (Visible by default) -->
+                <div class="photo-item">
+                  <img src="assets/img/dumbrava-photo1.jpg" alt="Seara" loading="lazy">
+                  <span class="photo-caption">FIG. 01 — Seara</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/dumbrava-photo2.jpg" alt="Trandafir Electric" loading="lazy">
+                  <span class="photo-caption">FIG. 02 — Trandafir Electric</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/dumbrava-photo3.jpg" alt="Străin în Orașul Meu" loading="lazy">
+                  <span class="photo-caption">FIG. 03 — Străin în Orașul Meu</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/dumbrava-photo4.jpg" alt="Cartierul Care Nu Doarme" loading="lazy">
+                  <span class="photo-caption">FIG. 04 — Cartierul Care Nu Doarme</span>
+                </div>
+                <div class="photo-item">
+                  <img src="assets/img/dumbrava-photo5.jpg" alt="Hora de Noapte" loading="lazy">
+                  <span class="photo-caption">FIG. 05 — Hora de Noapte</span>
+                </div>
+
+                <!-- 6-10 (Hidden by default) -->
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/dumbrava-photo6.jpg" alt="An Venit pe Jos" loading="lazy">
+                  <span class="photo-caption">FIG. 06 — An Venit pe Jos</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/dumbrava-photo7.jpg" alt="Inimă de Tablă" loading="lazy">
+                  <span class="photo-caption">FIG. 07 — Inimă de Tablă</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/dumbrava-photo8.jpg" alt="Localnic Temporar" loading="lazy">
+                  <span class="photo-caption">FIG. 08 — Localnic Temporar</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/dumbrava-photo9.jpg" alt="Zurgălău de Disko" loading="lazy">
+                  <span class="photo-caption">FIG. 09 — Zurgălău de Disko</span>
+                </div>
+                <div class="photo-item" data-more hidden>
+                  <img src="assets/img/dumbrava-photo10.jpg" alt="Răsărit de Dub" loading="lazy">
+                  <span class="photo-caption">FIG. 10 — Răsărit de Dub</span>
+                </div>
+
+              </div>
+              
+              <!-- Show All Button -->
+              <div style="text-align: center; margin-top: 2rem;">
+                <button class="chip" style="cursor: pointer; padding: 0.6rem 1.2rem;" onclick="
+                  const pane = this.closest('.tab-pane');
+                  const hiddenItems = pane.querySelectorAll('[data-more][hidden]');
+                  
+                  if (hiddenItems.length > 0) {
+                    hiddenItems.forEach(el => el.removeAttribute('hidden'));
+                    this.textContent = 'Show less';
+                  } else {
+                    const allItems = pane.querySelectorAll('[data-more]');
+                    allItems.forEach(el => el.setAttribute('hidden', ''));
+                    this.textContent = '+ Show all tapes';
+                  }
+                ">+ Show all tapes</button>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="docs-dumbravadisko">
+              <p class="archive-note">> DECLASSIFIED DOCUMENTS: Archive fragments.</p>
+              <div class="doc-list">
+                
+                <div class="doc-item">
+                  <div class="doc-secret">1993</div>
+                  <h4>DUMBRAVA DISKO (ARCHIVE NOTE)</h4>
+                  <p>«Sometimes an archive doesn’t begin with an institute or a television center. Sometimes it begins with a box at a flea market. Chișinău, late nineties. At a street stall, between school notebooks, a broken tape recorder and someone’s old jacket, lay a cassette.»</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>NIGHT SESSION</h4>
+                  <p>«Judging by the recording, this was a concert program by a vocal-instrumental ensemble attached to one of Chișinău’s houses of culture. The tape preserves ten tracks recorded over a single night. It begins with a final rehearsal... It ends at sunrise, when the brass dissolves into echo.»</p>
+                </div>
+
+                <div class="doc-item">
+                  <h4>PARALLEL REALITY</h4>
+                  <p>«The music does not fit the usual frames of 1993. Balkan brass, clarinet, accordion and gypsy violin are fused here with disco beat, dub and electronics. Vocals are in Romanian, with shouts and choral inserts. It sounds as if it was recorded in a parallel reality where Balkan club music already existed in the early nineties.»</p>
+                </div>
+
+                <div class="doc-item doc-telegram">
+                  <h4>PRESERVED ARTIFACTS</h4>
+                  <p>«The material was digitized from the original cassette. The artifacts of the medium are preserved: tape hiss, slight wow/flutter, loss of high frequencies and characteristic saturation. Nothing was restored beyond what was necessary — only basic digital cleaning and mastering.»</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+		
       </article>
     </div>
   </main>
