@@ -235,9 +235,121 @@
           ]
         }
       ]
+    },
+    {
+      "id": "P-012",
+      "name": "Дима Милан",
+      "playlists": [
+        {
+          "tracks": [
+            { "title": "Восточная любовь", "videoId": "mVkePcdpq_8" },
+            { "title": "Ты не одна", "videoId": "v90O4LRPPUk" },
+            { "title": "Останься со мной", "videoId": "5PPLAZ_wFqo" },
+            { "title": "Под Новый Год", "videoId": "kOwJWAvnag4" },
+            { "title": "Не звони", "videoId": "JVREt3JFgIg" },
+            { "title": "Не звони (Лирическая версия)", "videoId": "dXz4-Towa0s" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-013",
+      "name": "ШТОРМОВОЙ ФРОНТ",
+      "playlists": [
+        {
+          "tracks": [
+            { "title": "Нас не собьёшь!", "videoId": "5oWN8E9gTkE" },
+            { "title": "Я помню тебя, как тогда", "videoId": "0li6v4bj9zQ" },
+            { "title": "Пока горит огонь", "videoId": "IUJ5evNYvtc" },
+            { "title": "Скажи мне, бог", "videoId": "kl_j6-BDyNc" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-014",
+      "name": "ГУРТ ГРУВ",
+      "playlists": [
+        {
+          "tracks": [
+            { "title": "Город ведёт", "videoId": "paadccgKm9g" },
+            { "title": "Не сбавляя ход", "videoId": "ZH0hfy65NM8" },
+            { "title": "Найди свой голос", "videoId": "RVvfkDpBpFw" },
+            { "title": "Колеса крутяться", "videoId": "_-7jR3fbXKc" },
+            { "title": "Удар за ударом", "videoId": "N0u9IVBGIxw" },
+            { "title": "Двигай толпу!", "videoId": "UVcrp1_hbCk" },
+            { "title": "Бит с орбиты", "videoId": "p-3-rZZRsA8" },
+            { "title": "Рухай натовп!", "videoId": "9bHFEQBtXTA" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-015",
+      "name": "Останній Псалом",
+      "playlists": [
+        {
+          "tracks": [
+            { "title": "Нитка між нами", "videoId": "a21TnfKnGjs" },
+            { "title": "Прощавай, мій сві́те", "videoId": "LUF-wBm1SVo" },
+            { "title": "Там, де сходить сонце", "videoId": "n0ypQSanXWc" },
+            { "title": "Крила над землею", "videoId": "Os_QR77aMMI" },
+            { "title": "Сіль і сонце", "videoId": "vlobzTaS6B0" },
+            { "title": "Дорога без кінця", "videoId": "o19VjUmgjQ4" },
+            { "title": "Тепло в долонях", "videoId": "Vn5-EgLSRdI" },
+            { "title": "Вітер несе нас", "videoId": "qzDeMC8WQpc" },
+            { "title": "Поки горить вогонь", "videoId": "PWahMcW0Z6c" },
+            { "title": "Будь зі мною", "videoId": "4qWO5pu91qA" },
+            { "title": "Поки горить вогонь (Dub Version)", "videoId": "cPpPtOL7XH4" },
+            { "title": "Крила над землею (Dub Version)", "videoId": "epNGDFOMG08" },
+            { "title": "Вітер несе нас (Dub Version)", "videoId": "Lo9YTUTWZ-U" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-016",
+      "name": "EMBELION",
+      "playlists": [
+        {
+          "tracks": [
+            { "title": "The First Light", "videoId": "_ispPZHpqt8" },
+            { "title": "Before the Dawn", "videoId": "QjoDbTTJJSQ" },
+            { "title": "The Hidden Road", "videoId": "mklpJTKLPzc" },
+            { "title": "Beyond the Horizon", "videoId": "Dnftg69TZrg" },
+            { "title": "The Silent Kingdom", "videoId": "5kc5JpUIDiA" },
+            { "title": "The Stone Gate", "videoId": "-qGVjIGhO8g" },
+            { "title": "The Sacred City", "videoId": "_ckCz1271DI" },
+            { "title": "The Last Temple", "videoId": "Ze1eR6dsHMw" },
+            { "title": "The Return", "videoId": "Lwna7yw8ObU" },
+            { "title": "Afterlight (Ancient Pulse Remix)", "videoId": "hkLteYN-x_E" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P-017",
+      "name": "Dumbrava Disko",
+      "playlists": [
+        {
+          "tracks": [
+            { "title": "Seară", "videoId": "WjWabQmZHWU" },
+            { "title": "Trandafir Electric", "videoId": "FuX_hOflHaQ" },
+            { "title": "Străin în Orașul Meu", "videoId": "ULi9daXE2Zk" },
+            { "title": "Cartierul Care Nu Doarme", "videoId": "BeEr-1tFPPA" },
+            { "title": "Hora de Noapte", "videoId": "RCbXD_xgwzo" },
+            { "title": "Am Venit Pe Jos", "videoId": "J_e6RX7Ennw" },
+            { "title": "Inimă de Tablă", "videoId": "au9eC6_ZQuA" },
+            { "title": "Localnic Temporar", "videoId": "8dMGFedmaNU" },
+            { "title": "Zurgălău de Disko", "videoId": "hkllrT7-qiE" },
+            { "title": "Răsărit de Dub", "videoId": "WjfbmWyrSF0" }
+          ]
+        }
+      ]
     }
   ],
   "distributed": [
+  
     {
       "id": "P-03",
       "name": "Ритуал-84",
